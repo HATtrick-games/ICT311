@@ -1,5 +1,5 @@
-#ifndef GRAPHICS_H
-#define GRAPHICS_H
+#pragma once
+
 #include <string>
 
 class Graphics abstract
@@ -10,6 +10,5 @@ private:
 
 	virtual void Init() = 0;
 	virtual void DrawModel(std::string Path) = 0;
-}
-
-#endif
+	virtual void Reshape(int width, int height) = 0;
+};
