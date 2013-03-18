@@ -7,6 +7,11 @@ OpenGL::OpenGL(void)
 	char* GLargv[1];
 	GLargv[0] = strdup("RPG");
 	glutInit(&GLargc, GLargv);
+	iDisplayMode = GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH;
+
+	Ini = GameSettings::GetInstance();
+	Ini->UpdateiWindowWidth();
+	Ini->UpdateiWindowHeight();
 }
 
 

@@ -2,6 +2,7 @@
 
 #include "Graphics.h"
 #include <GL\freeglut.h>
+#include "GameSettings.h"
 
 class OpenGL :public Graphics
 {
@@ -13,6 +14,9 @@ public:
 	void DrawModel(std::string Path); // To be changed to take in a more meaningful identifier(or different datatype) once we decide how / where we are storing model vertex data
 	void Reshape(int width, int height);
 
+private:
+	unsigned int iDisplayMode;
+	GameSettings *Ini;
 };
 
 
