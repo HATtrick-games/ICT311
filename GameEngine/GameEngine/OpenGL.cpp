@@ -42,6 +42,8 @@ void OpenGL::Init()
 
 	//Setup Program / shader contexts here
 	glload::LoadFunctions(); // load in the functions specified by the current opengl context version
+	
+	SetupProgram();
 
 	if(!glload::IsVersionGEQ(3,3))
 	{
@@ -50,8 +52,15 @@ void OpenGL::Init()
 
 	//Register callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
+	glutDisplayFunc(OpenGL::DisplayCallback);
 
 	glutMainLoop();
+}
+
+void OpenGL::SetupProgram()
+{
+	std::vector<GLuint> shaderList; //Create vector to store handles to shader objects
+
 }
 
 void OpenGL::Display()

@@ -6,6 +6,7 @@
 //#include <glload\gl_3_3.h>
 #include <glload\gll.hpp>
 
+#include <vector>
 #include <iostream>
 class OpenGL :public Graphics
 {
@@ -20,6 +21,7 @@ public:
 	void Display();
 
 	//OpenGL specific functions
+	void SetupProgram();
 
 private:
 	OpenGL(void); // Used to intialise and setup anything required before freeglut sets up the window
@@ -36,6 +38,11 @@ private:
 	static void ReshapeCallback(int width, int height)
 	{
 		OpenGLsingleton->Reshape(width, height);
+	}
+	
+	static void DisplayCallback()
+	{
+		OpenGLsingleton->Display();
 	}
 };
 
