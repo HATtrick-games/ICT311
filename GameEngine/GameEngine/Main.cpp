@@ -10,25 +10,17 @@
 #include <GL\freeglut.h> // Note that this is the GL folder found in the project solution, not the GL folder on C:
 #include "Graphics.h"
 #include "GameSettings.h"
+#include "GraphicsEngFact.h"
 
 
 int main(int argc, char** argv)
-{
-	GameSettings *LoadIni;
+{	
+	GraphicsEngFact GraphicsFact;
+	Graphics *GraphicsEng;
 
-	LoadIni = GameSettings::GetInstance();
-	int WindowStartX = 350, WindowStartY = 50;
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA | GLUT_ALPHA); 		
+	GraphicsEng = GraphicsFact.CreateEngine("OpenGL");
 
-	//Setup main window
-	glutInitWindowPosition(WindowStartX, WindowStartY);
-	LoadIni->UpdateiWindowWidth();
-	LoadIni->UpdateiWindowHeight();
-	glutInitWindowSize(LoadIni->GetiWindowWidth(), LoadIni->GetiWindowHeight());
+	GraphicsEng->Init();
 
-	glutCreateWindow("Test");
-	glutMainLoop();
-	
 	return 0;
 }
