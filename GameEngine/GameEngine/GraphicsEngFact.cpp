@@ -14,6 +14,6 @@ Graphics * GraphicsEngFact::CreateEngine(std::string Name)
 {
 	if(Name == "OpenGL")
 	{
-		return new OpenGL;
+		return OpenGL::GetInstance();
 	}
 }
