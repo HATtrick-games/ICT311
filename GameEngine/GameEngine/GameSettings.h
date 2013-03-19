@@ -6,7 +6,7 @@
 class GameSettings
 {
 public:
-	~GameSettings(void) {}
+	~GameSettings(void) {};
 
 	static boost::scoped_ptr<GameSettings>* GetInstance();
 
@@ -27,6 +27,8 @@ private:
 	static boost::scoped_ptr<GameSettings> pSingleton;
 	
 	GameSettings(void){iniReader = new IniReader(_T(".\\Config.ini"));}
+	GameSettings& operator=(const GameSettings&);
+	GameSettings(const GameSettings&);
 
 	IniReader *iniReader;
 	IniWriter *iniWriter;

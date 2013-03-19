@@ -58,8 +58,7 @@ void OpenGL::Init()
 
 void OpenGL::SetupProgram()
 {
-	//std::vector<GLuint> shaderList; //Create vector to store handles to shader objects
-	//shaderList.push_back(Shader::LoadShader(
+	(*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 }
 
 void OpenGL::Display()

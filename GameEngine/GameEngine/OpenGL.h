@@ -27,6 +27,8 @@ public:
 
 private:
 	OpenGL(void); // Used to intialise and setup anything required before freeglut sets up the window
+	OpenGL& operator= (const OpenGL&);
+	OpenGL(const OpenGL&);
 
 	unsigned int iDisplayMode;
 	int iMainWindow;
