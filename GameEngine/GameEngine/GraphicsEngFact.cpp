@@ -10,7 +10,7 @@ GraphicsEngFact::~GraphicsEngFact(void)
 {
 }
 
-Graphics * GraphicsEngFact::CreateEngine(std::string Name)
+boost::scoped_ptr<Graphics> * GraphicsEngFact::CreateEngine(std::string Name)
 {
 	if(Name == "OpenGL")
 	{

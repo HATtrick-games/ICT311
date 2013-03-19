@@ -1,17 +1,19 @@
 #pragma once
 
 #include "Graphics.h"
+#include "Shader.h"
 #include <GL\freeglut.h>
 #include "GameSettings.h"
 //#include <glload\gl_3_3.h>
 #include <glload\gll.hpp>
+#include <boost\smart_ptr.hpp>
 
 #include <vector>
 #include <iostream>
 class OpenGL :public Graphics
 {
 public:
-	static OpenGL * GetInstance();
+	static boost::scoped_ptr<Graphics> * GetInstance();
 	~OpenGL(void);
 
 	//Virtual functions
@@ -30,19 +32,18 @@ private:
 	int iMainWindow;
 	
 	//singleton stuff
-	static OpenGL *OpenGLsingleton;
-	static bool instanceFlag;
+	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
 
 	GameSettings *Ini;
 
 	static void ReshapeCallback(int width, int height)
 	{
-		OpenGLsingleton->Reshape(width, height);
+		pOpenGLsingleton->Reshape(width, height);
 	}
 	
 	static void DisplayCallback()
 	{
-		OpenGLsingleton->Display();
+		pOpenGLsingleton->Display();
 	}
 };
 

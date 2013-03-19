@@ -82,6 +82,7 @@
     <ClCompile Include="IniWriter.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="OpenGL.cpp" />
+    <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameSettings.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="IniReader.h" />
     <ClInclude Include="IniWriter.h" />
     <ClInclude Include="OpenGL.h" />
+    <ClInclude Include="Shader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

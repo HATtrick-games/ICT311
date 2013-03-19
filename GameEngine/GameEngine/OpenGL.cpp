@@ -1,13 +1,12 @@
 #include "OpenGL.h"
 
-OpenGL* OpenGL::OpenGLsingleton = 0;
-bool OpenGL::instanceFlag = false;
+boost::scoped_ptr<Graphics> OpenGL::pOpenGLsingleton(NULL);
 
 OpenGL::OpenGL(void)
 {
 	int GLargc = 1;
 	char* GLargv[1];
-	GLargv[0] = strdup("RPG");
+	GLargv[0] = _strdup("RPG");
 	glutInit(&GLargc, GLargv);
 	iDisplayMode = GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH | GLUT_RGBA;
 
@@ -59,8 +58,8 @@ void OpenGL::Init()
 
 void OpenGL::SetupProgram()
 {
-	std::vector<GLuint> shaderList; //Create vector to store handles to shader objects
-
+	//std::vector<GLuint> shaderList; //Create vector to store handles to shader objects
+	//shaderList.push_back(Shader::LoadShader(
 }
 
 void OpenGL::Display()
@@ -78,14 +77,12 @@ void OpenGL::Reshape(int width, int height)
 	glViewport(0, 0, (GLsizei) width, (GLsizei) height);
 }
 
-OpenGL * OpenGL::GetInstance()
+boost::scoped_ptr<Graphics> * OpenGL::GetInstance()
 {
-	if(instanceFlag == false)
+	if(pOpenGLsingleton.get() == NULL)
 	{
-		OpenGLsingleton = new OpenGL;
-		instanceFlag = true;
+		pOpenGLsingleton.reset(new OpenGL);
 	}
 	
-	return OpenGLsingleton;
-
+	return &pOpenGLsingleton;
 }

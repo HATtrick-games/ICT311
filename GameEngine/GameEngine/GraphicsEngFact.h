@@ -9,6 +9,6 @@ public:
 	GraphicsEngFact(void);
 	~GraphicsEngFact(void);
 
-	Graphics * CreateEngine(std::string Name);
+	boost::scoped_ptr<Graphics> * CreateEngine(std::string Name);
 };
 

@@ -12,15 +12,16 @@
 #include "GameSettings.h"
 #include "GraphicsEngFact.h"
 
+#include <boost\smart_ptr.hpp>
 
 int main(int argc, char** argv)
 {	
 	GraphicsEngFact GraphicsFact;
-	Graphics *GraphicsEng;
+	boost::scoped_ptr<Graphics> *pGraphicsEng;
 
-	GraphicsEng = GraphicsFact.CreateEngine("OpenGL");
+	pGraphicsEng = GraphicsFact.CreateEngine("OpenGL");
 
-	GraphicsEng->Init();
-
+	(*pGraphicsEng)->Init();
+	
 	return 0;
 }
