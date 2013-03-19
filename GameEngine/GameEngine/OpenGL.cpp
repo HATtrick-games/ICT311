@@ -11,8 +11,8 @@ OpenGL::OpenGL(void)
 	iDisplayMode = GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH | GLUT_RGBA;
 
 	Ini = GameSettings::GetInstance();
-	Ini->UpdateiWindowWidth();
-	Ini->UpdateiWindowHeight();
+	(*Ini)->UpdateiWindowWidth();
+	(*Ini)->UpdateiWindowHeight();
 }
 
 
@@ -30,7 +30,7 @@ void OpenGL::Init()
 	
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS); //return control to the program on window close, to be able to appropriately release memory
 
-	glutInitWindowSize(Ini->GetiWindowWidth(), Ini->GetiWindowHeight());
+	glutInitWindowSize((*Ini)->GetiWindowWidth(), (*Ini)->GetiWindowHeight());
 	glutInitWindowPosition (300, 0);
 	iMainWindow = glutCreateWindow("RPG");
 

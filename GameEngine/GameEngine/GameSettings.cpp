@@ -1,14 +1,13 @@
 #include "GameSettings.h"
-bool GameSettings::instanceFlag = false;
-GameSettings* GameSettings::singleton = 0;
 
-GameSettings * GameSettings::GetInstance()
+boost::scoped_ptr<GameSettings> GameSettings::pSingleton(NULL);
+
+boost::scoped_ptr<GameSettings> * GameSettings::GetInstance()
 {
-	if(!instanceFlag)
+	if(pSingleton.get() == NULL)
 	{
-		singleton = new GameSettings;
-		instanceFlag = true;
+		pSingleton.reset(new GameSettings);
 	}
-	return singleton;
+	return &pSingleton;
 	
 }

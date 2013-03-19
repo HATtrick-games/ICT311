@@ -1,14 +1,14 @@
 #pragma once
 #include "IniReader.h"
 #include "IniWriter.h"
-
+#include "boost\smart_ptr.hpp"
 
 class GameSettings
 {
 public:
-	~GameSettings(void) {instanceFlag = false; singleton = 0; delete[] singleton;}
+	~GameSettings(void) {}
 
-	static GameSettings* GetInstance();
+	static boost::scoped_ptr<GameSettings>* GetInstance();
 
 	//Update
 	void UpdateiWindowWidth(){iWindowWidth = iniReader->ReadInteger(_T("Video Settings"), _T("ResolutionWidth"), 1280);}
@@ -24,8 +24,7 @@ public:
 	void SetiVolume(int iValue){iniWriter->WriteInteger(_T("Audio Settings"), _T("Master Volume"), iValue); iMasterVolume = iValue;}
 
 private:
-	static bool instanceFlag;
-	static GameSettings *singleton;
+	static boost::scoped_ptr<GameSettings> pSingleton;
 	
 	GameSettings(void){iniReader = new IniReader(_T(".\\Config.ini"));}
 

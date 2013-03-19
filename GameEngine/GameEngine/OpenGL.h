@@ -34,7 +34,7 @@ private:
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
 
-	GameSettings *Ini;
+	boost::scoped_ptr<GameSettings>* Ini;
 
 	static void ReshapeCallback(int width, int height)
 	{
