@@ -1,7 +1,7 @@
 #pragma once
 
-#include <GL\freeglut.h>
 #include <glload/gl_3_3.h>
+#include <GL\freeglut.h>
 #include <string>
 #include "boost\smart_ptr.hpp"
 #include <vector>
