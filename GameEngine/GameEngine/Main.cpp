@@ -7,7 +7,6 @@
  *
  */
 
-
 #include "Graphics.h"
 #include "GameSettings.h"
 #include "GraphicsEngFact.h"
