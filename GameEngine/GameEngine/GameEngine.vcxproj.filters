@@ -59,6 +59,8 @@
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
       <Filter>Source Files\Input</Filter>
+    <ClCompile Include="CommonFuncs.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +90,8 @@
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>Header Files\Input</Filter>
+    <ClInclude Include="CommonFuncs.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

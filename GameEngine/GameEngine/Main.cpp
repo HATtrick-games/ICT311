@@ -7,11 +7,11 @@
  *
  */
 
-//#include <GL\freeglut.h> // Note that this is the GL folder found in the project solution, not the GL folder on C:
 #include "Graphics.h"
 #include "GameSettings.h"
 #include "GraphicsEngFact.h"
 #include "Keyboard.h"
+#include "CommonFuncs.h"
 
 #include <boost\smart_ptr.hpp>
 
@@ -27,5 +27,7 @@ int main(int argc, char** argv)
 
 	(*pGraphicsEng)->Init();
 	
+
+
 	return 0;
 }

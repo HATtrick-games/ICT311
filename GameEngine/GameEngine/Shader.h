@@ -1,10 +1,16 @@
 #pragma once
 
 #include <glload/gl_3_3.h>
+#include <glutil/Shader.h>
 #include <GL\freeglut.h>
+
 #include <string>
-#include "boost\smart_ptr.hpp"
 #include <vector>
+#include <fstream>
+#include <sstream>
+#include "boost\smart_ptr.hpp"
+#include "CommonFuncs.h"
+
 
 class Shader
 {
@@ -14,7 +20,7 @@ public:
 	static boost::scoped_ptr<Shader>* GetInstance();
 
 	void Initialise();
-	GLuint LoadShader(GLenum eShaderType, const std::string &Filename);
+	GLuint LoadShader(GLenum eShaderType, const std::string &sFilename);
 
 	const std::vector<GLuint> * GetvShaderList() {return &vShaderList;}
 

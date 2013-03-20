@@ -1,6 +1,9 @@
 #include "OpenGL.h"
 
 boost::scoped_ptr<Graphics> OpenGL::pOpenGLsingleton(NULL);
+#ifdef LOAD_X11
+#define APIENTRY
+#endif
 
 OpenGL::OpenGL(void)
 {
@@ -27,7 +30,7 @@ void OpenGL::Init()
 	//Set OpenGL context to 3.3 using core profile (all previously deprecated functions are removed/unusable)
 	glutInitContextVersion (3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
-	
+
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS); //return control to the program on window close, to be able to appropriately release memory
 
 	glutInitWindowSize((*Ini)->GetiWindowWidth(), (*Ini)->GetiWindowHeight());
@@ -49,6 +52,8 @@ void OpenGL::Init()
 		//throw error, opengl 3.3 isn't supported on current device.
 	}
 
+
+
 	//Register callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
@@ -58,6 +63,8 @@ void OpenGL::Init()
 
 void OpenGL::SetupProgram()
 {
+	//boost::scoped_ptr<Shader>
+	(*Shader::GetInstance())->Initialise();
 	(*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 }
 
