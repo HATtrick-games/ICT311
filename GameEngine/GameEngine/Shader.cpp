@@ -17,9 +17,26 @@ void Shader::Initialise()
 	vShaderList.push_back(LoadShader(GL_FRAGMENT_SHADER, "BasicShader.frag")); // ^^^^^
 }
 
-GLuint Shader::LoadShader(GLenum eShaderType, const std::string &Filename)
+GLuint Shader::LoadShader(GLenum eShaderType, const std::string &sFilename)
 {
-	return 1;
+	std::string sUsableFilename = CommonFunctions::CheckFile(sFilename);
+	std::cout << sUsableFilename;
+	std::ifstream openFile(sUsableFilename.c_str());
+	std::stringstream shaderData;
+	shaderData << openFile.rdbuf();
+	openFile.close();
+
+	//can probably remove this try catch block, was just used for debugging a specific issue. Overall use seems very limited.
+		try
+		{
+			return glutil::CompileShader(eShaderType, shaderData.str());
+		}
+		catch(std::exception &e)
+		{
+			fprintf(stderr, "%s\n", e.what());
+			throw;
+		}
+		
 }
 
 boost::scoped_ptr<Shader>* Shader::GetInstance()
