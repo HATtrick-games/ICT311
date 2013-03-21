@@ -83,9 +83,8 @@
     <ClCompile Include="GraphicsEngFact.cpp" />
     <ClCompile Include="IniReader.cpp" />
     <ClCompile Include="IniWriter.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="OGLKeyboard.cpp" />
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
@@ -94,10 +93,11 @@
     <ClInclude Include="GameSettings.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsEngFact.h" />
+    <ClInclude Include="IKeyboard.h" />
+    <ClInclude Include="IMouse.h" />
     <ClInclude Include="IniReader.h" />
     <ClInclude Include="IniWriter.h" />
-    <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="OGLKeyboard.h" />
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="Shader.h" />
   </ItemGroup>

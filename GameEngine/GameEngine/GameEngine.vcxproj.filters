@@ -1,39 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Graphics">
-      <UniqueIdentifier>{1b8bb455-efb8-4143-a425-5b7616df0df2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Input">
-      <UniqueIdentifier>{dc770748-9a87-4a37-9529-d5458987811f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Graphics">
-      <UniqueIdentifier>{685f29a9-817a-4e7f-807b-6875a5972492}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Input">
-      <UniqueIdentifier>{a11f3863-a983-4109-8c47-f8717399145c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\EngineCore">
-      <UniqueIdentifier>{a311cf3c-7558-489e-8d5c-49c3139850f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\EngineCore">
-      <UniqueIdentifier>{23bd5ece-2c24-4d89-9c2a-2b8a537f0289}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="CommonFuncs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameSettings.cpp">
@@ -45,6 +13,9 @@
     <ClCompile Include="IniWriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GraphicsEngFact.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
@@ -54,16 +25,14 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Keyboard.cpp">
+    <ClCompile Include="OGLKeyboard.cpp">
       <Filter>Source Files\Input</Filter>
-    </ClCompile>
-    <ClCompile Include="Mouse.cpp">
-      <Filter>Source Files\Input</Filter>
-    <ClCompile Include="CommonFuncs.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CommonFuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="GameSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -85,13 +54,37 @@
     <ClInclude Include="Shader.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Keyboard.h">
+    <ClInclude Include="IKeyboard.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Mouse.h">
+    <ClInclude Include="IMouse.h">
       <Filter>Header Files\Input</Filter>
-    <ClInclude Include="CommonFuncs.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="OGLKeyboard.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{c4c62483-7ffb-4f2c-b98d-a1c327d16c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{91bee62d-040c-4e71-a2c1-b2b5e23ec4ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{5335b9d6-8fa5-4d81-93c5-ae020696edbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{848458d8-0746-4a8e-8695-b46a3ca9c262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{2e72a781-86f5-42db-b4ad-f290770dc1e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Graphics">
+      <UniqueIdentifier>{087b937d-02a3-4286-aa77-1e4726a20745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{854a6273-c8c1-419d-a24d-44cdfef9d159}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
