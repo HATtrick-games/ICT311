@@ -10,18 +10,14 @@ public:
 
 	static boost::scoped_ptr<GameSettings>* GetInstance();
 
-	//Update
-	void UpdateiWindowWidth(){iWindowWidth = iniReader->ReadInteger(_T("Video Settings"), _T("ResolutionWidth"), 1280);}
-	void UpdateiWindowHeight(){iWindowHeight = iniReader->ReadInteger(_T("Video Settings"), _T("ResolutionHeight"), 960);}
-	void UpdateiMasterVolume(){iMasterVolume = iniReader->ReadInteger(_T("Audio Settings"), _T("Master Volume"), 100);}
 	//Getters
 	int GetiWindowWidth() const {return iWindowWidth;}
 	int GetiWindowHeight() const {return iWindowHeight;}
 	int GetiVolume() const {return iMasterVolume;}
 	//Setters
-	void SetiWindowWidth(int iValue){iniWriter->WriteInteger(_T("Video Settings"), _T("ResolutionWidth"), iValue); iWindowWidth = iValue;}
-	void SetiWindowHeight(int iValue){iniWriter->WriteInteger(_T("Video Settings"), _T("ResolutionHeight"), iValue); iWindowHeight = iValue;}
-	void SetiVolume(int iValue){iniWriter->WriteInteger(_T("Audio Settings"), _T("Master Volume"), iValue); iMasterVolume = iValue;}
+	void SetiWindowWidth(int iValue);
+	void SetiWindowHeight(int iValue);
+	void SetiVolume(int iValue);
 
 private:
 	static boost::scoped_ptr<GameSettings> pSingleton;
@@ -29,6 +25,10 @@ private:
 	GameSettings(void);
 	GameSettings& operator=(const GameSettings&);
 	GameSettings(const GameSettings&);
+	//Update
+	void UpdateiWindowWidth();
+	void UpdateiWindowHeight();
+	void UpdateiMasterVolume();
 
 	IniReader *iniReader;
 	IniWriter *iniWriter;
