@@ -26,7 +26,7 @@ public:
 private:
 	static boost::scoped_ptr<GameSettings> pSingleton;
 	
-	GameSettings(void){iniReader = new IniReader(_T(".\\Config.ini"));}
+	GameSettings(void);
 	GameSettings& operator=(const GameSettings&);
 	GameSettings(const GameSettings&);
 

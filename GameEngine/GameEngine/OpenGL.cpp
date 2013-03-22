@@ -14,8 +14,8 @@ OpenGL::OpenGL(void)
 	iDisplayMode = GLUT_DOUBLE | GLUT_ALPHA | GLUT_DEPTH | GLUT_RGBA;
 
 	Ini = GameSettings::GetInstance();
-	(*Ini)->UpdateiWindowWidth();
-	(*Ini)->UpdateiWindowHeight();
+	(*Ini)->GetiWindowWidth();
+	(*Ini)->GetiWindowHeight();
 }
 
 

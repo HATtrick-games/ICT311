@@ -11,3 +11,11 @@ boost::scoped_ptr<GameSettings> * GameSettings::GetInstance()
 	return &pSingleton;
 	
 }
+
+GameSettings::GameSettings()
+{
+	iniReader = new IniReader(_T(".\\Config.ini"));
+	UpdateiWindowWidth();
+	UpdateiWindowHeight();
+	UpdateiMasterVolume();
+}

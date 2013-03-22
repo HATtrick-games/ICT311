@@ -20,7 +20,6 @@ void Shader::Initialise()
 GLuint Shader::LoadShader(GLenum eShaderType, const std::string &sFilename)
 {
 	std::string sUsableFilename = CommonFunctions::CheckFile(sFilename);
-	std::cout << sUsableFilename;
 	std::ifstream openFile(sUsableFilename.c_str());
 	std::stringstream shaderData;
 	shaderData << openFile.rdbuf();
