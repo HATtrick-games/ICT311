@@ -25,7 +25,22 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="IKeyboard.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="IMouse.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTest.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
     <ClCompile Include="OGLKeyboard.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="OGLMouse.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -60,7 +75,13 @@
     <ClInclude Include="IMouse.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
     <ClInclude Include="OGLKeyboard.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLMouse.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>

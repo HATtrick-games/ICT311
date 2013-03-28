@@ -1,33 +1,58 @@
 #pragma once
 
 #include <map>
-#include <list>
 #include <string>
 
+/**
+ * \class	IKeyboard
+ *
+ * \brief	Keyboard.
+ */
 class IKeyboard
 {
 public:
-	virtual void IsKeyDown(int key) = 0;
-	virtual void IsKeyDown(std::string key) = 0;
 
-	void Define(std::string identifier, int* keys);
-	void Undefine(std::string identifier);
+	/**
+	 * \fn	virtual bool IKeyboard::IsKeyDown(int key) = 0;
+	 *
+	 * \brief	Query if 'key' is key down.
+	 *
+	 * \param	key	The key.
+	 *
+	 * \return	true if key down, false if not.
+	 */
+	virtual bool IsKeyDown(int key) = 0;
+
+	/**
+	 * \fn	virtual bool IKeyboard::IsKeyDown(std::string key) = 0;
+	 *
+	 * \brief	Query if 'key' is key down.
+	 *
+	 * \param	key	The key.
+	 *
+	 * \return	true if key down, false if not.
+	 */
+	virtual bool IsKeyDown(std::string key) = 0;
+
+	/**
+	 * \fn	void IKeyboard::DefineKey(std::string identifier, int key);
+	 *
+	 * \brief	Define key.
+	 *
+	 * \param	identifier	The identifier.
+	 * \param	key		  	The key.
+	 */
+	void DefineKey(std::string identifier, int key);
+
+	/**
+	 * \fn	void IKeyboard::UndefineKey(std::string identifier);
+	 *
+	 * \brief	Undefine key.
+	 *
+	 * \param	identifier	The identifier.
+	 */
+	void UndefineKey(std::string identifier);
 protected:
-	std::map<std::string, std::list<int> > mKeysDefined;
+	std::map<std::string, int> mKeysDefined;	//!< The keys defined
 };
 
-void IKeyboard::Define(std::string identifier, int* keys)
-{
-	int x;
-
-	while(*keys)
-	{
-		x = *keys++;
-		mKeysDefined[identifier].push_back(x);
-	}
-}
-
-void IKeyboard::Undefine(std::string identifier)
-{
-	mKeysDefined[identifier].clear();
-}
