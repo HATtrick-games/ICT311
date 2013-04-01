@@ -43,6 +43,9 @@
     <ClCompile Include="OGLMouse.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionWorldSingleton.cpp">
+      <Filter>Source Files\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -84,6 +87,9 @@
     <ClInclude Include="OGLMouse.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionWorldSingleton.h">
+      <Filter>Header Files\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -106,6 +112,12 @@
     </Filter>
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{854a6273-c8c1-419d-a24d-44cdfef9d159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Collision">
+      <UniqueIdentifier>{ec276e81-bac6-40bf-891c-dd02d52798d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collision">
+      <UniqueIdentifier>{d652a7f9-0ffb-4de5-a347-dd544b1799dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
