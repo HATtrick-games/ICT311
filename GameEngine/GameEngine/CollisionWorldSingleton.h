@@ -14,14 +14,17 @@ private:
 		 btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
 		 btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
 		 btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
-		 dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
+		 DynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
 	}
 	
-	btDiscreteDynamicsWorld* dynamicsWorld;
+	btDiscreteDynamicsWorld* DynamicsWorld;
 public:
+
+	void AddRigidBody(btRigidBody* RigidBody);
+	void StepWorld();
 	//~CollisionWorldSingleton();
 	static CollisionWorldSingleton* Instance();
 };
 
 
-#endif
+#endif;

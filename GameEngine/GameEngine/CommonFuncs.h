@@ -1,7 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-
+#pragma once
 namespace CommonFunctions
 {
 	std::string CheckFile(const std::string &sInitialName);
@@ -16,5 +16,13 @@ namespace CommonFunctions
 		// if nothing returned, file unable to be opened throw error
 		throw std::runtime_error("File: " + sInitialName +  " not found.");
 	};*/
+
+	
+	struct Pos
+	{
+		float x;
+		float y;
+		float z;
+	};
 
 }

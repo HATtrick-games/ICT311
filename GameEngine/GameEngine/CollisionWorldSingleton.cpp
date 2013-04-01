@@ -7,3 +7,13 @@ CollisionWorldSingleton* CollisionWorldSingleton::Instance()
 
 	return &instance;
 }
+
+void CollisionWorldSingleton::AddRigidBody(btRigidBody* RigidBody)
+{
+	DynamicsWorld->addRigidBody(RigidBody);
+}
+
+void CollisionWorldSingleton::StepWorld()
+{
+	DynamicsWorld->stepSimulation(1/60.f, 10);
+}

@@ -46,6 +46,9 @@
     <ClCompile Include="CollisionWorldSingleton.cpp">
       <Filter>Source Files\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionBody.cpp">
+      <Filter>Source Files\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -88,6 +91,9 @@
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="CollisionWorldSingleton.h">
+      <Filter>Header Files\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionBody.h">
       <Filter>Header Files\Collision</Filter>
     </ClInclude>
   </ItemGroup>
