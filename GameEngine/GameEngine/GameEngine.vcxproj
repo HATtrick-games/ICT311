@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionWorldSingleton.cpp" />
     <ClCompile Include="CommonFuncs.cpp" />
     <ClCompile Include="GameSettings.cpp" />
@@ -96,6 +97,7 @@
     <ClCompile Include="Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionWorldSingleton.h" />
     <ClInclude Include="CommonFuncs.h" />
     <ClInclude Include="GameSettings.h" />

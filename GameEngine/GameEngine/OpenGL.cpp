@@ -66,6 +66,9 @@ void OpenGL::SetupProgram()
 	(*Shader::GetInstance())->Initialise();
 	std::vector<GLuint> * shaderlist = (*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 	ProgObj = CreateProgramObject(shaderlist);
+
+	(*Camera::GetInstance())->SetupCamera();
+	UniOffset = glGetUniformLocation(ProgObj, "Offset");
 }
 
 GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
@@ -90,6 +93,8 @@ void OpenGL::Display()
 void OpenGL::RenderModel(std::string Name)
 {
 	glUseProgram(ProgObj);
+	
+	//requires the passing in of either a pointer to an object (probably best) or actual vertex data.
 }
 
 void OpenGL::Reshape(int width, int height)

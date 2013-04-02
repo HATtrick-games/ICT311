@@ -2,6 +2,7 @@
 
 #include "Graphics.h"
 #include "Shader.h"
+#include "Camera.h"
 #include <GL\freeglut.h>
 #include "GameSettings.h"
 //#include <glload\gl_3_3.h>
@@ -25,7 +26,7 @@ public:
 	//OpenGL specific functions
 	void SetupProgram();
 	GLuint CreateProgramObject(const std::vector<GLuint>* shaderList);
-
+	 
 private:
 
 	OpenGL(void); // Used to intialise and setup anything required before freeglut sets up the window
@@ -36,7 +37,7 @@ private:
 	int iMainWindow;
 	
 	GLuint ProgObj;
-
+	GLuint UniOffset; //(uniform) offset to be passed and used in the vertex shader
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
 
