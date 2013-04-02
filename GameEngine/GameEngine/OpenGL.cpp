@@ -87,9 +87,9 @@ void OpenGL::Display()
 
 }
 
-void OpenGL::DrawModel(std::string Name)
+void OpenGL::RenderModel(std::string Name)
 {
-
+	glUseProgram(ProgObj);
 }
 
 void OpenGL::Reshape(int width, int height)

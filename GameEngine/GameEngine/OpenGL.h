@@ -18,7 +18,7 @@ public:
 
 	//Virtual functions
 	void Init(); // Used to intialise freeglut and call setup for the opengl context and window.
-	void DrawModel(std::string Path); // To be changed to take in a more meaningful identifier(or different datatype) once we decide how / where we are storing model vertex data
+	void RenderModel(std::string Path); // To be changed to take in a more meaningful identifier(or different datatype) once we decide how / where we are storing model vertex data
 	void Reshape(int width, int height);
 	void Display();
 
