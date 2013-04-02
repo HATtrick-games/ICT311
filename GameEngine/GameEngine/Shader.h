@@ -22,7 +22,7 @@ public:
 	void Initialise();
 	GLuint LoadShader(GLenum eShaderType, const std::string &sFilename);
 
-	std::vector<GLuint> * GetvShaderList() {return &vShaderList;}
+	std::vector<GLuint> * const GetvShaderList() {return &vShaderList;}
 
 private:
 

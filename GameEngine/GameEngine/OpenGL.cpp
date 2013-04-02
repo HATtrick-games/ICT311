@@ -1,9 +1,9 @@
 #include "OpenGL.h"
 
 boost::scoped_ptr<Graphics> OpenGL::pOpenGLsingleton(NULL);
-#ifdef LOAD_X11
-#define APIENTRY
-#endif
+//#ifdef LOAD_X11
+//#define APIENTRY //Not used i think. Remove later after proper check
+//#endif
 
 OpenGL::OpenGL(void)
 {
