@@ -24,9 +24,10 @@ public:
 
 	//OpenGL specific functions
 	void SetupProgram();
-
+	GLuint CreateProgramObject(const std::vector<GLuint>* shaderList);
 
 private:
+
 	OpenGL(void); // Used to intialise and setup anything required before freeglut sets up the window
 	OpenGL& operator= (const OpenGL&);
 	OpenGL(const OpenGL&);
@@ -34,6 +35,8 @@ private:
 	unsigned int iDisplayMode;
 	int iMainWindow;
 	
+	GLuint ProgObj;
+
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
 

@@ -63,9 +63,23 @@ void OpenGL::Init()
 
 void OpenGL::SetupProgram()
 {
-	//boost::scoped_ptr<Shader>
 	(*Shader::GetInstance())->Initialise();
-	(*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
+	std::vector<GLuint> * shaderlist = (*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
+	ProgObj = CreateProgramObject(shaderlist);
+}
+
+GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
+{
+	try
+	{
+		GLuint ProgramObj = glutil::LinkProgram((*shaderList));
+		std::for_each(shaderList->begin(), shaderList->end(), glDeleteShader);
+		return ProgramObj;
+	}
+	catch(std::exception &e)
+	{
+		//return error stating that program object was unable to be created with shaders.
+	}
 }
 
 void OpenGL::Display()
