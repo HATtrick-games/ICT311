@@ -59,6 +59,9 @@
       <Filter>Source Files\Maths</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -116,6 +119,9 @@
       <Filter>Header Files\Maths</Filter>
     </ClInclude>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -150,6 +156,12 @@
     </Filter>
     <Filter Include="Header Files\Maths">
       <UniqueIdentifier>{853d9248-c512-4a37-a1fd-127c1c34fd40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{1d21aa80-19d1-49e8-b339-f797d48d5701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject">
+      <UniqueIdentifier>{51999b75-9d87-4c54-9fe6-5f6461d93bb0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
