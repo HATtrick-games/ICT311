@@ -13,7 +13,7 @@
 #include "CommonFuncs.h"
 
 #include <boost\smart_ptr.hpp>
-
+/*
 int main(int argc, char** argv)
 {	
 	GraphicsEngFact GraphicsFact;
@@ -26,4 +26,4 @@ int main(int argc, char** argv)
 
 
 	return 0;
-}
+}*/
