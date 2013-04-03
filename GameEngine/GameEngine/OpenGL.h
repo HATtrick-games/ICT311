@@ -26,7 +26,7 @@ public:
 	//OpenGL specific functions
 	void SetupProgram();
 	GLuint CreateProgramObject(const std::vector<GLuint>* shaderList);
-	 
+	
 private:
 
 	OpenGL(void); // Used to intialise and setup anything required before freeglut sets up the window

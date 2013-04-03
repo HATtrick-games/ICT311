@@ -54,7 +54,7 @@ void OpenGL::Init()
 
 
 
-	//Register callback functions
+	//Register graphic specific callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
 
@@ -67,7 +67,8 @@ void OpenGL::SetupProgram()
 	std::vector<GLuint> * shaderlist = (*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 	ProgObj = CreateProgramObject(shaderlist);
 
-	(*Camera::GetInstance())->SetupCamera();
+	(*Camera::GetInstance())->SetupCamera(ProgObj);
+	(*Camera::GetInstance())->CreateCamera(ProgObj);
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
 }
 
@@ -99,7 +100,7 @@ void OpenGL::RenderModel(std::string Name)
 
 void OpenGL::Reshape(int width, int height)
 {
-	glViewport(0, 0, (GLsizei) width, (GLsizei) height);
+	(*Camera::GetInstance())->ReshapeViewport(width, height, ProgObj);
 }
 
 boost::scoped_ptr<Graphics> * OpenGL::GetInstance()

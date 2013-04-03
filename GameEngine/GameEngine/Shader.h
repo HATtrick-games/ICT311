@@ -29,7 +29,7 @@ private:
 	Shader(void);
 	Shader& operator= (const Shader&);
 	Shader(const Shader&);
-
+	
 	std::vector<GLuint> vShaderList;
 
 	static boost::scoped_ptr<Shader> pShaderSingleton;
