@@ -14,6 +14,8 @@ Game::~Game(void)
 void Game::Initialise()
 {
 	Engine::Initialise();
+
+	glutMainLoop();
 }
 
 void Game::LoadResources()

@@ -58,7 +58,7 @@ void OpenGL::Init()
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
 
-	glutMainLoop();
+
 }
 
 void OpenGL::SetupProgram()
