@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AiObject.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionWorldSingleton.cpp" />
     <ClCompile Include="CommonFuncs.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AiObject.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionWorldSingleton.h" />
     <ClInclude Include="CommonFuncs.h" />
