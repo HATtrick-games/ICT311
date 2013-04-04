@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "Game.h"
 #include <GL\freeglut.h>
 #include "GameSettings.h"
 //#include <glload\gl_3_3.h>
@@ -22,6 +23,7 @@ public:
 	void RenderModel(std::string Path); // To be changed to take in a more meaningful identifier(or different datatype) once we decide how / where we are storing model vertex data
 	void Reshape(int width, int height);
 	void Display();
+	void DisplayTimer(int value);
 
 	//OpenGL specific functions
 	void SetupProgram();
@@ -46,11 +48,14 @@ private:
 	static void ReshapeCallback(int width, int height)
 	{
 		pOpenGLsingleton->Reshape(width, height);
-	}
-	
+	}	
 	static void DisplayCallback()
 	{
 		pOpenGLsingleton->Display();
+	}
+	static void DisplayTimerCallback(int value)
+	{
+		pOpenGLsingleton->DisplayTimer(value);
 	}
 };
 

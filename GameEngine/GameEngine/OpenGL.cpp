@@ -93,6 +93,8 @@ void OpenGL::Display()
 {
 	glClearColor(0.65f, 0.8f, 1.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+
+	(*Game::GetInstance())->Draw();
 	glutSwapBuffers();
 }
 
@@ -101,6 +103,12 @@ void OpenGL::RenderModel(std::string Name)
 	glUseProgram(ProgObj);
 	
 	//requires the passing in of either a pointer to an object (probably best) or actual vertex data.
+}
+
+void OpenGL::DisplayTimer(int value)
+{
+	glutTimerFunc(1000/60, OpenGL::DisplayTimerCallback, ++value);
+	glutPostRedisplay();
 }
 
 void OpenGL::Reshape(int width, int height)

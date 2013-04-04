@@ -1,5 +1,9 @@
 #pragma once
-#include "engine.h"
+
+#include "Graphics.h"
+#include "GameSettings.h"
+#include "GraphicsEngFact.h"
+#include "CommonFuncs.h"
 
 #include <boost\smart_ptr.hpp>
 
@@ -8,29 +12,30 @@
  *
  * \brief	Sets up the game and implements the engine functions.
  */
-class Game :
-	public Engine
+class Game 
 {
 public:
 	Game(void);
 	~Game(void);
 
-	virtual void Initialise();
+	void Initialise();
 
-	virtual void LoadResources();
+	void LoadResources();
 
-	virtual void UnloadResources();
+	void UnloadResources();
 
-	virtual void Update(float time);
+	void Update(float time);
 
-	virtual void Draw(float time);
+	void Draw();
+
+	static boost::scoped_ptr<Game> * GetInstance();
 
 private:
+	boost::scoped_ptr<Graphics> *pGraphicsEng;
+	static boost::scoped_ptr<Game> pGame;
 };
-
+/*
 int main(int argc, char** argv)
 {
-	boost::scoped_ptr<Game> pGame;
-	pGame.reset(new Game());
-	pGame->Initialise();
-}
+	(*Game::GetInstance())->Initialise();
+}*/

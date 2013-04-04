@@ -13,17 +13,18 @@
 #include "CommonFuncs.h"
 
 #include <boost\smart_ptr.hpp>
-/*
+
 int main(int argc, char** argv)
 {	
-	GraphicsEngFact GraphicsFact;
-	boost::scoped_ptr<Graphics> *pGraphicsEng;
+	//GraphicsEngFact GraphicsFact;
+	//boost::scoped_ptr<Graphics> *pGraphicsEng;
 	
-	pGraphicsEng = GraphicsFact.CreateEngine("OpenGL");
+	//pGraphicsEng = GraphicsFact.CreateEngine("OpenGL");
 
-	(*pGraphicsEng)->Init();
+	//(*pGraphicsEng)->Init();
 	
+	(*Game::GetInstance())->Initialise();
 
 
 	return 0;
-}*/
+}
