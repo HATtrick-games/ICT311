@@ -15,6 +15,8 @@ private:
 		 btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
 		 btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
 		 DynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
+		 DynamicsWorld->setGravity(btVector3(0,0,0));
+		 
 	}
 	
 	btDiscreteDynamicsWorld* DynamicsWorld;
@@ -22,7 +24,8 @@ public:
 
 	void AddRigidBody(btRigidBody* RigidBody);
 	void StepWorld();
-	//~CollisionWorldSingleton();
+	void SetGravity(float y);
+	//~CollisionWorldSingleton(){};
 	static CollisionWorldSingleton* Instance();
 };
 

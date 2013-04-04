@@ -3,7 +3,7 @@
 
 Engine::Engine(void)
 {
-	Initialise();
+
 }
 
 

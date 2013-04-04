@@ -64,6 +64,9 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AiObject.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
     <ClCompile Include="AssetManager.cpp">
       <Filter>Source Files\Assets</Filter>
     </ClCompile>
@@ -141,6 +144,9 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AiObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
     <ClInclude Include="AssetManager.h">
       <Filter>Header Files\Assets</Filter>
     </ClInclude>
@@ -197,11 +203,11 @@
     <Filter Include="Source Files\GameObject">
       <UniqueIdentifier>{51999b75-9d87-4c54-9fe6-5f6461d93bb0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Assets">
-      <UniqueIdentifier>{ec2c2ee4-7631-49b6-a18d-c5cfbc6f0392}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Assets">
-      <UniqueIdentifier>{0f30a607-9f53-49f9-ab88-c6269b228e25}</UniqueIdentifier>
+      <UniqueIdentifier>{9903300b-a87b-4143-95af-55cb6d253e5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Assets">
+      <UniqueIdentifier>{496ab541-9b63-4f33-ba2a-c790194b9330}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

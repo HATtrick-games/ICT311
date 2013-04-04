@@ -41,7 +41,7 @@ void OpenGL::Init()
 	{
 		//throw error, rendering window context unable to be created
 	}
-
+	
 	//Setup Program / shader contexts here
 	glload::LoadFunctions(); // load in the functions specified by the current opengl context version
 	
@@ -58,7 +58,6 @@ void OpenGL::Init()
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
 
-
 }
 
 void OpenGL::SetupProgram()
@@ -67,9 +66,13 @@ void OpenGL::SetupProgram()
 	std::vector<GLuint> * shaderlist = (*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 	ProgObj = CreateProgramObject(shaderlist);
 
-	(*Camera::GetInstance())->SetupCamera(ProgObj);
-	(*Camera::GetInstance())->CreateCamera(ProgObj);
+	(*Camera::GetInstance())->UpdateProgObj(ProgObj);
+	(*Camera::GetInstance())->SetupCamera();
+	(*Camera::GetInstance())->CreateCamera();
+
+	glUseProgram(ProgObj);
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
+	glUseProgram(0);
 }
 
 GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
@@ -88,7 +91,9 @@ GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
 
 void OpenGL::Display()
 {
-
+	glClearColor(0.65f, 0.8f, 1.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glutSwapBuffers();
 }
 
 void OpenGL::RenderModel(std::string Name)
@@ -100,7 +105,7 @@ void OpenGL::RenderModel(std::string Name)
 
 void OpenGL::Reshape(int width, int height)
 {
-	(*Camera::GetInstance())->ReshapeViewport(width, height, ProgObj);
+	(*Camera::GetInstance())->ReshapeViewport(width, height);
 }
 
 boost::scoped_ptr<Graphics> * OpenGL::GetInstance()

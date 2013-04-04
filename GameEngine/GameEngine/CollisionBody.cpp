@@ -8,7 +8,7 @@ CollisionBody::CollisionBody()
 void CollisionBody::CreateRigidBody()
 {
 	btCollisionShape* Sphere = new btSphereShape(1);
-	btDefaultMotionState* SphereMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,1,0)));
+	btDefaultMotionState* SphereMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,10,0)));
     btScalar mass = 0.1;
     btVector3 fallInertia(1,1,1);
     Sphere->calculateLocalInertia(mass,fallInertia);

@@ -39,9 +39,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(MSBuildStartupDirectory)\ThirdParty\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(MSBuildStartupDirectory)\ThirdParty\lib;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>$(MSBuildStartupDirectory)\ThirdParty\bin;$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -58,7 +55,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>..\ThirdParty\lib\freeglut.lib;..\ThirdParty\lib\glmesh.lib;..\ThirdParty\lib\glutilD.lib;..\ThirdParty\lib\glmeshD.lib;..\ThirdParty\lib\glloadd.lib;..\ThirdParty\lib\glimg.lib;..\ThirdParty\lib\glimgD.lib;..\ThirdParty\lib\glload.lib;..\ThirdParty\lib\lua5.1.lib;..\ThirdParty\lib\luabindd.lib;..\ThirdParty\lib\BulletCollision_vs2010_debug.lib;..\ThirdParty\lib\BulletDynamics_vs2010_debug.lib;..\ThirdParty\lib\BulletSoftBody_vs2010_debug.lib;..\ThirdParty\lib\LinearMath_vs2010_debug.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>..\ThirdParty\lib\freeglut.lib;..\ThirdParty\lib\glmesh.lib;..\ThirdParty\lib\glutilD.lib;..\ThirdParty\lib\glmeshD.lib;..\ThirdParty\lib\glloadd.lib;..\ThirdParty\lib\glimg.lib;..\ThirdParty\lib\glimgD.lib;..\ThirdParty\lib\glload.lib;..\ThirdParty\lib\lua5.1.lib;..\ThirdParty\lib\luabindd.lib;..\ThirdParty\lib\BulletCollision_vs2010_debug.lib;..\ThirdParty\lib\BulletDynamics_vs2010_debug.lib;..\ThirdParty\lib\BulletSoftBody_vs2010_debug.lib;..\ThirdParty\lib\LinearMath_vs2010_debug.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AiObject.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionWorldSingleton.cpp" />
@@ -109,6 +107,7 @@
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AiObject.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionWorldSingleton.h" />
