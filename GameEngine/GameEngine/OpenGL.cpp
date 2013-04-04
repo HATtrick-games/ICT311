@@ -67,8 +67,9 @@ void OpenGL::SetupProgram()
 	std::vector<GLuint> * shaderlist = (*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 	ProgObj = CreateProgramObject(shaderlist);
 
-	(*Camera::GetInstance())->SetupCamera(ProgObj);
-	(*Camera::GetInstance())->CreateCamera(ProgObj);
+	(*Camera::GetInstance())->UpdateProgObj(ProgObj);
+	(*Camera::GetInstance())->SetupCamera();
+	(*Camera::GetInstance())->CreateCamera();
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
 }
 
@@ -100,7 +101,7 @@ void OpenGL::RenderModel(std::string Name)
 
 void OpenGL::Reshape(int width, int height)
 {
-	(*Camera::GetInstance())->ReshapeViewport(width, height, ProgObj);
+	(*Camera::GetInstance())->ReshapeViewport(width, height);
 }
 
 boost::scoped_ptr<Graphics> * OpenGL::GetInstance()

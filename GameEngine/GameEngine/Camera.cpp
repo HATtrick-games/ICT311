@@ -11,7 +11,7 @@ Camera::~Camera(void)
 {
 }
 
-void Camera::SetupCamera(GLuint ProgObj)
+void Camera::SetupCamera()
 {
 	fCameraScale = 0;
 	fzNear = 1;
@@ -25,12 +25,12 @@ void Camera::SetupCamera(GLuint ProgObj)
 	fPerspectiveMatrix[14] = (2 * fzFar * fzNear) / (fzNear - fzFar); //z perspective transform
 	fPerspectiveMatrix[11] = -1.0f; //w negative Zcamera
 
-	UniPerspectiveMatrix = glGetUniformLocation(ProgObj, "perspectiveMatrix");
+	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "perspectiveMatrix");
 }
 
-void Camera::CreateCamera(GLuint ProgObj)
+void Camera::CreateCamera()
 {	
-	glUseProgram(ProgObj);
+	glUseProgram(ProgObjLocal);
 	glUniformMatrix4fv(UniPerspectiveMatrix, 1, GL_FALSE, fPerspectiveMatrix);
 	glUseProgram(0);
 }
@@ -42,14 +42,19 @@ void Camera::SetCameraScale(float newScale)
 	fPerspectiveMatrix[5] = fCameraScale;
 }
 
-void Camera::ReshapeViewport(int NewWidth, int NewHeight, GLuint ProgObj)
+void Camera::ReshapeViewport(int NewWidth, int NewHeight)
 {
 	fPerspectiveMatrix[0] = fCameraScale * (NewHeight / (float)NewWidth);
 	fPerspectiveMatrix[5] = fCameraScale;
 
-	CreateCamera(ProgObj);
+	CreateCamera();
  
 	glViewport(0, 0, (GLsizei) NewWidth, (GLsizei) NewHeight);
+}
+
+void Camera::UpdateProgObj(GLuint ProgObj)
+{
+	ProgObjLocal = ProgObj;
 }
 
 boost::scoped_ptr<Camera>* Camera::GetInstance(void)

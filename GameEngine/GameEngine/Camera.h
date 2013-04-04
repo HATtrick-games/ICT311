@@ -14,11 +14,11 @@ public:
 	
 	static boost::scoped_ptr<Camera>* GetInstance();
 
-	void SetupCamera(GLuint ProgObj);
-	void CreateCamera(GLuint ProgObj);
+	void SetupCamera();
+	void CreateCamera();
 	void SetCameraScale(float newScale);
-	void ReshapeViewport(int NewWidth, int NewHeight, GLuint ProgObj);
-	
+	void ReshapeViewport(int NewWidth, int NewHeight);
+	void UpdateProgObj(GLuint ProgObj);
 private:
 
 	float fPerspectiveMatrix[16];
@@ -27,7 +27,7 @@ private:
 	float fzFar;
 
 	GLuint UniPerspectiveMatrix;
-	GLuint ProgObj;
+	GLuint ProgObjLocal;
 
 	static boost::scoped_ptr<Camera> pCameraSingleton;
 };
