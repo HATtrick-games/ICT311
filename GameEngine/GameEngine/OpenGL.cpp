@@ -69,7 +69,10 @@ void OpenGL::SetupProgram()
 	(*Camera::GetInstance())->UpdateProgObj(ProgObj);
 	(*Camera::GetInstance())->SetupCamera();
 	(*Camera::GetInstance())->CreateCamera();
+
+	glUseProgram(ProgObj);
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
+	glUseProgram(0);
 }
 
 GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
@@ -88,7 +91,9 @@ GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
 
 void OpenGL::Display()
 {
-
+	glClearColor(0.65f, 0.8f, 1.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	glutSwapBuffers();
 }
 
 void OpenGL::RenderModel(std::string Name)
