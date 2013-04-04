@@ -1,6 +1,4 @@
-
 #include "GameObject.h"
-#pragma once
 
 void GameObject::SetModel(float* Model)
 {
