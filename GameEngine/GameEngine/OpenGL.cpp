@@ -41,7 +41,7 @@ void OpenGL::Init()
 	{
 		//throw error, rendering window context unable to be created
 	}
-
+	
 	//Setup Program / shader contexts here
 	glload::LoadFunctions(); // load in the functions specified by the current opengl context version
 	
@@ -57,7 +57,6 @@ void OpenGL::Init()
 	//Register graphic specific callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
-
 
 }
 
