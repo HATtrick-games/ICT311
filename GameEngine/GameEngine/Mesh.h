@@ -46,4 +46,5 @@ private:
 	std::vector<unsigned int> vIndicies;
 	unsigned int numIndicies;
 	unsigned int materialIndex;
+
 };
