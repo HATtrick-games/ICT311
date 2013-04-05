@@ -26,7 +26,7 @@ void Camera::SetupCamera()
 	fPerspectiveMatrix[11] = -1.0f; //w negative Zcamera
 
 	glUseProgram(ProgObjLocal);
-	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "perspectiveMatrix");
+	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "PerspectiveMatrix");
 	glUseProgram(0);
 }
 

@@ -52,7 +52,11 @@ void OpenGL::Init()
 		//throw error, opengl 3.3 isn't supported on current device.
 	}
 
-
+	//Setup depth buffer
+	glEnable(GL_DEPTH_TEST);
+	glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LEQUAL);
+	glDepthRange(0.0f, 1.0f);
 
 	//Register graphic specific callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
@@ -92,7 +96,8 @@ GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
 void OpenGL::Display()
 {
 	glClearColor(0.65f, 0.8f, 1.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClearDepth(1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	(*Game::GetInstance())->Draw();
 	glutSwapBuffers();
