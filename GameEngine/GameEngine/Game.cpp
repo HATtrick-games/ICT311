@@ -17,6 +17,9 @@ void Game::Initialise()
 	pGraphicsEng = graphicsFact.CreateEngine("OpenGL"); // TODO make it so this is read from LUA or INI
 	(*pGraphicsEng)->Init();
 
+	pInputEngine->SetInputMethod("OPENGL");
+
+	
 	glutMainLoop();
 }
 

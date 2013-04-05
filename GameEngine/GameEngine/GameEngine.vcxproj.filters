@@ -204,4 +204,12 @@
       <UniqueIdentifier>{496ab541-9b63-4f33-ba2a-c790194b9330}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\BasicShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\BasicShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
