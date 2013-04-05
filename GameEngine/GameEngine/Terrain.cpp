@@ -78,6 +78,21 @@ float Terrain::GetHeight(int x, int z)
 	return pHeights[z][x];
 }
 
+std::vector<float> Terrain::GetAllHeights()
+{
+	std::vector<float> heights;
+
+	for(int y = 0; y < iLength; y++)
+	{
+		for(int x = 0; x < iWidth; x++)
+		{
+			heights.push_back(GetHeight(x, y));
+		}
+	}
+
+	return heights;
+}
+
 glm::vec3 Terrain::GetNormal(int x, int z)
 {
 	if(!bNormalsComputed)

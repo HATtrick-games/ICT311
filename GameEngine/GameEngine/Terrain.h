@@ -3,6 +3,7 @@
 #include "IAsset.h"
 #include "Texture.h"
 #include <iostream>
+#include <vector>
 #include <glm/glm.hpp>
 
 class Terrain :
@@ -20,6 +21,8 @@ public:
 	float GetHeight(int x, int z);
 	glm::vec3 GetNormal(int x, int z);
 
+	std::vector<float> GetAllHeights();
+
 	void ComputeNormals();
 private:
 	unsigned int iWidth, iLength;
@@ -31,4 +34,3 @@ private:
 
 	void SetHeight(int x, int z, float h);
 };
-
