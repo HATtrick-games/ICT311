@@ -34,6 +34,7 @@ public:
 	virtual void Load();
 
 	std::vector<Texture*>* GetTextures();
+
 private:
 	bool InitMesh(const aiScene* pScene);
 	bool InitMaterials(const aiScene* pScene, const std::string& filePath);

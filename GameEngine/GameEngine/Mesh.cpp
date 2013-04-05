@@ -102,6 +102,7 @@ bool Mesh::InitMesh(const aiScene* pScene)
 		vIndicies.push_back(face.mIndices[2]);
 	}
 
+
 	numIndicies = vIndicies.size();
 
 	return InitMaterials(pScene, sFilepath);

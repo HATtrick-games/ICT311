@@ -20,7 +20,8 @@ public:
 
 	//Virtual functions
 	void Init(); // Used to intialise freeglut and call setup for the opengl context and window.
-	void RenderModel(std::string Path); // To be changed to take in a more meaningful identifier(or different datatype) once we decide how / where we are storing model vertex data
+	void RenderModel(Mesh * MeshObj, int Index);
+	void RenderTerrain(Terrain * TerrainObj);
 	void Reshape(int width, int height);
 	void Display();
 	void DisplayTimer(int value);
@@ -28,6 +29,8 @@ public:
 	//OpenGL specific functions
 	void SetupProgram();
 	GLuint CreateProgramObject(const std::vector<GLuint>* shaderList);
+
+	void InitialiseVAO();
 	
 private:
 
@@ -39,6 +42,11 @@ private:
 	int iMainWindow;
 	
 	GLuint ProgObj;
+
+	std::vector<GLuint> VertexBufferObject;
+	std::vector<GLuint> IndexBufferObject;
+	GLuint TerrainBufferObject;
+
 	GLuint UniOffset; //(uniform) offset to be passed and used in the vertex shader
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;

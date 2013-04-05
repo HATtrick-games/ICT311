@@ -79,6 +79,12 @@ void OpenGL::SetupProgram()
 	glUseProgram(0);
 }
 
+void OpenGL::InitialiseVAO()
+{
+	glGenBuffers(1, &VertexBufferObject);
+	glGenBuffers(1, &IndexBufferObject);
+}
+
 GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
 {
 	try
@@ -103,11 +109,32 @@ void OpenGL::Display()
 	glutSwapBuffers();
 }
 
-void OpenGL::RenderModel(std::string Name)
+void OpenGL::RenderModel(Mesh * MeshObj, int Index)
 {
 	glUseProgram(ProgObj);
 	
-	//requires the passing in of either a pointer to an object (probably best) or actual vertex data.
+	if(VertexBufferObject[Index] = 0)
+	{
+		glGenBuffers(1, &VertexBufferObject[Index]);
+		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(MeshObj->vVertices), MeshObj->vVertices, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glGenBuffers(1, &IndexBufferObject[Index]);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(MeshObj->vIndicies), MeshObj->vIndicies, GL_STATIC_DRAW);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	}
+
+
+
+}
+
+void OpenGL::RenderTerrain(Terrain * TerrainObj)
+{
+	glUseProgram(ProgObj);
+	glGenBuffers(1, &TerrainBufferObject);
+	glBindBuffer(GL_ARRAY_BUFFER, TerrainBufferObject);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(TerrainObj->vVertices), TerrainObj->vVertices, GL_STATIC_DRAW);
 }
 
 void OpenGL::DisplayTimer(int value)
