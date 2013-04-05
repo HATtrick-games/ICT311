@@ -79,6 +79,9 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\Assets</Filter>
     </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Assets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -154,6 +157,9 @@
       <Filter>Header Files\Assets</Filter>
     </ClInclude>
     <ClInclude Include="IAsset.h">
+      <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
       <Filter>Header Files\Assets</Filter>
     </ClInclude>
   </ItemGroup>

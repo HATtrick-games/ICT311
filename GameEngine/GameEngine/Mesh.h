@@ -8,6 +8,8 @@
 #include <assimp/Importer.hpp>
 #include <glm/glm.hpp>
 
+#include <GL/freeglut.h>
+
 #include <vector>
 
 struct Vertex
@@ -23,6 +25,20 @@ struct Vertex
 	{}
 };
 
+struct MeshEntry
+{
+	MeshEntry();
+
+	~MeshEntry();
+
+	void Init(const std::vector<Vertex>& vertices, 
+		const std::vector<unsigned int>& indicies);
+
+	std::vector<Vertex> vVertices;
+	std::vector<unsigned int> vIndicies;
+	unsigned int numIndicies;
+	unsigned int materialIndex;
+};
 
 class Mesh:
 	public IAsset
@@ -33,28 +49,14 @@ public:
 
 	virtual void Load();
 
-	void Render();
+	std::vector<MeshEntry>* GetMeshEntries();
+	std::vector<Texture*>* GetTextures();
 private:
 	bool InitFromScene(const aiScene* pScene, const std::string& filePath);
 	void InitMesh(unsigned int Index, const aiMesh* paiMesh);
 	bool InitMaterials(const aiScene* pScene, const std::string& filePath);
 	void Clear();
-
-	struct MeshEntry
-	{
-		MeshEntry();
-
-		~MeshEntry();
-
-		void Init(const std::vector<Vertex>& vertices, 
-			const std::vector<unsigned int>& indicies);
-
-		unsigned int VB;
-		unsigned int IB;
-		unsigned int numIndicies;
-		unsigned int materialIndex;
-	};
-
-	std::vector<MeshEntry> m_entries;
+	
 	std::vector<Texture*> m_textures;
+	std::vector<MeshEntry> m_entries;
 };

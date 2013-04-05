@@ -32,9 +32,20 @@ void Mesh::Load()
 	}
 }
 
+std::vector<MeshEntry>* Mesh::GetMeshEntries()
+{
+	return &m_entries;
+}
+
+std::vector<Texture*>* Mesh::GetTextures()
+{
+	return &m_textures;
+}
+
+/*
 void Mesh::Render()
 {
-/*	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 
@@ -59,8 +70,8 @@ void Mesh::Render()
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);*/
-}
+	glDisableVertexAttribArray(2);
+}*/
 
 bool Mesh::InitFromScene(const aiScene* pScene, const std::string& filePath)
 {
@@ -146,7 +157,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 			{
 				std::string fullPath = dir + "/" + path.data;
 
-				m_textures[i] = new mogl::Texture(GL_TEXTURE_2D, fullPath.c_str());
+				m_textures[i] = new Texture(GL_TEXTURE_2D, fullPath.c_str());
 
 				if(!m_textures[i]->Load())
 				{
@@ -172,8 +183,8 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 		}
 	}
 
-	return ret;*/
-
+	return ret;
+	*/
 	return false;
 }
 
@@ -185,34 +196,25 @@ void Mesh::Clear()
 	}
 }
 
-Mesh::MeshEntry::MeshEntry()
+MeshEntry::MeshEntry()
 {
-	VB = 0;
-	IB = 0;
 	numIndicies = 0;
 	materialIndex = 0;
 }
 
-Mesh::MeshEntry::~MeshEntry()
+MeshEntry::~MeshEntry()
 {
-	/*
-	if(VB != INVALID_OGL_VALUE)
-	{
-		glDeleteBuffers(1, &VB);
-	}
-
-	if(IB != INVALID_OGL_VALUE)
-	{
-		glDeleteBuffers(1, &IB);
-	}*/
 }
 
-void Mesh::MeshEntry::Init(const std::vector<Vertex>& vertices, 
+void MeshEntry::Init(const std::vector<Vertex>& vertices, 
 	const std::vector<unsigned int>& indicies)
 {
-	/*numIndicies = indicies.size();
+	numIndicies = indicies.size();
 
-	glGenBuffers(1, &VB);
+	vVertices = vertices;
+	vIndicies = indicies;
+
+	/*glGenBuffers(1, &VB);
 	glBindBuffer(GL_ARRAY_BUFFER, VB);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
