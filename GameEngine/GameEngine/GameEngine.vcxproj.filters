@@ -85,6 +85,7 @@
     <ClCompile Include="PlayerObject.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="OGLTexture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -168,6 +169,7 @@
     <ClInclude Include="PlayerObject.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="OGLTexture.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
