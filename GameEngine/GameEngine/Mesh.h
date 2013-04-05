@@ -8,8 +8,6 @@
 #include <assimp/Importer.hpp>
 #include <glm/glm.hpp>
 
-#include <GL/freeglut.h>
-
 #include <vector>
 #include <assert.h>
 
