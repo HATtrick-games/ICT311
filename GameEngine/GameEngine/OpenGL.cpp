@@ -81,8 +81,7 @@ void OpenGL::SetupProgram()
 
 void OpenGL::InitialiseVAO()
 {
-	glGenBuffers(1, &VertexBufferObject);
-	glGenBuffers(1, &IndexBufferObject);
+
 }
 
 GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
