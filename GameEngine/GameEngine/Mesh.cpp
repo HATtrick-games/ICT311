@@ -23,18 +23,13 @@ void Mesh::Load()
 
 	if(scene)
 	{
-		InitFromScene(scene, sFilepath);
+		InitMesh(scene);
 	}
 	else
 	{
 		throw std::runtime_error(std::string("Error Parsing: ") + sFilepath +
 			std::string("\n") + importer.GetErrorString());
 	}
-}
-
-std::vector<MeshEntry>* Mesh::GetMeshEntries()
-{
-	return &m_entries;
 }
 
 std::vector<Texture*>* Mesh::GetTextures()
@@ -73,26 +68,14 @@ void Mesh::Render()
 	glDisableVertexAttribArray(2);
 }*/
 
-bool Mesh::InitFromScene(const aiScene* pScene, const std::string& filePath)
+bool Mesh::InitMesh(const aiScene* pScene)
 {
-	m_entries.resize(pScene->mNumMeshes);
+	assert(pScene->mNumMeshes | !"Only one mesh per scene is allowed.");
 	m_textures.resize(pScene->mNumMaterials);
 
-	for(unsigned int i = 0; i < m_entries.size(); ++i)
-	{
-		const aiMesh* paiMesh = pScene->mMeshes[i];
-		InitMesh(i, paiMesh);
-	}
+	const aiMesh* paiMesh = pScene->mMeshes[0];
 
-	return InitMaterials(pScene, filePath);
-}
-
-void Mesh::InitMesh(unsigned int index, const aiMesh* paiMesh)
-{
-	m_entries[index].materialIndex = paiMesh->mMaterialIndex;
-
-	std::vector<Vertex> vertices;
-	std::vector<unsigned int> indicies;
+	materialIndex = paiMesh->mMaterialIndex;
 
 	const aiVector3D zero3D(0.0f, 0.0f, 0.0f);
 
@@ -102,25 +85,27 @@ void Mesh::InitMesh(unsigned int index, const aiMesh* paiMesh)
 		const aiVector3D* pNormal = &(paiMesh->mNormals[i]);
 		const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ?
 			&(paiMesh->mTextureCoords[0][i]) :
-		&zero3D;
+			&zero3D;
 		Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
 			glm::vec2(pTexCoord->x, pTexCoord->y),
 			glm::vec3(pNormal->x, pNormal->y, pNormal->z));
 
-		vertices.push_back(v);
+		vVertices.push_back(v);
 	}
 
 	for(unsigned int i = 0; i < paiMesh->mNumFaces; ++i)
 	{
 		const aiFace& face = paiMesh->mFaces[i];
 		assert(face.mNumIndices == 3);
-		indicies.push_back(face.mIndices[0]);
-		indicies.push_back(face.mIndices[1]);
-		indicies.push_back(face.mIndices[2]);
+		vIndicies.push_back(face.mIndices[0]);
+		vIndicies.push_back(face.mIndices[1]);
+		vIndicies.push_back(face.mIndices[2]);
 	}
 
 
-	m_entries[index].Init(vertices, indicies);
+	numIndicies = vIndicies.size();
+
+	return InitMaterials(pScene, sFilepath);
 }
 
 bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
@@ -195,19 +180,12 @@ void Mesh::Clear()
 	{
 		delete m_textures[i];
 	}
+
+	vVertices.clear();
+	vIndicies.clear();
 }
 
-MeshEntry::MeshEntry()
-{
-	numIndicies = 0;
-	materialIndex = 0;
-}
-
-MeshEntry::~MeshEntry()
-{
-}
-
-void MeshEntry::Init(const std::vector<Vertex>& vertices, 
+/*void MeshEntry::Init(const std::vector<Vertex>& vertices, 
 	const std::vector<unsigned int>& indicies)
 {
 	numIndicies = indicies.size();
@@ -215,11 +193,11 @@ void MeshEntry::Init(const std::vector<Vertex>& vertices,
 	vVertices = vertices;
 	vIndicies = indicies;
 
-	/*glGenBuffers(1, &VB);
+	glGenBuffers(1, &VB);
 	glBindBuffer(GL_ARRAY_BUFFER, VB);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
 	glGenBuffers(1, &IB);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * numIndicies, &indicies[0], GL_STATIC_DRAW);*/
-}
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * numIndicies, &indicies[0], GL_STATIC_DRAW);
+}*/

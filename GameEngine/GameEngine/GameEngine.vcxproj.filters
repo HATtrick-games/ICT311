@@ -82,6 +82,9 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Assets</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerObject.cpp">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -161,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="Mesh.h">
       <Filter>Header Files\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerObject.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

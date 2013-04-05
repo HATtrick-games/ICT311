@@ -1,5 +1,5 @@
 #pragma once
-#include <string>
+//#include <string>
 #include "GameObject.h"
 
 class AiObject :public GameObject
@@ -9,6 +9,6 @@ public:
 protected:
 private:
 	int iHealth;
-	std::string sScriptName;
+	
 
 };
