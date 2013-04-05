@@ -3,8 +3,8 @@
 #include "OpenGL.h"
 
 #include "boost\smart_ptr.hpp"
-#include <glload/gl_3_3.h>
-#include <GL/freeglut.h>
+//#include <glload/gl_3_3.h>
+//#include <GL/freeglut.h>
 
 class Camera
 {
