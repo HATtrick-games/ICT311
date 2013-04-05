@@ -51,6 +51,7 @@ public:
 
 	std::vector<MeshEntry>* GetMeshEntries();
 	std::vector<Texture*>* GetTextures();
+
 private:
 	bool InitFromScene(const aiScene* pScene, const std::string& filePath);
 	void InitMesh(unsigned int Index, const aiMesh* paiMesh);

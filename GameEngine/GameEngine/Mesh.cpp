@@ -119,6 +119,7 @@ void Mesh::InitMesh(unsigned int index, const aiMesh* paiMesh)
 		indicies.push_back(face.mIndices[2]);
 	}
 
+
 	m_entries[index].Init(vertices, indicies);
 }
 
