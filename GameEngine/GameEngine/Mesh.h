@@ -11,6 +11,7 @@
 #include <GL/freeglut.h>
 
 #include <vector>
+#include <assert.h>
 
 struct Vertex
 {
@@ -25,21 +26,6 @@ struct Vertex
 	{}
 };
 
-struct MeshEntry
-{
-	MeshEntry();
-
-	~MeshEntry();
-
-	void Init(const std::vector<Vertex>& vertices, 
-		const std::vector<unsigned int>& indicies);
-
-	std::vector<Vertex> vVertices;
-	std::vector<unsigned int> vIndicies;
-	unsigned int numIndicies;
-	unsigned int materialIndex;
-};
-
 class Mesh:
 	public IAsset
 {
@@ -49,14 +35,15 @@ public:
 
 	virtual void Load();
 
-	std::vector<MeshEntry>* GetMeshEntries();
 	std::vector<Texture*>* GetTextures();
 private:
-	bool InitFromScene(const aiScene* pScene, const std::string& filePath);
-	void InitMesh(unsigned int Index, const aiMesh* paiMesh);
+	bool InitMesh(const aiScene* pScene);
 	bool InitMaterials(const aiScene* pScene, const std::string& filePath);
 	void Clear();
 	
 	std::vector<Texture*> m_textures;
-	std::vector<MeshEntry> m_entries;
+	std::vector<Vertex> vVertices;
+	std::vector<unsigned int> vIndicies;
+	unsigned int numIndicies;
+	unsigned int materialIndex;
 };
