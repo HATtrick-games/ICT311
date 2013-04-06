@@ -85,7 +85,9 @@
     <ClCompile Include="PlayerObject.cpp">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="OGLTexture.cpp" />
+    <ClCompile Include="OGLTexture.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -169,7 +171,9 @@
     <ClInclude Include="PlayerObject.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
-    <ClInclude Include="OGLTexture.h" />
+    <ClInclude Include="OGLTexture.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
