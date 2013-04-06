@@ -34,6 +34,8 @@ public:
 	virtual void Load();
 
 	std::vector<Texture*>* GetTextures();
+	std::vector<Vertex> GetVertices();
+	std::vector<unsigned int> GetIndicies();
 
 private:
 	bool InitMesh(const aiScene* pScene);

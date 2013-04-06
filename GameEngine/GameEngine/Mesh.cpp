@@ -108,6 +108,16 @@ bool Mesh::InitMesh(const aiScene* pScene)
 	return InitMaterials(pScene, sFilepath);
 }
 
+std::vector<Vertex> Mesh::GetVertices()
+{
+	return vVertices;
+}
+
+std::vector<unsigned int> Mesh::GetIndicies()
+{
+	return vIndicies;
+}
+
 bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 {
 	/*std::string::size_type slashIndex = filePath.find_last_of("/");

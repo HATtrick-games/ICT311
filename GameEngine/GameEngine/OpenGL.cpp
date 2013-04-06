@@ -116,11 +116,11 @@ void OpenGL::RenderModel(Mesh * MeshObj, int Index)
 	{
 		glGenBuffers(1, &VertexBufferObject[Index]);
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(MeshObj->vVertices), MeshObj->vVertices, GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)* MeshObj->GetVertices().capacity(), &(MeshObj->GetVertices())[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glGenBuffers(1, &IndexBufferObject[Index]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(MeshObj->vIndicies), MeshObj->vIndicies, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * (MeshObj->GetIndicies().capacity()), &(MeshObj->GetIndicies())[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 
