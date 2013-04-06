@@ -45,8 +45,6 @@ void Game::Update(float time)
 void Game::Draw()
 {
 	Mesh* boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("boxbox.obj"));
-	testObject->GetPosition();
-
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()
