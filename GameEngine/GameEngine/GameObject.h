@@ -13,6 +13,7 @@ public:
 	const int GetModelSize();
 	void SetModel(float* Model);
 	void SetModelsize(int size);
+	void SetstPosition(CommonFunctions::Pos newPos);
 	CommonFunctions::Pos GetPosition();
 
 protected:

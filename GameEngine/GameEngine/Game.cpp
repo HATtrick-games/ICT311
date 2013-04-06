@@ -20,16 +20,22 @@ void Game::Initialise()
 
 	pInputEngine->SetInputMethod("OPENGL");
 
+	LoadResources();
 	glutMainLoop();
 
-	LoadResources();
+	
 }
 
 void Game::LoadResources()
 {
 	(*AssetManager::GetInstance())->AddAsset("boxbox.obj", "MESH");
-
+	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("boxbox.obj"));
 	testObject = new PlayerObject();
+	CommonFunctions::Pos newPos;
+	newPos.x = 0;
+	newPos.y = 0;
+	newPos.z = -1;
+	testObject->SetstPosition(newPos);
 }
 
 void Game::UnloadResources()
@@ -44,7 +50,7 @@ void Game::Update(float time)
 
 void Game::Draw()
 {
-	Mesh* boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("boxbox.obj"));
+	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()

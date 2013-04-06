@@ -44,6 +44,7 @@ private:
 
 	/*** DELETE UPON COMPLETE ***/
 	GameObject* testObject;
+	Mesh* boxMesh;
 };
 /*
 int main(int argc, char** argv)

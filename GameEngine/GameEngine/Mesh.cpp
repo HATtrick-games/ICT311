@@ -109,12 +109,14 @@ bool Mesh::InitMesh(const aiScene* pScene)
 
 
 	numIndicies = vIndicies.size();
-
+	
 	return InitMaterials(pScene, sFilepath);
 }
 
 std::vector<glm::vec3>* Mesh::GetVertices()
 {
+	std::cout << vVertices[0].x;
+	std::cout << "Test";
 	return &vVertices;
 }
 

@@ -78,6 +78,9 @@ void OpenGL::SetupProgram()
 	glUseProgram(ProgObj);
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
 	glUseProgram(0);
+
+	VertexBufferObject.push_back(0);
+	IndexBufferObject.push_back(0);
 }
 
 void OpenGL::InitialiseVAO()
@@ -121,25 +124,32 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(*(MeshObj->GetIndicies())) * (MeshObj->GetIndicies()->capacity()), &(MeshObj->GetIndicies())[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+		//create room for another model
+		VertexBufferObject.push_back(0);
+		IndexBufferObject.push_back(0);
 	}
-	else
+	for(int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 	{
-		glUseProgram(ProgObj);
-		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
-
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
-
-		glUniform3f(UniOffset, GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z);
-		glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
-
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glUseProgram(0);
+		std::cout << ((*MeshObj->GetVertices())[i].x) << std::endl;
 	}
+
+	glUseProgram(ProgObj);
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	//glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
+
+	glUniform3f(UniOffset, GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z);
+	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
+
+	glDisableVertexAttribArray(0);
+	//glDisableVertexAttribArray(1);
+	glUseProgram(0);
+	
 }
 
 void OpenGL::RenderTerrain(Terrain * TerrainObj)
