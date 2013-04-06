@@ -20,7 +20,7 @@ public:
 
 	//Virtual functions
 	void Init(); // Used to intialise freeglut and call setup for the opengl context and window.
-	void RenderModel(Mesh * MeshObj, int Index);
+	void RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index);
 	void RenderTerrain(Terrain * TerrainObj);
 	void Reshape(int width, int height);
 	void Display();

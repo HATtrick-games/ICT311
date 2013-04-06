@@ -86,11 +86,16 @@ bool Mesh::InitMesh(const aiScene* pScene)
 		const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ?
 			&(paiMesh->mTextureCoords[0][i]) :
 			&zero3D;
-		Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
+
+		vVertices.push_back(glm::vec3(pPos->x, pPos->y, pPos->z));
+		vTexCoords.push_back(glm::vec2(pTexCoord->x, pTexCoord->y));
+		vNormals.push_back(glm::vec3(pNormal->x, pNormal->y, pNormal->z));
+
+		/*Vertex v(glm::vec3(pPos->x, pPos->y, pPos->z),
 			glm::vec2(pTexCoord->x, pTexCoord->y),
 			glm::vec3(pNormal->x, pNormal->y, pNormal->z));
 
-		vVertices.push_back(v);
+		vVertices.push_back(v);*/
 	}
 
 	for(unsigned int i = 0; i < paiMesh->mNumFaces; ++i)
@@ -108,14 +113,29 @@ bool Mesh::InitMesh(const aiScene* pScene)
 	return InitMaterials(pScene, sFilepath);
 }
 
-std::vector<Vertex> Mesh::GetVertices()
+std::vector<glm::vec3>* Mesh::GetVertices()
 {
-	return vVertices;
+	return &vVertices;
 }
 
-std::vector<unsigned int> Mesh::GetIndicies()
+std::vector<glm::vec2>* Mesh::GetTexCoords()
 {
-	return vIndicies;
+	return &vTexCoords;
+}
+
+std::vector<glm::vec3>* Mesh::GetNormals()
+{
+	return &vNormals;
+}
+
+std::vector<unsigned int>* Mesh::GetIndicies()
+{
+	return &vIndicies;
+}
+
+unsigned int Mesh::GetnumIndicies()
+{
+	return numIndicies;
 }
 
 bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
@@ -192,6 +212,8 @@ void Mesh::Clear()
 	}
 
 	vVertices.clear();
+	vNormals.clear();
+	vTexCoords.clear();
 	vIndicies.clear();
 }
 

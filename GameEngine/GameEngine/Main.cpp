@@ -22,7 +22,14 @@ int main(int argc, char** argv)
 	//pGraphicsEng = GraphicsFact.CreateEngine("OpenGL");
 
 	//(*pGraphicsEng)->Init();
-	
+	/*
+	std::vector<glm::vec3> NewVec;
+	NewVec.push_back(glm::vec3(4,1,2));
+	NewVec.push_back(glm::vec3(4,1,2));
+	NewVec.push_back(glm::vec3(4,1,2));
+	NewVec.resize(5);
+	std::cout << sizeof(NewVec) * NewVec.capacity();*/
+
 	(*Game::GetInstance())->Initialise();
 
 

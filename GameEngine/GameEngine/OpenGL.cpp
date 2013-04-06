@@ -45,6 +45,7 @@ void OpenGL::Init()
 	//Setup Program / shader contexts here
 	glload::LoadFunctions(); // load in the functions specified by the current opengl context version
 	
+	
 	SetupProgram();
 
 	if(!glload::IsVersionGEQ(3,3))
@@ -108,17 +109,17 @@ void OpenGL::Display()
 	glutSwapBuffers();
 }
 
-void OpenGL::RenderModel(Mesh * MeshObj, int Index)
+void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 {
 	if(VertexBufferObject[Index] == 0)
 	{
 		glGenBuffers(1, &VertexBufferObject[Index]);
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex)* MeshObj->GetVertices().capacity(), &(MeshObj->GetVertices())[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(*(MeshObj->GetVertices()))*(MeshObj->GetVertices()->capacity()), &(MeshObj->GetVertices())[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glGenBuffers(1, &IndexBufferObject[Index]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * (MeshObj->GetIndicies().capacity()), &(MeshObj->GetIndicies())[0], GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(*(MeshObj->GetIndicies())) * (MeshObj->GetIndicies()->capacity()), &(MeshObj->GetIndicies())[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
 	else
@@ -127,9 +128,14 @@ void OpenGL::RenderModel(Mesh * MeshObj, int Index)
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
-
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 		//somestuff
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
+
+
+
+		glUniform3f(UniOffset, GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z);
+		glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 	}
 
 

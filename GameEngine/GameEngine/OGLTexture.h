@@ -1,5 +1,5 @@
 #pragma once
-
+/*
 #include "Texture.h"
 #include <GL/glew.h>
 
@@ -39,3 +39,4 @@ private:
 	const OGLTexture& operator=(const OGLTexture&);
 };
 
+*/
