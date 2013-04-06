@@ -1,13 +1,11 @@
 #version 330
 
-in vec2 fragTexCoord;
+smooth in vec2 colorOut;
 
 out vec4 outputColor;
-
-uniform sampler2D tex;
 
 void main()
 {
 
-	outputColor = texture(tex, fragTexCoord);
+	outputColor = colorOut;
 }

@@ -73,7 +73,7 @@ void OpenGL::SetupProgram()
 
 	(*Camera::GetInstance())->UpdateProgObj(ProgObj);
 	(*Camera::GetInstance())->SetupCamera();
-	(*Camera::GetInstance())->CreateCamera();
+	//(*Camera::GetInstance())->CreateCamera();
 
 	glUseProgram(ProgObj);
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
@@ -129,16 +129,17 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-		//somestuff
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
-
-
 
 		glUniform3f(UniOffset, GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z);
 		glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
+
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glUseProgram(0);
 	}
-
-
 }
 
 void OpenGL::RenderTerrain(Terrain * TerrainObj)

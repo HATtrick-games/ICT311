@@ -28,6 +28,7 @@ void Camera::SetupCamera()
 	glUseProgram(ProgObjLocal);
 	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "PerspectiveMatrix");
 	glUseProgram(0);
+	CreateCamera();
 }
 
 void Camera::CreateCamera()
