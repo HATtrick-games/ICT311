@@ -1,7 +1,8 @@
 #include "OGLTexture.h"
 
 
-OGLTexture::OGLTexture(Texture& tex, MinMagFilter mmFilter /* = MINMAG_LINEAR */, WrapMode wrap /* = WRAP_CLAMP_TO_EDGE */)
+//OGLTexture::OGLTexture(Texture& tex, MinMagFilter mmFilter /* = MINMAG_LINEAR */, WrapMode wrap /* = WRAP_CLAMP_TO_EDGE */)
+/*
 {
 	texture = &tex;
 
@@ -38,3 +39,4 @@ void OGLTexture::UnbindAll()
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+*/

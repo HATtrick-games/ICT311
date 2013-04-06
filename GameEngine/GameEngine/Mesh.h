@@ -11,7 +11,7 @@
 #include <vector>
 #include <assert.h>
 
-struct Vertex
+/*struct Vertex
 {
 	glm::vec3 m_pos;
 	glm::vec2 m_tex;
@@ -22,7 +22,7 @@ struct Vertex
 	Vertex(const glm::vec3& pos, const glm::vec2& tex, const glm::vec3& normal) :
 	m_pos(pos), m_tex(tex), m_normal(normal)
 	{}
-};
+};*/
 
 class Mesh:
 	public IAsset
@@ -34,8 +34,11 @@ public:
 	virtual void Load();
 
 	std::vector<Texture*>* GetTextures();
-	std::vector<Vertex> GetVertices();
-	std::vector<unsigned int> GetIndicies();
+	std::vector<glm::vec3>* GetVertices();
+	std::vector<glm::vec2>* GetTexCoords();
+	std::vector<glm::vec3>* GetNormals();
+	std::vector<unsigned int>* GetIndicies();
+	unsigned int GetnumIndicies();
 
 private:
 	bool InitMesh(const aiScene* pScene);
@@ -43,7 +46,10 @@ private:
 	void Clear();
 	
 	std::vector<Texture*> m_textures;
-	std::vector<Vertex> vVertices;
+	std::vector<glm::vec3> vVertices;
+	std::vector<glm::vec2> vTexCoords;
+	std::vector<glm::vec3> vNormals;
+	//std::vector<Vertex> vVertices;
 	std::vector<unsigned int> vIndicies;
 	unsigned int numIndicies;
 	unsigned int materialIndex;
