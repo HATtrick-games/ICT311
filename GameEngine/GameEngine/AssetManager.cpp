@@ -14,9 +14,10 @@ AssetManager::~AssetManager(void)
 
 bool AssetManager::AddAsset(string filename, string type)
 {
-	if(mGameAssets[filename] != NULL)
+	if(mGameAssets[filename] == NULL)
 	{
 		mGameAssets[filename] = GameAssetFactory::Create(type);
+		mGameAssets[filename]->SetFile(filename);
 		mGameAssets[filename]->Load();
 	}
 
@@ -25,7 +26,7 @@ bool AssetManager::AddAsset(string filename, string type)
 	{
 		return false;
 	}
-
+	
 	return true;
 }
 

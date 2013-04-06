@@ -13,6 +13,7 @@ Mesh::~Mesh(void)
 
 void Mesh::Load()
 {
+	std::cout << "Load" << std::endl;
 	Clear();
 
 	Assimp::Importer importer;
