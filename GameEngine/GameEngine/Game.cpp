@@ -50,7 +50,7 @@ void Game::Update(float time)
 
 void Game::Draw()
 {
-	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
+	//(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()
