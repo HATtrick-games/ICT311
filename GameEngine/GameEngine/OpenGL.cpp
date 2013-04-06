@@ -110,9 +110,7 @@ void OpenGL::Display()
 
 void OpenGL::RenderModel(Mesh * MeshObj, int Index)
 {
-	glUseProgram(ProgObj);
-	
-	if(VertexBufferObject[Index] = 0)
+	if(VertexBufferObject[Index] == 0)
 	{
 		glGenBuffers(1, &VertexBufferObject[Index]);
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
@@ -123,7 +121,16 @@ void OpenGL::RenderModel(Mesh * MeshObj, int Index)
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * (MeshObj->GetIndicies().capacity()), &(MeshObj->GetIndicies())[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	}
+	else
+	{
+		glUseProgram(ProgObj);
+		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
 
+		//somestuff
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
+	}
 
 
 }
