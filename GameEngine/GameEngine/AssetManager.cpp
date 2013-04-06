@@ -1,5 +1,7 @@
 #include "AssetManager.h"
 
+boost::scoped_ptr<AssetManager> AssetManager::pAssetManager(NULL);
+
 AssetManager::AssetManager(void)
 {
 	mGameAssets.clear();
@@ -46,4 +48,14 @@ bool AssetManager::RemoveAllAssets()
 	}
 	
 	return false;
+}
+
+boost::scoped_ptr<AssetManager>* AssetManager::GetInstance()
+{
+	if(pAssetManager.get() == NULL)
+	{
+		pAssetManager.reset(new AssetManager);
+	}
+
+	return &pAssetManager;
 }

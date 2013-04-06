@@ -7,7 +7,7 @@ class GameObject
 public:
 	GameObject();
 	
-	virtual void Intialise();
+	virtual void Initialise();
 	virtual void Update() = 0;
 	const float* GetModel();
 	const int GetModelSize();

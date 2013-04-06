@@ -3,6 +3,8 @@
 #include <string>
 #include "IAsset.h"
 #include "Texture.h"
+#include "Mesh.h"
+#include "Terrain.h"
 
 class GameAssetFactory
 {

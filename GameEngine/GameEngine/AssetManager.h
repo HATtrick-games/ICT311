@@ -5,6 +5,8 @@
 #include "IAsset.h"
 #include "GameAssetFactory.h"
 
+#include <boost/smart_ptr.hpp>
+
 using namespace std;
 
 /**
@@ -73,7 +75,11 @@ public:
 	 * \return	true if it succeeds, false if it fails.
 	 */
 	bool RemoveAllAssets();
+
+	static boost::scoped_ptr<AssetManager>* GetInstance();
 private:
 	map<string, IAsset*> mGameAssets;   //!< The game assets
+
+	static boost::scoped_ptr<AssetManager> pAssetManager;
 };
 

@@ -1,5 +1,15 @@
 #include "GameObject.h"
 
+GameObject::GameObject()
+{
+
+}
+
+void GameObject::Initialise()
+{
+
+}
+
 void GameObject::SetModel(float* Model)
 {
 	pModel = Model;

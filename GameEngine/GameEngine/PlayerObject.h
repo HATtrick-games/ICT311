@@ -6,9 +6,10 @@ class PlayerObject :public GameObject
 {
 public:
 	PlayerObject();
-	//~PlayerObject(){};
+	~PlayerObject(){};
 
-
+	virtual void Initialise();
+	virtual void Update();
 protected:
 private:
 

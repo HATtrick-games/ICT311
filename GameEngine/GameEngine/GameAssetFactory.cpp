@@ -8,7 +8,11 @@ IAsset* GameAssetFactory::Create(std::string type)
 	}
 	else if(type == "MESH")
 	{
-
+		return new Mesh;
+	}
+	else if(type == "TERRAIN")
+	{
+		return new Terrain;
 	}
 
 	return NULL;
