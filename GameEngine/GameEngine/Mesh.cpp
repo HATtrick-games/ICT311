@@ -13,7 +13,6 @@ Mesh::~Mesh(void)
 
 void Mesh::Load()
 {
-
 	Clear();
 
 	Assimp::Importer importer;
