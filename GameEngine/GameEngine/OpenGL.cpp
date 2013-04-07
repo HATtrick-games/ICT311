@@ -40,6 +40,7 @@ void OpenGL::Init()
 	if(iMainWindow <  1)
 	{
 		//throw error, rendering window context unable to be created
+		std::cout << "Error";
 	}
 	
 	//Setup Program / shader contexts here
@@ -51,6 +52,7 @@ void OpenGL::Init()
 	if(!glload::IsVersionGEQ(3,3))
 	{
 		//throw error, opengl 3.3 isn't supported on current device.
+		std::cout << "Error";
 	}
 
 	//Setup depth buffer
@@ -77,6 +79,7 @@ void OpenGL::SetupProgram()
 
 	glUseProgram(ProgObj);
 	UniOffset = glGetUniformLocation(ProgObj, "Offset");
+	//UniTransformMatrix = glGetUniformLocation(ProgObj, "TransformMatrix");
 	glUseProgram(0);
 
 	VertexBufferObject.push_back(0);
@@ -99,6 +102,7 @@ GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
 	catch(std::exception &e)
 	{
 		//return error stating that program object was unable to be created with shaders.
+		std::cout << "Error";
 	}
 }
 
@@ -144,6 +148,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
 
 	glUniform3f(UniOffset, GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z);
+	//glUniformMatrix4fv(UniTransformMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 
 	glDisableVertexAttribArray(0);
@@ -166,7 +171,7 @@ void OpenGL::DisplayTimer(int value)
 	glutPostRedisplay();
 }
 
-glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale)
+glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale, glm::vec3 Orientation)
 {
 	glm::mat4 TransformMat(1.0f);
 	TransformMat[0].x = Scale.x;

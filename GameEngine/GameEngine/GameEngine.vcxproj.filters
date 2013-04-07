@@ -91,6 +91,7 @@
     <ClCompile Include="CollisionHeightMap.cpp">
       <Filter>Source Files\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="AngleMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -180,6 +181,7 @@
     <ClInclude Include="CollisionHeightMap.h">
       <Filter>Header Files\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="AngleMath.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

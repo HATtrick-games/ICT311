@@ -4,8 +4,9 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "Game.h"
-#include <GL\freeglut.h>
+#include "AngleMath.h"
 #include "GameSettings.h"
+#include <GL\freeglut.h>
 //#include <glload\gl_3_3.h>
 #include <glload\gll.hpp>
 #include <boost\smart_ptr.hpp>
@@ -29,7 +30,7 @@ public:
 	//OpenGL specific functions
 	void SetupProgram();
 	GLuint CreateProgramObject(const std::vector<GLuint>* shaderList);
-	glm::mat4 CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale);
+	glm::mat4 CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale, glm::vec3 Orientation);
 	void InitialiseVAO();
 	
 private:
@@ -48,6 +49,7 @@ private:
 	GLuint TerrainBufferObject;
 
 	GLuint UniOffset; //(uniform) offset to be passed and used in the vertex shader
+	GLuint UniTransformMatrix;
 	GLuint UniPerspectiveMatrix;
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
