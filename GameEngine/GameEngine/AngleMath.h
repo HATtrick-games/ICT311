@@ -12,6 +12,11 @@ public:
 
 	float DegreeToRadian(float Degree);
 	float RadianToDegree(float Radian);
+	glm::mat3 RotateX(float Angle);
+	glm::mat3 RotateY(float Angle);
+	glm::mat3 RotateZ(float Angle);
+
+	glm::mat4 CreateModelOrientationMatrix(glm::vec3 Orientation);
 
 private:
 	double PI;
