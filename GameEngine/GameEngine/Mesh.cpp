@@ -118,7 +118,7 @@ bool Mesh::InitMesh(const aiScene* pScene)
 std::vector<glm::vec3>* Mesh::GetVertices()
 {
 	//std::cout << vVertices[0].x;
-	std::cout << "Test1";
+	//std::cout << "Test1";
 	return &vVertices;
 }
 

@@ -13,7 +13,7 @@ Camera::~Camera(void)
 
 void Camera::SetupCamera()
 {
-	fCameraScale = 0;
+	fCameraScale = 1;
 	fzNear = 1;
 	fzFar = 3;
 

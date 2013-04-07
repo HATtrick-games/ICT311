@@ -1,6 +1,7 @@
 #pragma once
 
 #include <boost\scoped_ptr.hpp>
+#include <glm\glm.hpp>
 
 class AngleMath
 {
