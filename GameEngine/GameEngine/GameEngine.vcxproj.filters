@@ -88,6 +88,9 @@
     <ClCompile Include="OGLTexture.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="CollisionHeightMap.cpp">
+      <Filter>Source Files\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="OGLTexture.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionHeightMap.h">
+      <Filter>Header Files\Collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

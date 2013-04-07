@@ -14,13 +14,15 @@ void CollisionBody::CreateRigidBody()
     Sphere->calculateLocalInertia(mass,fallInertia);
     btRigidBody::btRigidBodyConstructionInfo SphereRigidBodyCI(mass,SphereMotionState,Sphere,fallInertia);
     ThisRigidBody = new btRigidBody(SphereRigidBodyCI);
-        
+	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
 }
 
 void CollisionBody::ApplyForce(float x, float y, float z)
 {
 	ThisRigidBody->applyCentralForce(btVector3(x,y,z));
 }
+
+
 
 CommonFunctions::Pos CollisionBody::GetPosition()
 {
