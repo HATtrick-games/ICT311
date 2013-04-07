@@ -3,6 +3,7 @@
 #include "OpenGL.h"
 
 #include "boost\smart_ptr.hpp"
+#include <glm/gtc/type_ptr.hpp>
 //#include <glload/gl_3_3.h>
 //#include <GL/freeglut.h>
 
@@ -21,7 +22,7 @@ public:
 	void UpdateProgObj(GLuint ProgObj);
 private:
 
-	float fPerspectiveMatrix[16];
+	glm::mat4 fPerspectiveMatrix;
 	float fCameraScale;
 	float fzNear;
 	float fzFar;

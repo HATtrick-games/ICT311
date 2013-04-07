@@ -129,7 +129,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		VertexBufferObject.push_back(0);
 		IndexBufferObject.push_back(0);
 	}
-	for(int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
+	for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 	{
 		std::cout << ((*MeshObj->GetVertices())[i].x) << std::endl;
 	}
@@ -164,6 +164,16 @@ void OpenGL::DisplayTimer(int value)
 {
 	glutTimerFunc(1000/60, OpenGL::DisplayTimerCallback, ++value);
 	glutPostRedisplay();
+}
+
+glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale)
+{
+	glm::mat4 TransformMat(1.0f);
+	TransformMat[0].x = Scale.x;
+	TransformMat[1].y = Scale.y;
+	TransformMat[2].z = Scale.z;
+	TransformMat[3] = glm::vec4(Position, 1.0f);
+	return TransformMat;
 }
 
 void OpenGL::Reshape(int width, int height)

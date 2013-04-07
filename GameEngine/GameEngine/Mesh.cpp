@@ -13,7 +13,7 @@ Mesh::~Mesh(void)
 
 void Mesh::Load()
 {
-	std::cout << "Load" << std::endl;
+
 	Clear();
 
 	Assimp::Importer importer;
@@ -28,6 +28,7 @@ void Mesh::Load()
 	}
 	else
 	{
+
 		throw std::runtime_error(std::string("Error Parsing: ") + sFilepath +
 			std::string("\n") + importer.GetErrorString());
 	}
@@ -71,6 +72,7 @@ void Mesh::Render()
 
 bool Mesh::InitMesh(const aiScene* pScene)
 {
+
 	assert(pScene->mNumMeshes | !"Only one mesh per scene is allowed.");
 	m_textures.resize(pScene->mNumMaterials);
 

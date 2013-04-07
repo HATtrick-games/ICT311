@@ -29,7 +29,7 @@ public:
 	//OpenGL specific functions
 	void SetupProgram();
 	GLuint CreateProgramObject(const std::vector<GLuint>* shaderList);
-
+	glm::mat4 CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale);
 	void InitialiseVAO();
 	
 private:

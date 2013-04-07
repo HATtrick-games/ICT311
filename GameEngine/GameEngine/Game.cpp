@@ -28,6 +28,7 @@ void Game::Initialise()
 
 void Game::LoadResources()
 {
+
 	(*AssetManager::GetInstance())->AddAsset("boxbox.obj", "MESH");
 	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("boxbox.obj"));
 	testObject = new PlayerObject();
