@@ -119,6 +119,7 @@ void OpenGL::Display()
 
 void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 {
+
 	if(VertexBufferObject[Index] == 0)
 	{
 		glGenBuffers(1, &VertexBufferObject[Index]);
@@ -143,19 +144,24 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		VertexBufferObject.push_back(0);
 		IndexBufferObject.push_back(0);
 		Vao.push_back(0);
+	
 	}
+	std::cout << std::endl << std::endl;
+	std::cout << MeshObj->GetVertices() << std::endl;
+	for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
+		std::cout << &((MeshObj->GetVertices())[i]) << " | " << (*MeshObj->GetVertices())[i] << " | "<< i << std::endl;
 	/*for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 	{
 		std::cout <<"VERT:" << ((*MeshObj->GetVertices())[i].x);
 		std::cout <<", " << ((*MeshObj->GetVertices())[i].y);
-		std::cout <<", " << ((*MeshObj->GetVertices())[i].y) << std::endl;
-		std::cout << "Index:" << ((*MeshObj->GetIndicies())[i]) << std::endl;
+		std::cout <<", " << ((*MeshObj->GetVertices())[i].z) << std::endl;
+		std::cout << "Index:" << ((*MeshObj->GetIndicies())[i]);
 		if(i+1 < (*MeshObj->GetVertices()).size())
 		{
-			std::cout << "Index:" << ((*MeshObj->GetIndicies())[i+1]) << std::endl;
+			std::cout << ", " << ((*MeshObj->GetIndicies())[i+1]);
 			if (i+2 < (*MeshObj->GetVertices()).size())
 			{
-				std::cout << "Index:" << ((*MeshObj->GetIndicies())[i+2]) << std::endl;
+				std::cout << ", " << ((*MeshObj->GetIndicies())[i+2]) << std::endl;
 			}
 		}
 	}*/
@@ -165,7 +171,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	glUseProgram(ProgObj);
 	glBindVertexArray(Vao[Index]);
 
-	glUniform3f(UniOffset, 0, 0, 0.5);
+	glUniform3f(UniOffset, 0, 0, 1.5);
 	//glUniformMatrix4fv(UniTransformMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 
