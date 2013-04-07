@@ -89,9 +89,7 @@ bool Mesh::InitMesh(const aiScene* pScene)
 			&(paiMesh->mTextureCoords[0][i]) :
 			&zero3D;
 
-		vVertices.push_back(pPos->x);
-		vVertices.push_back(pPos->y);
-		vVertices.push_back(pPos->z);
+		vVertices.push_back(glm::vec3(pPos->x,pPos->y,pPos->z));
 		vTexCoords.push_back(glm::vec2(pTexCoord->x, pTexCoord->y));
 		vNormals.push_back(glm::vec3(pNormal->x, pNormal->y, pNormal->z));
 
@@ -114,15 +112,18 @@ bool Mesh::InitMesh(const aiScene* pScene)
 
 	numIndicies = vIndicies.size();
 	
-	
+	/*
 	for(int j = 0; j < vVertices.size(); j++)
 	{
-	std::cout << &vVertices[j] << " | " << vVertices[j] <<  " | "<< j << std::endl;
-	}
+	std::cout << &vVertices[j] << " | " << vVertices[j].x <<  " | "<< j << std::endl;
+	std::cout << &vVertices[j] << " | " << vVertices[j].y <<  " | "<< j << std::endl;
+	std::cout << &vVertices[j] << " | " << vVertices[j].z <<  " | "<< j << std::endl;
+	}*/
+
 	return InitMaterials(pScene, sFilepath);
 }
 
-std::vector<float>* Mesh::GetVertices()
+std::vector<glm::vec3>* Mesh::GetVertices()
 {
 	//std::cout << vVertices[0].x;
 	//std::cout << "Test1";

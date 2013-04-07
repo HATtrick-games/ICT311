@@ -124,11 +124,11 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	{
 		glGenBuffers(1, &VertexBufferObject[Index]);
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(*(MeshObj->GetVertices()))*(MeshObj->GetVertices()->capacity()), &(MeshObj->GetVertices())[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 *(MeshObj->GetVertices()->capacity()), &((MeshObj->GetVertices())[0]), GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glGenBuffers(1, &IndexBufferObject[Index]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(*(MeshObj->GetIndicies())) * (MeshObj->GetIndicies()->capacity()), &(MeshObj->GetIndicies())[0], GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * (MeshObj->GetnumIndicies()), &((MeshObj->GetIndicies())[0]), GL_STATIC_DRAW);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 		glGenVertexArrays(1, &Vao[Index]);
@@ -145,11 +145,19 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		IndexBufferObject.push_back(0);
 		Vao.push_back(0);
 	
-	}
-	std::cout << std::endl << std::endl;
-	std::cout << MeshObj->GetVertices() << std::endl;
+			std::cout << std::endl << std::endl;
+	std::cout << sizeof(unsigned int) * (MeshObj->GetnumIndicies()) << std::endl;
 	for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
-		std::cout << &((MeshObj->GetVertices())[i]) << " | " << (*MeshObj->GetVertices())[i] << " | "<< i << std::endl;
+	{
+		std::cout << &((*MeshObj->GetVertices())[i].x) << " | " << (*MeshObj->GetVertices())[i].x << " | "<< i << std::endl;
+	std::cout << &((*MeshObj->GetVertices())[i].y) << " | " << (*MeshObj->GetVertices())[i].y << " | "<< i << std::endl;
+	std::cout << &((*MeshObj->GetVertices())[i].z) << " | " << (*MeshObj->GetVertices())[i].z << " | "<< i << std::endl;
+	}
+
+	for(unsigned int i = 0; i < (*MeshObj->GetIndicies()).size(); i++)
+		std::cout << &((MeshObj->GetIndicies())[i]) << " | " << (*MeshObj->GetIndicies())[i] << " | "<< i << std::endl;
+	}
+
 	/*for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 	{
 		std::cout <<"VERT:" << ((*MeshObj->GetVertices())[i].x);
@@ -171,7 +179,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	glUseProgram(ProgObj);
 	glBindVertexArray(Vao[Index]);
 
-	glUniform3f(UniOffset, 0, 0, 1.5);
+	glUniform3f(UniOffset, 0, 0, 0.5);
 	//glUniformMatrix4fv(UniTransformMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 

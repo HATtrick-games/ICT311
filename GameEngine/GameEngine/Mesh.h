@@ -34,7 +34,7 @@ public:
 	virtual void Load();
 
 	std::vector<Texture*>* GetTextures();
-	std::vector<float>* GetVertices();
+	std::vector<glm::vec3>* GetVertices();
 	std::vector<glm::vec2>* GetTexCoords();
 	std::vector<glm::vec3>* GetNormals();
 	std::vector<unsigned int>* GetIndicies();
@@ -46,7 +46,7 @@ private:
 	void Clear();
 	
 	std::vector<Texture*> m_textures;
-	std::vector<float> vVertices;
+	std::vector<glm::vec3> vVertices;
 	std::vector<glm::vec2> vTexCoords;
 	std::vector<glm::vec3> vNormals;
 	//std::vector<Vertex> vVertices;
