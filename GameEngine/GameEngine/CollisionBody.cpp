@@ -22,7 +22,15 @@ void CollisionBody::ApplyForce(float x, float y, float z)
 	ThisRigidBody->applyCentralForce(btVector3(x,y,z));
 }
 
+void CollisionBody::SetVelocity(float velocityX, float velocityY, float velocityZ)
+{
+	ThisRigidBody->setLinearVelocity(btVector3(velocityX, velocityY, velocityZ));
+}
 
+void CollisionBody::SetVelocityGravity(float velocityX, float velocityZ)
+{
+	ThisRigidBody->setLinearVelocity( btVector3(velocityX, ThisRigidBody->getLinearVelocity().getY() , velocityZ));
+}
 
 CommonFunctions::Pos CollisionBody::GetPosition()
 {
@@ -33,4 +41,5 @@ CommonFunctions::Pos CollisionBody::GetPosition()
 
 	return CurrentPosition;
 }
+
 

@@ -18,7 +18,7 @@ bool AssetManager::AddAsset(string filename, string type)
 	{
 		mGameAssets[filename] = GameAssetFactory::Create(type);
 		mGameAssets[filename]->SetFile(filename);
-		mGameAssets[filename]->Load();
+	//	mGameAssets[filename]->Load();
 	}
 
 	// Check if the asset was loaded in
