@@ -1,9 +1,9 @@
 #pragma once
-#include <GL\glew.h>
-//#include "Texture.h"
+//#include <GL\glew.h>
+#include "Texture.h"
 #include <vector>
 
-//#include <GL\freeglut.h>
+#include <GL\freeglut.h>
 
 
 class OGLTexture
@@ -12,7 +12,7 @@ public:
 	OGLTexture();
 	~OGLTexture(){};
 
-	bool BindTexture(unsigned char * pixelBuffer, int index);
+	bool BindTexture(Texture * pixelBuffer, int index);
 
 private:
 	std::vector<GLuint> TextureHandle;

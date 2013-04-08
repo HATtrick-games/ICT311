@@ -7,13 +7,16 @@ OGLTexture::OGLTexture()
 }
 
 
-bool OGLTexture::BindTexture(unsigned char * pixelBuffer, int index)
+bool OGLTexture::BindTexture(Texture * TextureObj, int index)
 {
 	glGenTextures(1, &TextureHandle[index]);
 	glBindTexture(GL_TEXTURE_2D, TextureHandle[index]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TextureObj->GetWidth(), TextureObj->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, TextureObj->GetData());
+	glBindTexture(GL_TEXTURE_2D, 0 );
 
 	return true;
 }
