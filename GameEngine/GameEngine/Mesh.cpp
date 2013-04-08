@@ -27,9 +27,9 @@ void Mesh::Load()
 	}
 	else
 	{
-
-		throw std::runtime_error(std::string("Error Parsing: ") + sFilepath +
-			std::string("\n") + importer.GetErrorString());
+		std::cout << "Cannot find " << sFilepath << " " << importer.GetErrorString() << std::endl;
+		//throw std::runtime_error(std::string("Error Parsing: ") + sFilepath +
+			//std::string("\n") + importer.GetErrorString());
 	}
 }
 
@@ -153,6 +153,8 @@ unsigned int Mesh::GetnumIndicies()
 
 bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 {
+	std::cout << "Init Materials" << pScene->mNumMaterials << std::endl;
+
 	std::string::size_type slashIndex = filePath.find_last_of("/");
 	std::string dir;
 
@@ -181,6 +183,9 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 		{
 			aiString path;
 
+			std::cout << pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &path, NULL, 
+				NULL, NULL, NULL, NULL) << std::endl;
+
 			if(pMaterial->GetTexture(aiTextureType_DIFFUSE, 0, &path, NULL, 
 				NULL, NULL, NULL, NULL) == AI_SUCCESS)
 			{
@@ -189,6 +194,8 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 				m_textures[i] = new Texture();
 				m_textures[i]->SetFile(fullPath);
 				m_textures[i]->Load();
+
+				std::cout << m_textures[i]->GetFile() << std::endl;
 
 				if(m_textures[i]->GetData() == NULL)
 				{

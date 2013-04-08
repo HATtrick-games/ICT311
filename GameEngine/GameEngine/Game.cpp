@@ -69,5 +69,10 @@ boost::scoped_ptr<Game> * Game::GetInstance()
 
 void Game::AddGameObject(std::string id, GameObject* obj)
 {
+	mGameObjects[id] = obj;
+}
 
+void Game::RemoveGameObject(std::string id)
+{
+	mGameObjects.erase(id);
 }
