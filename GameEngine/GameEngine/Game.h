@@ -37,10 +37,16 @@ public:
 
 	static boost::scoped_ptr<Game> * GetInstance();
 
+	void AddGameObject(std::string id, GameObject* obj);
+
+	void RemoveGameObject(std::string id);
+
 private:
 	boost::scoped_ptr<Graphics>* pGraphicsEng;
 
 	static boost::scoped_ptr<Game> pGame;
+
+	std::map<std::string, GameObject*> mGameObjects;
 
 	/*** DELETE UPON COMPLETE ***/
 	GameObject* testObject;

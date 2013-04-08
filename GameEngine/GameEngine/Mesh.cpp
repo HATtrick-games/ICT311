@@ -153,7 +153,7 @@ unsigned int Mesh::GetnumIndicies()
 
 bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 {
-	/*std::string::size_type slashIndex = filePath.find_last_of("/");
+	std::string::size_type slashIndex = filePath.find_last_of("/");
 	std::string dir;
 
 	if(slashIndex == std::string::npos)
@@ -186,9 +186,11 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 			{
 				std::string fullPath = dir + "/" + path.data;
 
-				m_textures[i] = new Texture(GL_TEXTURE_2D, fullPath.c_str());
+				m_textures[i] = new Texture();
+				m_textures[i]->SetFile(fullPath);
+				m_textures[i]->Load();
 
-				if(!m_textures[i]->Load())
+				if(m_textures[i]->GetData() == NULL)
 				{
 					throw std::runtime_error(
 						std::string("Error loading texture: ") + fullPath);
@@ -206,15 +208,18 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 
 		if(!m_textures[i])
 		{
-			m_textures[i] = new Texture(GL_TEXTURE_2D, "white.png");
+			m_textures[i] = new Texture();
+			m_textures[i]->SetFile("heightmap.bmp");
+			m_textures[i]->Load();
 
-			ret = m_textures[i]->Load();
+			if(m_textures[i]->GetData() == NULL)
+			{
+				ret = false;
+			}
 		}
 	}
 
 	return ret;
-	*/
-	return false;
 }
 
 void Mesh::Clear()

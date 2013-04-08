@@ -8,15 +8,21 @@ class GameObject
 public:
 	GameObject();
 	GameObject(float fXposition, float fYposition, float fZposition);
+	GameObject(std::string assetfile, float fXposition, float fYposition, float fZposition);
 	
 	virtual void Initialise();
 	virtual void Update() = 0;
 	const float* GetModel();
 	const int GetModelSize();
+	std::string GetAssetFile();
 	void SetModel(float* Model);
 	void SetModelsize(int size);
-	void SetstPosition(CommonFunctions::Pos newPos);
+	void SetPosition(CommonFunctions::Pos newPos);
+	void SetPosition(float x, float y, float z);
+	void SetAssetFile(std::string file);
 	CommonFunctions::Pos GetPosition();
+
+	void ChangePosition(float x, float y, float z);
 
 protected:
 
@@ -29,6 +35,5 @@ private:
 	CommonFunctions::Pos stPosition;
 	CollisionBody* cbCollisionObject;
 
-	
-
+	std::string* assetFilename;
 };

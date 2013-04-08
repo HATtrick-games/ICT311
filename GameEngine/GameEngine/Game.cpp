@@ -37,7 +37,7 @@ void Game::LoadResources()
 	newPos.x = 0;
 	newPos.y = 0;
 	newPos.z = -2;
-	testObject->SetstPosition(newPos);
+	testObject->SetPosition(newPos);
 
 	(*ScriptingEngine::GetInstance())->LoadResources();
 }
@@ -65,4 +65,9 @@ boost::scoped_ptr<Game> * Game::GetInstance()
 		pGame.reset(new Game);
 	}
 	return &pGame;
+}
+
+void Game::AddGameObject(std::string id, GameObject* obj)
+{
+
 }
