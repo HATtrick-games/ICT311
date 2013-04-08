@@ -1,11 +1,13 @@
 #pragma once
 
 #include "CommonFuncs.h"
+#include "CollisionBody.h"
 
 class GameObject
 {
 public:
 	GameObject();
+	GameObject(float fXposition, float fYposition, float fZposition);
 	
 	virtual void Initialise();
 	virtual void Update() = 0;
@@ -25,6 +27,8 @@ private:
 	float fScale;
 	float fRotation;
 	CommonFunctions::Pos stPosition;
+	CollisionBody* cbCollisionObject;
+
 	
 
 };

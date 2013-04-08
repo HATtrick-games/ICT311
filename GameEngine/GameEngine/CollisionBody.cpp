@@ -1,21 +1,35 @@
 #include "CollisionBody.h"
 
-CollisionBody::CollisionBody()
+CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ)
 {
-	CreateRigidBody();
+	//CreateRigidBody(fPosX, fPosY, fPosZ);
 }
 
-void CollisionBody::CreateRigidBody()
+void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius)
 {
-	btCollisionShape* Sphere = new btSphereShape(1);
-	btDefaultMotionState* SphereMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,10,0)));
+	CollisionShape = new btSphereShape(1);
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(fPosX,fPosY,fPosZ)));
     btScalar mass = 0.1;
     btVector3 fallInertia(1,1,1);
-    Sphere->calculateLocalInertia(mass,fallInertia);
-    btRigidBody::btRigidBodyConstructionInfo SphereRigidBodyCI(mass,SphereMotionState,Sphere,fallInertia);
-    ThisRigidBody = new btRigidBody(SphereRigidBodyCI);
+    CollisionShape->calculateLocalInertia(mass,fallInertia);
+    btRigidBody::btRigidBodyConstructionInfo ShapeRigidBodyCI(mass,MotionState,CollisionShape,fallInertia);
+    ThisRigidBody = new btRigidBody(ShapeRigidBodyCI);
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
 }
+
+void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fXdis, float fYdis, float fZdis)
+{
+	CollisionShape = new btBoxShape(btVector3(fXdis, fYdis, fZdis));
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(fPosX,fPosY,fPosZ)));
+    btScalar mass = 0.1;
+    btVector3 fallInertia(1,1,1);
+    CollisionShape->calculateLocalInertia(mass,fallInertia);
+    btRigidBody::btRigidBodyConstructionInfo ShapeRigidBodyCI(mass,MotionState,CollisionShape,fallInertia);
+    ThisRigidBody = new btRigidBody(ShapeRigidBodyCI);
+	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
+
+}
+
 
 void CollisionBody::ApplyForce(float x, float y, float z)
 {
