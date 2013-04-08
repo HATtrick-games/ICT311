@@ -134,12 +134,16 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * (MeshObj->GetnumIndicies()), &((MeshObj->GetIndicies())[0]), GL_STATIC_DRAW);
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-		//(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
-
 		//glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
+		(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
+		std::cout << std::endl << std::endl;
+		for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
+		{
+		std::cout << &((*MeshObj->GetTexCoords())[i].x) << " | " << (*MeshObj->GetTexCoords())[i].x << " | " << (*MeshObj->GetTexCoords())[i].y <<" | " << i << std::endl;
+		}
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER,0);
@@ -151,12 +155,12 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	
 			std::cout << std::endl << std::endl;
 	std::cout << sizeof(unsigned int) * (MeshObj->GetnumIndicies()) << std::endl;
-	for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
-	{
-		std::cout << &((*MeshObj->GetVertices())[i].x) << " | " << (*MeshObj->GetVertices())[i].x << " | " << (*MeshObj->GetVertices())[i].y <<" | " << (*MeshObj->GetVertices())[i].z << " | "<< i << std::endl;
+	//for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
+	//{
+		//std::cout << &((*MeshObj->GetVertices())[i].x) << " | " << (*MeshObj->GetVertices())[i].x << " | " << (*MeshObj->GetVertices())[i].y <<" | " << (*MeshObj->GetVertices())[i].z << " | "<< i << std::endl;
 	//std::cout << &((*MeshObj->GetVertices())[i].y) << " | " << (*MeshObj->GetVertices())[i].y << " | "<< i << std::endl;
 	//std::cout << &((*MeshObj->GetVertices())[i].z) << " | " << (*MeshObj->GetVertices())[i].z << " | "<< i << std::endl;
-	}
+	//}
 
 	//for(unsigned int i = 0; i < (*MeshObj->GetIndicies()).size(); i++)
 	//	std::cout << &((MeshObj->GetIndicies())[i]) << " | " << (*MeshObj->GetIndicies())[i] << " | "<< i << std::endl;
