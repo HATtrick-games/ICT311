@@ -8,6 +8,7 @@
 #include "GraphicsEngFact.h"
 #include "CommonFuncs.h"
 #include "Input.h"
+#include "ScriptingEngine.h"
 
 #include <iostream>
 
@@ -37,8 +38,7 @@ public:
 	static boost::scoped_ptr<Game> * GetInstance();
 
 private:
-	boost::scoped_ptr<Graphics> *pGraphicsEng;
-	Input* pInputEngine;
+	boost::scoped_ptr<Graphics>* pGraphicsEng;
 
 	static boost::scoped_ptr<Game> pGame;
 

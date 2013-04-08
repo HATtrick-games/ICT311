@@ -18,17 +18,18 @@ void Game::Initialise()
 	pGraphicsEng = graphicsFact.CreateEngine("OpenGL"); // TODO make it so this is read from LUA or INI
 	(*pGraphicsEng)->Init();
 
-	pInputEngine->SetInputMethod("OPENGL");
+	(*Input::GetInstance())->SetInputMethod("OPENGL");
+
+	(*ScriptingEngine::GetInstance())->SetScript("SanguineWanderer.lua");
+	(*ScriptingEngine::GetInstance())->Initialise();
 
 	LoadResources();
-	glutMainLoop();
-
-	
+	glutMainLoop();	
 }
 
 void Game::LoadResources()
 {
-
+	(*AssetManager::GetInstance())->AddAsset("heightmap.bmp", "TEXTURE");
 	(*AssetManager::GetInstance())->AddAsset("BoxTest.obj", "MESH");
 	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("BoxTest.obj"));
 	testObject = new PlayerObject();
@@ -37,6 +38,8 @@ void Game::LoadResources()
 	newPos.y = 0;
 	newPos.z = -2;
 	testObject->SetstPosition(newPos);
+
+	(*ScriptingEngine::GetInstance())->LoadResources();
 }
 
 void Game::UnloadResources()
@@ -46,12 +49,13 @@ void Game::UnloadResources()
 
 void Game::Update(float time)
 {
-
+	(*ScriptingEngine::GetInstance())->Update(time);
 }
 
 void Game::Draw()
 {
 	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
+	std::cout << "Drawing" << std::endl;
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()

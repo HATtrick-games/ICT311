@@ -43,6 +43,8 @@ public:
 	 */
 	virtual bool IsButtonDown(int button) = 0;
 
+	virtual bool IsButtonDown(std::string button) = 0;
+
 	/**
 	 * \fn	virtual double IMouse::GetScrollValue() = 0;
 	 *

@@ -30,6 +30,11 @@ bool OGLMouse::IsButtonDown(int button)
 	return pButtonStates[button];
 }
 
+bool OGLMouse::IsButtonDown(std::string button)
+{
+	return pButtonStates[mButtonsDefined[button]];
+}
+
 double OGLMouse::GetScrollValue()
 {
 	return OGLMouse::dScrollValue;
