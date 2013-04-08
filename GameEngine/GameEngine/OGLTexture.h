@@ -76,4 +76,4 @@ private:
 	// Copying disabled
 	OGLTexture(const OGLTexture&);
 	const OGLTexture& operator=(const OGLTexture&);
-};
+};*/
