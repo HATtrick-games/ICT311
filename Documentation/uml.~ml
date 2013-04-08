@@ -566,8 +566,8 @@
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">44</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">472</XPD:ATTR>
-<XPD:ATTR name="Width" type="integer">109</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">95</XPD:ATTR>
+<XPD:ATTR name="Width" type="integer">212</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">134</XPD:ATTR>
 <XPD:REF name="Model">cxoNlngpKEKVV2PLmxpT2wAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="5W9KbNdOKUSyHAW+czQ0YQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="oLeN1vCsBEur+21SVbjCRgAA">
@@ -658,7 +658,7 @@
 <XPD:ATTR name="LineColor" type="string">clMaroon</XPD:ATTR>
 <XPD:ATTR name="FillColor" type="string">$00B9FFFF</XPD:ATTR>
 <XPD:ATTR name="Left" type="integer">1880</XPD:ATTR>
-<XPD:ATTR name="Top" type="integer">156</XPD:ATTR>
+<XPD:ATTR name="Top" type="integer">188</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">121</XPD:ATTR>
 <XPD:ATTR name="Height" type="integer">108</XPD:ATTR>
 <XPD:REF name="Model">FJw0gqu8Lk23Ef2sdcttlgAA</XPD:REF>
@@ -1515,6 +1515,21 @@
 </XPD:OBJ>
 <XPD:ATTR name="#TypedFeatures" type="integer">1</XPD:ATTR>
 <XPD:REF name="TypedFeatures[0]">u+Sv0KukCECD8FgIoK6JaQAA</XPD:REF>
+<XPD:ATTR name="#Attributes" type="integer">3</XPD:ATTR>
+<XPD:OBJ name="Attributes[0]" type="UMLAttribute" guid="y/oJxW6z1UmgwJoq/YlV0QAA">
+<XPD:ATTR name="Name" type="string">camera</XPD:ATTR>
+<XPD:REF name="Owner">cxoNlngpKEKVV2PLmxpT2wAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Attributes[1]" type="UMLAttribute" guid="jMx3bXIMPkmwT2/ykQNCFgAA">
+<XPD:ATTR name="Name" type="string">gameObjects</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">list&lt;GameObject&gt;</XPD:ATTR>
+<XPD:REF name="Owner">cxoNlngpKEKVV2PLmxpT2wAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="Attributes[2]" type="UMLAttribute" guid="oSqYOt4V8UqULPTeBEuRawAA">
+<XPD:ATTR name="Name" type="string">gameAssets</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">map&lt;string, IGameAsset&gt;</XPD:ATTR>
+<XPD:REF name="Owner">cxoNlngpKEKVV2PLmxpT2wAA</XPD:REF>
+</XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[16]" type="UMLClass" guid="CBPAcm07MEiaz60xxp5UXwAA">
 <XPD:ATTR name="Name" type="string">Engine</XPD:ATTR>
