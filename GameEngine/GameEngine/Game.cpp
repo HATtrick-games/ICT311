@@ -29,13 +29,13 @@ void Game::Initialise()
 void Game::LoadResources()
 {
 
-	(*AssetManager::GetInstance())->AddAsset("boxbox.obj", "MESH");
-	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("boxbox.obj"));
+	(*AssetManager::GetInstance())->AddAsset("BoxTest.obj", "MESH");
+	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("BoxTest.obj"));
 	testObject = new PlayerObject();
 	CommonFunctions::Pos newPos;
 	newPos.x = 0;
 	newPos.y = 0;
-	newPos.z = -1;
+	newPos.z = -2;
 	testObject->SetstPosition(newPos);
 }
 

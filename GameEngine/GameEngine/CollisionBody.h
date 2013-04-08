@@ -7,6 +7,8 @@ public:
 	CollisionBody();
 	void CreateRigidBody();
 	void ApplyForce(float x, float y, float z);
+	void SetVelocity(float velocityX, float velcoityY, float velocityZ);
+	void SetVelocityGravity(float velocityX, float veclocityZ);
 	CommonFunctions::Pos GetPosition();
 protected:
 private:
