@@ -1,7 +1,71 @@
 #include "OGLTexture.h"
 
-OGLTexture::OGLTexture(Texture& tex, MinMagFilter mmFilter /* = MINMAG_LINEAR */, WrapMode wrap /* = WRAP_CLAMP_TO_EDGE */)
+boost::scoped_ptr<OGLTexture> OGLTexture::pTexSingleton(NULL);
 
+OGLTexture::OGLTexture()
+{
+
+}
+
+
+bool OGLTexture::BindTexture(Texture * TextureObj, int index)
+{
+	glGenTextures(1, &TextureHandle[index]);
+	glBindTexture(GL_TEXTURE_2D, TextureHandle[index]);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TextureObj->GetWidth(), TextureObj->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, TextureObj->GetData());
+	glBindTexture(GL_TEXTURE_2D, 0 );
+
+	return true;
+}
+
+GLuint* OGLTexture::CreateTexCoordBuffer(std::vector<glm::vec2>* texCoords, int size)
+{
+	glGenBuffers(1, &TexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, TexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*2*size, &(*texCoords)[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	return &TexBuffer;
+}
+
+GLuint OGLTexture::GetTexHandle(int index)
+{
+	return TextureHandle[index];
+}
+
+
+boost::scoped_ptr<OGLTexture>* OGLTexture::GetInstance()
+{
+	if(pTexSingleton.get() == NULL)
+	{
+		pTexSingleton.reset(new OGLTexture);
+	}
+	return &pTexSingleton;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//OGLTexture::OGLTexture(Texture& tex, MinMagFilter mmFilter /* = MINMAG_LINEAR */, WrapMode wrap /* = WRAP_CLAMP_TO_EDGE */)
+
+/*
 {
 	texture = &tex;
 
@@ -38,3 +102,4 @@ void OGLTexture::UnbindAll()
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
+*/
