@@ -36,7 +36,7 @@ public:
 
 	virtual void Load();
 
-	std::vector<Texture*>* GetTextures();
+	Texture* GetTextures(int index);
 	std::vector<glm::vec3>* GetVertices();
 	std::vector<glm::vec2>* GetTexCoords();
 	std::vector<glm::vec3>* GetNormals();

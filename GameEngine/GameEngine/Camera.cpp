@@ -13,7 +13,7 @@ Camera::~Camera(void)
 
 void Camera::SetupCamera()
 {
-	fCameraScale = 1;
+	fCameraScale = CalcCameraScale(45);
 	fzNear = 1;
 	fzFar = 3;
 
@@ -22,8 +22,8 @@ void Camera::SetupCamera()
 	fPerspectiveMatrix[0].x = fCameraScale;//scale*Xcamera
 	fPerspectiveMatrix[1].y = fCameraScale; //scale*Ycamera
 	fPerspectiveMatrix[2].z = (fzFar + fzNear) / (fzNear - fzFar); //z perspective transform
-	fPerspectiveMatrix[2].w = (2 * fzFar * fzNear) / (fzNear - fzFar); //z perspective transform
-	fPerspectiveMatrix[3].z = -1.0f; //w negative Zcamera
+	fPerspectiveMatrix[2].w = -1.0f;
+	fPerspectiveMatrix[3].z = (2 * fzFar * fzNear) / (fzNear - fzFar); //z perspective transform
 
 	glUseProgram(ProgObjLocal);
 	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "cameraToClipMatrix");
@@ -39,13 +39,19 @@ void Camera::CreateCamera()
 	glUseProgram(0);
 }
 
-void Camera::SetCameraScale(float newScale)
+float Camera::CalcCameraScale(float newfov)
 {
-	fCameraScale = newScale;
+	float fov = (*AngleMath::GetInstance())->DegreeToRadian(newfov);
+
+	return 1.0f / tan(fov / 2.0f);
+}
+
+void Camera::SetCameraFov(float newFov)
+{
+	fCameraScale = CalcCameraScale(newFov);
 	fPerspectiveMatrix[0].x = fCameraScale;
 	fPerspectiveMatrix[1].y = fCameraScale;
 }
-
 void Camera::ReshapeViewport(int NewWidth, int NewHeight)
 {
 	fPerspectiveMatrix[0].x = fCameraScale * (NewHeight / (float)NewWidth);

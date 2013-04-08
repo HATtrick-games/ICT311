@@ -4,6 +4,7 @@
 
 #include "boost\smart_ptr.hpp"
 #include <glm/gtc/type_ptr.hpp>
+#include "AngleMath.h"
 //#include <glload/gl_3_3.h>
 //#include <GL/freeglut.h>
 
@@ -17,7 +18,8 @@ public:
 
 	void SetupCamera();
 	void CreateCamera();
-	void SetCameraScale(float newScale);
+	void SetCameraFov(float newFov);
+	float CalcCameraScale(float newScale);
 	void ReshapeViewport(int NewWidth, int NewHeight);
 	void UpdateProgObj(GLuint ProgObj);
 private:

@@ -60,6 +60,7 @@ void OpenGL::Init()
 	glDepthMask(GL_TRUE);
 	glDepthFunc(GL_LEQUAL);
 	glDepthRange(0.0f, 1.0f);
+	//glEnable(GL_DEPTH_CLAMP);
 
 	//Register graphic specific callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
@@ -85,6 +86,12 @@ void OpenGL::SetupProgram()
 	VertexBufferObject.push_back(0);
 	IndexBufferObject.push_back(0);
 	Vao.push_back(0);
+	
+	//remove later---------------------------------------------
+	ColorOffset = glGetUniformLocation(ProgObj, "ColorOffset");
+			VertexBufferObject.push_back(0);
+		IndexBufferObject.push_back(0);
+		Vao.push_back(0);
 }
 
 void OpenGL::InitialiseVAO()
@@ -138,7 +145,9 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-		//(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
+		(*OGLTexture::GetInstance())->BindTexture(MeshObj->GetTextures(Index), Index); 
+		(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
+		
 		std::cout << std::endl << std::endl;
 		for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 		{
@@ -152,6 +161,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		VertexBufferObject.push_back(0);
 		IndexBufferObject.push_back(0);
 		Vao.push_back(0);
+
 	
 			std::cout << std::endl << std::endl;
 	std::cout << sizeof(unsigned int) * (MeshObj->GetnumIndicies()) << std::endl;
@@ -187,8 +197,17 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 
 	glUseProgram(ProgObj);
 	glBindVertexArray(Vao[Index]);
-	
-	glUniform3f(UniOffset, 5.0, 0.0, -1.0);
+
+	glUniform3f(UniOffset, GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z);
+	/*if(Index == 0)
+	{
+		glUniform4f(ColorOffset, 0,1,0,0);
+	}
+	else if(Index == 1)
+	{
+		glUniform4f(ColorOffset, 1,0,0,0);
+	}*/
+	//glUniform3f(UniOffset, 1.0, 0.0, -1.0);
 	//glUniformMatrix4fv(UniTransformMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 

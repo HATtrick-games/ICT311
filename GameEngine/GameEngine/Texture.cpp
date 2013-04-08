@@ -115,7 +115,7 @@ unsigned int Texture::GetImageSize()
 	return iImageSize;
 }
 
-char* Texture::GetData()
+char* Texture::GetData() const
 {
 	return cData;
 }

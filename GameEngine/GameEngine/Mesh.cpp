@@ -33,9 +33,9 @@ void Mesh::Load()
 	}
 }
 
-std::vector<Texture*>* Mesh::GetTextures()
+Texture* Mesh::GetTextures(int index)
 {
-	return &m_textures;
+	return m_textures[index];
 }
 
 /*
@@ -215,6 +215,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 
 		if(!m_textures[i])
 		{
+			std::cout << "test";
 			m_textures[i] = new Texture();
 			m_textures[i]->SetFile("heightmap.bmp");
 			m_textures[i]->Load();

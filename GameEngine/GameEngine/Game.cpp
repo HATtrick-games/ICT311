@@ -32,13 +32,20 @@ void Game::LoadResources()
 	(*AssetManager::GetInstance())->AddAsset("heightmap.bmp", "TEXTURE");
 	//(*AssetManager::GetInstance())->AddAsset("towerstone.bmp", "TEXTURE");
 	(*AssetManager::GetInstance())->AddAsset("BoxTest.obj", "MESH");
+	(*AssetManager::GetInstance())->AddAsset("Cube.obj", "MESH");
 	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("BoxTest.obj"));
+	boxMesh1 = (Mesh*)((*AssetManager::GetInstance())->GetAsset("Cube.obj"));
 	testObject = new PlayerObject();
 	CommonFunctions::Pos newPos;
-	newPos.x = 0;
-	newPos.y = 0;
-	newPos.z = -2;
+	newPos.x = 1;
+	newPos.y = 0.1;
+	newPos.z = -1;
 	testObject->SetPosition(newPos);
+	testObject1 = new PlayerObject();
+	newPos.x = -1;
+	newPos.y = 0;
+	newPos.z = -1;
+	testObject1->SetPosition(newPos);
 
 	(*ScriptingEngine::GetInstance())->LoadResources();
 }
@@ -56,6 +63,7 @@ void Game::Update(float time)
 void Game::Draw()
 {
 	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
+	(*OpenGL::GetInstance())->RenderModel(boxMesh1, testObject1, 1);
 	std::cout << "Drawing" << std::endl;
 }
 

@@ -50,7 +50,9 @@ private:
 
 	/*** DELETE UPON COMPLETE ***/
 	GameObject* testObject;
+	GameObject* testObject1;
 	Mesh* boxMesh;
+	Mesh* boxMesh1;
 };
 /*
 int main(int argc, char** argv)
