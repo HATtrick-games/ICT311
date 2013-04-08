@@ -1,5 +1,6 @@
 #pragma once
 
+#include "OGLTexture.h"
 #include "Graphics.h"
 #include "Shader.h"
 #include "Camera.h"

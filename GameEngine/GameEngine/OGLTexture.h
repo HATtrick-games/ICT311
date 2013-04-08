@@ -2,8 +2,10 @@
 //#include <GL\glew.h>
 #include "Texture.h"
 #include <vector>
-
+#include <glload\gl_3_3.h>
 #include <GL\freeglut.h>
+#include <glm\glm.hpp>
+#include <boost\scoped_ptr.hpp>
 
 
 class OGLTexture
@@ -13,9 +15,15 @@ public:
 	~OGLTexture(){};
 
 	bool BindTexture(Texture * pixelBuffer, int index);
+	GLuint* CreateTexCoordBuffer(std::vector<glm::vec2>*, int size);
 
+	GLuint GetTexHandle(int index);
+	static boost::scoped_ptr<OGLTexture>* GetInstance();
 private:
 	std::vector<GLuint> TextureHandle;
+	GLuint TexBuffer;
+
+	static boost::scoped_ptr<OGLTexture> pTexSingleton;
 };
 
 

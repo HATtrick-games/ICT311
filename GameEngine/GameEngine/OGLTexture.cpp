@@ -1,5 +1,6 @@
 #include "OGLTexture.h"
 
+boost::scoped_ptr<OGLTexture> OGLTexture::pTexSingleton(NULL);
 
 OGLTexture::OGLTexture()
 {
@@ -21,8 +22,31 @@ bool OGLTexture::BindTexture(Texture * TextureObj, int index)
 	return true;
 }
 
+GLuint* OGLTexture::CreateTexCoordBuffer(std::vector<glm::vec2>* texCoords, int size)
+{
+	glGenBuffers(1, &TexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, TexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*2*size, &(*texCoords)[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	return &TexBuffer;
+}
+
+GLuint OGLTexture::GetTexHandle(int index)
+{
+	return TextureHandle[index];
+}
 
 
+boost::scoped_ptr<OGLTexture>* OGLTexture::GetInstance()
+{
+	if(pTexSingleton.get() == NULL)
+	{
+		pTexSingleton.reset(new OGLTexture);
+	}
+	return &pTexSingleton;
+}
 
 
 
