@@ -63,6 +63,8 @@ public:
 	 */
 	virtual bool IsButtonDown(int button);
 
+	virtual bool IsButtonDown(std::string button);
+
 	/**
 	 * \fn	virtual double OGLMouse::GetScrollValue();
 	 *

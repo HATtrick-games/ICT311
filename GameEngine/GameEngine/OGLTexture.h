@@ -38,6 +38,7 @@ private:
 
 
 /*
+
 #include "Texture.h"
 #include <GL/glew.h>
 
@@ -76,5 +77,3 @@ private:
 	OGLTexture(const OGLTexture&);
 	const OGLTexture& operator=(const OGLTexture&);
 };
-
-*/
