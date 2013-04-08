@@ -6,6 +6,8 @@
 #include "OGLKeyboard.h"
 #include "OGLMouse.h"
 
+#include <boost/scoped_ptr.hpp>
+
 /**
  * \class	Input
  *
@@ -64,7 +66,11 @@ public:
 	 * \return	null if it fails, else the mouse.
 	 */
 	IMouse* GetMouse();
+
+	static boost::scoped_ptr<Input>* GetInstance(); 
 private:
+	static boost::scoped_ptr<Input> pInput;
+
 	static IKeyboard* sKeyboard;	//!< The keyboard
 	static IMouse* sMouse;  //!< The mouse
 };

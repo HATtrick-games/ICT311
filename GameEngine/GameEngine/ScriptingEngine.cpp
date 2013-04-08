@@ -1,10 +1,13 @@
 #include "ScriptingEngine.h"
 
+boost::scoped_ptr<ScriptingEngine> ScriptingEngine::pScriptingEngine(NULL);
 
 ScriptingEngine::ScriptingEngine()
 {
 	lState = lua_open();
 	luaL_openlibs(lState);
+
+	luabind::open(lState);
 	
 	ExposeFunctions();
 }
@@ -35,5 +38,8 @@ boost::scoped_ptr<ScriptingEngine>* ScriptingEngine::GetInstance()
 
 void ScriptingEngine::ExposeFunctions()
 {
-
+	/*luabind::module(lState)
+	[
+		//.def("SetKey", &((*Input::GetInstance())->GetKeyboard()->DefineKey))
+	];*/
 }

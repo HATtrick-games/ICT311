@@ -3,6 +3,8 @@
 IKeyboard* Input::sKeyboard = NULL;
 IMouse* Input::sMouse = NULL;
 
+boost::scoped_ptr<Input> Input::pInput(NULL);
+
 Input::Input(void)
 {
 	sKeyboard = NULL;
@@ -50,4 +52,14 @@ IKeyboard* Input::GetKeyboard()
 IMouse* Input::GetMouse()
 {
 	return sMouse;
+}
+
+boost::scoped_ptr<Input>* Input::GetInstance()
+{
+	if(pInput.get() == NULL)
+	{
+		pInput.reset(new Input);
+	}
+
+	return &pInput;
 }

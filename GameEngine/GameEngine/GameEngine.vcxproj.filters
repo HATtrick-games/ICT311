@@ -92,6 +92,9 @@
       <Filter>Source Files\Collision</Filter>
     </ClCompile>
     <ClCompile Include="AngleMath.cpp" />
+    <ClCompile Include="ScriptingEngine.cpp">
+      <Filter>Source Files\Scripting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommonFuncs.h">
@@ -182,6 +185,9 @@
       <Filter>Header Files\Collision</Filter>
     </ClInclude>
     <ClInclude Include="AngleMath.h" />
+    <ClInclude Include="ScriptingEngine.h">
+      <Filter>Header Files\Scripting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -229,12 +235,21 @@
     <Filter Include="Source Files\Assets">
       <UniqueIdentifier>{496ab541-9b63-4f33-ba2a-c790194b9330}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scripting">
+      <UniqueIdentifier>{7c6f033f-931f-48c7-a893-b573bfb62002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scripting">
+      <UniqueIdentifier>{03bf362f-e5be-4efd-b8a2-b3d267916ec0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="data\BasicShader.frag">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="data\BasicShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="SanguineWanderer.lua">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

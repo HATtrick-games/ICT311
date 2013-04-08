@@ -14,4 +14,16 @@ namespace CommonFunctions
 		// if nothing returned, file unable to be opened throw error
 		throw std::runtime_error("File: " + sInitialName +  " not found.");
 	};
+
+	float GetMaximum(float a, float b)
+	{
+		if(a > b)
+		{
+			return a;
+		}
+		else
+		{
+			return b;
+		}
+	}
 }

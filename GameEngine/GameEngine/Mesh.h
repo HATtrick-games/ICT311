@@ -8,7 +8,10 @@
 #include <assimp/Importer.hpp>
 #include <glm/glm.hpp>
 
+#include "CommonFuncs.h"
+
 #include <vector>
+#include <cmath>
 #include <assert.h>
 
 /*struct Vertex
@@ -40,6 +43,7 @@ public:
 	std::vector<unsigned int>* GetIndicies();
 	unsigned int GetnumIndicies();
 
+	CommonFunctions::Pos GetBoundaries();
 private:
 	bool InitMesh(const aiScene* pScene, const std::string& sFilepath);
 	bool InitMaterials(const aiScene* pScene, const std::string& filePath);
@@ -54,5 +58,4 @@ private:
 	unsigned int * faceArray;
 	unsigned int numIndicies;
 	unsigned int materialIndex;
-
 };

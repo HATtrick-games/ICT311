@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Input.h"
+
 #include <boost/scoped_ptr.hpp>
 
 #include <lua.hpp>

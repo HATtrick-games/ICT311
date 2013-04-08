@@ -25,4 +25,5 @@ namespace CommonFunctions
 		float z;
 	};
 
+	float GetMaximum(float a, float b);
 }

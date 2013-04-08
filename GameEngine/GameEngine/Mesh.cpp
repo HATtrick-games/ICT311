@@ -246,3 +246,31 @@ void Mesh::Clear()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * numIndicies, &indicies[0], GL_STATIC_DRAW);
 }*/
+
+CommonFunctions::Pos Mesh::GetBoundaries()
+{
+	CommonFunctions::Pos average;
+	average.x = 0;
+	average.y = 0;
+	average.z = 0;
+
+	CommonFunctions::Pos boundary;
+	boundary.x = 0;
+	boundary.y = 0;
+	boundary.z = 0;
+
+	for(int i = 0; i < vVertices.size(); i++)
+	{
+		average.x += vVertices[i].x;
+		average.y += vVertices[i].y;
+		average.z += vVertices[i].z;
+		
+		boundary.x = CommonFunctions::GetMaximum(boundary.x, abs(vVertices[i].x));
+	}
+
+	boundary.x -= average.x;
+	boundary.y -= average.y;
+	boundary.z -= average.z;
+
+	return boundary;
+}

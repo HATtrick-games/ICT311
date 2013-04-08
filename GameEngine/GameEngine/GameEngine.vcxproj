@@ -110,6 +110,7 @@
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="CollisionBody.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
+    <ClCompile Include="ScriptingEngine.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="CollisionBody.h" />
     <ClInclude Include="PlayerObject.h" />
+    <ClInclude Include="ScriptingEngine.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="Texture.h" />
@@ -150,6 +152,7 @@
   <ItemGroup>
     <None Include="data\BasicShader.frag" />
     <None Include="data\BasicShader.vert" />
+    <None Include="SanguineWanderer.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
