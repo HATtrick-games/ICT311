@@ -41,7 +41,7 @@ public:
 	unsigned int GetnumIndicies();
 
 private:
-	bool InitMesh(const aiScene* pScene);
+	bool InitMesh(const aiScene* pScene, const std::string& sFilepath);
 	bool InitMaterials(const aiScene* pScene, const std::string& filePath);
 	void Clear();
 	
@@ -51,6 +51,7 @@ private:
 	std::vector<glm::vec3> vNormals;
 	//std::vector<Vertex> vVertices;
 	std::vector<unsigned int> vIndicies;
+	unsigned int * faceArray;
 	unsigned int numIndicies;
 	unsigned int materialIndex;
 

@@ -23,7 +23,7 @@ void Mesh::Load()
 
 	if(scene)
 	{
-		InitMesh(scene);
+		InitMesh(scene, sFilepath);
 	}
 	else
 	{
@@ -69,24 +69,25 @@ void Mesh::Render()
 	glDisableVertexAttribArray(2);
 }*/
 
-bool Mesh::InitMesh(const aiScene* pScene)
+bool Mesh::InitMesh(const aiScene* pScene, const std::string& sFilepath)
 {
 
 	assert(pScene->mNumMeshes | !"Only one mesh per scene is allowed.");
 	m_textures.resize(pScene->mNumMaterials);
 
-	const aiMesh* paiMesh = pScene->mMeshes[0];
+	const aiMesh* Mesh = pScene->mMeshes[0];
 
-	materialIndex = paiMesh->mMaterialIndex;
+	materialIndex = Mesh->mMaterialIndex;
 
 	const aiVector3D zero3D(0.0f, 0.0f, 0.0f);
 
-	for(unsigned int i = 0; i < paiMesh->mNumVertices; ++i)
+	for(unsigned int i = 0; i < Mesh->mNumVertices; ++i)
 	{
-		const aiVector3D* pPos = &(paiMesh->mVertices[i]);
-		const aiVector3D* pNormal = &(paiMesh->mNormals[i]);
-		const aiVector3D* pTexCoord = paiMesh->HasTextureCoords(0) ?
-			&(paiMesh->mTextureCoords[0][i]) :
+		//std::cout << Mesh->mVertices[i].x <<  " | " << Mesh->mVertices[i].y << " | " << Mesh->mVertices[i].z << std::endl;
+		const aiVector3D* pPos = &(Mesh->mVertices[i]);
+		const aiVector3D* pNormal = &(Mesh->mNormals[i]);
+		const aiVector3D* pTexCoord = Mesh->HasTextureCoords(0) ?
+			&(Mesh->mTextureCoords[0][i]) :
 			&zero3D;
 
 		vVertices.push_back(glm::vec3(pPos->x,pPos->y,pPos->z));
@@ -100,25 +101,25 @@ bool Mesh::InitMesh(const aiScene* pScene)
 		vVertices.push_back(v);*/
 	}
 
-	for(unsigned int i = 0; i < paiMesh->mNumFaces; ++i)
+
+	for(unsigned int i = 0; i < Mesh->mNumFaces; ++i)
 	{
-		const aiFace& face = paiMesh->mFaces[i];
+		const aiFace& face = Mesh->mFaces[i];
 		assert(face.mNumIndices == 3);
 		vIndicies.push_back(face.mIndices[0]);
 		vIndicies.push_back(face.mIndices[1]);
-		vIndicies.push_back(face.mIndices[2]);
+		vIndicies.push_back(face.mIndices[2]);	
 	}
-
 
 	numIndicies = vIndicies.size();
 	
-	/*
+	
 	for(int j = 0; j < vVertices.size(); j++)
 	{
-	std::cout << &vVertices[j] << " | " << vVertices[j].x <<  " | "<< j << std::endl;
-	std::cout << &vVertices[j] << " | " << vVertices[j].y <<  " | "<< j << std::endl;
-	std::cout << &vVertices[j] << " | " << vVertices[j].z <<  " | "<< j << std::endl;
-	}*/
+	//std::cout << &vVertices[j] << " | " << vVertices[j].x <<  " | "<< vVertices[j].y <<" | " << vVertices[j].z << j<< std::endl;
+	//std::cout << &vVertices[j] << " | " << vVertices[j].y <<  " | "<< j;
+	//std::cout << &vVertices[j] << " | " << vVertices[j].z <<  " | "<< j << std::endl;
+	}
 
 	return InitMaterials(pScene, sFilepath);
 }
