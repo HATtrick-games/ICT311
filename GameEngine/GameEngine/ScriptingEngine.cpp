@@ -63,9 +63,18 @@ void ScriptingEngine::ExposeFunctions()
 		luabind::def("SetMouse", &ScriptingEngine::DefineMouse),
 		luabind::def("GetKey", &ScriptingEngine::GetKey),
 		luabind::def("GetMouse", &ScriptingEngine::GetMouse),
-		luabind::def("AddAsset", &ScriptingEngine::AddAsset)
-		//luabind::class_<PlayerObject>("Player")
-		//	.def()
+		luabind::def("AddAsset", &ScriptingEngine::AddAsset),
+		luabind::class_<PlayerObject>("PlayerObject")
+			.def(luabind::constructor<>())
+			.def("Initialise", &PlayerObject::Initialise)
+			.def("SetPosition", (void(PlayerObject::*)(float, float, float))&PlayerObject::SetPosition)
+			.def("ChangePosition", &PlayerObject::ChangePosition)
+			.def("SetAsset", &PlayerObject::SetAssetFile),
+		luabind::class_<AiObject>("AIObject")
+			.def(luabind::constructor<>())
+			.def("SetPosition", (void(AiObject::*)(float, float, float))&AiObject::SetPosition)
+			.def("ChangePosition", &AiObject::ChangePosition)
+			.def("SetAsset", &AiObject::SetAssetFile)
 	];
 }
 

@@ -2,6 +2,8 @@
 
 #include "Input.h"
 #include "AssetManager.h"
+#include "PlayerObject.h"
+#include "AiObject.h"
 
 #include <boost/scoped_ptr.hpp>
 
