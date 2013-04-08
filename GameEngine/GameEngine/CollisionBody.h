@@ -9,6 +9,8 @@ public:
 	void ApplyForce(float x, float y, float z);
 	void SetVelocity(float velocityX, float velcoityY, float velocityZ);
 	void SetVelocityGravity(float velocityX, float veclocityZ);
+	void TranslateObject(float fTransX, float fTransY, float fTransZ);
+	void ScaleObject(float fScaleX, float fScaleY, float fScaleZ);
 	CommonFunctions::Pos GetPosition();
 protected:
 private:
