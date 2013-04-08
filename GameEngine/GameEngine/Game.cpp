@@ -30,9 +30,9 @@ void Game::Initialise()
 void Game::LoadResources()
 {
 	(*AssetManager::GetInstance())->AddAsset("heightmap.bmp", "TEXTURE");
-	(*AssetManager::GetInstance())->AddAsset("towerstone.bmp", "TEXTURE");
-	(*AssetManager::GetInstance())->AddAsset("Cube.obj", "MESH");
-	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("Cube.obj"));
+	//(*AssetManager::GetInstance())->AddAsset("towerstone.bmp", "TEXTURE");
+	(*AssetManager::GetInstance())->AddAsset("BoxTest.obj", "MESH");
+	boxMesh = (Mesh*)((*AssetManager::GetInstance())->GetAsset("BoxTest.obj"));
 	testObject = new PlayerObject();
 	CommonFunctions::Pos newPos;
 	newPos.x = 0;
