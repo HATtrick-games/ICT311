@@ -46,6 +46,17 @@ void CollisionBody::SetVelocityGravity(float velocityX, float velocityZ)
 	ThisRigidBody->setLinearVelocity( btVector3(velocityX, ThisRigidBody->getLinearVelocity().getY() , velocityZ));
 }
 
+void CollisionBody::TranslateObject(float fTransX, float fTransY, float fTransZ)
+{
+	ThisRigidBody->translate(btVector3(fTransX, fTransY, fTransZ));
+}
+
+void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
+{
+	ThisRigidBody->getCollisionShape()->setLocalScaling(btVector3(fScaleX, fScaleY, fScaleZ));
+}
+
+
 CommonFunctions::Pos CollisionBody::GetPosition()
 {
 	ThisRigidBody->getMotionState()->getWorldTransform(trans);
