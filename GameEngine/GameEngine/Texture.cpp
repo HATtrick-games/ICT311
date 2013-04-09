@@ -93,6 +93,9 @@ void Texture::Load()
 
 	input.close();
 	delete[] temp;
+
+	std::cout << sFilepath << " texture Address:" << &cData << std::endl;
+	std::cout << sFilepath << " texture Address:" << GetAddress() << std::endl;
 }
 
 unsigned int Texture::GetDataPos()
@@ -136,4 +139,9 @@ short Texture::readShort(std::ifstream& input)
 	input.read(buffer, 2);
 	return (short)(((unsigned char)buffer[1] << 8) |
 					(unsigned char)buffer[0]);
+}
+
+char** Texture::GetAddress()
+{
+	return &cData;
 }

@@ -23,6 +23,7 @@ public:
 	unsigned int GetHeight();
 	unsigned int GetImageSize();
 	char* GetData() const;
+	char** GetAddress();
 private:
 	// Data read from the header
 	unsigned int iDataPos;

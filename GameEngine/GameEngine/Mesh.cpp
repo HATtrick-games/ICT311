@@ -215,7 +215,6 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 
 		if(!m_textures[i])
 		{
-			std::cout << "test";
 			m_textures[i] = new Texture();
 			m_textures[i]->SetFile("heightmap.bmp");
 			m_textures[i]->Load();
@@ -225,7 +224,11 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 				ret = false;
 			}
 		}
+
+		std::cout << "Loaded " << m_textures[i]->GetFile() << " into " << m_textures[i]->GetAddress() << std::endl;
 	}
+
+	
 
 	return ret;
 }
