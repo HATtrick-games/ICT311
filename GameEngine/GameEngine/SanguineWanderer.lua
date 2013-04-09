@@ -14,7 +14,7 @@ SetKey("quit", 120)
 -- load in assets
 function LoadResources()
 	print("[LUA] LoadResources")
-	AddAsset("boxbox.obj", "MESH")
+	-- AddAsset("boxbox.obj", "MESH")
 end
 
 -- create game objects
@@ -23,7 +23,7 @@ function Initialise()
 
 	pl = PlayerObject()
 	pl:SetPosition(0, 0, 0)
-	pl:SetAsset("boxbox.obj")
+	-- pl:SetAsset("boxbox.obj")
 	
 end
 
