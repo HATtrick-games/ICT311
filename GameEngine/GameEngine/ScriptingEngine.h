@@ -39,6 +39,8 @@ private:
 	static void DefineMouse(std::string id, int k);
 	static bool GetKey(std::string id);
 	static bool GetMouse(std::string id);
+	static int GetMouseX();
+	static int GetMouseY();
 
 	// Asset functions
 	static bool AddAsset(std::string file, std::string type);

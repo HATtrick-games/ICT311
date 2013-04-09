@@ -26,7 +26,7 @@ void ScriptingEngine::SetScript(std::string gamefile)
 
 	if(int error = luaL_dofile(lState, gamefile.c_str()) != 0)
 	{
-		throw std::runtime_error("ERROR: Problem opening Lua file " + gamefile);
+		std::cout << "ERROR " << error << ": Problem opening Lua file " << gamefile << std::endl;
 	}
 }
 
@@ -97,6 +97,16 @@ bool ScriptingEngine::GetKey(std::string id)
 bool ScriptingEngine::GetMouse(std::string id)
 {
 	return (*Input::GetInstance())->GetMouse()->IsButtonDown(id);
+}
+
+int ScriptingEngine::GetMouseX()
+{
+	return (*Input::GetInstance())->GetMouse()->GetMousePosition().x;
+}
+
+int ScriptingEngine::GetMouseY()
+{
+	return (*Input::GetInstance())->GetMouse()->GetMousePosition().y;
 }
 
 bool ScriptingEngine::AddAsset(std::string file, std::string type)
