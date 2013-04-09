@@ -5,6 +5,8 @@
 #include "boost\smart_ptr.hpp"
 #include <glm/gtc/type_ptr.hpp>
 #include "AngleMath.h"
+#include <glutil/glutil.h>
+#include "PlayerObject.h"
 //#include <glload/gl_3_3.h>
 //#include <GL/freeglut.h>
 
@@ -13,12 +15,12 @@ class Camera
 public:
 	Camera(void);
 	~Camera(void);
-	
+
 	static boost::scoped_ptr<Camera>* GetInstance();
 
 	void SetupCamera();
-	void SetupCameraToClipMatrix(); //Perspective matrix setup
-	void CreateCamera();
+	void SetupCameraToClipMatrix(glutil::MatrixStack &modelMatrix); //Perspective matrix setup
+	void CreateCamera(glutil::MatrixStack &modelMatrix);
 	void CalcWorldToCameraMatrix(glm::vec3 CameraPos, glm::vec3 CameraLook, glm::vec3 UpVector);
 	void CalcRelativePosition();
 	void SetCameraFov(float newFov);
@@ -32,6 +34,10 @@ public:
 	void SetCameraPosition(glm::vec3 newPosition);
 	void SetCameraLookAt(glm::vec3 newLookAt);
 
+	void StorePlayerObj(PlayerObject* PlayerObj);
+
+	glm::mat4 G() {return CameraLookAtMatrix;}
+
 private:
 
 	glm::mat4 fPerspectiveMatrix;
@@ -41,9 +47,10 @@ private:
 	float fzFar;
 
 	GLuint UniPerspectiveMatrix;
-	GLuint UniWorldToCamera;
+	//GLuint UniWorldToCamera;
 	GLuint ProgObjLocal;
 
+	PlayerObject* CameraData;
 	glm::vec3 CameraPosition;
 	glm::vec3 CameraLookAt;
 
