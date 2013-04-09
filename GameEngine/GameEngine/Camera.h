@@ -20,6 +20,7 @@ public:
 	void SetupCameraToClipMatrix(); //Perspective matrix setup
 	void CreateCamera();
 	void CalcWorldToCameraMatrix(glm::vec3 CameraPos, glm::vec3 CameraLook, glm::vec3 UpVector);
+	void CalcRelativePosition();
 	void SetCameraFov(float newFov);
 	float CalcCameraScale(float newScale);
 	void ReshapeViewport(int NewWidth, int NewHeight);

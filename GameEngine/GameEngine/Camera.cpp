@@ -29,7 +29,7 @@ void Camera::SetupCamera()
 
 void Camera::SetupCameraToClipMatrix()
 {
-	fCameraScale = CalcCameraScale(45);
+	fCameraScale = CalcCameraScale(60);
 	fzNear = 1;
 	fzFar = 100;
 
@@ -88,6 +88,21 @@ void Camera::SetCameraFov(float newFov)
 	fPerspectiveMatrix[0].x = fCameraScale;
 	fPerspectiveMatrix[1].y = fCameraScale;
 }
+
+void Camera::CalcRelativePosition()
+{
+	float phi = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.x);
+	float theta = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.y + 90);
+
+	float fSinTheta = sinf(theta);
+	float fCosTheta = cosf(theta);
+	float fCosPhi = cosf(phi);
+	float fSinPhi = sinf(phi);
+	glm::vec3 dirToCamera(fSinTheta * fCosPhi, fCosTheta, fSinTheta * fSinPhi);
+	
+	CameraPosition = (dirToCamera * CameraPosition.z) + CameraLookAt;
+}
+
 void Camera::ReshapeViewport(int NewWidth, int NewHeight)
 {
 	fPerspectiveMatrix[0].x = fCameraScale * (NewHeight / (float)NewWidth);
@@ -121,6 +136,8 @@ void Camera::SetCameraPosition(glm::vec3 newPosition)
 void Camera::SetCameraLookAt(glm::vec3 newLookAt)
 {
 	CameraLookAt = newLookAt;
+	CalcRelativePosition();
+	CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 }
 
 boost::scoped_ptr<Camera>* Camera::GetInstance(void)
