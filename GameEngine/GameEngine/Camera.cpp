@@ -88,7 +88,7 @@ void Camera::SetCameraFov(float newFov)
 
 void Camera::CalcRelativePosition()
 {
-	float phi = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.x);
+	/*float phi = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.x);
 	float theta = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.y + 90);
 
 	float fSinTheta = sinf(theta);
@@ -98,6 +98,7 @@ void Camera::CalcRelativePosition()
 	glm::vec3 dirToCamera(fSinTheta * fCosPhi, fCosTheta, fSinTheta * fSinPhi);
 	
 	CameraPosition = (dirToCamera * CameraPosition.z) + CameraLookAt;
+	*/
 }
 
 void Camera::ReshapeViewport(int NewWidth, int NewHeight)
