@@ -38,7 +38,7 @@ void Game::LoadResources()
 	testObject = new PlayerObject();
 	CommonFunctions::Pos newPos;
 	newPos.x = 0.5;
-	newPos.y = 0;
+	newPos.y = 0.1;
 	newPos.z = -1;
 	testObject->SetPosition(newPos);
 	testObject1 = new PlayerObject();

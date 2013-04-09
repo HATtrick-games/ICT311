@@ -56,6 +56,7 @@ private:
 	//GLuint UniOffset; //(uniform) offset to be passed and used in the vertex shader
 	GLuint UniModelToCameraMatrix;
 	GLuint UniPerspectiveMatrix;
+	GLuint UniBaseTexture;
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
 
