@@ -64,6 +64,7 @@ void ScriptingEngine::ExposeFunctions()
 		luabind::def("GetKey", &ScriptingEngine::GetKey),
 		luabind::def("GetMouse", &ScriptingEngine::GetMouse),
 		luabind::def("AddAsset", &ScriptingEngine::AddAsset),
+		luabind::def("AddGameObject", &ScriptingEngine::AddGameObject),
 		luabind::class_<PlayerObject>("PlayerObject")
 			.def(luabind::constructor<>())
 			.def("Initialise", &PlayerObject::Initialise)
@@ -101,4 +102,9 @@ bool ScriptingEngine::GetMouse(std::string id)
 bool ScriptingEngine::AddAsset(std::string file, std::string type)
 {
 	return (*AssetManager::GetInstance())->AddAsset(file, type);
+}
+
+void ScriptingEngine::AddGameObject(std::string id, GameObject obj)
+{
+	(*Game::GetInstance())->AddGameObject(id, &obj);
 }

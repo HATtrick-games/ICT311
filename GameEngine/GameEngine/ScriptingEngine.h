@@ -1,7 +1,9 @@
 #pragma once
 
+#include "Game.h"
 #include "Input.h"
 #include "AssetManager.h"
+#include "GameObject.h"
 #include "PlayerObject.h"
 #include "AiObject.h"
 
@@ -40,6 +42,7 @@ private:
 
 	// Asset functions
 	static bool AddAsset(std::string file, std::string type);
+	static void AddGameObject(std::string id, GameObject obj);
 
 	lua_State* lState;
 };

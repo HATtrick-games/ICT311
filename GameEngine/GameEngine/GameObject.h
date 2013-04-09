@@ -11,7 +11,7 @@ public:
 	GameObject(std::string assetfile, float fXposition, float fYposition, float fZposition);
 	
 	virtual void Initialise();
-	virtual void Update() = 0;
+	virtual void Update();
 	const float* GetModel();
 	const int GetModelSize();
 	std::string GetAssetFile();

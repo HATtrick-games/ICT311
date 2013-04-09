@@ -34,6 +34,11 @@ void GameObject::Initialise()
 
 }
 
+void GameObject::Update()
+{
+
+}
+
 void GameObject::SetModel(float* Model)
 {
 	pModel = Model;
