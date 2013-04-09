@@ -236,6 +236,7 @@ glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale
 	TransformMat[1].y = Scale.y;
 	TransformMat[2].z = Scale.z;
 	TransformMat[3] = glm::vec4(Position, 1.0f);
+	TransformMat * glm::mat4((*AngleMath::GetInstance())->CreateRotationMatrix(Orientation));
 	return TransformMat;
 }
 

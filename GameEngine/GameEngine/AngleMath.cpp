@@ -54,6 +54,25 @@ glm::mat3 AngleMath::RotateZ(float Angle)
 
 	return RotationMatrix;
 }
+
+glm::mat3 AngleMath::CreateRotationMatrix(glm::vec3 Orientation)
+{
+	glm::mat3 RotationMatrix(1.0f);
+	if(Orientation.x != 0)
+	{
+		RotationMatrix *= RotateX(Orientation.x);
+	}
+	if(Orientation.y != 0)
+	{
+		RotationMatrix *= RotateY(Orientation.y);
+	}
+	if(Orientation.z != 0)
+	{
+		RotationMatrix *= RotateZ(Orientation.z);
+	}
+	return RotationMatrix;
+}
+
 float AngleMath::DegreeToRadian(float Degree)
 {
 	return Degree * DegToRad;

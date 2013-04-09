@@ -16,6 +16,7 @@ public:
 	glm::mat3 RotateX(float Angle);
 	glm::mat3 RotateY(float Angle);
 	glm::mat3 RotateZ(float Angle);
+	glm::mat3 CreateRotationMatrix(glm::vec3 Orientation);
 
 	glm::mat4 CreateModelOrientationMatrix(glm::vec3 Orientation);
 
