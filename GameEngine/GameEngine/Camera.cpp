@@ -15,10 +15,10 @@ void Camera::SetupCamera()
 {
 	CameraPosition.x = 1;
 	CameraPosition.y = 0;
-	CameraPosition.z = 0;
-	CameraLookAt.x = 1;
+	CameraPosition.z = 10;
+	CameraLookAt.x = 0;
 	CameraLookAt.y = 0;
-	CameraLookAt.z = -10;
+	CameraLookAt.z = 0;
 	SetupCameraToClipMatrix();
 	CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 	glUseProgram(ProgObjLocal);

@@ -15,11 +15,17 @@ void CollisionWorldSingleton::AddRigidBody(btRigidBody* RigidBody)
 
 void CollisionWorldSingleton::StepWorld()
 {
+	stepped = true;
 	DynamicsWorld->stepSimulation(1/60.f, 10);
 }
 
 void CollisionWorldSingleton::SetGravity(float y)
 {
 	 DynamicsWorld->setGravity(btVector3(0,y,0));
+}
+
+bool CollisionWorldSingleton::Stepped()
+{
+	return stepped;
 }
 

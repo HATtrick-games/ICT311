@@ -2,6 +2,9 @@
 
 CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ)
 {
+	CurrentPosition.x = fPosX;
+	CurrentPosition.y = fPosY;
+	CurrentPosition.z = fPosZ;
 	CreateRigidBody(fPosX, fPosY, fPosZ, 1);
 	//CreateRigidBody(10,10,10,1);
 	std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
@@ -35,8 +38,7 @@ void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float
 
 void CollisionBody::SetCollisionPos(float x, float y, float z)
 {
-	ThisRigidBody->getMotionState()->getWorldTransform(trans);
-	ThisRigidBody->translate(btVector3(x-trans.getOrigin().getX(), y-trans.getOrigin().getY(), z-trans.getOrigin().getZ()));
+	ThisRigidBody->translate(btVector3(x-CurrentPosition.x, y-CurrentPosition.y, z-CurrentPosition.z));
 }
 
 
@@ -57,9 +59,10 @@ void CollisionBody::SetVelocityGravity(float velocityX, float velocityZ)
 
 void CollisionBody::TranslateObject(float fTransX, float fTransY, float fTransZ)
 {
-	ThisRigidBody->getMotionState()->getWorldTransform(trans);
-	trans.setOrigin(btVector3(trans.getOrigin().getX()+fTransX,trans.getOrigin().getY()+fTransY,trans.getOrigin().getZ()+fTransZ));
-	ThisRigidBody->getMotionState()->setWorldTransform(trans);
+	
+	CurrentPosition.x += fTransX;
+	CurrentPosition.y += fTransY;
+	CurrentPosition.z += fTransZ;
 	ThisRigidBody->translate(btVector3(fTransX, fTransY, fTransZ));
 	
 	
@@ -74,10 +77,18 @@ void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
 
 CommonFunctions::Pos CollisionBody::GetPosition()
 {
-	
+		
+	if(CollisionWorldSingleton::Instance()->Stepped())
+	{
+	ThisRigidBody->getMotionState()->getWorldTransform(trans);
 	CurrentPosition.x = trans.getOrigin().getX();
 	CurrentPosition.y = trans.getOrigin().getY();
 	CurrentPosition.z = trans.getOrigin().getZ();
+	}
+	else
+	{
+		return CurrentPosition;
+	}
 
 	return CurrentPosition;
 }
