@@ -28,12 +28,6 @@ public:
 	void ReshapeViewport(int NewWidth, int NewHeight);
 	void UpdateProgObj(GLuint ProgObj);
 
-	glm::vec3 GetCameraPosition() const;
-	glm::vec3 GetCameraLookAt() const;
-
-	void SetCameraPosition(glm::vec3 newPosition);
-	void SetCameraLookAt(glm::vec3 newLookAt);
-
 	void StorePlayerObj(PlayerObject* PlayerObj);
 
 	glm::mat4 G() {return CameraLookAtMatrix;}
@@ -51,8 +45,6 @@ private:
 	GLuint ProgObjLocal;
 
 	PlayerObject* CameraData;
-	glm::vec3 CameraPosition;
-	glm::vec3 CameraLookAt;
 
 	static boost::scoped_ptr<Camera> pCameraSingleton;
 };

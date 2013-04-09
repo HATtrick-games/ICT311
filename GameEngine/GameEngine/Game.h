@@ -53,6 +53,7 @@ private:
 
 	/*** DELETE UPON COMPLETE ***/
 	GameObject* testObject;
+	PlayerObject* Camera;
 	GameObject* testObject1;
 	Mesh* boxMesh;
 	Mesh* boxMesh1;
