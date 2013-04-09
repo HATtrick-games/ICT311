@@ -66,6 +66,12 @@ void Game::Draw()
 	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
 	(*OpenGL::GetInstance())->RenderModel(boxMesh1, testObject1, 1);
 	std::cout << "Drawing" << std::endl;
+
+	for(objectMapIterator it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		// Iterate through game objects map drawing all the objects
+		// i.e(*OpenGL::GetInstance())->RenderModel((Mesh*)(*AssetManager::GetInstance())->GetAsset((it->second)->GetAssetFile(), it->second, 1));
+	}
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()
