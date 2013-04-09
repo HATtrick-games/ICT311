@@ -159,7 +159,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 
 		(*OGLTexture::GetInstance())->BindTexture(MeshObj->GetTextures(Index), Index); 
 		(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
-		
+
 		std::cout << std::endl << std::endl;
 		//for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 		//{
