@@ -82,6 +82,8 @@ void OpenGL::SetupProgram()
 	glUseProgram(ProgObj);
 	//UniOffset = glGetUniformLocation(ProgObj, "Offset");
 	UniModelToCameraMatrix = glGetUniformLocation(ProgObj, "ModelToCamera");
+	UniBaseTexture = glGetUniformLocation(ProgObj, "tex");
+	glUniform1i(UniBaseTexture, 0);
 	glUseProgram(0);
 
 	VertexBufferObject.push_back(0);
@@ -180,6 +182,9 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 
 	glUseProgram(ProgObj);
 	glBindVertexArray(Vao[Index]);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, (*OGLTexture::GetInstance())->GetTexHandle(Index));
 
 	glm::mat4 test = (*Camera::GetInstance())->G();
 	glm::mat4 test2 = CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0));
