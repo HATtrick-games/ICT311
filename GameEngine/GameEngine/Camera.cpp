@@ -13,14 +13,6 @@ Camera::~Camera(void)
 
 void Camera::SetupCamera()
 {
-	CameraPosition.x = 0;
-	CameraPosition.y = 0;
-	CameraPosition.z = 0;
-	CameraLookAt.x = 0;
-	CameraLookAt.y = 0;
-
-	CameraLookAt.z = -10;
-
 	glUseProgram(ProgObjLocal);
 	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "cameraToClipMatrix");
 	//UniWorldToCamera = glGetUniformLocation(ProgObjLocal, "WorldToCamera");
@@ -72,7 +64,7 @@ void Camera::CreateCamera(glutil::MatrixStack &modelMatrix)
 {	
 	//SetupCameraToClipMatrix();
 	//CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
-	modelMatrix.LookAt(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
+	modelMatrix.LookAt(CameraData->GetPlayerCameraPosition(), CameraData->GetPlayerLookAt(), glm::vec3(0,1,0));
 	CameraLookAtMatrix = modelMatrix.Top();
 	glUseProgram(ProgObjLocal);
 	glUniformMatrix4fv(UniPerspectiveMatrix, 1, GL_FALSE, glm::value_ptr(fPerspectiveMatrix));
@@ -96,7 +88,7 @@ void Camera::SetCameraFov(float newFov)
 
 void Camera::CalcRelativePosition()
 {
-	float phi = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.x);
+	/*float phi = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.x);
 	float theta = (*AngleMath::GetInstance())->DegreeToRadian(CameraPosition.y + 90);
 
 	float fSinTheta = sinf(theta);
@@ -106,6 +98,7 @@ void Camera::CalcRelativePosition()
 	glm::vec3 dirToCamera(fSinTheta * fCosPhi, fCosTheta, fSinTheta * fSinPhi);
 	
 	CameraPosition = (dirToCamera * CameraPosition.z) + CameraLookAt;
+	*/
 }
 
 void Camera::ReshapeViewport(int NewWidth, int NewHeight)
@@ -126,28 +119,6 @@ void Camera::StorePlayerObj(PlayerObject* PlayerObj)
 void Camera::UpdateProgObj(GLuint ProgObj)
 {
 	ProgObjLocal = ProgObj;
-}
-
-glm::vec3 Camera::GetCameraPosition() const
-{
-	return CameraPosition;
-}
-
-glm::vec3 Camera::GetCameraLookAt() const
-{
-	return CameraLookAt;
-}
-
-void Camera::SetCameraPosition(glm::vec3 newPosition)
-{
-	CameraPosition = newPosition;
-}
-
-void Camera::SetCameraLookAt(glm::vec3 newLookAt)
-{
-	CameraLookAt = newLookAt;
-	//CalcRelativePosition();
-	//CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 }
 
 boost::scoped_ptr<Camera>* Camera::GetInstance(void)

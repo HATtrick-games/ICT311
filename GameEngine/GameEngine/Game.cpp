@@ -47,6 +47,9 @@ void Game::LoadResources()
 	newPos.z = -1;
 	testObject1->SetPosition(newPos);
 
+	Camera->SetPlayerCameraPosition(glm::vec3(0,0,0));
+	Camera->SetPlayerCameraLookAt(glm::vec3(0,0,-10));
+	(*Camera::GetInstance())->StorePlayerObj(Camera);
 	(*ScriptingEngine::GetInstance())->LoadResources();
 }
 
