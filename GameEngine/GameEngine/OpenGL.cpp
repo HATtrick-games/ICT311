@@ -120,7 +120,7 @@ void OpenGL::Display()
 	glClearColor(0.65f, 0.8f, 1.0f, 0.0f);
 	glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
 	glutil::MatrixStack modelMatrix;
 	glutil::MatrixStack modelMatrix1;
 	{
@@ -159,7 +159,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 
 		(*OGLTexture::GetInstance())->BindTexture(MeshObj->GetTextures(Index), Index); 
 		(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
-		
+
 		std::cout << std::endl << std::endl;
 		//for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
 		//{
