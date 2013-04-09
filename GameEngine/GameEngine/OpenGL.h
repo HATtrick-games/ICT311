@@ -10,6 +10,7 @@
 #include <GL\freeglut.h>
 //#include <glload\gl_3_3.h>
 #include <glload\gll.hpp>
+#include <glutil\glutil.h>
 #include <boost\smart_ptr.hpp>
 
 #include <vector>
@@ -53,7 +54,7 @@ private:
 	GLuint ColorOffset;
 
 	//GLuint UniOffset; //(uniform) offset to be passed and used in the vertex shader
-	GLuint UniModelToWorldMatrix;
+	GLuint UniModelToCameraMatrix;
 	GLuint UniPerspectiveMatrix;
 	//singleton stuff
 	static boost::scoped_ptr<Graphics> pOpenGLsingleton;
