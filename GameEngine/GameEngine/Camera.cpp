@@ -136,7 +136,7 @@ void Camera::SetCameraPosition(glm::vec3 newPosition)
 void Camera::SetCameraLookAt(glm::vec3 newLookAt)
 {
 	CameraLookAt = newLookAt;
-	CalcRelativePosition();
+	//CalcRelativePosition();
 	CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 }
 
