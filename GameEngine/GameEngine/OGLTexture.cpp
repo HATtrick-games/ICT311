@@ -17,7 +17,7 @@ bool OGLTexture::BindTexture(Texture * TextureObj, int index)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	std::cout << TextureObj->GetWidth() << " | " << TextureObj->GetHeight() << " | " << TextureObj->GetData();
+	//std::cout << TextureObj->GetWidth() << " | " << TextureObj->GetHeight() << " | " << TextureObj->GetData();
 
 	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TextureObj->GetWidth(), TextureObj->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, TextureObj->GetData());
 	glBindTexture(GL_TEXTURE_2D, 0 );
