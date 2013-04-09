@@ -13,10 +13,10 @@ Camera::~Camera(void)
 
 void Camera::SetupCamera()
 {
-	CameraPosition.x = 1;
+	CameraPosition.x = 0;
 	CameraPosition.y = 0;
 	CameraPosition.z = 0;
-	CameraLookAt.x = 1;
+	CameraLookAt.x = 0;
 	CameraLookAt.y = 0;
 	CameraLookAt.z = -10;
 	glUseProgram(ProgObjLocal);

@@ -11,15 +11,17 @@ OGLTexture::OGLTexture()
 bool OGLTexture::BindTexture(Texture * TextureObj, int index)
 {
 	TextureHandle.push_back(0);
+
 	glGenTextures(1, &TextureHandle[index]);
 	glBindTexture(GL_TEXTURE_2D, TextureHandle[index]);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	//std::cout << TextureObj->GetWidth() << " | " << TextureObj->GetHeight() << " | " << TextureObj->GetData();
-
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TextureObj->GetWidth(), TextureObj->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, TextureObj->GetData());
+	std::cout << TextureObj->GetWidth() << " | " << TextureObj->GetHeight() << " | " << TextureObj->GetAddress();
+	for(int i = 0; i < 2; i++)
+		//std::cout <<std::endl<< TextureObj->GetAddress()[0];
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, TextureObj->GetWidth(), TextureObj->GetHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, TextureObj->GetAddress());
 	glBindTexture(GL_TEXTURE_2D, 0 );
 
 	return true;
