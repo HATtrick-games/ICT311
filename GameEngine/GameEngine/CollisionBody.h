@@ -11,6 +11,7 @@ public:
 	void SetVelocityGravity(float velocityX, float veclocityZ);
 	void TranslateObject(float fTransX, float fTransY, float fTransZ);
 	void ScaleObject(float fScaleX, float fScaleY, float fScaleZ);
+	void SetCollisionPos(float x, float y, float z);
 	CommonFunctions::Pos GetPosition();
 protected:
 private:

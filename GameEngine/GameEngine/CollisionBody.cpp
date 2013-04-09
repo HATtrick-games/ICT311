@@ -33,6 +33,13 @@ void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float
 }
 
 
+void CollisionBody::SetCollisionPos(float x, float y, float z)
+{
+	ThisRigidBody->getMotionState()->getWorldTransform(trans);
+	ThisRigidBody->translate(btVector3(x-trans.getOrigin().getX(), y-trans.getOrigin().getY(), z-trans.getOrigin().getZ()));
+}
+
+
 void CollisionBody::ApplyForce(float x, float y, float z)
 {
 	ThisRigidBody->applyCentralForce(btVector3(x,y,z));
@@ -52,6 +59,7 @@ void CollisionBody::TranslateObject(float fTransX, float fTransY, float fTransZ)
 {
 	ThisRigidBody->getMotionState()->getWorldTransform(trans);
 	trans.setOrigin(btVector3(trans.getOrigin().getX()+fTransX,trans.getOrigin().getY()+fTransY,trans.getOrigin().getZ()+fTransZ));
+	ThisRigidBody->getMotionState()->setWorldTransform(trans);
 	ThisRigidBody->translate(btVector3(fTransX, fTransY, fTransZ));
 	
 	
