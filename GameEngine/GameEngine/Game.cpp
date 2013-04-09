@@ -57,6 +57,7 @@ void Game::UnloadResources()
 
 void Game::Update(float time)
 {
+	//std::cout << "[C++] Updating" << std::endl;
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*ScriptingEngine::GetInstance())->Update(time);
 }
@@ -65,7 +66,7 @@ void Game::Draw()
 {
 	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
 	(*OpenGL::GetInstance())->RenderModel(boxMesh1, testObject1, 1);
-	std::cout << "Drawing" << std::endl;
+	//std::cout << "Drawing" << std::endl;
 
 	for(objectMapIterator it = mGameObjects.begin(); it != mGameObjects.end(); it++)
 	{

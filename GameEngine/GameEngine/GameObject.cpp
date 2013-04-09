@@ -52,7 +52,7 @@ void GameObject::SetModelsize(int passsize)
 CommonFunctions::Pos GameObject::GetPosition()
 {
 	stPosition = cbCollisionObject->GetPosition();
-	std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
+	//std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
 	//std::cout<<stPosition.x<<"\n"<<stPosition.y<<"\n"<<stPosition.z<<"\n *********** \n \n";
 	return stPosition;
 }

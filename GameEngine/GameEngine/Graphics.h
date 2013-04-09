@@ -16,7 +16,6 @@ public:
 	virtual void Reshape(int width, int height) = 0;
 	virtual void Display() = 0;
 	virtual void DisplayTimer(int value) = 0;
-
 private:
 
 };
