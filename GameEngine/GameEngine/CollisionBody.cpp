@@ -2,7 +2,9 @@
 
 CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ)
 {
-	//CreateRigidBody(fPosX, fPosY, fPosZ);
+	CreateRigidBody(fPosX, fPosY, fPosZ, 1);
+	//CreateRigidBody(10,10,10,1);
+	std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
 }
 
 void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius)
@@ -48,7 +50,12 @@ void CollisionBody::SetVelocityGravity(float velocityX, float velocityZ)
 
 void CollisionBody::TranslateObject(float fTransX, float fTransY, float fTransZ)
 {
+	ThisRigidBody->getMotionState()->getWorldTransform(trans);
+	trans.setOrigin(btVector3(trans.getOrigin().getX()+fTransX,trans.getOrigin().getY()+fTransY,trans.getOrigin().getZ()+fTransZ));
 	ThisRigidBody->translate(btVector3(fTransX, fTransY, fTransZ));
+	
+	
+	
 }
 
 void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
@@ -59,7 +66,7 @@ void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
 
 CommonFunctions::Pos CollisionBody::GetPosition()
 {
-	ThisRigidBody->getMotionState()->getWorldTransform(trans);
+	
 	CurrentPosition.x = trans.getOrigin().getX();
 	CurrentPosition.y = trans.getOrigin().getY();
 	CurrentPosition.z = trans.getOrigin().getZ();
