@@ -14,3 +14,8 @@ void PlayerObject::Update()
 {
 
 }
+
+void PlayerObject::SetPlayerVelocity(float x, float z)
+{
+	cbCollisionObject->SetVelocityGravity(x,z);
+}

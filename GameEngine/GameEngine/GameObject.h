@@ -25,7 +25,7 @@ public:
 	void ChangePosition(float x, float y, float z);
 
 protected:
-
+	CollisionBody* cbCollisionObject;
 
 private:
 	float *pModel;
@@ -33,7 +33,7 @@ private:
 	float fScale;
 	float fRotation;
 	CommonFunctions::Pos stPosition;
-	CollisionBody* cbCollisionObject;
+	
 
 	std::string* assetFilename;
 };

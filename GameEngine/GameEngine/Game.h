@@ -9,6 +9,7 @@
 #include "CommonFuncs.h"
 #include "Input.h"
 #include "ScriptingEngine.h"
+#include "CollisionWorldSingleton.h"
 
 #include <iostream>
 

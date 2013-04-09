@@ -57,6 +57,7 @@ void Game::UnloadResources()
 
 void Game::Update(float time)
 {
+	CollisionWorldSingleton::Instance()->StepWorld();
 	(*ScriptingEngine::GetInstance())->Update(time);
 }
 
