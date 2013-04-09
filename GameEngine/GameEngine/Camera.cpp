@@ -18,7 +18,9 @@ void Camera::SetupCamera()
 	CameraPosition.z = 0;
 	CameraLookAt.x = 0;
 	CameraLookAt.y = 0;
+
 	CameraLookAt.z = -10;
+
 	glUseProgram(ProgObjLocal);
 	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "cameraToClipMatrix");
 	//UniWorldToCamera = glGetUniformLocation(ProgObjLocal, "WorldToCamera");

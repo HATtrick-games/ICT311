@@ -52,7 +52,7 @@ void GameObject::SetModelsize(int passsize)
 CommonFunctions::Pos GameObject::GetPosition()
 {
 	stPosition = cbCollisionObject->GetPosition();
-	//std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
+	std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
 	//std::cout<<stPosition.x<<"\n"<<stPosition.y<<"\n"<<stPosition.z<<"\n *********** \n \n";
 	return stPosition;
 }
@@ -63,7 +63,7 @@ void GameObject::SetPosition(CommonFunctions::Pos newPos)
 	fx =(newPos.x-stPosition.x);
 	fy =(newPos.y-stPosition.y);
 	fz =(newPos.z-stPosition.z);
-	//std::cout<<fx<<fy<<fz<<"****************************************** \n";
+	std::cout<<fx<<fy<<fz<<"****************************************** \n";
 	cbCollisionObject->TranslateObject(fx,fy,fz);
 	//std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
 	stPosition = newPos;

@@ -16,12 +16,14 @@ private:
 		 btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
 		 DynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
 		 DynamicsWorld->setGravity(btVector3(0,0,0));
-		 
+		 stepped = false;
 	}
 	
+	bool stepped;
 	btDiscreteDynamicsWorld* DynamicsWorld;
 public:
 
+	bool Stepped();
 	void AddRigidBody(btRigidBody* RigidBody);
 	void StepWorld();
 	void SetGravity(float y);
