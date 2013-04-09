@@ -18,38 +18,36 @@ void Camera::SetupCamera()
 	CameraPosition.z = 10;
 	CameraLookAt.x = 0;
 	CameraLookAt.y = 0;
-	CameraLookAt.z = 0;
-	SetupCameraToClipMatrix();
-	CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
+
+	CameraLookAt.z = -10;
+
 	glUseProgram(ProgObjLocal);
-	UniWorldToCamera = glGetUniformLocation(ProgObjLocal, "WorldToCamera");
+	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "cameraToClipMatrix");
+	//UniWorldToCamera = glGetUniformLocation(ProgObjLocal, "WorldToCamera");
 	glUseProgram(0);
-	CreateCamera();
 }
 
-void Camera::SetupCameraToClipMatrix()
+void Camera::SetupCameraToClipMatrix(glutil::MatrixStack &modelMatrix)
 {
-	fCameraScale = CalcCameraScale(60);
+
+	//fCameraScale = CalcCameraScale(60);
 	fzNear = 1;
 	fzFar = 100;
-
-	glm::mat4 temp(0);
+	modelMatrix.Perspective(60, 1, fzNear, fzFar);
+	fPerspectiveMatrix = modelMatrix.Top();
+	/*glm::mat4 temp(0);
 	fPerspectiveMatrix = temp;
-	//memset(fPerspectiveMatrix, 0, sizeof(float) * 16); //set all values to 0
 
 	fPerspectiveMatrix[0].x = fCameraScale;//scale*Xcamera
 	fPerspectiveMatrix[1].y = fCameraScale; //scale*Ycamera
 	fPerspectiveMatrix[2].z = (fzFar + fzNear) / (fzNear - fzFar); //z perspective transform
 	fPerspectiveMatrix[2].w = -1.0f;
-	fPerspectiveMatrix[3].z = (2 * fzFar * fzNear) / (fzNear - fzFar); //z perspective transform
-
-	glUseProgram(ProgObjLocal);
-	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "cameraToClipMatrix");
-	glUseProgram(0);
+	fPerspectiveMatrix[3].z = (2 * fzFar * fzNear) / (fzNear - fzFar); //z perspective transform*/
 }
 
 void Camera::CalcWorldToCameraMatrix(glm::vec3 CameraPos, glm::vec3 CameraLook, glm::vec3 UpVec)
 {
+	/*
 	glm::vec3 lookDir = glm::normalize(CameraLook - CameraPos);
 	glm::vec3 upDir = glm::normalize(UpVec);
 
@@ -67,13 +65,18 @@ void Camera::CalcWorldToCameraMatrix(glm::vec3 CameraPos, glm::vec3 CameraLook, 
 	transMat[3] = glm::vec4(-CameraPos, 1.0f);
 
 	CameraLookAtMatrix = rotationalMat * transMat;
+	*/
 }
 
-void Camera::CreateCamera()
+void Camera::CreateCamera(glutil::MatrixStack &modelMatrix)
 {	
+	//SetupCameraToClipMatrix();
+	//CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
+	modelMatrix.LookAt(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
+	CameraLookAtMatrix = modelMatrix.Top();
 	glUseProgram(ProgObjLocal);
 	glUniformMatrix4fv(UniPerspectiveMatrix, 1, GL_FALSE, glm::value_ptr(fPerspectiveMatrix));
-	glUniformMatrix4fv(UniWorldToCamera, 1, GL_FALSE, glm::value_ptr(CameraLookAtMatrix));
+	//glUniformMatrix4fv(UniWorldToCamera, 1, GL_FALSE, glm::value_ptr(CameraLookAtMatrix));
 	glUseProgram(0);
 }
 
@@ -115,6 +118,11 @@ void Camera::ReshapeViewport(int NewWidth, int NewHeight)
 	glViewport(0, 0, (GLsizei) NewWidth, (GLsizei) NewHeight);
 }
 
+void Camera::StorePlayerObj(PlayerObject* PlayerObj)
+{
+	CameraData = PlayerObj;
+}
+
 void Camera::UpdateProgObj(GLuint ProgObj)
 {
 	ProgObjLocal = ProgObj;
@@ -139,7 +147,7 @@ void Camera::SetCameraLookAt(glm::vec3 newLookAt)
 {
 	CameraLookAt = newLookAt;
 	//CalcRelativePosition();
-	CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
+	//CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 }
 
 boost::scoped_ptr<Camera>* Camera::GetInstance(void)

@@ -15,6 +15,8 @@
 
 #include <boost\smart_ptr.hpp>
 
+typedef std::map<std::string, GameObject*>::iterator objectMapIterator;
+
 /**
  * \class	Game
  *

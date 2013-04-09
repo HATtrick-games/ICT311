@@ -38,7 +38,7 @@ void Game::LoadResources()
 	testObject = new PlayerObject();
 	CommonFunctions::Pos newPos;
 	newPos.x = 0.5;
-	newPos.y = 0.1;
+	newPos.y = 0;
 	newPos.z = -1;
 	testObject->SetPosition(newPos);
 	testObject1 = new PlayerObject();
@@ -66,6 +66,12 @@ void Game::Draw()
 	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
 	(*OpenGL::GetInstance())->RenderModel(boxMesh1, testObject1, 1);
 	std::cout << "Drawing" << std::endl;
+
+	for(objectMapIterator it = mGameObjects.begin(); it != mGameObjects.end(); it++)
+	{
+		// Iterate through game objects map drawing all the objects
+		// i.e(*OpenGL::GetInstance())->RenderModel((Mesh*)(*AssetManager::GetInstance())->GetAsset((it->second)->GetAssetFile(), it->second, 1));
+	}
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()

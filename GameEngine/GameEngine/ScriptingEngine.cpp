@@ -69,7 +69,7 @@ void ScriptingEngine::ExposeFunctions()
 			.def(luabind::constructor<>())
 			.def("Initialise", &PlayerObject::Initialise)
 			.def("SetPosition", (void(PlayerObject::*)(float, float, float))&PlayerObject::SetPosition)
-			.def("ChangePosition", &PlayerObject::ChangePosition)
+			.def("SetPlayerVelocity", &PlayerObject::SetPlayerVelocity)
 			.def("SetAsset", &PlayerObject::SetAssetFile),
 		luabind::class_<AiObject>("AIObject")
 			.def(luabind::constructor<>())
