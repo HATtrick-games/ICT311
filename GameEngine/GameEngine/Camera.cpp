@@ -18,7 +18,7 @@ void Camera::SetupCamera()
 	CameraPosition.z = 0;
 	CameraLookAt.x = 0;
 	CameraLookAt.y = 0;
-	CameraLookAt.z = -1;
+	CameraLookAt.z = -10;
 	SetupCameraToClipMatrix();
 	CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 	glUseProgram(ProgObjLocal);
@@ -33,6 +33,8 @@ void Camera::SetupCameraToClipMatrix()
 	fzNear = 1;
 	fzFar = 100;
 
+	glm::mat4 temp(0);
+	fPerspectiveMatrix = temp;
 	//memset(fPerspectiveMatrix, 0, sizeof(float) * 16); //set all values to 0
 
 	fPerspectiveMatrix[0].x = fCameraScale;//scale*Xcamera
