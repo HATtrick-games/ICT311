@@ -65,7 +65,7 @@ void OpenGL::Init()
 	//Register graphic specific callback functions
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
-
+	glutTimerFunc(1000.0/60.0, OpenGL::DisplayTimerCallback, 0);
 }
 
 void OpenGL::SetupProgram()
@@ -202,8 +202,9 @@ void OpenGL::RenderTerrain(Terrain * TerrainObj)
 
 void OpenGL::DisplayTimer(int value)
 {
-	glutTimerFunc(1000/60, OpenGL::DisplayTimerCallback, ++value);
 	glutPostRedisplay();
+	glutTimerFunc(1000.0/60.0, OpenGL::DisplayTimerCallback, 0);
+	
 }
 
 glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale, glm::vec3 Orientation)

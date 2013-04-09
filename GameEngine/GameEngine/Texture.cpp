@@ -6,13 +6,12 @@ Texture::Texture(void)
 	iDataPos = 0;
 	iWidth = 0; iHeight = 0;
 	iImageSize = 0;
-	cData = NULL;
+	cData.clear();
 }
 
 Texture::~Texture(void)
 {
-	delete [] cData;
-	cData = NULL;
+	cData.clear();
 }
 
 Texture::Texture(const Texture& tex)
@@ -78,7 +77,8 @@ void Texture::Load()
 	input.read(temp, size);
 
 	// Format the data correctly
-	cData = new char[iWidth * iHeight * 3];
+	cData.resize(iWidth * iHeight * 3);
+	std::cout << "Size of cData: " <<  iWidth * iHeight * 3 << std::endl;
 	for(int y = 0; y < iHeight; y++)
 	{
 		for(int x = 0; x < iWidth; x++)
@@ -118,7 +118,7 @@ unsigned int Texture::GetImageSize()
 	return iImageSize;
 }
 
-char* Texture::GetData() const
+std::vector<char> Texture::GetData() const
 {
 	return cData;
 }
@@ -141,7 +141,7 @@ short Texture::readShort(std::ifstream& input)
 					(unsigned char)buffer[0]);
 }
 
-char** Texture::GetAddress()
+std::vector<char>* Texture::GetAddress()
 {
 	return &cData;
 }

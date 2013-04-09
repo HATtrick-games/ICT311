@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <iostream>
 #include <fstream>
 #include <assert.h>
@@ -22,15 +23,15 @@ public:
 	unsigned int GetWidth();
 	unsigned int GetHeight();
 	unsigned int GetImageSize();
-	char* GetData() const;
-	char** GetAddress();
+	std::vector<char> GetData() const;
+	std::vector<char>* GetAddress();
 private:
 	// Data read from the header
 	unsigned int iDataPos;
 	unsigned int iWidth, iHeight;
 	unsigned int iImageSize;
 	// RGB Data
-	char * cData;
+	std::vector<char> cData;
 
 	int readInt(std::ifstream& input);
 	short readShort(std::ifstream& input);

@@ -197,7 +197,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 
 				std::cout << m_textures[i]->GetFile() << std::endl;
 
-				if(m_textures[i]->GetData() == NULL)
+				if(m_textures[i]->GetData().size() == 0)
 				{
 					throw std::runtime_error(
 						std::string("Error loading texture: ") + fullPath);
@@ -219,7 +219,7 @@ bool Mesh::InitMaterials(const aiScene* pScene, const std::string& filePath)
 			m_textures[i]->SetFile("heightmap.bmp");
 			m_textures[i]->Load();
 
-			if(m_textures[i]->GetData() == NULL)
+			if(m_textures[i]->GetData().size() == 0)
 			{
 				ret = false;
 			}
