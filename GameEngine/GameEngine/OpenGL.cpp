@@ -80,7 +80,7 @@ void OpenGL::SetupProgram()
 
 	glUseProgram(ProgObj);
 	//UniOffset = glGetUniformLocation(ProgObj, "Offset");
-	UniModelToCameraMatrix = glGetUniformLocation(ProgObj, "ModelToCamera");
+	UniModelToWorldMatrix = glGetUniformLocation(ProgObj, "ModelToWorld");
 	glUseProgram(0);
 
 	VertexBufferObject.push_back(0);
@@ -208,7 +208,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glUniform4f(ColorOffset, 1,0,0,0);
 	}*/
 	//glUniform3f(UniOffset, 1.0, 0.0, -1.0);
-	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
+	glUniformMatrix4fv(UniModelToWorldMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 
 	glBindVertexArray(0);
@@ -235,8 +235,9 @@ glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale
 	TransformMat[0].x = Scale.x;
 	TransformMat[1].y = Scale.y;
 	TransformMat[2].z = Scale.z;
-	TransformMat[3] = glm::vec4(Position, 1.0f);
 	TransformMat * glm::mat4((*AngleMath::GetInstance())->CreateRotationMatrix(Orientation));
+	TransformMat[3] = glm::vec4(Position, 1.0f);
+
 	return TransformMat;
 }
 

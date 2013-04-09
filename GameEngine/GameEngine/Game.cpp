@@ -37,7 +37,7 @@ void Game::LoadResources()
 	boxMesh1 = (Mesh*)((*AssetManager::GetInstance())->GetAsset("Cube.obj"));
 	testObject = new PlayerObject();
 	CommonFunctions::Pos newPos;
-	newPos.x = 1;
+	newPos.x = 0.5;
 	newPos.y = 0.1;
 	newPos.z = -1;
 	testObject->SetPosition(newPos);
