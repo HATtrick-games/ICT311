@@ -63,6 +63,8 @@ void ScriptingEngine::ExposeFunctions()
 		luabind::def("SetMouse", &ScriptingEngine::DefineMouse),
 		luabind::def("GetKey", &ScriptingEngine::GetKey),
 		luabind::def("GetMouse", &ScriptingEngine::GetMouse),
+		luabind::def("GetMouseX", &ScriptingEngine::GetMouseX),
+		luabind::def("GetMouseY", &ScriptingEngine::GetMouseY),
 		luabind::def("AddAsset", &ScriptingEngine::AddAsset),
 		luabind::def("AddGameObject", &ScriptingEngine::AddGameObject),
 		luabind::class_<PlayerObject>("PlayerObject")
