@@ -7,11 +7,13 @@ ScriptingEngine::ScriptingEngine()
 	std::cout << "Scripting Constructor" << std::endl;
 
 	lState = lua_open();
+	
 	luaL_openlibs(lState);
-
+	
 	luabind::open(lState);
 	
 	ExposeFunctions();
+	
 }
 
 
@@ -57,6 +59,7 @@ boost::scoped_ptr<ScriptingEngine>* ScriptingEngine::GetInstance()
 
 void ScriptingEngine::ExposeFunctions()
 {
+	
 	luabind::module(lState)
 	[
 		luabind::def("SetKey", &ScriptingEngine::DefineKey),
@@ -81,6 +84,7 @@ void ScriptingEngine::ExposeFunctions()
 			.def("ChangePosition", &AiObject::ChangePosition)
 			.def("SetAsset", &AiObject::SetAssetFile)
 	];
+	std::cout << "Scripting Constructor" << std::endl;
 }
 
 void ScriptingEngine::DefineKey(std::string id, int k)

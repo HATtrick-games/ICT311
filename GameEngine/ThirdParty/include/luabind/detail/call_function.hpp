@@ -300,7 +300,7 @@ namespace luabind
 						std::terminate();
 #endif
 					}
-					// pops the return values from the function call
+					// pops the return values from the function call 
 					stack_pop pop(L, lua_gettop(L) - top + m_params);
 				}
 
