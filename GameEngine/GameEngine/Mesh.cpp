@@ -35,7 +35,7 @@ void Mesh::Load()
 
 Texture* Mesh::GetTextures(int index)
 {
-	return m_textures[index];
+	return m_textures[0];
 }
 
 /*
@@ -114,12 +114,13 @@ bool Mesh::InitMesh(const aiScene* pScene, const std::string& sFilepath)
 	numIndicies = vIndicies.size();
 	
 	
-	for(int j = 0; j < vVertices.size(); j++)
-	{
+	//for(int j = 0; j < Mesh->mNumFaces * 3; j++)
+	//{
+		//std::cout << faceArray[j];
 	//std::cout << &vVertices[j] << " | " << vVertices[j].x <<  " | "<< vVertices[j].y <<" | " << vVertices[j].z << j<< std::endl;
 	//std::cout << &vVertices[j] << " | " << vVertices[j].y <<  " | "<< j;
 	//std::cout << &vVertices[j] << " | " << vVertices[j].z <<  " | "<< j << std::endl;
-	}
+	//}
 
 	return InitMaterials(pScene, sFilepath);
 }

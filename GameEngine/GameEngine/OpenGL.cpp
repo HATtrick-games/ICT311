@@ -68,6 +68,8 @@ void OpenGL::Init()
 	glutReshapeFunc(OpenGL::ReshapeCallback);
 	glutDisplayFunc(OpenGL::DisplayCallback);
 	glutTimerFunc(1000.0/30.0, OpenGL::DisplayTimerCallback, 0);
+
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 }
 
 void OpenGL::SetupProgram()
@@ -92,9 +94,7 @@ void OpenGL::SetupProgram()
 	
 	//remove later---------------------------------------------
 
-			VertexBufferObject.push_back(0);
-		IndexBufferObject.push_back(0);
-		Vao.push_back(0);
+
 }
 
 void OpenGL::InitialiseVAO()
@@ -120,7 +120,7 @@ GLuint OpenGL::CreateProgramObject(const std::vector<GLuint>* shaderList)
 void OpenGL::Display()
 {
 	glClearColor(0.65f, 0.8f, 1.0f, 0.0f);
-	glClearDepth(1.0f);
+	//glClearDepth(1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glutil::MatrixStack modelMatrix;
@@ -137,13 +137,16 @@ void OpenGL::Display()
 	(*Game::GetInstance())->Update(1000.0/120.0);
 	(*Game::GetInstance())->Draw();
 	glutSwapBuffers();
-	glutPostRedisplay();
 }
 
 void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 {
+
 	if(Vao[Index] == 0)
 	{
+		VertexBufferObject.push_back(0);
+		IndexBufferObject.push_back(0);
+		Vao.push_back(0);
 		glGenBuffers(1, &VertexBufferObject[Index]);
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 *(MeshObj->GetVertices()->capacity()), &((MeshObj->GetVertices())[0]), GL_STATIC_DRAW);
@@ -162,23 +165,12 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		(*OGLTexture::GetInstance())->BindTexture(MeshObj->GetTextures(Index), Index); 
 		(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
-		std::cout << std::endl << std::endl;
-		for(unsigned int i = 0; i < (*MeshObj->GetIndicies()).size(); i++)
-		{
-		std::cout << &((*MeshObj->GetIndicies())[i]) << " | " << (*MeshObj->GetIndicies())[i] << " | " << (*MeshObj->GetIndicies())[i] <<" | " << i << std::endl;
-		}
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER,0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
-		//create room for another model
-		VertexBufferObject.push_back(0);
-		IndexBufferObject.push_back(0);
-		Vao.push_back(0);
 
 	}
-
-	//(*Camera::GetInstance())->SetCameraScale(0.25);
 
 	glUseProgram(ProgObj);
 	glBindVertexArray(Vao[Index]);
@@ -200,7 +192,18 @@ void OpenGL::RenderTerrain(Terrain * TerrainObj)
 	glUseProgram(ProgObj);
 	glGenBuffers(1, &TerrainBufferObject);
 	glBindBuffer(GL_ARRAY_BUFFER, TerrainBufferObject);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(TerrainObj->vVertices), TerrainObj->vVertices, GL_STATIC_DRAW);
+	
+	for(int z = 0; z < TerrainObj->GetLength() - 1; z++) {
+		//Makes OpenGL draw a triangle at every three consecutive vertices
+		for(int x = 0; x < TerrainObj->GetWidth(); x++) {
+			glm::vec3 normal = TerrainObj->GetNormal(x, z);
+			//glNormal3f(normal[0], normal[1], normal[2]);
+			//glVertex3f(x, ter->GetHeight(x, z), z);
+			normal = TerrainObj->GetNormal(x, z + 1);
+			//glNormal3f(normal[0], normal[1], normal[2]);
+			//glVertex3f(x, ter->GetHeight(x, z + 1), z + 1);
+		}
+	}
 }
 
 void OpenGL::DisplayTimer(int value)
@@ -215,12 +218,6 @@ glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale
 	glutil::PushStack push(ModelTransform);
 	ModelTransform.Scale(Scale);
 	ModelTransform.Translate(Position);
-	/*glm::mat4 TransformMat(1.0f);
-	TransformMat[0].x = Scale.x;
-	TransformMat[1].y = Scale.y;
-	TransformMat[2].z = Scale.z;
-	TransformMat * glm::mat4((*AngleMath::GetInstance())->CreateRotationMatrix(Orientation));
-	TransformMat[3] = glm::vec4(Position, 1.0f);*/
 	glm::mat4 TransformMat;
 	TransformMat = ModelTransform.Top();
 	return TransformMat;
