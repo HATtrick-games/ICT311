@@ -25,7 +25,7 @@
 class OGLTexture
 {
 public:
-	OGLTexture();
+	
 
 	/**
 	 * \fn	OGLTexture::~OGLTexture()
@@ -47,7 +47,7 @@ public:
 	 * \date	4/10/2013
 	 *
 	 * \param [in,out]	pixelBuffer	If non-null, buffer for pixel data.
-	 * \param	index			   	Zero-based index of the.
+	 * \param	index			   	Zero-based index of the mesh being loaded.
 	 *
 	 * \return	true if it succeeds, false if it fails.
 	 */
@@ -78,7 +78,7 @@ public:
 	 * \author	Hamish Carrier
 	 * \date	4/10/2013
 	 *
-	 * \param	index	Zero-based index of the.
+	 * \param	index	Zero-based index of the texture handle vector.
 	 *
 	 * \return	The tex handle.
 	 */
@@ -100,13 +100,13 @@ public:
 private:
 
 	/**
-	 * \brief	Handle of the texture.
+	 * \brief	Handle of the texture objects.
 	 */
 
 	std::vector<GLuint> TextureHandle;
 
 	/**
-	 * \brief	Buffer for tex data.
+	 * \brief	Handle to Buffer for tex data.
 	 */
 
 	GLuint TexBuffer;
@@ -118,13 +118,12 @@ private:
 	static boost::scoped_ptr<OGLTexture> pTexSingleton;
 
 /**
- * \property	}
+ *\fn	OGLTexture();
  *
- * \brief	Gets or sets the. 
+ * \brief	default constructor
  *
- * \value	.
  */
-
+	OGLTexture();
 };
 
 

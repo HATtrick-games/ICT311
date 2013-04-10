@@ -85,12 +85,12 @@ public:
 	/**
 	 * \fn	std::vector<GLuint> * const Shader::GetvShaderList()
 	 *
-	 * \brief	Gets the getv shader list.
+	 * \brief	Gets the shader list.
 	 *
 	 * \author	Hamish Carrier
 	 * \date	4/10/2013
 	 *
-	 * \return	.
+	 * \return	ShaderList
 	 */
 
 	std::vector<GLuint> * const GetvShaderList() {return &vShaderList;}

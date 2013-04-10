@@ -28,16 +28,7 @@ class Camera
 {
 public:
 
-	/**
-	 * \fn	Camera::Camera(void);
-	 *
-	 * \brief	Default constructor.
-	 *
-	 * \author	Hamish Carrier
-	 * \date	4/10/2013
-	 */
-
-	Camera(void);
+	
 
 	/**
 	 * \fn	Camera::~Camera(void);
@@ -198,7 +189,7 @@ public:
 	/**
 	 * \fn	glm::mat4 Camera::G()
 	 *
-	 * \brief	Gets the g.
+	 * \brief	Gets the CameraLookAtMatrix.
 	 *
 	 * \author	Hamish Carrier
 	 * \date	4/10/2013
@@ -242,13 +233,13 @@ private:
 	float fCameraScale;
 
 	/**
-	 * \brief	The fz near.
+	 * \brief	The camera near depth.
 	 */
 
 	float fzNear;
 
 	/**
-	 * \brief	The fz far.
+	 * \brief	The camera depth.
 	 */
 
 	float fzFar;
@@ -260,13 +251,13 @@ private:
 	float rotation;
 
 	/**
-	 * \brief	The uni perspective matrix.
+	 * \brief	The uni perspective matrix to be passed and used in the vertex shader.
 	 */
 
 	GLuint UniPerspectiveMatrix;
 
 	/**
-	 * \brief	The uni world to camera.
+	 * \brief	The uni world to camera to be passed and used in the vertex shader.
 	 */
 
 	GLuint UniWorldToCamera;
@@ -282,7 +273,16 @@ private:
 	 */
 
 	PlayerObject* CameraData;
+	/**
+	 * \fn	Camera::Camera(void);
+	 *
+	 * \brief	Default constructor.
+	 *
+	 * \author	Hamish Carrier
+	 * \date	4/10/2013
+	 */
 
+	Camera(void);
 	/**
 	 * \brief	The camera singleton.
 	 */

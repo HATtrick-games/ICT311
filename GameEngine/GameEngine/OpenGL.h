@@ -71,7 +71,7 @@ public:
 	 *
 	 * \param [in,out]	MeshObj	If non-null, the mesh object.
 	 * \param [in,out]	GameObj	If non-null, the game object.
-	 * \param	Index		   	Zero-based index of the.
+	 * \param	Index		   	Zero-based index of the mesh.
 	 */
 
 	void RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index);
@@ -210,7 +210,7 @@ private:
 	 * \author	Hamish Carrier
 	 * \date	4/10/2013
 	 *
-	 * \param	parameter1	The first parameter.
+	 * \param	OpenGL object.
 	 */
 
 	OpenGL(const OpenGL&);
@@ -234,25 +234,25 @@ private:
 	GLuint ProgObj;
 
 	/**
-	 * \brief	The vertex buffer object.
+	 * \brief	Handle to vertex buffer objects.
 	 */
 
 	std::vector<GLuint> VertexBufferObject;
 
 	/**
-	 * \brief	The index buffer object.
+	 * \brief	Handle to index buffer objects.
 	 */
 
 	std::vector<GLuint> IndexBufferObject;
 
 	/**
-	 * \brief	The vao.
+	 * \brief	Handle to the vaos.
 	 */
 
 	std::vector<GLuint> Vao;
 
 	/**
-	 * \brief	The terrain buffer object.
+	 * \brief	Handle to the terrain buffer object.
 	 */
 
 	GLuint TerrainBufferObject;
@@ -264,13 +264,13 @@ private:
 	GLuint UniModelToCameraMatrix;
 
 	/**
-	 * \brief	The uni perspective matrix.
+	 * \brief	(uniform) perspective matrix to be passed and used in the vertex shader.
 	 */
 
 	GLuint UniPerspectiveMatrix;
 
 	/**
-	 * \brief	The uni base texture.
+	 * \brief	The uni base texture to be passed and used in the vertex shader.
 	 */
 
 	GLuint UniBaseTexture;
@@ -290,7 +290,7 @@ private:
 	/**
 	 * \fn	static void OpenGL::ReshapeCallback(int width, int height)
 	 *
-	 * \brief	Callback, called when the reshape.
+	 * \brief	Reshape Callback.
 	 *
 	 * \author	Hamish Carrier
 	 * \date	4/10/2013
@@ -307,7 +307,7 @@ private:
 	/**
 	 * \fn	static void OpenGL::DisplayCallback()
 	 *
-	 * \brief	Displays a callback.
+	 * \brief	Display callback.
 	 *
 	 * \author	Hamish Carrier
 	 * \date	4/10/2013
