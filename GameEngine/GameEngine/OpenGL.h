@@ -8,7 +8,6 @@
 #include "AngleMath.h"
 #include "GameSettings.h"
 #include <GL\freeglut.h>
-//#include <glload\gl_3_3.h>
 #include <glload\gll.hpp>
 #include <glutil\glutil.h>
 #include <boost\smart_ptr.hpp>

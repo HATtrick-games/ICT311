@@ -120,6 +120,7 @@ private:
 	GameObject* testObject1;
 	Mesh* boxMesh;
 	Mesh* boxMesh1;
+	Mesh* boxMesh2;
 };
 /*
 int main(int argc, char** argv)
