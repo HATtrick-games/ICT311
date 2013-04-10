@@ -76,14 +76,12 @@ void OpenGL::SetupProgram()
 	std::vector<GLuint> * shaderlist = (*Shader::GetInstance())->GetvShaderList(); // Hopefully this returns the shaderlist correctly - untested
 	ProgObj = CreateProgramObject(shaderlist);
 
-
-
 	(*Camera::GetInstance())->UpdateProgObj(ProgObj);
 	(*Camera::GetInstance())->SetupCamera();
 
 	glUseProgram(ProgObj);
 	//UniOffset = glGetUniformLocation(ProgObj, "Offset");
-	UniModelToCameraMatrix = glGetUniformLocation(ProgObj, "ModelToCamera");
+	UniModelToCameraMatrix = glGetUniformLocation(ProgObj, "ModelToWorld");
 	UniBaseTexture = glGetUniformLocation(ProgObj, "tex");
 	glUniform1i(UniBaseTexture, 0);
 	glUseProgram(0);
@@ -136,20 +134,16 @@ void OpenGL::Display()
 	(*Camera::GetInstance())->CreateCamera(modelMatrix1);
 	}
 	
-
-
 	(*Game::GetInstance())->Update(1000.0/120.0);
 	(*Game::GetInstance())->Draw();
 	glutSwapBuffers();
+	glutPostRedisplay();
 }
 
 void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 {
 	if(Vao[Index] == 0)
 	{
-		glGenVertexArrays(1, &Vao[Index]);
-		glBindVertexArray(Vao[Index]);
-
 		glGenBuffers(1, &VertexBufferObject[Index]);
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(float)* 3 *(MeshObj->GetVertices()->capacity()), &((MeshObj->GetVertices())[0]), GL_STATIC_DRAW);
@@ -157,18 +151,22 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glGenBuffers(1, &IndexBufferObject[Index]);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * (MeshObj->GetnumIndicies()), &((MeshObj->GetIndicies())[0]), GL_STATIC_DRAW);
+				
+		glGenVertexArrays(1, &Vao[Index]);
+		glBindVertexArray(Vao[Index]);
 
+		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 		(*OGLTexture::GetInstance())->BindTexture(MeshObj->GetTextures(Index), Index); 
 		(*OGLTexture::GetInstance())->CreateTexCoordBuffer((MeshObj->GetTexCoords()), MeshObj->GetTexCoords()->capacity());
-
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferObject[Index]);
 		std::cout << std::endl << std::endl;
-		//for(unsigned int i = 0; i < (*MeshObj->GetVertices()).size(); i++)
-		//{
-		//std::cout << &((*MeshObj->GetTexCoords())[i].x) << " | " << (*MeshObj->GetTexCoords())[i].x << " | " << (*MeshObj->GetTexCoords())[i].y <<" | " << i << std::endl;
-		//}
+		for(unsigned int i = 0; i < (*MeshObj->GetIndicies()).size(); i++)
+		{
+		std::cout << &((*MeshObj->GetIndicies())[i]) << " | " << (*MeshObj->GetIndicies())[i] << " | " << (*MeshObj->GetIndicies())[i] <<" | " << i << std::endl;
+		}
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER,0);
@@ -188,11 +186,9 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, (*OGLTexture::GetInstance())->GetTexHandle(Index));
 
-	glm::mat4 test = (*Camera::GetInstance())->G();
-	glm::mat4 test2 = CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0));
-	test = test * test2;
-	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(test));
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0));
 
+	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 
 	glBindVertexArray(0);
