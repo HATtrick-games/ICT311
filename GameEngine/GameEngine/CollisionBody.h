@@ -1,5 +1,6 @@
 #include "CollisionWorldSingleton.h"
 #include "CommonFuncs.h"
+#include "glm\glm.hpp"
 #pragma once
 class CollisionBody
 {
@@ -12,7 +13,7 @@ public:
 	void TranslateObject(float fTransX, float fTransY, float fTransZ);
 	void ScaleObject(float fScaleX, float fScaleY, float fScaleZ);
 	void SetCollisionPos(float x, float y, float z);
-	CommonFunctions::Pos GetPosition();
+	glm::vec3 GetPosition();
 protected:
 private:
 	void CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius);
@@ -21,7 +22,7 @@ private:
 	btCollisionShape* CollisionShape;
 	btDefaultMotionState* MotionState;
 	btTransform trans;
-	CommonFunctions::Pos CurrentPosition;
+	glm::vec3 CurrentPosition;
 
 
 	

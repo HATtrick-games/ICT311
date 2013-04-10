@@ -11,6 +11,7 @@ public:
 	void SetPlayerVelocity(float x, float z);
 	void SetPlayerCameraPosition(glm::vec3 pos);
 	void SetPlayerCameraLookAt(glm::vec3 LookAt);
+	virtual void SetPosition(glm::vec3 newPos);
 	glm::vec3 GetPlayerCameraPosition();
 	glm::vec3 GetPlayerLookAt();
 

@@ -2,6 +2,7 @@
 
 #include "CommonFuncs.h"
 #include "CollisionBody.h"
+#include "glm\glm.hpp"
 
 class GameObject
 {
@@ -17,22 +18,22 @@ public:
 	std::string GetAssetFile();
 	void SetModel(float* Model);
 	void SetModelsize(int size);
-	void SetPosition(CommonFunctions::Pos newPos);
+	virtual void SetPosition(glm::vec3 newPos);
 	void SetPosition(float x, float y, float z);
 	void SetAssetFile(std::string file);
-	CommonFunctions::Pos GetPosition();
+	glm::vec3 GetPosition();
 
 	void ChangePosition(float x, float y, float z);
 
 protected:
 	CollisionBody* cbCollisionObject;
-
+	glm::vec3 stPosition;
 private:
 	float *pModel;
 	int iModelSize;
 	float fScale;
 	float fRotation;
-	CommonFunctions::Pos stPosition;
+	
 	
 
 	std::string* assetFilename;

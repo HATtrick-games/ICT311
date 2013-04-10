@@ -16,15 +16,38 @@ void PlayerObject::Initialise()
 
 }
 
+void PlayerObject::SetPosition(glm::vec3 newPos)
+{
+	float LastX, LastY, LastZ;
+	LastX = PlayerCameraPosition.x;
+	LastY = PlayerCameraPosition.y;
+	LastZ = PlayerCameraPosition.z;
+	
+	PlayerCameraPosition = newPos;
+	PlayerCameraLookAt.x += (PlayerCameraPosition.x - LastX);
+	PlayerCameraLookAt.y += (PlayerCameraPosition.y - LastY);
+	PlayerCameraLookAt.z += (PlayerCameraPosition.z - LastZ);
+
+	float fx, fy, fz;
+	fx =(newPos.x-stPosition.x);
+	fy =(newPos.y-stPosition.y);
+	fz =(newPos.z-stPosition.z);
+	
+	cbCollisionObject->TranslateObject(fx,fy,fz);
+	//std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
+	stPosition = newPos;
+}
+
 void PlayerObject::Update()
 {
 	float LastX, LastY, LastZ;
 	LastX = PlayerCameraPosition.x;
 	LastY = PlayerCameraPosition.y;
 	LastZ = PlayerCameraPosition.z;
-	PlayerCameraPosition.x = cbCollisionObject->GetPosition().x;
-	PlayerCameraPosition.y = cbCollisionObject->GetPosition().y;
-	PlayerCameraPosition.z = cbCollisionObject->GetPosition().z;
+	
+	stPosition = cbCollisionObject->GetPosition();
+	PlayerCameraPosition = cbCollisionObject->GetPosition();
+	
 	PlayerCameraLookAt.x += (PlayerCameraPosition.x - LastX);
 	PlayerCameraLookAt.y += (PlayerCameraPosition.y - LastY);
 	PlayerCameraLookAt.z += (PlayerCameraPosition.z - LastZ);

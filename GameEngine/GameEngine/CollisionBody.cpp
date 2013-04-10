@@ -7,7 +7,7 @@ CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ)
 	CurrentPosition.z = fPosZ;
 	CreateRigidBody(fPosX, fPosY, fPosZ, 1);
 	//CreateRigidBody(10,10,10,1);
-	std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
+	//std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
 }
 
 void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius)
@@ -38,7 +38,11 @@ void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float
 
 void CollisionBody::SetCollisionPos(float x, float y, float z)
 {
+	
 	ThisRigidBody->translate(btVector3(x-CurrentPosition.x, y-CurrentPosition.y, z-CurrentPosition.z));
+	CurrentPosition.x = x;
+	CurrentPosition.y = y;
+	CurrentPosition.z = z;
 }
 
 
@@ -75,7 +79,7 @@ void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
 }
 
 
-CommonFunctions::Pos CollisionBody::GetPosition()
+glm::vec3 CollisionBody::GetPosition()
 {
 		
 	if(CollisionWorldSingleton::Instance()->Stepped())

@@ -49,7 +49,7 @@ void GameObject::SetModelsize(int passsize)
 	iModelSize = passsize;
 }
 
-CommonFunctions::Pos GameObject::GetPosition()
+glm::vec3 GameObject::GetPosition()
 {
 	stPosition = cbCollisionObject->GetPosition();
 	std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
@@ -57,13 +57,13 @@ CommonFunctions::Pos GameObject::GetPosition()
 	return stPosition;
 }
 
-void GameObject::SetPosition(CommonFunctions::Pos newPos)
+void GameObject::SetPosition(glm::vec3 newPos)
 {
 	float fx, fy, fz;
 	fx =(newPos.x-stPosition.x);
 	fy =(newPos.y-stPosition.y);
 	fz =(newPos.z-stPosition.z);
-	std::cout<<fx<<fy<<fz<<"****************************************** \n";
+	std::cout<<fx<<fy<<fz<<"******************************************HULLO \n";
 	cbCollisionObject->TranslateObject(fx,fy,fz);
 	//std::cout<<cbCollisionObject->GetPosition().x<<"\n"<<cbCollisionObject->GetPosition().y<<"\n"<<cbCollisionObject->GetPosition().z<<"\n *********** \n \n";
 	stPosition = newPos;
