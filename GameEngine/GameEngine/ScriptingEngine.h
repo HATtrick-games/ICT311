@@ -15,23 +15,70 @@
 
 #include <iostream>
 
+/**
+ * \class	ScriptingEngine
+ *
+ * \brief	Provides an interface between C++ and Lua script
+ * 			to create a game.
+ * \author	Timothy Veletta
+ */
+
 class ScriptingEngine
 {
 public:
+
+	/**
+	 * \fn	ScriptingEngine::ScriptingEngine(void);
+	 *
+	 * \brief	Default constructor.
+	 */
+
 	ScriptingEngine(void);
 	~ScriptingEngine(void);
 
+	/**
+	 * \fn	void ScriptingEngine::SetScript(std::string gamefile);
+	 *
+	 * \brief	Sets the script to run the game from.
+	 *
+	 * \param	gamefile	The gamefile.
+	 */
 	void SetScript(std::string gamefile);
 
+	/**
+	 * \fn	void ScriptingEngine::LoadResources();
+	 *
+	 * \brief	Calls the LoadResources function in the Lua script.
+	 */
 	void LoadResources();
 
+	/**
+	 * \fn	void ScriptingEngine::Initialise();
+	 *
+	 * \brief	Calls the Initialise function in the Lua script.
+	 */
 	void Initialise();
 
+	/**
+	 * \fn	void ScriptingEngine::Update(float time);
+	 *
+	 * \brief	Calls the Update function in the Lua script.
+	 *
+	 * \param	time	The time.
+	 */
 	void Update(float time);
+
+	/**
+	 * \fn	static boost::scoped_ptr<ScriptingEngine>* ScriptingEngine::GetInstance();
+	 *
+	 * \brief	Gets the instance.
+	 *
+	 * \return	null if it fails, else the instance.
+	 */
 
 	static boost::scoped_ptr<ScriptingEngine>* GetInstance();
 private:
-	static boost::scoped_ptr<ScriptingEngine> pScriptingEngine;
+	static boost::scoped_ptr<ScriptingEngine> pScriptingEngine; //!< The scripting engine
 
 	void ExposeFunctions();
 
@@ -50,6 +97,6 @@ private:
 	static void PlayerVelocity(float x, float z);
 	static void CameraRotation(float deg);
 
-	lua_State* lState;
+	lua_State* lState;  //!< The Lua state
 };
 
