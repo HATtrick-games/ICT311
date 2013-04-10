@@ -83,7 +83,10 @@ typedef enum OGLKeys
 /**
  * \class	OGLKeyboard
  *
- * \brief	Ogl keyboard.
+ * \brief	OpenGL Keyboard Implementation
+ * 			
+ * \author Timothy Veletta
+ * \date 27/03/2013
  */
 class OGLKeyboard :
 	public IKeyboard

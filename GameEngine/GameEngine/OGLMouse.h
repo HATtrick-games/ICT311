@@ -23,7 +23,6 @@ typedef enum OGLButton
  * \author	Timothy Veletta
  * \date	27/03/2013
  */
-
 class OGLMouse :
 	public IMouse
 {
@@ -63,6 +62,15 @@ public:
 	 */
 	virtual bool IsButtonDown(int button);
 
+	/**
+	 * \fn	virtual bool OGLMouse::IsButtonDown(std::string button);
+	 *
+	 * \brief	Query if 'button' is button down.
+	 *
+	 * \param	button	The defined button.
+	 *
+	 * \return	true if button down, false if not.
+	 */
 	virtual bool IsButtonDown(std::string button);
 
 	/**

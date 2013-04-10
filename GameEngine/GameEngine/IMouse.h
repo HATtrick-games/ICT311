@@ -7,6 +7,8 @@
  * \class	IMouse
  *
  * \brief	Mouse.
+ * 			
+ * \author	Timothy Veletta
  */
 class IMouse
 {
@@ -15,7 +17,7 @@ public:
 	/**
 	 * \struct	sPosition
 	 *
-	 * \brief	Position.
+	 * \brief	Used to show the position of the mouse pointer
 	 */
 	struct sPosition
 	{

@@ -14,17 +14,6 @@ Texture::~Texture(void)
 	cData.clear();
 }
 
-Texture::Texture(const Texture& tex)
-{
-	
-}
-
-Texture& Texture::operator=(const Texture& tex)
-{
-
-	return *this;
-}
-
 void Texture::Load()
 {
 	std::ifstream input(sFilepath, std::ifstream::binary);

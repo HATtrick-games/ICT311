@@ -11,7 +11,10 @@
 /**
  * \class	Input
  *
- * \brief	Input.
+ * \brief	Interfaces with the Input devices.
+ * 			
+ * \author Timothy Veletta
+ * \date 01/04/2013
  */
 class Input
 {
@@ -67,6 +70,13 @@ public:
 	 */
 	IMouse* GetMouse();
 
+	/**
+	 * \fn	static boost::scoped_ptr<Input>* Input::GetInstance();
+	 *
+	 * \brief	Gets the singleton instance.
+	 *
+	 * \return	null if it fails, else the instance.
+	 */
 	static boost::scoped_ptr<Input>* GetInstance(); 
 private:
 	static boost::scoped_ptr<Input> pInput;

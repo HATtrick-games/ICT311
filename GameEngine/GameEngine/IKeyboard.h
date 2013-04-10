@@ -7,6 +7,8 @@
  * \class	IKeyboard
  *
  * \brief	Keyboard.
+ * 			
+ * \author	Timothy Veletta
  */
 class IKeyboard
 {
