@@ -2,6 +2,8 @@
 #include "GameObject.h"
 #include "glm\glm.hpp"
 
+#include <boost/scoped_ptr.hpp>
+
 
 class PlayerObject :public GameObject
 {
@@ -16,10 +18,12 @@ public:
 
 	virtual void Initialise();
 	virtual void Update();
+
+	static boost::scoped_ptr<PlayerObject>* GetInstance();
 protected:
 private:
 	glm::vec3 PlayerCameraPosition;
 	glm::vec3 PlayerCameraLookAt;
 
-
+	static boost::scoped_ptr<PlayerObject> pPlayerObject;
 };

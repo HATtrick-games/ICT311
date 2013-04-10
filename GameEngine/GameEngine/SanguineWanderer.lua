@@ -14,35 +14,44 @@ SetKey("quit", 120)
 -- load in assets
 function LoadResources()
 	print("[LUA] LoadResources")
-	-- AddAsset("boxbox.obj", "MESH")
+	AddAsset("boxbox.obj", "MESH")
 end
 
 -- create game objects
 function Initialise()
 	print("[LUA] Initialise")
-
-	pl = PlayerObject()
-	pl:SetPosition(0, 0, 0)
-	-- pl:SetAsset("boxbox.obj")
-	
+	x = GetMouseX()
+	y = GetMouseY()
 end
 
 -- update game logic
 function Update(time)
 	-- print("[LUA] Update "..time)
 	if GetKey("moveright") then
-		print("right")
+		SetPlayerVelocity(1, 0)
 	end
 
 	if GetKey("moveleft") then
-		print("left")
+		SetPlayerVelocity(-1, 0)
 	end
 
 	if GetKey("moveforward") then
-		print("forward")
+		SetPlayerVelocity(0, -1)
 	end
 
 	if GetKey("movebackward") then
-		print("backward")
+		SetPlayerVelocity(0, 1)
 	end
+
+	if x > GetMouseX() then
+		RotateCamera(2)
+	end
+
+	if x < GetMouseX() then
+		RotateCamera(-2)
+	end
+
+
+	x = GetMouseX()
+	y = GetMouseY()
 end

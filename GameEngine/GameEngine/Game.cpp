@@ -49,7 +49,7 @@ void Game::LoadResources()
 	Camera = new PlayerObject();
 	Camera->SetPlayerCameraPosition(glm::vec3(0,0,0));
 	Camera->SetPlayerCameraLookAt(glm::vec3(0,0,-10));
-	(*Camera::GetInstance())->StorePlayerObj(Camera);
+	(*Camera::GetInstance())->StorePlayerObj((*PlayerObject::GetInstance()).get());
 	(*ScriptingEngine::GetInstance())->LoadResources();
 }
 
@@ -63,6 +63,8 @@ void Game::Update(float time)
 	//std::cout << "[C++] Updating" << std::endl;
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*ScriptingEngine::GetInstance())->Update(time);
+
+	(*PlayerObject::GetInstance())->Update();
 }
 
 void Game::Draw()

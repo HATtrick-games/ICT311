@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "PlayerObject.h"
 #include "AiObject.h"
+#include "Camera.h"
 
 #include <boost/scoped_ptr.hpp>
 
@@ -44,7 +45,10 @@ private:
 
 	// Asset functions
 	static bool AddAsset(std::string file, std::string type);
-	static void AddGameObject(std::string id, GameObject obj);
+
+	static void AddAIObject(std::string id, std::string asset, float x, float y, float z);
+	static void PlayerVelocity(float x, float z);
+	static void CameraRotation(float deg);
 
 	lua_State* lState;
 };

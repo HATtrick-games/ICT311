@@ -4,6 +4,7 @@ boost::scoped_ptr<Camera> Camera::pCameraSingleton(NULL);
 
 Camera::Camera(void)
 {
+	rotation = 0.0f;
 }
 
 
@@ -37,6 +38,8 @@ void Camera::SetupCameraToClipMatrix(glutil::MatrixStack &modelMatrix)
 	fPerspectiveMatrix[3].z = (2 * fzFar * fzNear) / (fzNear - fzFar); //z perspective transform*/
 }
 
+
+
 void Camera::CalcWorldToCameraMatrix(glm::vec3 CameraPos, glm::vec3 CameraLook, glm::vec3 UpVec)
 {
 	/*
@@ -65,6 +68,7 @@ void Camera::CreateCamera(glutil::MatrixStack &modelMatrix)
 	//SetupCameraToClipMatrix();
 	//CalcWorldToCameraMatrix(CameraPosition, CameraLookAt, glm::vec3(0,1,0));
 	modelMatrix.LookAt(CameraData->GetPlayerCameraPosition(), CameraData->GetPlayerLookAt(), glm::vec3(0,1,0));
+	modelMatrix.RotateY(rotation);
 	CameraLookAtMatrix = modelMatrix.Top();
 	glUseProgram(ProgObjLocal);
 	glUniformMatrix4fv(UniPerspectiveMatrix, 1, GL_FALSE, glm::value_ptr(fPerspectiveMatrix));
@@ -128,4 +132,9 @@ boost::scoped_ptr<Camera>* Camera::GetInstance(void)
 		pCameraSingleton.reset(new Camera);
 	}
 	return &pCameraSingleton;
+}
+
+void Camera::ChangeRotation(float deg)
+{
+	rotation += deg;
 }

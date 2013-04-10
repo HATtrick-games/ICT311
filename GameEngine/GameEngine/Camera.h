@@ -32,6 +32,8 @@ public:
 
 	glm::mat4 G() {return CameraLookAtMatrix;}
 
+	void ChangeRotation(float deg);
+
 private:
 
 	glm::mat4 fPerspectiveMatrix;
@@ -39,6 +41,8 @@ private:
 	float fCameraScale;
 	float fzNear;
 	float fzFar;
+
+	float rotation;
 
 	GLuint UniPerspectiveMatrix;
 	//GLuint UniWorldToCamera;

@@ -66,12 +66,14 @@ void ScriptingEngine::ExposeFunctions()
 		luabind::def("GetMouseX", &ScriptingEngine::GetMouseX),
 		luabind::def("GetMouseY", &ScriptingEngine::GetMouseY),
 		luabind::def("AddAsset", &ScriptingEngine::AddAsset),
-		luabind::def("AddGameObject", &ScriptingEngine::AddGameObject),
+		luabind::def("AddAIObject", &ScriptingEngine::AddAIObject),
+		luabind::def("SetPlayerVelocity", &ScriptingEngine::PlayerVelocity),
+		luabind::def("RotateCamera", &ScriptingEngine::CameraRotation),
 		luabind::class_<PlayerObject>("PlayerObject")
 			.def(luabind::constructor<>())
 			.def("Initialise", &PlayerObject::Initialise)
 			.def("SetPosition", (void(PlayerObject::*)(float, float, float))&PlayerObject::SetPosition)
-			.def("SetPlayerVelocity", &PlayerObject::SetPlayerVelocity)
+			.def("SetPlayerV", &PlayerObject::SetPlayerVelocity)
 			.def("SetAsset", &PlayerObject::SetAssetFile),
 		luabind::class_<AiObject>("AIObject")
 			.def(luabind::constructor<>())
@@ -116,7 +118,21 @@ bool ScriptingEngine::AddAsset(std::string file, std::string type)
 	return (*AssetManager::GetInstance())->AddAsset(file, type);
 }
 
-void ScriptingEngine::AddGameObject(std::string id, GameObject obj)
+void ScriptingEngine::AddAIObject(std::string id, std::string asset, float x, float y, float z)
 {
-	(*Game::GetInstance())->AddGameObject(id, &obj);
+	AiObject* obj = new AiObject();
+	obj->SetAssetFile(asset);
+	obj->SetPosition(x,y,z);
+
+	(*Game::GetInstance())->AddGameObject(id, obj);
+}
+
+void ScriptingEngine::PlayerVelocity(float x, float z)
+{
+	(*PlayerObject::GetInstance())->SetPlayerVelocity(x, z);
+}
+
+void ScriptingEngine::CameraRotation(float deg)
+{
+	(*Camera::GetInstance())->ChangeRotation(deg);
 }

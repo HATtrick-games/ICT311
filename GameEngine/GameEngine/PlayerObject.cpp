@@ -1,5 +1,7 @@
 #include "PlayerObject.h"
 
+boost::scoped_ptr<PlayerObject> PlayerObject::pPlayerObject(NULL);
+
 PlayerObject::PlayerObject()
 {
 	PlayerCameraPosition.x = 1;
@@ -53,4 +55,14 @@ glm::vec3 PlayerObject::GetPlayerCameraPosition()
 glm::vec3 PlayerObject::GetPlayerLookAt()
 {
 	return PlayerCameraLookAt;
+}
+
+boost::scoped_ptr<PlayerObject>* PlayerObject::GetInstance()
+{
+	if(pPlayerObject.get() == NULL)
+	{
+		pPlayerObject.reset(new PlayerObject);
+	}
+
+	return &pPlayerObject;
 }
