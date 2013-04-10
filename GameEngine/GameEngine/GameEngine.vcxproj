@@ -45,6 +45,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <ExecutablePath>$(SolutionDir)\ThirdParty\bin;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(SolutionDir)\ThirdParty\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\ThirdParty\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,7 +82,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>..\ThirdParty\lib\freeglut.lib;..\ThirdParty\lib\glutil.lib;..\ThirdParty\lib\glmesh.lib;..\ThirdParty\lib\glloadd.lib;..\ThirdParty\lib\glimg.lib;..\ThirdParty\lib\glload.lib;..\ThirdParty\lib\lua5.1.lib;..\ThirdParty\lib\luabindd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freeglut.lib;glmesh.lib;glutilD.lib;glmeshD.lib;glloadd.lib;glimg.lib;glimgD.lib;assimp.lib;glload.lib;lua5.1.lib;luabindd.lib;BulletCollision_vs2010.lib;BulletDynamics_vs2010.lib;BulletSoftBody_vs2010.lib;LinearMath_vs2010.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
