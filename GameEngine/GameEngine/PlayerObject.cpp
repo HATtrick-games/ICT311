@@ -5,8 +5,8 @@ boost::scoped_ptr<PlayerObject> PlayerObject::pPlayerObject(NULL);
 PlayerObject::PlayerObject()
 {
 	PlayerCameraPosition.x = 1;
-	PlayerCameraPosition.y = 0;
-	PlayerCameraPosition.z = 0;
+	PlayerCameraPosition.y = 5;
+	PlayerCameraPosition.z = 20;
 	PlayerCameraLookAt.x = 1;
 	PlayerCameraLookAt.y = 0;
 	PlayerCameraLookAt.z = -10;
