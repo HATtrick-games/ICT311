@@ -35,7 +35,7 @@ void Mesh::Load()
 
 Texture* Mesh::GetTextures(int index)
 {
-	return m_textures[0];
+	return m_textures[index];
 }
 
 /*
