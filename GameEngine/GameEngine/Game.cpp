@@ -20,8 +20,8 @@ void Game::Initialise()
 
 	(*Input::GetInstance())->SetInputMethod("OPENGL");
 
-	(*ScriptingEngine::GetInstance())->SetScript("SanguineWanderer.lua");
-	(*ScriptingEngine::GetInstance())->Initialise();
+	//(*ScriptingEngine::GetInstance())->SetScript("SanguineWanderer.lua");
+	//(*ScriptingEngine::GetInstance())->Initialise();
 
 	LoadResources();
 	glutMainLoop();	
@@ -50,7 +50,7 @@ void Game::LoadResources()
 	Camera->SetPlayerCameraPosition(glm::vec3(0,0,0));
 	Camera->SetPlayerCameraLookAt(glm::vec3(0,0,-10));
 	(*Camera::GetInstance())->StorePlayerObj((*PlayerObject::GetInstance()).get());
-	(*ScriptingEngine::GetInstance())->LoadResources();
+	//(*ScriptingEngine::GetInstance())->LoadResources();
 }
 
 void Game::UnloadResources()
@@ -62,15 +62,15 @@ void Game::Update(float time)
 {
 	//std::cout << "[C++] Updating" << std::endl;
 	CollisionWorldSingleton::Instance()->StepWorld();
-	(*ScriptingEngine::GetInstance())->Update(time);
+	//(*ScriptingEngine::GetInstance())->Update(time);
 
 	(*PlayerObject::GetInstance())->Update();
 }
 
 void Game::Draw()
 {
-	(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
-	(*OpenGL::GetInstance())->RenderModel(boxMesh1, testObject1, 1);
+	//(*OpenGL::GetInstance())->RenderModel(boxMesh, testObject, 0);
+	//(*OpenGL::GetInstance())->RenderModel(boxMesh1, testObject1, 1);
 	//std::cout << "Drawing" << std::endl;
 
 	for(objectMapIterator it = mGameObjects.begin(); it != mGameObjects.end(); it++)

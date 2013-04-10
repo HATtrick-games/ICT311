@@ -7,7 +7,7 @@ PlayerObject::PlayerObject()
 	PlayerCameraPosition.x = 0;
 	PlayerCameraPosition.y = 0;
 	PlayerCameraPosition.z = 0;
-	PlayerCameraLookAt.x = 0;
+	PlayerCameraLookAt.x = 1;
 	PlayerCameraLookAt.y = 0;
 	PlayerCameraLookAt.z = -10;
 	cbCollisionObject->SetCollisionPos(PlayerCameraPosition.x,PlayerCameraPosition.y,PlayerCameraPosition.z);
