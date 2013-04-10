@@ -14,7 +14,7 @@
  *
  * \brief	Collision body.
  *
- * \author	Wise Bear
+ * \author	Arran Ford
  * \date	4/10/2013
  */
 
@@ -27,7 +27,7 @@ public:
 	 *
 	 * \brief	Constructor.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	fPosX	The position x coordinate.
@@ -42,7 +42,7 @@ public:
 	 *
 	 * \brief	Applies a force in xyz direction to the collision object.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	x	The x coordinate.
@@ -57,7 +57,7 @@ public:
 	 *
 	 * \brief	Sets the velocity of the object in xyz direction.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	velocityX	The velocity x coordinate.
@@ -72,7 +72,7 @@ public:
 	 *
 	 * \brief	Sets the velocity of the xz direction y direction is taken from gravity.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	velocityX 	The velocity x coordinate.
@@ -86,7 +86,7 @@ public:
 	 *
 	 * \brief	Translate object.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	fTransX	The trans x coordinate.
@@ -101,7 +101,7 @@ public:
 	 *
 	 * \brief	Scale object.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	fScaleX	The scale x coordinate.
@@ -116,7 +116,7 @@ public:
 	 *
 	 * \brief	Sets the position of the collision object.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	x	The x coordinate.
@@ -131,7 +131,7 @@ public:
 	 *
 	 * \brief	Gets the position.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \return	The position.
@@ -146,7 +146,7 @@ private:
 	 *
 	 * \brief	Creates sphere rigid body.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	fPosX  	The position x coordinate.
@@ -163,7 +163,7 @@ private:
 	 *
 	 * \brief	Creates a square rigid body.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	fPosX	The position x coordinate.

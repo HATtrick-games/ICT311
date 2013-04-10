@@ -14,7 +14,7 @@
  *
  * \brief	Collision height map.
  *
- * \author	Wise Bear
+ * \author	Arran Ford
  * \date	4/10/2013
  */
 
@@ -28,7 +28,7 @@ public:
 	 *
 	 * \brief	Constructor.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	width		 	The width.
@@ -46,7 +46,7 @@ public:
 	 *
 	 * \brief	Destructor.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 */
 
@@ -57,7 +57,7 @@ public:
 	 *
 	 * \brief	Scales the height map collision mesh.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	scaleX	The scale x coordinate.
@@ -72,7 +72,7 @@ public:
 	 *
 	 * \brief	Translates the height map collision mesh.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	translateX	The translate x coordinate.

@@ -14,7 +14,7 @@
  *
  * \brief	A macro that defines collision world singleton.
  *
- * \author	Wise Bear
+ * \author	Arran Ford
  * \date	4/10/2013
  */
 
@@ -25,7 +25,7 @@
  *
  * \brief	Collision world singleton.
  *
- * \author	Wise Bear
+ * \author	Arran Ford
  * \date	4/10/2013
  */
 
@@ -38,7 +38,7 @@ private:
 	 *
 	 * \brief	Default constructor.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 */
 
@@ -73,7 +73,7 @@ public:
 	 *
 	 * \brief	returns the stepped boolean.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \return	true if it succeeds, false if it fails.
@@ -86,7 +86,7 @@ public:
 	 *
 	 * \brief	Adds a rigid body to the collision world.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param [in,out]	RigidBody	If non-null, the rigid body.
@@ -99,7 +99,7 @@ public:
 	 *
 	 * \brief	Steps the collision world world.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 */
 
@@ -110,7 +110,7 @@ public:
 	 *
 	 * \brief	Sets a gravity.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \param	y	The y coordinate.
@@ -124,7 +124,7 @@ public:
 	 *
 	 * \brief	Gets the instance.
 	 *
-	 * \author	Wise Bear
+	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
 	 * \return	null if it fails, else.
