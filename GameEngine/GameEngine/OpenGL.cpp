@@ -55,6 +55,8 @@ void OpenGL::Init()
 		std::cout << "Error";
 	}
 
+	glDisable(GL_CULL_FACE);
+
 	//Setup depth buffer
 	glEnable(GL_DEPTH_TEST);
 	glDepthMask(GL_TRUE);
@@ -91,7 +93,7 @@ void OpenGL::SetupProgram()
 	Vao.push_back(0);
 	
 	//remove later---------------------------------------------
-	ColorOffset = glGetUniformLocation(ProgObj, "ColorOffset");
+
 			VertexBufferObject.push_back(0);
 		IndexBufferObject.push_back(0);
 		Vao.push_back(0);
@@ -190,7 +192,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	glm::mat4 test2 = CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0));
 	test = test * test2;
 	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(test));
-	//glUniformMatrix4fv(UniModelToWorldMatrix,1,GL_FALSE, glm::value_ptr(CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0))));
+
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
 
 	glBindVertexArray(0);
@@ -213,13 +215,18 @@ void OpenGL::DisplayTimer(int value)
 
 glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale, glm::vec3 Orientation)
 {
-	glm::mat4 TransformMat(1.0f);
+	glutil::MatrixStack ModelTransform;
+	glutil::PushStack push(ModelTransform);
+	ModelTransform.Scale(Scale);
+	ModelTransform.Translate(Position);
+	/*glm::mat4 TransformMat(1.0f);
 	TransformMat[0].x = Scale.x;
 	TransformMat[1].y = Scale.y;
 	TransformMat[2].z = Scale.z;
 	TransformMat * glm::mat4((*AngleMath::GetInstance())->CreateRotationMatrix(Orientation));
-	TransformMat[3] = glm::vec4(Position, 1.0f);
-
+	TransformMat[3] = glm::vec4(Position, 1.0f);*/
+	glm::mat4 TransformMat;
+	TransformMat = ModelTransform.Top();
 	return TransformMat;
 }
 

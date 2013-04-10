@@ -45,7 +45,7 @@ private:
 	float rotation;
 
 	GLuint UniPerspectiveMatrix;
-	//GLuint UniWorldToCamera;
+	GLuint UniWorldToCamera;
 	GLuint ProgObjLocal;
 
 	PlayerObject* CameraData;

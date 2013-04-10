@@ -16,7 +16,7 @@ void Camera::SetupCamera()
 {
 	glUseProgram(ProgObjLocal);
 	UniPerspectiveMatrix = glGetUniformLocation(ProgObjLocal, "cameraToClipMatrix");
-	//UniWorldToCamera = glGetUniformLocation(ProgObjLocal, "WorldToCamera");
+	UniWorldToCamera = glGetUniformLocation(ProgObjLocal, "WorldToCamera");
 	glUseProgram(0);
 }
 
@@ -72,7 +72,7 @@ void Camera::CreateCamera(glutil::MatrixStack &modelMatrix)
 	CameraLookAtMatrix = modelMatrix.Top();
 	glUseProgram(ProgObjLocal);
 	glUniformMatrix4fv(UniPerspectiveMatrix, 1, GL_FALSE, glm::value_ptr(fPerspectiveMatrix));
-	//glUniformMatrix4fv(UniWorldToCamera, 1, GL_FALSE, glm::value_ptr(CameraLookAtMatrix));
+	glUniformMatrix4fv(UniWorldToCamera, 1, GL_FALSE, glm::value_ptr(CameraLookAtMatrix));
 	glUseProgram(0);
 }
 

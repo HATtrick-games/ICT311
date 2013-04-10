@@ -51,8 +51,6 @@ private:
 	std::vector<GLuint> Vao;
 	GLuint TerrainBufferObject;
 	
-	GLuint ColorOffset;
-
 	//GLuint UniOffset; //(uniform) offset to be passed and used in the vertex shader
 	GLuint UniModelToCameraMatrix;
 	GLuint UniPerspectiveMatrix;
