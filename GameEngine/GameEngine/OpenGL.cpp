@@ -171,7 +171,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,0);
 
 	}
-
+	
 	glUseProgram(ProgObj);
 	glBindVertexArray(Vao[Index]);
 
