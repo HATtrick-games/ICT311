@@ -136,6 +136,7 @@ void OpenGL::Display()
 	
 	(*Game::GetInstance())->Update(1000.0/120.0);
 	(*Game::GetInstance())->Draw();
+
 	glutSwapBuffers();
 }
 
@@ -178,7 +179,7 @@ void OpenGL::RenderModel(Mesh * MeshObj, GameObject * GameObj, int Index)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, (*OGLTexture::GetInstance())->GetTexHandle(Index));
 
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(1,1,1),glm::vec3(0,0,0));
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(GameObj->GetPosition().x, GameObj->GetPosition().y, GameObj->GetPosition().z),glm::vec3(2,1,1),glm::vec3(0,0,0));
 
 	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
 	glDrawElements(GL_TRIANGLES, MeshObj->GetnumIndicies(), GL_UNSIGNED_INT, 0);
@@ -216,11 +217,10 @@ glm::mat4 OpenGL::CreateModelTransformMatrix(glm::vec3 Position, glm::vec3 Scale
 {
 	glutil::MatrixStack ModelTransform;
 	glutil::PushStack push(ModelTransform);
-	ModelTransform.Scale(Scale);
+
 	ModelTransform.Translate(Position);
-	glm::mat4 TransformMat;
-	TransformMat = ModelTransform.Top();
-	return TransformMat;
+		ModelTransform.Scale(Scale);
+	return ModelTransform.Top();
 }
 
 void OpenGL::Reshape(int width, int height)

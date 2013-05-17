@@ -62,9 +62,9 @@ void Game::Update(float time)
 {
 	//std::cout << "[C++] Updating" << std::endl;
 	CollisionWorldSingleton::Instance()->StepWorld();
-	(*ScriptingEngine::GetInstance())->Update(time);
+	//(*ScriptingEngine::GetInstance())->Update(time);
 
-	(*PlayerObject::GetInstance())->Update();
+	//(*PlayerObject::GetInstance())->Update();
 }
 
 void Game::Draw()
