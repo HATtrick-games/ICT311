@@ -55,7 +55,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glloadD.lib;glutilD.lib;assimp.lib;DevIL.lib;ILU.lib;OpenGL32.lib;SDL.lib;SDLmain.lib;SOIL.lib;GLFW.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glloadD.lib;glutilD.lib;assimp.lib;DevIL.lib;ILU.lib;OpenGL32.lib;SDL.lib;SDLmain.lib;SOIL.lib;GLFW.lib;FreeImage.lib;BulletCollision_vs2010_debug.lib;BulletDynamics_vs2010_debug.lib;BulletSoftBody_vs2010_debug.lib;LinearMath_vs2010_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionBody.h" />
+    <ClInclude Include="CollisionHeightMap.h" />
+    <ClInclude Include="CollisionWorldSingleton.h" />
     <ClInclude Include="CommonFunctions.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
@@ -98,6 +101,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionBody.cpp" />
+    <ClCompile Include="CollisionHeightMap.cpp" />
+    <ClCompile Include="CollisionWorldSingleton.cpp" />
     <ClCompile Include="CommonFunctions.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GraphicsFact.cpp" />
