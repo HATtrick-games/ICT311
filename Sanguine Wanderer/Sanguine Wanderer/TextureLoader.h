@@ -8,8 +8,9 @@ public:
 	~TextureLoader(void);
 	void Load(std::string Path, int Index);
 	//FIBITMAP* LoadBitmapOnly(std::string Path);
-	//bool loadHeightAndNormalMaps(std::string filename, GLuint &heightmap, GLuint &normalmap, double zScale);
-	//void computeNormalMapFromHeightMap(FIBITMAP *heights, FIBITMAP *normals, double zScale);
+	bool loadHeightAndNormalMaps(std::string filename, GLuint &heightmap, GLuint &normalmap, double zScale);
+	bool loadBitmap(string filename, FIBITMAP* &bitmap);
+	void computeNormalMapFromHeightMap(FIBITMAP *heights, FIBITMAP *normals, double zScale);
 	GLuint GetTexHandle(int index);
 	GLuint GetTexBuffer(int index);
 	GLuint GetTextureSampler(int index);

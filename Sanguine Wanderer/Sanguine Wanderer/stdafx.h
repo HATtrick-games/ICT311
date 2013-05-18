@@ -24,6 +24,7 @@
 #include <assimp/Importer.hpp>
 #include <stdio.h>
 #include <string.h>
+#include <algebra3.h>
 #include <glload\gll.hpp>
 #include <glload/gl_3_3.h>
 #include <glutil/Shader.h>

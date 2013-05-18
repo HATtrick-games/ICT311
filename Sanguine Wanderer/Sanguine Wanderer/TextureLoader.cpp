@@ -81,9 +81,24 @@ void TextureLoader::Load(std::string Path, int index)
     //gluBuild2DMipmaps(GL_TEXTURE_2D, 4, infoheader.biWidth, infoheader.biHeight, GL_RGBA, GL_UNSIGNED_BYTE, l_texture);
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
-/*
+// load a bitmap with freeimage
+bool TextureLoader::loadBitmap(string filename, FIBITMAP* &bitmap) {
+    // get the file format
+    FREE_IMAGE_FORMAT format = FreeImage_GetFileType(filename.c_str(), 0);
+    if (format == FIF_UNKNOWN)
+        format = FreeImage_GetFIFFromFilename(filename.c_str());
+    if (format == FIF_UNKNOWN)
+        return false;
+
+    // load the image
+    bitmap = FreeImage_Load(format, filename.c_str());
+    if (!bitmap)
+        return false;
+
+    return true;
+}
 // load a height map and normal map (computed from the height map) into opengl with freeimage
-bool loadHeightAndNormalMaps(string filename, GLuint &heightmap, GLuint &normalmap, double zScale) {
+bool TextureLoader::loadHeightAndNormalMaps(std::string filename, GLuint &heightmap, GLuint &normalmap, double zScale) {
     FIBITMAP *bitmap = NULL;
     if (!loadBitmap(filename, bitmap))
         return false;
@@ -112,7 +127,7 @@ bool loadHeightAndNormalMaps(string filename, GLuint &heightmap, GLuint &normalm
     glBindTexture(GL_TEXTURE_2D, heightmap);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_LUMINANCE, w, h, GL_LUMINANCE, GL_UNSIGNED_BYTE, (GLvoid*)bits);
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, w, h, GL_RED, GL_UNSIGNED_BYTE, (GLvoid*)bits);
 
     // compute normals
     computeNormalMapFromHeightMap(bitmap, normals, zScale);
@@ -136,10 +151,17 @@ bool loadHeightAndNormalMaps(string filename, GLuint &heightmap, GLuint &normalm
     FreeImage_Unload(normals);
 
     return true;
-}*/
-/*
+}
+namespace {
+    // helper function for getting pixels from a bitmap
+    inline double pix(FIBITMAP* map, int x, int y) {
+        unsigned char val;
+        FreeImage_GetPixelIndex(map, x, y, &val); // slow because of bounds checks, but who cares?  this is a preprocess.
+        return val / 255.0;
+    }
+}
 // called by the height & normal map loader, computes normals from height map
-void computeNormalMapFromHeightMap(FIBITMAP *heights, FIBITMAP *normals, double zScale) {
+void TextureLoader::computeNormalMapFromHeightMap(FIBITMAP *heights, FIBITMAP *normals, double zScale) {
     RGBQUAD color;
     int w = FreeImage_GetWidth(heights);
     int h = FreeImage_GetHeight(heights);
@@ -169,8 +191,8 @@ void computeNormalMapFromHeightMap(FIBITMAP *heights, FIBITMAP *normals, double 
             FreeImage_SetPixelColor(normals,x,y,&color);
         }
     }
-}/*
-
+}
+/*
 FIBITMAP* TextureLoader::LoadBitmapOnly(std::string Path)
 {
 	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
