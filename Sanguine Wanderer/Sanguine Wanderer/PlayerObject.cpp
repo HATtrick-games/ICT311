@@ -10,34 +10,31 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 	Position = StartingLocation;
 	LookAtLocation = StartingLookAt;
 	UpVector = StartingUpVector;
+	cbCollisionObject = new CollisionBody(Position);
+	//CollisionBody* cbCollisionObject;
+
 }
-/*
-switch (reply)
-{
-case "three": cout << "3";
-    break;
-case "two": cout << "2";
-    break;
-case "one": cout << "1";
-    break;
-default: cout << "qwerty";
-    break;*/
 
 void PlayerObject::MovePlayer(int Direction)
 {
 	
 	switch (Direction)
 	{
-	case 1: cout << "Forward";
+	case 1: cout << "Forward"; cbCollisionObject->SetVelocity(0,0,-1);
 		break;
-	case 2: cout <<"Back";
+	case 2: cout <<"Back"; cbCollisionObject->SetVelocity(0,0,1);
 		break;
-	case 3: cout <<"Left";
+	case 3: cout <<"Left"; cbCollisionObject->SetVelocity(-1,0,0);
 		break;
-	case 4: cout <<"Right";
+	case 4: cout <<"Right"; cbCollisionObject->SetVelocity(1,0,0);
 		break;
 	default: cout<<"No Direction";
 		break;
 	}
 
+}
+
+void PlayerObject::Update()
+{
+	Position = cbCollisionObject->GetPosition();
 }

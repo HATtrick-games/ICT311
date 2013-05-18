@@ -35,7 +35,7 @@ public:
 	 * \param	fPosZ	The position z coordinate.
 	 */
 
-	CollisionBody(float fPosX, float fPosY, float fPosZ);
+	CollisionBody(glm::vec3 Position);
 
 	/**
 	 * \fn	void CollisionBody::ApplyForce(float x, float y, float z);
@@ -155,7 +155,7 @@ private:
 	 * \param	fRadius	The radius.
 	 */
 
-	void CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius);
+	void CreateRigidBody(glm::vec3 passPos, float fRadius);
 
 	/**
 	 * \fn	void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fXdis,
@@ -174,7 +174,7 @@ private:
 	 * \param	fZdis	The zdis.
 	 */
 
-	void CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fXdis, float fYdis, float fZdis);
+	void CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis);
 
 	/**
 	 * \brief	this rigid body.

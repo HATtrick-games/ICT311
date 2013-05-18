@@ -1,20 +1,20 @@
 #include "stdafx.h"
 #include "CollisionBody.h"
 
-CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ)
+CollisionBody::CollisionBody(glm::vec3 passPosition)
 {
-	CurrentPosition.x = fPosX;
-	CurrentPosition.y = fPosY;
-	CurrentPosition.z = fPosZ;
-	CreateRigidBody(fPosX, fPosY, fPosZ, 1);
+	CurrentPosition.x = passPosition.x;
+	CurrentPosition.y = passPosition.y;
+	CurrentPosition.z = passPosition.z;
+	CreateRigidBody(passPosition, 1);
 	//CreateRigidBody(10,10,10,1);
 	//std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
 }
 
-void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius)
+void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fRadius)
 {
 	CollisionShape = new btSphereShape(1);
-	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(fPosX,fPosY,fPosZ)));
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(passPos.x,passPos.y,passPos.z)));
     btScalar mass = 0.1;
     btVector3 fallInertia(1,1,1);
     CollisionShape->calculateLocalInertia(mass,fallInertia);
@@ -23,10 +23,10 @@ void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
 }
 
-void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fXdis, float fYdis, float fZdis)
+void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis)
 {
 	CollisionShape = new btBoxShape(btVector3(fXdis, fYdis, fZdis));
-	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(fPosX,fPosY,fPosZ)));
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(passPos.x,passPos.y,passPos.z)));
     btScalar mass = 0.1;
     btVector3 fallInertia(1,1,1);
     CollisionShape->calculateLocalInertia(mass,fallInertia);
@@ -64,14 +64,10 @@ void CollisionBody::SetVelocityGravity(float velocityX, float velocityZ)
 
 void CollisionBody::TranslateObject(float fTransX, float fTransY, float fTransZ)
 {
-	
 	CurrentPosition.x += fTransX;
 	CurrentPosition.y += fTransY;
 	CurrentPosition.z += fTransZ;
 	ThisRigidBody->translate(btVector3(fTransX, fTransY, fTransZ));
-	
-	
-	
 }
 
 void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
@@ -81,20 +77,12 @@ void CollisionBody::ScaleObject(float fScaleX, float fScaleY, float fScaleZ)
 
 
 glm::vec3 CollisionBody::GetPosition()
-{
-		
-	if(CollisionWorldSingleton::Instance()->Stepped())
-	{
+{	
 	ThisRigidBody->getMotionState()->getWorldTransform(trans);
 	CurrentPosition.x = trans.getOrigin().getX();
 	CurrentPosition.y = trans.getOrigin().getY();
 	CurrentPosition.z = trans.getOrigin().getZ();
-	}
-	else
-	{
-		return CurrentPosition;
-	}
-
+		
 	return CurrentPosition;
 }
 

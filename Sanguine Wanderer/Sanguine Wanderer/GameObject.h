@@ -7,7 +7,8 @@
 class GameObject
 {
 public:
-	
+	GameObject();
+	virtual void Update() = 0;
 
 protected:
 	CollisionBody* cbCollisionObject;
