@@ -64,6 +64,16 @@ void CollisionBody::SetVelocity(float velocityX, float velocityY, float velocity
 	
 }
 
+void CollisionBody::SetXVelocity(float velocityX)
+{
+	ThisRigidBody->setLinearVelocity(btVector3(velocityX,ThisRigidBody->getLinearVelocity().getY(),ThisRigidBody->getLinearVelocity().getZ()));
+}
+
+void CollisionBody::SetZVelocity(float velocityZ)
+{
+	ThisRigidBody->setLinearVelocity(btVector3(ThisRigidBody->getLinearVelocity().getX(),ThisRigidBody->getLinearVelocity().getY(),velocityZ));
+}
+
 void CollisionBody::SetVelocityGravity(float velocityX, float velocityZ)
 {
 	

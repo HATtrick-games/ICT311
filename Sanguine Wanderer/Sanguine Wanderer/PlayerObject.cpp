@@ -17,6 +17,27 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 
 }
 
+void PlayerObject::StopPlayer(int Direction)
+{
+	switch (Direction)
+	{
+	case 1: 
+		{
+		cout << "Forward";
+		cbCollisionObject->SetXVelocity(0);
+		break;
+		}
+	case 2:
+		{
+		cout <<"Back";
+		cbCollisionObject->SetZVelocity(0);
+		break;
+		}
+	default: cout<<"No Direction";
+		break;
+	}
+}
+
 void PlayerObject::MovePlayer(int Direction)
 {
 	//cbCollisionObject->SetVelocity(2,0,0);

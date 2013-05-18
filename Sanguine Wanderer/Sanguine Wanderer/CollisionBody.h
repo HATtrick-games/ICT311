@@ -77,6 +77,10 @@ public:
 	 * \param	velocityX 	The velocity x coordinate.
 	 * \param	veclocityZ	The veclocity z coordinate.
 	 */
+	void SetXVelocity(float velocityX);
+	void SetZVelocity(float velocityY);
+	
+
 
 	void SetVelocityGravity(float velocityX, float veclocityZ);
 
