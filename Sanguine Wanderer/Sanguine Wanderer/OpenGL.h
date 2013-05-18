@@ -5,6 +5,7 @@
 #include "Shader.h"
 #include "Mesh.h"
 #include "TextureLoader.h"
+#include "HeightMap.h"
 #include "Game.h"
 
 class OpenGL : public Graphics
@@ -32,7 +33,7 @@ public:
 
 	void MoveCamera(bool Type, glm::vec3 Direction);
 	void RenderModel(int Index, Mesh * MeshObj);
-	void RenderTerrain(std::string Path, int index);
+	void RenderTerrain(std::string Path, int index,Mesh * MeshObj);
 	void Start();
 
 private:
