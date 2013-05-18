@@ -27,6 +27,12 @@ void Game::Display()
 	(*pGraphicsEng)->RenderModel(0, Test);	
 }
 
+void Game::Update()
+{
+
+}
+
+
 void Game::Input()
 {
 	if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))

@@ -84,6 +84,7 @@
     <ClInclude Include="CollisionWorldSingleton.h" />
     <ClInclude Include="CommonFunctions.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsFact.h" />
     <ClInclude Include="IAsset.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="OGLKeyboard.h" />
     <ClInclude Include="OGLMouse.h" />
     <ClInclude Include="OpenGL.h" />
+    <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -106,6 +108,7 @@
     <ClCompile Include="CollisionWorldSingleton.cpp" />
     <ClCompile Include="CommonFunctions.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsFact.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="IKeyboard.cpp" />
@@ -115,6 +118,7 @@
     <ClCompile Include="OGLKeyboard.cpp" />
     <ClCompile Include="OGLMouse.cpp" />
     <ClCompile Include="OpenGL.cpp" />
+    <ClCompile Include="PlayerObject.cpp" />
     <ClCompile Include="Sanguine Wanderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stdafx.cpp">

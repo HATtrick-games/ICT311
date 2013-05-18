@@ -15,6 +15,7 @@ public:
 	void Display();
 	void Init();
 	void Input();
+	void Update();
 
 	static boost::scoped_ptr<Game> * GetInstance();
 
