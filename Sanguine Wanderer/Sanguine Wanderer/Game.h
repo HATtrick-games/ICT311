@@ -5,11 +5,12 @@
 #include "IAsset.h"
 #include "Input.h"
 #include "IKeyboard.h"
+#include "PlayerObject.h"
 
 class Game
 {
 public:
-	Game();
+	 Game();
 	~Game(void);
 
 	void Display();
@@ -22,6 +23,7 @@ public:
 private:
 	static boost::scoped_ptr<Game> pSingleton;
 	boost::scoped_ptr<Graphics> *pGraphicsEng;
+	PlayerObject* Player;
 
 	Graphics* GraphicsEng;
 
