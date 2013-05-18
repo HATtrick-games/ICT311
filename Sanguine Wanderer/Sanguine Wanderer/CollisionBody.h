@@ -3,7 +3,7 @@
  *
  * \brief	Declares the collision body class.
  */
-
+#include <btBulletDynamicsCommon.h>
 #include "CollisionWorldSingleton.h"
 //#include "CommonFuncs.h"
 #include "glm\glm.hpp"
@@ -21,7 +21,6 @@
 class CollisionBody
 {
 public:
-
 	/**
 	 * \fn	CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ);
 	 *
@@ -137,6 +136,27 @@ public:
 	 * \return	The position.
 	 */
 
+
+	btRigidBody* ThisRigidBody;
+
+	/**
+	 * \brief	The collision shape.
+	 */
+
+	btCollisionShape* CollisionShape;
+
+	/**
+	 * \brief	State of the motion.
+	 */
+
+	btDefaultMotionState* MotionState;
+
+	/**
+	 * \brief	The trans.
+	 */
+
+	btTransform trans;
+
 	glm::vec3 GetPosition();
 protected:
 private:
@@ -180,25 +200,7 @@ private:
 	 * \brief	this rigid body.
 	 */
 
-	btRigidBody* ThisRigidBody;
-
-	/**
-	 * \brief	The collision shape.
-	 */
-
-	btCollisionShape* CollisionShape;
-
-	/**
-	 * \brief	State of the motion.
-	 */
-
-	btDefaultMotionState* MotionState;
-
-	/**
-	 * \brief	The trans.
-	 */
-
-	btTransform trans;
+	
 
 	/**
 	 * \brief	The current position.

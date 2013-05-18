@@ -8,6 +8,7 @@ class GameObject
 {
 public:
 	GameObject();
+	glm::vec3 GetPosition();
 	virtual void Update() = 0;
 
 protected:

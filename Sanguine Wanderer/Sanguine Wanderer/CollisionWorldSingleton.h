@@ -32,7 +32,7 @@
 class CollisionWorldSingleton
 {
 private:
-
+	btDiscreteDynamicsWorld* DynamicsWorld;
 	/**
 	 * \fn	CollisionWorldSingleton::CollisionWorldSingleton()
 	 *
@@ -45,7 +45,7 @@ private:
 	CollisionWorldSingleton()
 	{
 		 
-
+		//cout<<"COLLISION WORLD";
 		 btBroadphaseInterface* broadphase = new btDbvtBroadphase();
 		 btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
 		 btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
@@ -65,9 +65,9 @@ private:
 	 * \brief	The dynamics world all collision occurs in here.
 	 */
 
-	btDiscreteDynamicsWorld* DynamicsWorld;
+	//btDiscreteDynamicsWorld* DynamicsWorld;
 public:
-
+	
 	/**
 	 * \fn	bool CollisionWorldSingleton::Stepped();
 	 *

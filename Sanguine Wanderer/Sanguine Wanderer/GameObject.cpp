@@ -7,3 +7,8 @@ GameObject::GameObject()
 	
 }
 
+glm::vec3 GameObject::GetPosition()
+{
+	return Position;
+}
+

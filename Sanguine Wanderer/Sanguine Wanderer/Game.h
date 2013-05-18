@@ -6,6 +6,7 @@
 #include "Input.h"
 #include "IKeyboard.h"
 #include "PlayerObject.h"
+#include "CollisionWorldSingleton.h"
 
 class Game
 {

@@ -30,7 +30,11 @@ void Game::Display()
 
 void Game::Update()
 {
-
+	CollisionWorldSingleton::Instance()->StepWorld();
+	Player->Update();
+	
+	//cout<<Player->GetPosition().x<<Player->GetPosition().y<<Player->GetPosition().z<<"\n";
+	//cout<<"Updating \n";
 }
 
 
