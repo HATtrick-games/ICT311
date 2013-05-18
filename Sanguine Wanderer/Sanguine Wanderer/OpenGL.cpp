@@ -89,6 +89,7 @@ void OpenGL::Update()
 		glutPostRedisplay();
 		Time += 33.3;
 	}
+	(*Game::GetInstance())->Update();
 }
 
 boost::scoped_ptr<Graphics> * OpenGL::GetInstance()
