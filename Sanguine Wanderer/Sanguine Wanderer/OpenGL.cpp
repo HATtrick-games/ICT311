@@ -9,6 +9,8 @@ OpenGL::OpenGL(void)
 	char* GLargv[1];
 	GLargv[0] = _strdup("RPG");
 	glutInit(&GLargc, GLargv);
+	Counter = 0;
+	Time = 500;
 }
 
 
@@ -46,7 +48,8 @@ void OpenGL::Initialise()
 	}
 
 	glutDisplayFunc(OpenGL::DisplayCallback); 
-	glutReshapeFunc(OpenGL::ReshapeCallback);		
+	glutReshapeFunc(OpenGL::ReshapeCallback);
+	glutIdleFunc(OpenGL::UpdateCallback);
 }
 
 void OpenGL::SetupProgram()
@@ -78,6 +81,15 @@ GLuint OpenGL::GettheProgram()
 	return theProgram;
 }
 
+void OpenGL::Update()
+{
+	float timer = glutGet(GLUT_ELAPSED_TIME);
+	if((timer/33.3)-1 >= (Time/33.3))
+	{
+		glutPostRedisplay();
+		Time += 33.3;
+	}
+}
 
 boost::scoped_ptr<Graphics> * OpenGL::GetInstance()
 {

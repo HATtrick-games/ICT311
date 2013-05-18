@@ -13,6 +13,8 @@ public:
 
 	virtual void Display() = 0;
 
+	virtual void Update() = 0;
+
 	virtual void RenderModel(int Index, Mesh * MeshObj) = 0;
 
 	virtual void RenderTerrain() = 0;

@@ -26,6 +26,7 @@ public:
 	void InitialiseVertexBuffer();
 	void Reshape(int width, int height);
 	void Display();
+	void Update();
 
 	GLuint CreateProgram(const std::vector<GLuint> &shaderList);
 
@@ -42,6 +43,8 @@ private:
 	GLuint UniModelToCameraMatrix;
 	GLuint UniTex;
 
+	int Counter;
+	float Time;
 	float *Vert;
 
 	std::vector<GLuint> VertexBufferObject;
@@ -59,6 +62,10 @@ private:
 	static void DisplayCallback()
 	{
 		pSingleton->Display();
+	}
+	static void UpdateCallback()
+	{
+		pSingleton->Update();
 	}
 };
 
