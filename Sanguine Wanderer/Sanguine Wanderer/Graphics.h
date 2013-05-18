@@ -17,7 +17,7 @@ public:
 
 	virtual void RenderModel(int Index, Mesh * MeshObj) = 0;
 
-	virtual void RenderTerrain() = 0;
+	virtual void RenderTerrain(std::string Path, int index) = 0;
 
 	virtual void Start() = 0;
 	

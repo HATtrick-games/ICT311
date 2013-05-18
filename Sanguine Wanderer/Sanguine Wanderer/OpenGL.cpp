@@ -141,16 +141,21 @@ void OpenGL::RenderModel(int Index, Mesh * MeshObj)
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	
 		(*TextureLoader::GetInstance())->Load((*MeshObj).GetTexPath(), Index);
-		glUniform1i(UniTex, 0);
-		glActiveTexture(GL_TEXTURE0);
-		glBindSampler(0, (*TextureLoader::GetInstance())->GetTextureSampler(Index));
-
+		
+		
 		glBindVertexArray(0);
 	}
+
+
 
 	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,-15),glm::vec3(0.1,0.1,0.1),glm::vec3(0,180,0));
 
 	glBindVertexArray(VAO[Index]);
+
+	glUniform1i(UniTex, 0);
+	glBindTexture(GL_TEXTURE_2D,(*TextureLoader::GetInstance())->GetTexHandle(Index));
+	glActiveTexture(GL_TEXTURE0);
+
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 
@@ -210,63 +215,10 @@ void OpenGL::MoveCamera(bool Type, glm::vec3 Direction)
 
 	}
 }
-/*void OpenGL::keyboard(unsigned char key, int x, int y)
+
+void OpenGL::RenderTerrain(std::string Path, int Index)
 {
-	switch (key)
-	{
-	case 27:
-		glutLeaveMainLoop();
-		return;
-	case 'w':
-		{
-			(*Camera::GetInstance())->SetCameraLoc(glm::vec3(0,0,-0.1));
-			break;
-		}
-	case 's':
-		{
-			(*Camera::GetInstance())->SetCameraLoc(glm::vec3(0,0,0.1));
-			break;
-		}
-	case 'a':
-		{
-			(*Camera::GetInstance())->SetCameraLoc(glm::vec3(-0.1,0,0));
-			break;
-		}
-	case 'd':
-		{
-			(*Camera::GetInstance())->SetCameraLoc(glm::vec3(0.1,0,0));
-			break;
-		}
-	}
-}
-
-void OpenGL::Mouse(int Button, int State, int MouseX, int MouseY)
-{
-	std::cout << MouseX << std::endl;
-	std::cout << MouseY << std::endl;
-	//1280, 960
-
-	if(MouseX > 640)
-	{
-		(*Camera::GetInstance())->SetCameraLook(glm::vec3(0.1,0,0));
-	}
-	else if(MouseX < 640)
-	{
-		(*Camera::GetInstance())->SetCameraLook(glm::vec3(-0.1,0,0));
-	}
-	if(MouseY > 480)
-	{
-		(*Camera::GetInstance())->SetCameraLook(glm::vec3(0,-0.1,0));
-	}
-	else if(MouseY < 480)
-	{
-		(*Camera::GetInstance())->SetCameraLook(glm::vec3(0,0.1,0));
-	}
-}*/
-
-void OpenGL::RenderTerrain()
-{
-
+	(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
 }
 
 void OpenGL::Start()

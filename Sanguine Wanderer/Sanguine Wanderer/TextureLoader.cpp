@@ -37,22 +37,7 @@ void TextureLoader::Load(std::string Path, int index)
 
 	TextureHandle.push_back(0);
 	TextureSampler.push_back(0);
-	/*
-	// Generate an OpenGL texture ID for this texture
-	glGenTextures(1, &TextureHandle[index]);
-	glBindTexture(GL_TEXTURE_2D, TextureHandle[index]);
-	
-	//int iFormat = iBPP == 24 ? GL_BGR : iBPP == 8 ? GL_LUMINANCE : 0;
-	int iInternalFormat = iBPP == 24 ? GL_RGB : GL_DEPTH_COMPONENT; 
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iWidth, iHeight, 0, GL_BGR, GL_UNSIGNED_BYTE, bDataPointer);
-
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	FreeImage_Unload(dib);
-
-	glGenSamplers(1, &TextureSampler[index]);
-	*/
 	glGenTextures(1, &TextureHandle[index]);
 	glBindTexture(GL_TEXTURE_2D, TextureHandle[index]); // Bind the ID texture specified by the 2nd parameter
 
@@ -61,24 +46,12 @@ void TextureLoader::Load(std::string Path, int index)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // The magnification function ("linear" produces better results)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST); //The minifying function
-
-
-    //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE); // We don't combine the color with the original surface color, use only the texture map.
-
-	//error = glGetError();
-
-    // Finally we define the 2d texture
-    //glTexImage2D(GL_TEXTURE_2D, 0, 4, infoheader.biWidth, infoheader.biHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, l_texture);
-
 	
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iWidth, iHeight, 0, GL_BGR, GL_UNSIGNED_BYTE, bDataPointer);
-
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 4);
 
-    // And create 2d mipmaps for the minifying function
-    //gluBuild2DMipmaps(GL_TEXTURE_2D, 4, infoheader.biWidth, infoheader.biHeight, GL_RGBA, GL_UNSIGNED_BYTE, l_texture);
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 // load a bitmap with freeimage
@@ -98,7 +71,7 @@ bool TextureLoader::loadBitmap(string filename, FIBITMAP* &bitmap) {
     return true;
 }
 // load a height map and normal map (computed from the height map) into opengl with freeimage
-bool TextureLoader::loadHeightAndNormalMaps(std::string filename, GLuint &heightmap, GLuint &normalmap, double zScale) {
+bool TextureLoader::loadHeightAndNormalMaps(std::string filename, int Index, double zScale) {
     FIBITMAP *bitmap = NULL;
     if (!loadBitmap(filename, bitmap))
         return false;
@@ -122,9 +95,13 @@ bool TextureLoader::loadHeightAndNormalMaps(std::string filename, GLuint &height
         return false;
     }
 
+	TextureHandle.push_back(0);
+	TexBuffer.push_back(0);
+	TexBuffer.push_back(0);
+
     // upload heightmap to opengl
-    glGenTextures(1, &heightmap);
-    glBindTexture(GL_TEXTURE_2D, heightmap);
+    glGenTextures(1, &TextureHandle[Index]);
+    glBindTexture(GL_TEXTURE_2D, TextureHandle[Index]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, w, h, GL_RED, GL_UNSIGNED_BYTE, (GLvoid*)bits);
@@ -141,8 +118,8 @@ bool TextureLoader::loadHeightAndNormalMaps(std::string filename, GLuint &height
     bits = FreeImage_GetBits(normals);
 
     // upload heightmap to opengl
-    glGenTextures(1, &normalmap);
-    glBindTexture(GL_TEXTURE_2D, normalmap);
+    glGenTextures(1, &TexBuffer[Index]);
+    glBindTexture(GL_TEXTURE_2D, TexBuffer[Index]);
     glTexImage2D(GL_TEXTURE_2D, 0, 3, w, h, 0, order, GL_UNSIGNED_BYTE, (GLvoid*)bits);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
