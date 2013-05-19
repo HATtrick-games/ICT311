@@ -30,7 +30,7 @@ void PlayerObject::StopPlayer()
 void PlayerObject::MovePlayer(int Direction)
 {
 	//cbCollisionObject->SetVelocity(2,0,0);
-	float speed = 10;
+	float speed = 2;
 	switch (Direction)
 	{
 	case 1: 

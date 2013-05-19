@@ -43,6 +43,12 @@ void Game::Update()
 
 void Game::Input()
 {
+	if((!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))) &&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100)))&&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115)))&&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))))
+	{
+		cout<<"NOTHING";
+		Player->StopPlayer();
+	}
+
 	if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))
 	{
 		
@@ -74,8 +80,8 @@ void Game::Input()
 	}
 	else
 	{
-		cout<<"NOTHING";
-		Player->StopPlayer();
+		//cout<<"NOTHING";
+		//Player->StopPlayer();
 	}
 }
 
