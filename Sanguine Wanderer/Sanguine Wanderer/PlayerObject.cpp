@@ -78,21 +78,21 @@ void PlayerObject::MovePlayer(int Direction)
 	{
 	case 1: 
 		{
-		cout << "Forward";
+		//cout << "Forward";
 		cbCollisionObject->SetVelocityGravity(ForwardVector.x*speed,ForwardVector.y*speed);
 		//cbCollisionObject->SetVelocity(0,0,-5);
 		break;
 		}
 	case 2:
 		{
-		cout <<"Back";
+		//cout <<"Back";
 		cbCollisionObject->SetVelocityGravity(ForwardVector.x*-1*speed,ForwardVector.y*-1*speed);
 		//cbCollisionObject->SetVelocity(0,0,5);
 		break;
 		}
 	case 3:
 		{
-		cout <<"Left";
+		//cout <<"Left";
 		cbCollisionObject->SetVelocityGravity(SidewaysVector.x*speed,SidewaysVector.y*-1*speed);
 		//cbCollisionObject->SetVelocity(-5,0,0);
 		//cbCollisionObject->SetVelocity(SidewaysVector.x*speed,SidewaysVector.y*speed,SidewaysVector.z*speed);
@@ -100,7 +100,7 @@ void PlayerObject::MovePlayer(int Direction)
 		}
 	case 4:
 		{
-		cout <<"Right";
+		//cout <<"Right";
 		cbCollisionObject->SetVelocityGravity(SidewaysVector.x*-1*speed,SidewaysVector.y*speed);
 		//cbCollisionObject->SetVelocity(5,0,0);
 		//cbCollisionObject->SetVelocity(SidewaysVector.x*-1*speed,SidewaysVector.y*speed,SidewaysVector.z*-1*speed);
@@ -108,25 +108,25 @@ void PlayerObject::MovePlayer(int Direction)
 		}
 	case 5:
 		{
-			cout<<"diag--right \n";
+		//	cout<<"diag--right \n";
 		cbCollisionObject->SetVelocityGravity(DiagonalForwardRightVector.x*speed,DiagonalForwardRightVector.y*speed);
 		break;
 		}
 	case 6:
 		{
-			cout<<"diag--left \n ";
+		//	cout<<"diag--left \n ";
 		cbCollisionObject->SetVelocityGravity(DiagonalForwardLeftVector.x*speed,DiagonalForwardLeftVector.y*speed);
 		break;
 		}
 	case 7:
 		{
-			cout<<"diag--back--right \n";
+		//	cout<<"diag--back--right \n";
 			cbCollisionObject->SetVelocityGravity(DiagonalForwardLeftVector.x*speed*-1,DiagonalForwardLeftVector.y*speed*-1);
 		break;
 		}
 	case 8:
 		{
-			cout<<"diag--Back--left \n";
+		//	cout<<"diag--Back--left \n";
 			cbCollisionObject->SetVelocityGravity(DiagonalForwardRightVector.x*speed*-1,DiagonalForwardRightVector.y*speed*-1);
 		break;
 		}

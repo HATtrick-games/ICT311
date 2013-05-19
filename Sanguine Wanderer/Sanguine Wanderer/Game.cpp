@@ -31,7 +31,7 @@ void Game::Display()
 
 void Game::Update()
 {
-	//Input();
+	Input();
 	Player->Update();
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
@@ -50,7 +50,7 @@ void Game::Input()
 {
 	if((!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))) &&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100)))&&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115)))&&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))))
 	{
-		cout<<"NOTHING";
+		//cout<<"NOTHING";
 		Player->StopPlayer();
 	}
 
@@ -90,7 +90,7 @@ void Game::Input()
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))
 	{
 		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(-0.1,0,0));
-		cout<<"left";
+		//cout<<"left";
 		Player->MovePlayer(3);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(101))
@@ -104,7 +104,7 @@ void Game::Input()
 	else
 	{
 		//cout<<"NOTHING";
-		//Player->StopPlayer();
+		Player->StopPlayer();
 	}
 }
 
