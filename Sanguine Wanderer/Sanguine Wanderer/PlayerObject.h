@@ -11,6 +11,7 @@ public:
 	void StopPlayer();
 	void RotateRight();
 	void RotateLeft();
+	void MouseMove(int x, int y);
 
 	glm::vec3 GetLookAt();
 	glm::vec3 GetUpVector();
@@ -22,11 +23,13 @@ protected:
 
 	
 private:
+	int xorigin;
 	float angle;
 	float lx, lz;
 	void SetVectors();
 	glm::vec2 ForwardVector;
 	glm::vec2 SidewaysVector;
 	glm::vec2 DiagonalForwardRightVector;
+	glm::vec2 DiagonalForwardLeftVector;
 
 };

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PlayerObject.h"
+#include <Windows.h>
 
 PlayerObject::PlayerObject()
 {
@@ -9,7 +10,11 @@ PlayerObject::PlayerObject()
 
 PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt, glm::vec3 StartingUpVector)
 {
+
+
+
 	angle = 0;
+	xorigin= 0;
 	lx = 0;
 	lz= -1;
 	Position = StartingLocation;
@@ -27,9 +32,47 @@ void PlayerObject::StopPlayer()
 		
 }
 
+void PlayerObject::MouseMove(int x, int y)
+{
+	SetVectors();
+	//cout<<x<<"\n";
+	if(x<100)
+	{
+		SetCursorPos(960, 540);
+		xorigin = 650;
+	}
+	else if(x>1200)
+	{
+		SetCursorPos(960, 540);
+		xorigin = 650;
+	}
+
+	if(x>xorigin)
+	{
+	angle += 0.001f*(x-xorigin);
+	lx = sin(angle);
+	lz = -cos(angle);
+	}
+	else
+	{
+		angle -= 0.001f*-(x-xorigin);
+	lx = sin(angle);
+	lz = -cos(angle);
+	}
+	xorigin = x;
+	
+	
+	//lx = sin(angle + ((x - xorigin) * 0.001f));
+	//lz = -cos(angle + ((x - xorigin) * 0.001f));
+	//angle += ((x - xorigin) * 0.001f);
+	
+	//angle += ((x - xorigin) * 0.001f);
+}
+
 void PlayerObject::MovePlayer(int Direction)
 {
 	//cbCollisionObject->SetVelocity(2,0,0);
+	SetVectors();
 	float speed = 2;
 	switch (Direction)
 	{
@@ -63,6 +106,30 @@ void PlayerObject::MovePlayer(int Direction)
 		//cbCollisionObject->SetVelocity(SidewaysVector.x*-1*speed,SidewaysVector.y*speed,SidewaysVector.z*-1*speed);
 		break;
 		}
+	case 5:
+		{
+			cout<<"diag--right \n";
+		cbCollisionObject->SetVelocityGravity(DiagonalForwardRightVector.x*speed,DiagonalForwardRightVector.y*speed);
+		break;
+		}
+	case 6:
+		{
+			cout<<"diag--left \n ";
+		cbCollisionObject->SetVelocityGravity(DiagonalForwardLeftVector.x*speed,DiagonalForwardLeftVector.y*speed);
+		break;
+		}
+	case 7:
+		{
+			cout<<"diag--back--right \n";
+			cbCollisionObject->SetVelocityGravity(DiagonalForwardLeftVector.x*speed*-1,DiagonalForwardLeftVector.y*speed*-1);
+		break;
+		}
+	case 8:
+		{
+			cout<<"diag--Back--left \n";
+			cbCollisionObject->SetVelocityGravity(DiagonalForwardRightVector.x*speed*-1,DiagonalForwardRightVector.y*speed*-1);
+		break;
+		}
 	default: cout<<"No Direction";
 		break;
 	}
@@ -87,6 +154,19 @@ void PlayerObject::SetVectors()
 	ForwardVector.x = ForwardVector.x/magnitude;
 	ForwardVector.y = ForwardVector.y/magnitude;
 
+	DiagonalForwardRightVector.x = ForwardVector.x + SidewaysVector.x*-1; 
+	DiagonalForwardRightVector.y = ForwardVector.y + SidewaysVector.y;
+
+	magnitude = sqrt(DiagonalForwardRightVector.x*DiagonalForwardRightVector.x+DiagonalForwardRightVector.y*DiagonalForwardRightVector.y);
+	DiagonalForwardRightVector.x = DiagonalForwardRightVector.x/magnitude;
+	DiagonalForwardRightVector.y = DiagonalForwardRightVector.y/magnitude;
+
+	DiagonalForwardLeftVector.x = ForwardVector.x + SidewaysVector.x; 
+	DiagonalForwardLeftVector.y = ForwardVector.y + SidewaysVector.y*-1;
+
+	magnitude = sqrt(DiagonalForwardLeftVector.x*DiagonalForwardLeftVector.x+DiagonalForwardLeftVector.y*DiagonalForwardLeftVector.y);
+	DiagonalForwardLeftVector.x = DiagonalForwardLeftVector.x/magnitude;
+	DiagonalForwardLeftVector.y = DiagonalForwardLeftVector.y/magnitude;
 }
 void PlayerObject::RotateRight()
 {

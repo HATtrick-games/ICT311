@@ -40,6 +40,11 @@ void Game::Update()
 	//cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
 	//cout<<"=================="<<Player->GetLookAt().x<<"\n";
 }
+void Game::MouseMove(int x, int y)
+{
+	//cout<<"Mouse Moving \n";
+	Player->MouseMove(x,y);
+}
 
 void Game::Input()
 {
@@ -49,10 +54,27 @@ void Game::Input()
 		Player->StopPlayer();
 	}
 
-	if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))
+
+	if(((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))&&((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100)))
+	{
+		Player->MovePlayer(5);
+	}
+	else if(((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))&&((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97)))
+	{
+		Player->MovePlayer(6);
+	}
+	else if(((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115))&&((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100)))
+	{
+		Player->MovePlayer(7);
+	}
+	else if(((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115))&&((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97)))
+	{
+		Player->MovePlayer(8);
+	}
+	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))
 	{
 		
-		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,-0.1));
+		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,-0.1));s
 		Player->MovePlayer(1);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115))
@@ -68,6 +90,7 @@ void Game::Input()
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))
 	{
 		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(-0.1,0,0));
+		cout<<"left";
 		Player->MovePlayer(3);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(101))

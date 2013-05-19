@@ -18,6 +18,7 @@ public:
 	void Init();
 	void Input();
 	void Update();
+	void MouseMove(int x, int y);
 
 	static boost::scoped_ptr<Game> * GetInstance();
 

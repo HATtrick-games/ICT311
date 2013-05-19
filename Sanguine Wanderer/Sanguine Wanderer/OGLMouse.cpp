@@ -43,6 +43,7 @@ double OGLMouse::GetScrollValue()
 
 void OGLMouse::MouseMotion(int x, int y)
 {
+	(*Game::GetInstance())->MouseMove(x,y);
 	mousePosition.x = x;
 	mousePosition.y = y;
 }
