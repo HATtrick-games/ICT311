@@ -36,7 +36,7 @@ public:
 	 * \param	fPosZ	The position z coordinate.
 	 */
 
-	CollisionBody(glm::vec3 Position);
+	CollisionBody(glm::vec3 Position, int type);
 
 	/**
 	 * \fn	void CollisionBody::ApplyForce(float x, float y, float z);

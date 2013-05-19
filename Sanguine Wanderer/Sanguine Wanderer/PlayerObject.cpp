@@ -27,7 +27,7 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 	Position = StartingLocation;
 	LookAtLocation = StartingLookAt;
 	UpVector = StartingUpVector;
-	cbCollisionObject = new CollisionBody(Position);
+	cbCollisionObject = new CollisionBody(Position, 1);
 	//CollisionBody* cbCollisionObject;
 
 }
@@ -41,7 +41,7 @@ void PlayerObject::StopPlayer()
 
 void PlayerObject::MouseMove(int x, int y)
 {
-	SetVectors();
+	//SetVectors();
 	bool thing = false;
 	if(y<80)
 	{
@@ -128,7 +128,7 @@ void PlayerObject::MouseMove(int x, int y)
 void PlayerObject::MovePlayer(int Direction)
 {
 	//cbCollisionObject->SetVelocity(2,0,0);
-	SetVectors();
+	//SetVectors();
 	float speed = 2;
 	switch (Direction)
 	{

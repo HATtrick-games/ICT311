@@ -26,7 +26,7 @@ private:
 	static boost::scoped_ptr<Game> pSingleton;
 	boost::scoped_ptr<Graphics> *pGraphicsEng;
 	PlayerObject* Player;
-
+	GameObject* Obj;
 	Graphics* GraphicsEng;
 
 	Mesh* Test;

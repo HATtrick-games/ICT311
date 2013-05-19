@@ -12,7 +12,7 @@ public:
 	glm::vec3 GetVelocity(); 
 	void SetVelocity(glm::vec2 Velocity);
 	void InitialiseCollisionBody(glm::vec3 Pos);
-	virtual void Update() = 0;
+	virtual void Update(){};// = 0;
 
 protected:
 	

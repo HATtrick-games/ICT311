@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CollisionBody.h"
 
-CollisionBody::CollisionBody(glm::vec3 passPosition)
+CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 {
 	trans.setIdentity();
 	trans.setOrigin(btVector3(0,0,0));
@@ -10,7 +10,16 @@ CollisionBody::CollisionBody(glm::vec3 passPosition)
 	CurrentPosition.z = passPosition.z;
 	swap = 0;
 	  
-	CreateRigidBody(passPosition, 1,1,1);
+	if(type == 1)
+	{
+		cout<<"type 1";
+	CreateRigidBody(passPosition, 2);
+	}
+	else
+	{
+		cout<<"type2";
+	CreateRigidBody(passPosition, 10,10,10);
+	}
 	//CreateRigidBody(10,10,10,1);
 	
 }
@@ -52,7 +61,7 @@ void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis,
 	std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
 	CollisionShape = new btBoxShape(btVector3(fXdis, fYdis, fZdis));
 	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(passPos.x,passPos.y,passPos.z)));
-    btScalar mass = 0.1;
+    btScalar mass = 0;
     btVector3 fallInertia(1,1,1);
     CollisionShape->calculateLocalInertia(mass,fallInertia);
     btRigidBody::btRigidBodyConstructionInfo ShapeRigidBodyCI(mass,MotionState,CollisionShape,fallInertia);

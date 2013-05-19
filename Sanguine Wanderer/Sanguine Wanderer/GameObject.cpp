@@ -14,7 +14,7 @@ glm::vec3 GameObject::GetPosition()
 
 void GameObject::InitialiseCollisionBody(glm::vec3 Pos)
 {
-	cbCollisionObject = new CollisionBody(Pos);
+	cbCollisionObject = new CollisionBody(Pos,1);
 }
 
 void GameObject::SetVelocity(glm::vec2 velocitypass)
