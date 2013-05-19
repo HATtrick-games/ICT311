@@ -23,6 +23,10 @@ public:
 	
 	virtual void MoveCamera(bool Type, glm::vec3 Direction) = 0;
 
+	virtual void SetCam(glm::vec3 location) = 0;
+
+	virtual void SetLook(glm::vec3 look) = 0;
+
 	//virtual void Idle() = 0; // Remove if not used.
 
 	//virtual void FPSTimer() = 0; // Remove if not used.

@@ -21,6 +21,8 @@
 class CollisionBody
 {
 public:
+	void Update();
+	int swap;
 	/**
 	 * \fn	CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ);
 	 *

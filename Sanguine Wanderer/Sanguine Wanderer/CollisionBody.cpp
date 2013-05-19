@@ -8,10 +8,26 @@ CollisionBody::CollisionBody(glm::vec3 passPosition)
 	CurrentPosition.x = passPosition.x;
 	CurrentPosition.y = passPosition.y;
 	CurrentPosition.z = passPosition.z;
-	
+	swap = 0;
 	  
-	CreateRigidBody(passPosition, 1);
+	CreateRigidBody(passPosition, 1,1,1);
 	//CreateRigidBody(10,10,10,1);
+	
+}
+void CollisionBody::Update()
+{
+	ThisRigidBody->setActivationState(DISABLE_DEACTIVATION);
+
+	if((ThisRigidBody->getLinearVelocity().getX() == 0 )&&(ThisRigidBody->getLinearVelocity().getY() == 0)&&(ThisRigidBody->getLinearVelocity().getZ() == 0))
+	{
+		/*ThisRigidBody->setLinearVelocity(btVector3(0,-0.00000001,0));
+		CollisionWorldSingleton::Instance()->StepWorld();
+		ThisRigidBody->setLinearVelocity(btVector3(0,0.00000001,0));
+		CollisionWorldSingleton::Instance()->StepWorld();
+		ThisRigidBody->setLinearVelocity(btVector3(0,0,0));
+		CollisionWorldSingleton::Instance()->StepWorld();*/
+	}
+	
 	
 }
 
@@ -25,7 +41,10 @@ void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fRadius)
     CollisionShape->calculateLocalInertia(mass,fallInertia);
     btRigidBody::btRigidBodyConstructionInfo ShapeRigidBodyCI(mass,MotionState,CollisionShape,fallInertia);
     ThisRigidBody = new btRigidBody(ShapeRigidBodyCI);
+	
+	
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
+	
 }
 
 void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis)
@@ -99,7 +118,7 @@ glm::vec3 CollisionBody::GetPosition()
 	CurrentPosition.y = trans.getOrigin().getY();
 	CurrentPosition.z = trans.getOrigin().getZ();
 	//cout<<CurrentPosition.x<<CurrentPosition.y<<CurrentPosition.z<<"\n";
-	//cout<<ThisRigidBody->getLinearVelocity().getX();
+	cout<<ThisRigidBody->getLinearVelocity().getX()<<"\n";
 	//cout<<ThisRigidBody->getLinearVelocity().getX();
 		
 	return CurrentPosition;

@@ -17,9 +17,9 @@ void CollisionWorldSingleton::AddRigidBody(btRigidBody* RigidBody)
 
 void CollisionWorldSingleton::StepWorld()
 {
-	stepped = true;
 	
-	DynamicsWorld->stepSimulation(1/1000.f, 100);
+	
+	DynamicsWorld->stepSimulation(1/120.f, 10);
 }
 
 void CollisionWorldSingleton::SetGravity(float y)

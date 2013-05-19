@@ -31,35 +31,51 @@ void Game::Display()
 
 void Game::Update()
 {
-	CollisionWorldSingleton::Instance()->StepWorld();
+	//Input();
 	Player->Update();
+	CollisionWorldSingleton::Instance()->StepWorld();
+	(*pGraphicsEng)->SetCam(Player->GetPosition());
+	(*pGraphicsEng)->SetLook(Player->GetLookAt());
 	
-	//cout<<Player->GetPosition().x<<Player->GetPosition().y<<Player->GetPosition().z<<"\n";
-	//cout<<"Updating \n";
+	cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
+	cout<<"=================="<<Player->GetLookAt().x<<"\n";
 }
-
 
 void Game::Input()
 {
 	if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))
 	{
-		(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,-0.1));
+		
+		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,-0.1));
 		Player->MovePlayer(1);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115))
 	{
-		(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,0.1));
+		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,0.1));
 		Player->MovePlayer(2);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100))
 	{
-		(*pGraphicsEng)->MoveCamera(true, glm::vec3(0.1,0,0));
+		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0.1,0,0));
 		Player->MovePlayer(4);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))
 	{
-		(*pGraphicsEng)->MoveCamera(true, glm::vec3(-0.1,0,0));
+		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(-0.1,0,0));
 		Player->MovePlayer(3);
+	}
+	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(101))
+	{
+		Player->RotateRight();
+	}
+	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(113))
+	{
+		Player->RotateLeft();
+	}
+	else
+	{
+		cout<<"NOTHING";
+		Player->StopPlayer();
 	}
 }
 
