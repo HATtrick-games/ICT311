@@ -78,6 +78,7 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIMovement.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionBody.h" />
     <ClInclude Include="CollisionHeightMap.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsFact.h" />
+    <ClInclude Include="HeightMap.h" />
     <ClInclude Include="IAsset.h" />
     <ClInclude Include="IKeyboard.h" />
     <ClInclude Include="IMouse.h" />
@@ -97,11 +99,15 @@
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TextureLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AIMovement.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionBody.cpp" />
     <ClCompile Include="CollisionHeightMap.cpp" />
@@ -110,6 +116,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsFact.cpp" />
+    <ClCompile Include="HeightMap.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="IKeyboard.cpp" />
     <ClCompile Include="IMouse.cpp" />

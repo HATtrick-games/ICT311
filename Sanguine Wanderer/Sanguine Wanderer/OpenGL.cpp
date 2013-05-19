@@ -216,6 +216,7 @@ void OpenGL::MoveCamera(bool Type, glm::vec3 Direction)
 	}
 }
 
+<<<<<<< HEAD
 void OpenGL::SetLook(glm::vec3 look)
 {
 	(*Camera::GetInstance())->SetLookAt(look);
@@ -227,8 +228,53 @@ void OpenGL::SetCam(glm::vec3 location)
 }
 
 void OpenGL::RenderTerrain(std::string Path, int Index)
+=======
+void OpenGL::RenderTerrain(std::string Path, int Index, Mesh * MeshObj)
+>>>>>>> 0ef7d61ded39b2ab35889e51e14f54d7285ca9f6
 {
-	(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
+	//(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
+	//std::getchar();
+	HeightMap H;
+	H.Load("heightmap.bmp");
+	H.ComputeFloats();
+
+	GLuint vao;
+	GLuint VBO;
+	GLuint Tex;
+
+	glGenVertexArrays(1, &vao);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &Tex);
+
+	glBindVertexArray(vao);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(H.GetNumberHeights()), H.GetMap(), GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, Tex);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(*MeshObj).GetNumTextures(), (*MeshObj).GetUVArray(), GL_STATIC_DRAW);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+
+	(*TextureLoader::GetInstance())->Load((*MeshObj).GetTexPath(), 1);
+
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,0),glm::vec3(1,1,1),glm::vec3(0,0,0));
+
+	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
+
+	
+	glUniform1i(UniTex, 0);
+	glBindTexture(GL_TEXTURE_2D,(*TextureLoader::GetInstance())->GetTexHandle(Index));
+	glActiveTexture(GL_TEXTURE0);
+
+	//glDrawArrays(GL_LINE_STRIP, 0, H.GetNumberHeights());
+
+	glutSwapBuffers();
+	glutPostRedisplay();
+
+	std::getchar();
 }
 
 void OpenGL::Start()

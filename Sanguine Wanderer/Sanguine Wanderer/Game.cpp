@@ -26,7 +26,7 @@ void Game::Display()
 {
 	//call display stuff
 	(*pGraphicsEng)->RenderModel(0, Test);
-	(*pGraphicsEng)->RenderTerrain("heightmap.bmp",1);
+	(*pGraphicsEng)->RenderTerrain("heightmap.bmp",1, Test);
 }
 
 void Game::Update()

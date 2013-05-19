@@ -30,6 +30,7 @@ void TextureLoader::Load(std::string Path, int index)
 	unsigned int iWidth = FreeImage_GetWidth(dib); // Get the image width and height
 	unsigned int iHeight = FreeImage_GetHeight(dib);
 	unsigned int iBPP = FreeImage_GetBPP(dib);
+	
 
 	// If somehow one of these failed (they shouldn't), return failure
 	if(bDataPointer == NULL || iWidth == 0 || iHeight == 0)
@@ -54,6 +55,12 @@ void TextureLoader::Load(std::string Path, int index)
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
+
+void TextureLoader::HeightMap(std::string filename)
+{
+	
+}
+
 // load a bitmap with freeimage
 bool TextureLoader::loadBitmap(string filename, FIBITMAP* &bitmap) {
     // get the file format
@@ -70,6 +77,7 @@ bool TextureLoader::loadBitmap(string filename, FIBITMAP* &bitmap) {
 
     return true;
 }
+/*
 // load a height map and normal map (computed from the height map) into opengl with freeimage
 bool TextureLoader::loadHeightAndNormalMaps(std::string filename, int Index, double zScale) {
     FIBITMAP *bitmap = NULL;
@@ -88,6 +96,10 @@ bool TextureLoader::loadHeightAndNormalMaps(std::string filename, int Index, dou
     int w = FreeImage_GetWidth(bitmap);
     int h = FreeImage_GetHeight(bitmap);
 
+	for(int i =0; i < w; i++)
+	{
+		std::cout << bits[i];
+	}
     // allocate a normal map
     FIBITMAP *normals = FreeImage_Allocate(w, h, 24);
     if (!normals) { // failed to alloc
