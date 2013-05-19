@@ -11,7 +11,9 @@ PlayerObject::PlayerObject()
 PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt, glm::vec3 StartingUpVector)
 {
 
-
+	ShowCursor(false); 
+	ShowCursor(false); 
+	
 	SetCursorPos(960, 540);
 		xorigin = 650;
 		yorigin = 480;
