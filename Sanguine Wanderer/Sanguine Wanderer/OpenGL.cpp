@@ -216,7 +216,7 @@ void OpenGL::MoveCamera(bool Type, glm::vec3 Direction)
 	}
 }
 
-<<<<<<< HEAD
+
 void OpenGL::SetLook(glm::vec3 look)
 {
 	(*Camera::GetInstance())->SetLookAt(look);
@@ -227,10 +227,9 @@ void OpenGL::SetCam(glm::vec3 location)
 	(*Camera::GetInstance())->SetLocation(location);
 }
 
-void OpenGL::RenderTerrain(std::string Path, int Index)
-=======
+
+
 void OpenGL::RenderTerrain(std::string Path, int Index, Mesh * MeshObj)
->>>>>>> 0ef7d61ded39b2ab35889e51e14f54d7285ca9f6
 {
 	//(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
 	//std::getchar();
@@ -274,7 +273,7 @@ void OpenGL::RenderTerrain(std::string Path, int Index, Mesh * MeshObj)
 	glutSwapBuffers();
 	glutPostRedisplay();
 
-	std::getchar();
+	//std::getchar();
 }
 
 void OpenGL::Start()

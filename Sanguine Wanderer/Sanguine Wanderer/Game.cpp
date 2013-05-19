@@ -26,7 +26,7 @@ void Game::Display()
 {
 	//call display stuff
 	(*pGraphicsEng)->RenderModel(0, Test);
-	(*pGraphicsEng)->RenderTerrain("heightmap.bmp",1, Test);
+	//(*pGraphicsEng)->RenderTerrain("heightmap.bmp",1, Test);
 }
 
 void Game::Update()
@@ -37,8 +37,8 @@ void Game::Update()
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
 	
-	cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
-	cout<<"=================="<<Player->GetLookAt().x<<"\n";
+	//cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
+	//cout<<"=================="<<Player->GetLookAt().x<<"\n";
 }
 
 void Game::Input()

@@ -118,7 +118,7 @@ glm::vec3 CollisionBody::GetPosition()
 	CurrentPosition.y = trans.getOrigin().getY();
 	CurrentPosition.z = trans.getOrigin().getZ();
 	//cout<<CurrentPosition.x<<CurrentPosition.y<<CurrentPosition.z<<"\n";
-	cout<<ThisRigidBody->getLinearVelocity().getX()<<"\n";
+	//cout<<ThisRigidBody->getLinearVelocity().getX()<<"\n";
 	//cout<<ThisRigidBody->getLinearVelocity().getX();
 		
 	return CurrentPosition;
