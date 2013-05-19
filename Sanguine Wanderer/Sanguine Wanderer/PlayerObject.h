@@ -24,8 +24,10 @@ protected:
 	
 private:
 	int xorigin;
+	int yorigin;
 	float angle;
-	float lx, lz;
+	float yangle;
+	float lx, lz,ly;
 	void SetVectors();
 	glm::vec2 ForwardVector;
 	glm::vec2 SidewaysVector;

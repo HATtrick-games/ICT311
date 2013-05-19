@@ -12,11 +12,16 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 {
 
 
-
+	SetCursorPos(960, 540);
+		xorigin = 650;
+		yorigin = 480;
 	angle = 0;
-	xorigin= 0;
+	yangle = 1.4;
+	//xorigin= 0;
+	//yorigin = 0;
 	lx = 0;
 	lz= -1;
+	ly = 0;
 	Position = StartingLocation;
 	LookAtLocation = StartingLookAt;
 	UpVector = StartingUpVector;
@@ -35,32 +40,81 @@ void PlayerObject::StopPlayer()
 void PlayerObject::MouseMove(int x, int y)
 {
 	SetVectors();
-	//cout<<x<<"\n";
+	bool thing = false;
+	if(y<80)
+	{
+		SetCursorPos(960, 540);
+		xorigin = 650;
+		yorigin = 510;
+		thing = true;
+	
+	}
+	else if(y>880)
+	{
+		SetCursorPos(960, 540);
+		xorigin = 650;
+		yorigin = 510;
+		thing = true;
+		//yangle = 2.8;
+		
+	}
 	if(x<100)
 	{
 		SetCursorPos(960, 540);
 		xorigin = 650;
+		yorigin = 510;
+		thing = true;
 	}
 	else if(x>1200)
 	{
 		SetCursorPos(960, 540);
 		xorigin = 650;
+		yorigin = 510;
+		thing = true;
 	}
 
-	if(x>xorigin)
+	if(thing == false)
+	{
+
+	if(y<=yorigin)
+	{
+	//cout<<"UP \n";
+	if(yangle + 0.001<2.8)
+	{
+	yangle += 0.001f*-(y-yorigin);
+	//cout<<yangle<<"\n";
+	}
+	ly = -cos(yangle);
+	
+	}
+	else if(y > yorigin)
+	{
+	//cout<<"DOWN \n ";
+	if(yangle -0.001f > 0)
+	{
+	
+	yangle -= 0.001f*(y-yorigin);
+	//cout<<yangle<<"\n";
+	ly = -cos(yangle);
+	}
+	}
+
+	if((x>xorigin))
 	{
 	angle += 0.001f*(x-xorigin);
 	lx = sin(angle);
 	lz = -cos(angle);
 	}
-	else
+	else if(x < xorigin)
 	{
-		angle -= 0.001f*-(x-xorigin);
+	angle -= 0.001f*-(x-xorigin);
 	lx = sin(angle);
 	lz = -cos(angle);
+	
 	}
 	xorigin = x;
-	
+	yorigin = y;
+	}
 	
 	//lx = sin(angle + ((x - xorigin) * 0.001f));
 	//lz = -cos(angle + ((x - xorigin) * 0.001f));
@@ -184,7 +238,7 @@ void PlayerObject::RotateLeft()
 
 glm::vec3 PlayerObject::GetLookAt()
 {
-	return glm::vec3(Position.x+lx,Position.y,Position.z+lz);
+	return glm::vec3(Position.x+lx,Position.y+ly,Position.z+lz);
 }
 
 glm::vec3 PlayerObject::GetUpVector()
@@ -196,7 +250,7 @@ void PlayerObject::Update()
 {
 	cbCollisionObject->Update();
 	Position = cbCollisionObject->GetPosition();
-	LookAtLocation = glm::vec3(Position.x+lx,Position.y,Position.z+lz);
+	LookAtLocation = glm::vec3(Position.x+lx,Position.y+ly,Position.z+lz);
 	UpVector = glm::vec3(0,1,0);
 	SetVectors();
 
