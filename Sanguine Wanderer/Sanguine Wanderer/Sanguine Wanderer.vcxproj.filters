@@ -117,6 +117,9 @@
     <ClInclude Include="AIMovement.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
+    <ClInclude Include="GroundObject.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -187,6 +190,9 @@
     </ClCompile>
     <ClCompile Include="AIMovement.cpp">
       <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundObject.cpp">
+      <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@
 #include "IKeyboard.h"
 #include "PlayerObject.h"
 #include "CollisionWorldSingleton.h"
+#include "GroundObject.h"
 
 class Game
 {
@@ -27,6 +28,8 @@ private:
 	boost::scoped_ptr<Graphics> *pGraphicsEng;
 	PlayerObject* Player;
 	GameObject* Obj;
+	GroundObject* plane;
+
 	Graphics* GraphicsEng;
 
 	Mesh* Test;

@@ -88,6 +88,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsFact.h" />
+    <ClInclude Include="GroundObject.h" />
     <ClInclude Include="HeightMap.h" />
     <ClInclude Include="IAsset.h" />
     <ClInclude Include="IKeyboard.h" />
@@ -116,6 +117,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsFact.cpp" />
+    <ClCompile Include="GroundObject.cpp" />
     <ClCompile Include="HeightMap.cpp" />
     <ClCompile Include="IAsset.cpp" />
     <ClCompile Include="IKeyboard.cpp" />

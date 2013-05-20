@@ -12,7 +12,8 @@ public:
 	void RotateRight();
 	void RotateLeft();
 	void MouseMove(int x, int y);
-
+	void Jump();
+	
 	glm::vec3 GetLookAt();
 	glm::vec3 GetUpVector();
 
@@ -23,8 +24,12 @@ protected:
 
 	
 private:
+	int screenwidth;
+	int screenheight;
 	int xorigin;
 	int yorigin;
+	int windowx;
+	int windowy;
 	float angle;
 	float yangle;
 	float lx, lz,ly;

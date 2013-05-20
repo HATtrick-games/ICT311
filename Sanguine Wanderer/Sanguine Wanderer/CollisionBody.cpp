@@ -15,6 +15,10 @@ CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 		cout<<"type 1";
 	CreateRigidBody(passPosition, 2);
 	}
+	else if(type == 3)
+	{
+		createplane();
+	}
 	else
 	{
 		cout<<"type2";
@@ -23,6 +27,12 @@ CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 	//CreateRigidBody(10,10,10,1);
 	
 }
+
+float CollisionBody::ReturnYVelocity()
+{
+	return ThisRigidBody->getLinearVelocity().getY();
+}
+
 void CollisionBody::Update()
 {
 	ThisRigidBody->setActivationState(DISABLE_DEACTIVATION);
@@ -54,6 +64,16 @@ void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fRadius)
 	
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
 	
+}
+
+void CollisionBody::createplane()
+{
+	CollisionShape = new btStaticPlaneShape(btVector3(0,1,0),1);
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-2,0)));
+	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI2(0,MotionState,CollisionShape,btVector3(0,0,0));
+	ThisRigidBody = new btRigidBody(groundRigidBodyCI2);
+
+	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
 }
 
 void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis)
@@ -127,7 +147,7 @@ glm::vec3 CollisionBody::GetPosition()
 	CurrentPosition.y = trans.getOrigin().getY();
 	CurrentPosition.z = trans.getOrigin().getZ();
 	//cout<<CurrentPosition.x<<CurrentPosition.y<<CurrentPosition.z<<"\n";
-	//cout<<ThisRigidBody->getLinearVelocity().getX()<<"\n";
+	//cout<<ThisRigidBody->getLinearVelocity().getY()<<"\n";
 	//cout<<ThisRigidBody->getLinearVelocity().getX();
 		
 	return CurrentPosition;

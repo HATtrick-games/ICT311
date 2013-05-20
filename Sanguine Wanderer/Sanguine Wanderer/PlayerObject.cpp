@@ -1,6 +1,12 @@
 #include "stdafx.h"
 #include "PlayerObject.h"
 #include <Windows.h>
+#include "wtypes.h"
+#include <iostream>
+//using namespace std;
+
+
+
 
 PlayerObject::PlayerObject()
 {
@@ -10,13 +16,25 @@ PlayerObject::PlayerObject()
 
 PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt, glm::vec3 StartingUpVector)
 {
+	//1280 960
+
+	screenwidth = 0;
+	screenheight = 0;
+	screenwidth = GetSystemMetrics(SM_CXSCREEN);
+	screenheight = GetSystemMetrics(SM_CYSCREEN);
+	
+	windowx = (screenwidth/2) - 300 - 5;
+	windowy = (screenheight/2)-30;
+	xorigin = windowx;
+	yorigin = windowx;
+	 cout << windowx << '\n' << windowy << '\n';
+
 
 	ShowCursor(false); 
 	ShowCursor(false); 
 	
 	SetCursorPos(960, 540);
-		xorigin = 650;
-		yorigin = 480;
+		
 	angle = 0;
 	yangle = 1.4;
 	//xorigin= 0;
@@ -32,6 +50,15 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 
 }
 
+void PlayerObject::Jump()
+{
+	//cout<<"JUMP";
+	if((cbCollisionObject->ReturnYVelocity() <=0)&&(cbCollisionObject->ReturnYVelocity()>-0.00000000000000000001))
+	{
+	cbCollisionObject->ApplyForce(0,5,0);
+	}
+}
+
 void PlayerObject::StopPlayer()
 {
 	
@@ -42,36 +69,37 @@ void PlayerObject::StopPlayer()
 void PlayerObject::MouseMove(int x, int y)
 {
 	//SetVectors();
+	//cout<<"x ="<<x<<"\n"<<"y = "<<y<<"\n";
 	bool thing = false;
 	if(y<80)
 	{
-		SetCursorPos(960, 540);
-		xorigin = 650;
-		yorigin = 510;
+		SetCursorPos(screenwidth/2, screenheight/2);
+		xorigin = windowx;
+		yorigin = windowy;
 		thing = true;
 	
 	}
 	else if(y>880)
 	{
-		SetCursorPos(960, 540);
-		xorigin = 650;
-		yorigin = 510;
+		SetCursorPos(screenwidth/2, screenheight/2);
+		xorigin = windowx;
+		yorigin = windowy;
 		thing = true;
 		//yangle = 2.8;
 		
 	}
 	if(x<100)
 	{
-		SetCursorPos(960, 540);
-		xorigin = 650;
-		yorigin = 510;
+		SetCursorPos(screenwidth/2, screenheight/2);
+		xorigin = windowx;
+		yorigin = windowy;
 		thing = true;
 	}
 	else if(x>1200)
 	{
-		SetCursorPos(960, 540);
-		xorigin = 650;
-		yorigin = 510;
+		SetCursorPos(screenwidth/2, screenheight/2);
+		xorigin = windowx;
+		yorigin = windowy;
 		thing = true;
 	}
 

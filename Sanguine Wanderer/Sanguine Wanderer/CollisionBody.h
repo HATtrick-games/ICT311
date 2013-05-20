@@ -21,6 +21,7 @@
 class CollisionBody
 {
 public:
+	void createplane();
 	void Update();
 	int swap;
 	/**
@@ -81,7 +82,8 @@ public:
 	 */
 	void SetXVelocity(float velocityX);
 	void SetZVelocity(float velocityY);
-	
+	float ReturnYVelocity();
+
 
 
 	void SetVelocityGravity(float velocityX, float veclocityZ);
