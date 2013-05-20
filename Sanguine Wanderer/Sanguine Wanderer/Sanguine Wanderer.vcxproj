@@ -79,12 +79,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIMovement.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionBody.h" />
     <ClInclude Include="CollisionHeightMap.h" />
     <ClInclude Include="CollisionWorldSingleton.h" />
     <ClInclude Include="CommonFunctions.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameAssetFactory.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="GraphicsFact.h" />
@@ -109,12 +111,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIMovement.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionBody.cpp" />
     <ClCompile Include="CollisionHeightMap.cpp" />
     <ClCompile Include="CollisionWorldSingleton.cpp" />
     <ClCompile Include="CommonFunctions.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameAssetFactory.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsFact.cpp" />
     <ClCompile Include="GroundObject.cpp" />
