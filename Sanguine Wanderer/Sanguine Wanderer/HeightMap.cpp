@@ -118,6 +118,10 @@ void HeightMap::Load(std::string filename)
 	NumberTex = total*2*3;
 }
 
+float HeightMap::GetY(int x, int z)
+{
+	return Heights[(x) +(z*59)];
+}
 
 float* HeightMap::GetMap()
 {

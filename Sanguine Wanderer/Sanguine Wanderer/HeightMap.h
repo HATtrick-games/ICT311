@@ -18,6 +18,7 @@ public:
 	float * GetUVW();
 	int GetNumberHeights();
 	int GetNumberTex();
+	float GetY(int x, int z);
 private:
 	float** pHeights;
 	float* Map;
