@@ -18,6 +18,7 @@
 #include <map>
 #include <math.h>
 #include <cmath>
+#include <limits>
 #include <boost\scoped_ptr.hpp>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>

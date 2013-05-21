@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "IAsset.h"
+#include "CommonFunctions.h"
 
 class Mesh : public IAsset
 {
@@ -17,6 +18,12 @@ public:
 
 	float * GetVertexArray();
 	float * GetUVArray();
+	float GetMaxX();
+	float GetMaxY();
+	float GetMaxZ();
+	float GetMinX();
+	float GetMinY();
+	float GetMinZ();
 
 	std::string GetTexPath();
 
@@ -29,6 +36,13 @@ private:
 	int numTriangles;
 	int numVert;
 	int numTextures;
+
+	float MaxX;
+	float MaxY;
+	float MaxZ;
+	float MinX;
+	float MinY;
+	float MinZ;
 
 	std::string TexPath;
 };

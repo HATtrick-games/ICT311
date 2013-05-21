@@ -185,7 +185,7 @@ void OpenGL::RenderModel(int Index, Mesh * MeshObj)
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glBindVertexArray(0);
-	glUseProgram(0);	
+	glUseProgram(0);
 }
 
 void OpenGL::Reshape (int w, int h)
@@ -283,7 +283,7 @@ void OpenGL::RenderTerrain(std::string Path, int Index, HeightMap * Terrain)
 	
 		(*TextureLoader::GetInstance())->Load("grass.bmp", Index);
 	}
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,-2,0),glm::vec3(5,5,5),glm::vec3(0,180,0));
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,0),glm::vec3(5,5,5),glm::vec3(0,180,0));
 
 	glBindVertexArray(VAO[Index]);
 	glEnableVertexAttribArray(0);
@@ -301,6 +301,7 @@ void OpenGL::RenderTerrain(std::string Path, int Index, HeightMap * Terrain)
 	glDisableVertexAttribArray(1);
 	glBindVertexArray(0);
 	glUseProgram(0);
+
 }
 
 void OpenGL::Start()

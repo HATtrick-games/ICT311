@@ -19,13 +19,15 @@ void Game::Init()
 	(*pGraphicsEng)->Initialise();
 	(*Input::GetInstance())->SetInputMethod("OPENGL");
 
+		Test2 = new Mesh;
+	Test2->SetFile("./data/Skybox.obj");
+	Test2->Load();
+
 	Test = new Mesh;
 	Test->SetFile("./data/housebest.obj");
 	Test->Load();
 
-	Test2 = new Mesh;
-	Test2->SetFile("./data/Skybox.obj");
-	Test2->Load();
+
 
 	Terrain = new HeightMap;
 	Terrain->Load("heightmap2.bmp");

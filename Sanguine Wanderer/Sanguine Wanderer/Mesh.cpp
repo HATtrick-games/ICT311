@@ -4,6 +4,12 @@
 
 Mesh::Mesh(void)
 {
+	MinX = std::numeric_limits<float>::max();
+	MinY = std::numeric_limits<float>::max();
+	MinZ = std::numeric_limits<float>::max();
+	MaxX = std::numeric_limits<float>::min();
+	MaxY = std::numeric_limits<float>::min();
+	MaxZ = std::numeric_limits<float>::min();
 }
 
 
@@ -57,8 +63,14 @@ void Mesh::InitMesh(const aiScene* pScene, const std::string& sFilepath)
 			aiVector3D pos = Mesh->mVertices[face.mIndices[j]];
 			memcpy(VertexArray,&pos,sizeof(float)*3);
 			VertexArray+=3;
+
+			
+			//std::cout << VertexArray[j*3] << " " << VertexArray[j*3+1] <<  std::endl;
+	//std::getchar();
 		}
 	}
+
+
  
 	UVArray-=Mesh->mNumFaces*3*2;
 	NormalArray-=Mesh->mNumFaces*3*3;
@@ -66,6 +78,19 @@ void Mesh::InitMesh(const aiScene* pScene, const std::string& sFilepath)
 
 	numTextures = Mesh->mNumFaces*3*2;
 	numVert = Mesh->mNumFaces*3*3;
+
+		
+	for(int i =0; i < Mesh->mNumFaces*3*3; i++)
+	{
+		MaxX = CommonFunctions::GetMaximum(MaxX, VertexArray[i]);
+		MinX = CommonFunctions::GetMinimum(MinX, VertexArray[i]);
+		i++;
+		MaxY = CommonFunctions::GetMaximum(MaxY, VertexArray[i]);
+		MinY = CommonFunctions::GetMinimum(MinY, VertexArray[i]);
+		i++;
+		MaxZ = CommonFunctions::GetMaximum(MaxZ, VertexArray[i]); 
+		MinZ = CommonFunctions::GetMinimum(MinZ, VertexArray[i]);	
+	}
 
 	aiString path;
 	aiReturn texFound = pScene->mMaterials[1]->GetTexture(aiTextureType_DIFFUSE, 0, &path);
@@ -94,4 +119,29 @@ float * Mesh::GetVertexArray()
 float * Mesh::GetUVArray()
 {
 	return UVArray;
+}
+
+float Mesh::GetMaxX()
+{
+	return MaxX;
+}
+float Mesh::GetMinX()
+{
+	return MinX;
+}
+float Mesh::GetMaxY()
+{
+	return MaxY;
+}
+float Mesh::GetMinY()
+{
+	return MinY;
+}
+float Mesh::GetMaxZ()
+{
+	return MaxZ;
+}
+float Mesh::GetMinZ()
+{
+	return MinZ;
 }
