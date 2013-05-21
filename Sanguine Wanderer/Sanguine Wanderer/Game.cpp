@@ -60,7 +60,7 @@ void Game::Init()
 	cout<<"\n Data = "<<v[60*60]<<"\n";
 	GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
 	//GroundCollide->Translate(32.5*20,30,27.5*20);
-	//GroundCollide->Scale(20,20,20);
+	GroundCollide->Scale(1,1,1);
 
 	(*pGraphicsEng)->Start();
 	
