@@ -51,7 +51,7 @@ private:
 		 btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
 		 btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
 		 DynamicsWorld = new btDiscreteDynamicsWorld(dispatcher,broadphase,solver,collisionConfiguration);
-		 DynamicsWorld->setGravity(btVector3(0,-7,0));
+		 DynamicsWorld->setGravity(btVector3(0,-0.3,0));
 		 stepped = false;
 	}
 

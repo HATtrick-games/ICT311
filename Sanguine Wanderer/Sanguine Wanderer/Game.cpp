@@ -23,6 +23,25 @@ void Game::Init()
 	TestProp = new GameObject;
 	Knight = new GameObject;
 
+
+	/****PROPS LIST ******/
+
+	GameObject Rock1;
+	PropObjects.push_back(new GameObject());
+	PropObjects.push_back(new GameObject());
+	
+	list<GameObject*>::iterator i;
+
+	for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
+	{
+
+
+	}
+
+
+
+	/*********END PROPS LIST ******/
+
 	Skybox->SetMesh(new Mesh);
 	(Skybox->GetMesh())->SetFile("./data/Skybox.obj");
 	(Skybox->GetMesh())->Load();

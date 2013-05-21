@@ -11,6 +11,7 @@
 #include "GroundObject.h"
 #include "PropObject.h"
 #include "CollisionHeightMap.h"
+#include <list>
 
 class Game
 {
@@ -36,6 +37,7 @@ private:
 
 	Graphics* GraphicsEng;
 
+	list<GameObject*> PropObjects;
 	GameObject * TestProp;
 	GameObject * Skybox;
 	GameObject * Knight;
