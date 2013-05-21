@@ -5,7 +5,7 @@ boost::scoped_ptr<Game> Game::pSingleton(NULL);
 
 Game::Game()
 {
-	Player = new PlayerObject(glm::vec3(0,3,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
+	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
 	//Obj = new GameObject();
 	//Obj->InitialiseCollisionBody(glm::vec3(0,3,-50));
 	plane = new GroundObject();
@@ -36,6 +36,7 @@ void Game::Init()
 	TestProp->SetPosition(glm::vec3(0,0,-25));
 	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
 	TestProp->SetRotation(glm::vec3(0,180,0));
+//<<<<<<< HEAD
 
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
@@ -44,9 +45,23 @@ void Game::Init()
 	Knight->SetScale(glm::vec3(0.05,0.05,0.05));
 	Knight->SetRotation(glm::vec3(0,0,0));
 
+//=======
+	TestProp->InitialiseCollisionBody();
+	//Skybox->InitialiseCollisionBody();
+//>>>>>>> stuff
 
 	Terrain = new HeightMap;
 	Terrain->Load("heightmap2.bmp");
+	//std::vector<ValueType> vec(a, a + n);
+	std::vector<float> v(Terrain->GetHeights(), Terrain->GetHeights() + Terrain->GetNumberHeights());
+	
+	//&data[0],btScalar(1),btScalar(-100),btScalar(100),1,PHY_FLOAT,false
+	cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
+	cout<<"\n Data = "<<v[60*60]<<"\n";
+	GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
+	GroundCollide->Translate(29.5,2,29.5);
+	GroundCollide->Scale(5,5,5);
+
 	(*pGraphicsEng)->Start();
 	
 
@@ -61,9 +76,14 @@ void Game::Display()
 	
 	//
 	(*pGraphicsEng)->RenderTerrain(Terrain);
+//<<<<<<< HEAD
 	(*pGraphicsEng)->RenderModel(TestProp);
 	(*pGraphicsEng)->RenderModel(Skybox);
 	(*pGraphicsEng)->RenderModel(Knight);
+//=======
+	//(*pGraphicsEng)->RenderModel(TestProp);
+	//(*pGraphicsEng)->RenderModel(Skybox);
+//>>>>>>> stuff
 }
 
 void Game::Update()

@@ -10,14 +10,26 @@ GameObject::GameObject()
 
 glm::vec3 GameObject::GetPosition()
 {
-	//Position = cbCollisionObject->GetPosition()-MeshCenter;
+	//Position = (cbCollisionObject->GetPosition()-MeshCenter);
+	
 	return Position;
 }
 
-void GameObject::InitialiseCollisionBody(glm::vec3 Pos)
+void GameObject::InitialiseCollisionBody()
 {
+	
+	MeshCenter.x = MeshCenter.x*Scale.x;
+	MeshCenter.y = MeshCenter.y*Scale.y;
+	MeshCenter.z = MeshCenter.z*Scale.z;
+	MeshCenter.x += Position.x;
+	MeshCenter.y += Position.y;
+	MeshCenter.z += Position.z;
 
-	cbCollisionObject = new CollisionBody(Pos+MeshCenter,MeshCenter.x,MeshCenter.y, MeshCenter.z);
+	
+	cout<<"\n  DISTANCES=="<<((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)<<"=="<<((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)<<"=="<<((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)<<"\n";
+	cout<<"  \n  MeshCenter"<<MeshCenter.x<<"--/"<<MeshCenter.y<<"--/"<<MeshCenter.z<<"\n";
+	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2);
+	//cbCollisionObject->Rotate(180);
 }
 
 void GameObject::SetVelocity(glm::vec2 velocitypass)
@@ -27,11 +39,9 @@ void GameObject::SetVelocity(glm::vec2 velocitypass)
 
 void GameObject::SetMesh(Mesh* passmesh)
 {
-
 	ObjectMesh = passmesh;
-	MeshCenter.x = (ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())/2;
-	MeshCenter.y = (ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())/2;
-	MeshCenter.z = (ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())/2;
+	
+	
 }
 
 Mesh* GameObject::GetMesh()
@@ -41,11 +51,16 @@ Mesh* GameObject::GetMesh()
 
 void GameObject::SetPosition(glm::vec3 NewPos)
 {
+	MeshCenter.x = (((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())/2)+ObjectMesh->GetMinX());
+	MeshCenter.y = (((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())/2)+ObjectMesh->GetMinY());
+	MeshCenter.z = (((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())/2)+ObjectMesh->GetMinZ());
 	Position = NewPos;
+	cout<<"\n ====="<<Position.x<<"    "<<Position.y<<"  "<<Position.z<<"\n";
 }
 
 void GameObject::SetScale(glm::vec3 NewScale)
 {
+	
 	Scale = NewScale;
 }
 

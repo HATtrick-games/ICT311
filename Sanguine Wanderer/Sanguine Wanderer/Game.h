@@ -10,6 +10,7 @@
 #include "HeightMap.h"
 #include "GroundObject.h"
 #include "PropObject.h"
+#include "CollisionHeightMap.h"
 
 class Game
 {
@@ -31,6 +32,7 @@ private:
 	PlayerObject* Player;
 	GameObject* Obj;
 	GroundObject* plane;
+	CollisionHeightMap* GroundCollide;
 
 	Graphics* GraphicsEng;
 

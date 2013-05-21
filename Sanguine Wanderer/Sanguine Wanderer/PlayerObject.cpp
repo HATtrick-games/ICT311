@@ -10,7 +10,7 @@
 
 PlayerObject::PlayerObject()
 {
-
+	Health = 100;
 
 }
 
@@ -53,10 +53,10 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 void PlayerObject::Jump()
 {
 	//cout<<"JUMP";
-	if((cbCollisionObject->ReturnYVelocity() <=0)&&(cbCollisionObject->ReturnYVelocity()>-0.00000000000000000001))
-	{
-	cbCollisionObject->ApplyForce(0,7,0);
-	}
+	//if((cbCollisionObject->ReturnYVelocity() <=0)&&(cbCollisionObject->ReturnYVelocity()>-0.00000000000000000001))
+	//{
+	cbCollisionObject->ApplyForce(0,1,0);
+	//}
 }
 
 void PlayerObject::StopPlayer()
@@ -283,5 +283,6 @@ void PlayerObject::Update()
 	LookAtLocation = glm::vec3(Position.x+lx,Position.y+ly,Position.z+lz);
 	UpVector = glm::vec3(0,1,0);
 	SetVectors();
+	//cout<<Position.x<<" ----   "<<Position.y<<"----  "<<Position.z<<"\n";
 
 }

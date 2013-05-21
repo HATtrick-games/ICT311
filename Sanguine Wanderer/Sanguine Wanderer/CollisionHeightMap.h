@@ -95,6 +95,8 @@ private:
 	/**
 	 * \brief	The data.
 	 */
-
+	btHeightfieldTerrainShape* heightfield;
+	btRigidBody* HeightMap;
+	float* HeightArray;
 	std::vector<float> data;
 };

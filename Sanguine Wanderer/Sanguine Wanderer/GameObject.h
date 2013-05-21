@@ -24,7 +24,7 @@ public:
 	void ToggleIsAnimating();
 
 	Mesh* GetMesh();
-	virtual void InitialiseCollisionBody(glm::vec3 Pos);
+	virtual void InitialiseCollisionBody();
 	virtual void Update(){};// = 0;
 
 protected:

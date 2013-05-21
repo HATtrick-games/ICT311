@@ -12,6 +12,28 @@ CollisionBody::CollisionBody(glm::vec3 passPosition,float length, float width, f
 	CreateRigidBody(passPosition, length,width,height);
 }
 
+/*
+btRigidBody * rigidBody = //...
+btTransform tr;
+tr.setIdentity();
+btQuaternion quat;
+quat.setEuler(yaw,pitch,roll); //or quat.setEulerZYX depending on the ordering you want
+tr.setRotation(quat);*/
+
+//rigidBody->setCenterOfMassTransform(tr);
+
+void CollisionBody::Rotate(float degrees)
+{
+	cout<<"ROTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATE";
+	ThisRigidBody->getMotionState()->getWorldTransform(trans);
+	btQuaternion quat;
+	quat.setEuler(180,0,0);
+	trans.setRotation(btQuaternion(0,1,0,3.141));
+	cout<<"\n ROTATION === "<<trans.getRotation().getX()<<"=="<<trans.getRotation().getY()<<"=="<<trans.getRotation().getZ()<<"=="<<trans.getRotation().getW();
+	ThisRigidBody->setCenterOfMassTransform(trans);
+
+}
+
 CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 {
 	trans.setIdentity();
@@ -89,6 +111,7 @@ void CollisionBody::createplane()
 
 void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis)
 {
+
 	std::cout<<"MAKINGGGGGGGGGGGGGGGGGGGG";
 	CollisionShape = new btBoxShape(btVector3(fXdis, fYdis, fZdis));
 	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(passPos.x,passPos.y,passPos.z)));

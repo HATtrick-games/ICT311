@@ -10,6 +10,9 @@ public:
 
 	void Load(std::string filename);
 	void SetHeight(int x, int z, float h);
+	int GetWidth(){return w;};
+	int GetLength(){return h;};
+	float* GetHeights(){return Heights;};
 
 	float * GetMap();
 	float * GetUVW();

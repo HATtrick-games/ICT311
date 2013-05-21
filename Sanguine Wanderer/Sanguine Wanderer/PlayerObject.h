@@ -13,6 +13,9 @@ public:
 	void RotateLeft();
 	void MouseMove(int x, int y);
 	void Jump();
+	int GetHealth(){return Health;};
+	void SetHealth(int set){Health = set;};
+
 	
 	glm::vec3 GetLookAt();
 	glm::vec3 GetUpVector();
@@ -24,6 +27,7 @@ protected:
 
 	
 private:
+	int Health;
 	int screenwidth;
 	int screenheight;
 	int xorigin;
