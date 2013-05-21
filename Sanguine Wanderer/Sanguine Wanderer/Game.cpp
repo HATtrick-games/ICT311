@@ -36,7 +36,6 @@ void Game::Init()
 	TestProp->SetScale(glm::vec3(0.1,0.1,0.1));
 	TestProp->SetRotation(glm::vec3(0,180,0));
 
-
 	Terrain = new HeightMap;
 	Terrain->Load("heightmap2.bmp");
 	(*pGraphicsEng)->Start();
