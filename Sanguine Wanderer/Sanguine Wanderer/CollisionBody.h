@@ -38,6 +38,7 @@ public:
 	 */
 
 	CollisionBody(glm::vec3 Position, int type);
+	CollisionBody(glm::vec3 Position, float length, float width, float height);
 
 	/**
 	 * \fn	void CollisionBody::ApplyForce(float x, float y, float z);

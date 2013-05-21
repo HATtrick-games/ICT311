@@ -21,3 +21,13 @@ void GameObject::SetVelocity(glm::vec2 velocitypass)
 {
 	cbCollisionObject->SetVelocityGravity(velocitypass.x,velocitypass.y);
 }
+
+void GameObject::SetMesh(Mesh* passmesh)
+{
+	ObjectMesh = passmesh;
+}
+
+Mesh* GameObject::GetMesh()
+{
+	return ObjectMesh;
+}

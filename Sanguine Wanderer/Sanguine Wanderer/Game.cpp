@@ -6,8 +6,8 @@ boost::scoped_ptr<Game> Game::pSingleton(NULL);
 Game::Game()
 {
 	Player = new PlayerObject(glm::vec3(0,3,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
-	Obj = new GameObject();
-	Obj->InitialiseCollisionBody(glm::vec3(0,3,-50));
+	//Obj = new GameObject();
+	//Obj->InitialiseCollisionBody(glm::vec3(0,3,-50));
 	plane = new GroundObject();
 	plane->InitialiseCollisionBody(glm::vec3(0,0,0));
 }

@@ -1,6 +1,17 @@
 #include "stdafx.h"
 #include "CollisionBody.h"
 
+CollisionBody::CollisionBody(glm::vec3 passPosition,float length, float width, float height)
+{
+	trans.setIdentity();
+	trans.setOrigin(btVector3(0,0,0));
+	CurrentPosition.x = passPosition.x;
+	CurrentPosition.y = passPosition.y;
+	CurrentPosition.z = passPosition.z;
+	swap = 0;
+	CreateRigidBody(passPosition, length,width,height);
+}
+
 CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 {
 	trans.setIdentity();

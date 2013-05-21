@@ -101,6 +101,7 @@
     <ClInclude Include="OGLMouse.h" />
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="PlayerObject.h" />
+    <ClInclude Include="PropObject.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="State.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="OGLMouse.cpp" />
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="PlayerObject.cpp" />
+    <ClCompile Include="PropObject.cpp" />
     <ClCompile Include="Sanguine Wanderer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="stdafx.cpp">
