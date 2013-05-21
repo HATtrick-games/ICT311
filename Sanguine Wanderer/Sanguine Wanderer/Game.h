@@ -8,6 +8,7 @@
 #include "PlayerObject.h"
 #include "CollisionWorldSingleton.h"
 #include "HeightMap.h"
+#include "GroundObject.h"
 
 class Game
 {
@@ -19,6 +20,7 @@ public:
 	void Init();
 	void Input();
 	void Update();
+	void MouseMove(int x, int y);
 
 	static boost::scoped_ptr<Game> * GetInstance();
 
@@ -26,6 +28,8 @@ private:
 	static boost::scoped_ptr<Game> pSingleton;
 	boost::scoped_ptr<Graphics> *pGraphicsEng;
 	PlayerObject* Player;
+	GameObject* Obj;
+	GroundObject* plane;
 
 	Graphics* GraphicsEng;
 

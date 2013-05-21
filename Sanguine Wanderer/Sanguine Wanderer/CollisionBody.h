@@ -21,6 +21,9 @@
 class CollisionBody
 {
 public:
+	void createplane();
+	void Update();
+	int swap;
 	/**
 	 * \fn	CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ);
 	 *
@@ -34,7 +37,7 @@ public:
 	 * \param	fPosZ	The position z coordinate.
 	 */
 
-	CollisionBody(glm::vec3 Position);
+	CollisionBody(glm::vec3 Position, int type);
 
 	/**
 	 * \fn	void CollisionBody::ApplyForce(float x, float y, float z);
@@ -79,7 +82,8 @@ public:
 	 */
 	void SetXVelocity(float velocityX);
 	void SetZVelocity(float velocityY);
-	
+	float ReturnYVelocity();
+
 
 
 	void SetVelocityGravity(float velocityX, float veclocityZ);

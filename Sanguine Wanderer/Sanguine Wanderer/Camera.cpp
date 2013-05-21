@@ -43,6 +43,16 @@ void Camera::CreateCamera()
 	
 }
 
+void Camera::SetLocation(glm::vec3 location)
+{
+	CameraLoc = location;
+}
+
+void Camera::SetLookAt(glm::vec3 lookat)
+{
+	CameraLook = lookat;
+}
+
 void Camera::SetCameraLoc(glm::vec3 movementVec)
 {
 	//CameraLoc += movementVec;

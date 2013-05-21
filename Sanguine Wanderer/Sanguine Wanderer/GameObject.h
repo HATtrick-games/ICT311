@@ -9,15 +9,16 @@ class GameObject
 public:
 	GameObject();
 	glm::vec3 GetPosition();
-	virtual void Update() = 0;
+	glm::vec3 GetVelocity(); 
+	void SetVelocity(glm::vec2 Velocity);
+	virtual void InitialiseCollisionBody(glm::vec3 Pos);
+	virtual void Update(){};// = 0;
 
 protected:
+	
 	CollisionBody* cbCollisionObject;
 	glm::vec3 Position;
+	glm::vec3 Velocity;
 
 private:
-	
-	
-	
-
 };

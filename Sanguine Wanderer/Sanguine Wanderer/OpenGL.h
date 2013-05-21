@@ -31,6 +31,8 @@ public:
 
 	GLuint CreateProgram(const std::vector<GLuint> &shaderList);
 
+	void SetCam(glm::vec3 location);
+	void SetLook(glm::vec3 look);
 	void MoveCamera(bool Type, glm::vec3 Direction);
 	void RenderModel(int Index, Mesh * MeshObj);
 	void RenderTerrain(std::string Path, int index, HeightMap* Terrain);

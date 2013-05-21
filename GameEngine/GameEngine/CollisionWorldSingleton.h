@@ -7,6 +7,7 @@
 
 #pragma once
 #include <btBulletDynamicsCommon.h>
+
 #ifndef COLLISION_WORLD_SINGLETON
 
 /**

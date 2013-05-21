@@ -235,6 +235,19 @@ void OpenGL::MoveCamera(bool Type, glm::vec3 Direction)
 	}
 }
 
+
+void OpenGL::SetLook(glm::vec3 look)
+{
+	(*Camera::GetInstance())->SetLookAt(look);
+}
+
+void OpenGL::SetCam(glm::vec3 location)
+{
+	(*Camera::GetInstance())->SetLocation(location);
+}
+
+
+
 void OpenGL::RenderTerrain(std::string Path, int Index, HeightMap * Terrain)
 {
 	//(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
