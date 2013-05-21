@@ -22,6 +22,7 @@ protected:
 	CollisionBody* cbCollisionObject;
 	glm::vec3 Position;
 	glm::vec3 Velocity;
+	glm::vec3 MeshCenter;
 
 private:
 };
