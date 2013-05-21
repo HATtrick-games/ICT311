@@ -124,12 +124,14 @@ void OpenGL::InitialiseVertexBuffer()
 	glDepthRange(0.0f, 1.0f);
 }
 
-void OpenGL::RenderModel(int Index, Mesh * MeshObj)
+void OpenGL::RenderModel(Mesh * MeshObj)
 {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
-	
+
+	int Index = (*MeshObj).GetIdentifier();
+
 	glUseProgram(theProgram);
 	if(VAO[Index] == 0)
 	{
@@ -161,7 +163,7 @@ void OpenGL::RenderModel(int Index, Mesh * MeshObj)
 	}
 
 	glm::mat4 ModelMat;
-	if(Index == 0)
+	if(Index == 2)
 	{
 		 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,-15),glm::vec3(0.1,0.1,0.1),glm::vec3(0,180,0));
 	}
@@ -248,16 +250,10 @@ void OpenGL::SetCam(glm::vec3 location)
 
 
 
-void OpenGL::RenderTerrain(std::string Path, int Index, HeightMap * Terrain)
+void OpenGL::RenderTerrain(HeightMap * Terrain)
 {
-	//(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
-	//std::getchar();
 	glDisable(GL_CULL_FACE);
-	//glEnable(GL_CULL_FACE);
-//	glCullFace(GL_BACK);
-	//glFrontFace(GL_CCW);
-	
-	
+	int Index = 0;
 	if(VAO[Index] == 0)
 	{
 		VertexBufferObject.push_back(0);
@@ -301,7 +297,6 @@ void OpenGL::RenderTerrain(std::string Path, int Index, HeightMap * Terrain)
 	glDisableVertexAttribArray(1);
 	glBindVertexArray(0);
 	glUseProgram(0);
-
 }
 
 void OpenGL::Start()

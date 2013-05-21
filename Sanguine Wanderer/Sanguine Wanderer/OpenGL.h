@@ -34,8 +34,8 @@ public:
 	void SetCam(glm::vec3 location);
 	void SetLook(glm::vec3 look);
 	void MoveCamera(bool Type, glm::vec3 Direction);
-	void RenderModel(int Index, Mesh * MeshObj);
-	void RenderTerrain(std::string Path, int index, HeightMap* Terrain);
+	void RenderModel(Mesh * MeshObj);
+	void RenderTerrain(HeightMap* Terrain);
 	void Start();
 
 private:

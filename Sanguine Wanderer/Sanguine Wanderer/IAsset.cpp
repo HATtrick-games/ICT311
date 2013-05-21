@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 #include "IAsset.h"
 
-int IAsset::iCounter = 0;
+int IAsset::iCounter = 1;
 
 IAsset::IAsset()
 {

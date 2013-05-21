@@ -16,9 +16,9 @@ public:
 
 	virtual void Update() = 0;
 
-	virtual void RenderModel(int Index, Mesh * MeshObj) = 0;
+	virtual void RenderModel(Mesh * MeshObj) = 0;
 
-	virtual void RenderTerrain(std::string Path, int index, HeightMap* Terrain) = 0;
+	virtual void RenderTerrain(HeightMap* Terrain) = 0;
 
 	virtual void Start() = 0;
 	
