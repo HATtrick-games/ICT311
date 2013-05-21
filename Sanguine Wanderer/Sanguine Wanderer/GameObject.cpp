@@ -10,7 +10,7 @@ GameObject::GameObject()
 
 glm::vec3 GameObject::GetPosition()
 {
-	Position = cbCollisionObject->GetPosition()-MeshCenter;
+	//Position = cbCollisionObject->GetPosition()-MeshCenter;
 	return Position;
 }
 
