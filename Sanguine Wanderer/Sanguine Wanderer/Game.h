@@ -36,9 +36,10 @@ private:
 	CollisionHeightMap* GroundCollide;
 
 	Graphics* GraphicsEng;
-
+	list<GameObject*>::iterator i;
 	list<GameObject*> PropObjects;
 	GameObject * TestProp;
+	GameObject * Rock2;
 	GameObject * Skybox;
 	GameObject * Knight;
 	HeightMap * Terrain;

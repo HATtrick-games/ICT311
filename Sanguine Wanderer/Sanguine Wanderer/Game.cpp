@@ -22,21 +22,30 @@ void Game::Init()
 	Skybox = new GameObject;
 	TestProp = new GameObject;
 	Knight = new GameObject;
+	Rock2 = new GameObject;
 
 
 	/****PROPS LIST ******/
 
-	GameObject Rock1;
-	PropObjects.push_back(new GameObject());
-	PropObjects.push_back(new GameObject());
+	GameObject* Rock1 = new GameObject();
 	
-	list<GameObject*>::iterator i;
 
-	for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
-	{
+	Rock1->SetMesh(new Mesh);
+	(Rock1->GetMesh())->SetFile("./data/GraniteRocks.obj");
+	(Rock1->GetMesh())->Load();
+	Rock1->SetPosition(glm::vec3(0,0,-10));
+	Rock1->SetScale(glm::vec3(0.15,0.15,0.15));
+	Rock1->SetRotation(glm::vec3(0,0,0));
+	
+	Rock1->InitialiseCollisionBody();
+	PropObjects.push_back(Rock1);
+	
+	
+	
 
 
-	}
+
+	
 
 
 
@@ -93,8 +102,13 @@ void Game::Display()
 	//Terrain->ComputeFloats();
 	//call display stuff
 	
-	//
+	//list<GameObject*>::iterator i;
 	(*pGraphicsEng)->RenderTerrain(Terrain);
+	for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
+	{
+		(*pGraphicsEng)->RenderModel(*i);
+
+	}
 //<<<<<<< HEAD
 //	(*pGraphicsEng)->RenderModel(TestProp);
 	//(*pGraphicsEng)->RenderModel(Skybox);
