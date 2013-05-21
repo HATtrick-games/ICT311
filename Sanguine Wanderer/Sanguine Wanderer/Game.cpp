@@ -18,15 +18,28 @@ void Game::Init()
 	Test = new Mesh;
 	Test->SetFile("./data/housebest.obj");
 	Test->Load();
+
+	Test2 = new Mesh;
+	Test2->SetFile("./data/Skybox.obj");
+	Test2->Load();
+
+	Terrain = new HeightMap;
+	Terrain->Load("heightmap2.bmp");
 	(*pGraphicsEng)->Start();
 	
 }
 
 void Game::Display()
 {
+	//Terrain = new HeightMap;
+	//Terrain->Load("heightmap.bmp");
+	//Terrain->ComputeFloats();
 	//call display stuff
+	
+	//
+	(*pGraphicsEng)->RenderTerrain("heightmap2.bmp",2,Terrain);
 	(*pGraphicsEng)->RenderModel(0, Test);
-	(*pGraphicsEng)->RenderTerrain("heightmap.bmp",1, Test);
+	(*pGraphicsEng)->RenderModel(1, Test2);
 }
 
 void Game::Update()

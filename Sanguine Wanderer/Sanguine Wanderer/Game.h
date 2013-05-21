@@ -7,6 +7,7 @@
 #include "IKeyboard.h"
 #include "PlayerObject.h"
 #include "CollisionWorldSingleton.h"
+#include "HeightMap.h"
 
 class Game
 {
@@ -29,5 +30,7 @@ private:
 	Graphics* GraphicsEng;
 
 	Mesh* Test;
+	Mesh* Test2;
+	HeightMap * Terrain;
 };
 

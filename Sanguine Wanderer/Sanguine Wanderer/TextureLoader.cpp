@@ -5,6 +5,8 @@ boost::scoped_ptr<TextureLoader> TextureLoader::pSingleton(NULL);
 
 TextureLoader::TextureLoader(void)
 {
+	TextureHandle.resize(20);
+	TextureSampler.resize(20);
 }
 
 void TextureLoader::Load(std::string Path, int index)

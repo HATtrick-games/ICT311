@@ -17,6 +17,7 @@
 #include <algorithm>
 #include <map>
 #include <math.h>
+#include <cmath>
 #include <boost\scoped_ptr.hpp>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
@@ -31,5 +32,6 @@
 #include <glutil\glutil.h>
 #include <GL/freeglut.h>
 #include <FreeImage.h>
+
 
 // TODO: reference additional headers your program requires here

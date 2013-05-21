@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "Mesh.h"
+#include "HeightMap.h"
 
 class Graphics abstract
 {
@@ -17,7 +18,7 @@ public:
 
 	virtual void RenderModel(int Index, Mesh * MeshObj) = 0;
 
-	virtual void RenderTerrain(std::string Path, int index,Mesh * MeshObj) = 0;
+	virtual void RenderTerrain(std::string Path, int index, HeightMap* Terrain) = 0;
 
 	virtual void Start() = 0;
 	

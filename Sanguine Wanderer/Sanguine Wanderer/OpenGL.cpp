@@ -19,6 +19,16 @@ OpenGL::~OpenGL(void)
 }
 void OpenGL::Initialise()
 {
+
+	/*
+
+	4:17 PM - Captain Midnight: #include <Windows.h>
+#include "wtypes.h"
+4:17 PM - Captain Midnight: screenwidth = 0;
+screenheight = 0;
+screenwidth = GetSystemMetrics(SM_CXSCREEN);
+screenheight = GetSystemMetrics(SM_CYSCREEN);
+*/
 	glutInitDisplayMode (GLUT_DOUBLE | GLUT_MULTISAMPLE | GLUT_DEPTH | GLUT_RGBA);
 	glutInitContextVersion (3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
@@ -71,10 +81,10 @@ void OpenGL::InitialiseProgram()
 	UniModelToCameraMatrix = glGetUniformLocation(theProgram, "ModelToWorld");
 	UniTex = glGetUniformLocation(theProgram, "tex");
 
-	VertexBufferObject.push_back(0);
-	IndexBufferObject.push_back(0);
-	VAO.push_back(0);
-	TexBuffer.push_back(0);
+	VertexBufferObject.resize(20);
+	IndexBufferObject.resize(20);
+	VAO.resize(20);
+	TexBuffer.resize(20);
 }
 GLuint OpenGL::GettheProgram()
 {
@@ -116,9 +126,14 @@ void OpenGL::InitialiseVertexBuffer()
 
 void OpenGL::RenderModel(int Index, Mesh * MeshObj)
 {
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glFrontFace(GL_CCW);
+	
 	glUseProgram(theProgram);
 	if(VAO[Index] == 0)
 	{
+	
 		VertexBufferObject.push_back(0);
 		IndexBufferObject.push_back(0);
 		VAO.push_back(0);
@@ -142,14 +157,18 @@ void OpenGL::RenderModel(int Index, Mesh * MeshObj)
 	
 		(*TextureLoader::GetInstance())->Load((*MeshObj).GetTexPath(), Index);
 		
-		
 		glBindVertexArray(0);
 	}
 
-
-
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,-15),glm::vec3(0.1,0.1,0.1),glm::vec3(0,180,0));
-
+	glm::mat4 ModelMat;
+	if(Index == 0)
+	{
+		 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,-15),glm::vec3(0.1,0.1,0.1),glm::vec3(0,180,0));
+	}
+	else
+	{
+		ModelMat = CreateModelTransformMatrix(glm::vec3(0,-50,0),glm::vec3(10,10,10),glm::vec3(0,180,0));
+	}
 	glBindVertexArray(VAO[Index]);
 
 	glUniform1i(UniTex, 0);
@@ -216,51 +235,59 @@ void OpenGL::MoveCamera(bool Type, glm::vec3 Direction)
 	}
 }
 
-void OpenGL::RenderTerrain(std::string Path, int Index, Mesh * MeshObj)
+void OpenGL::RenderTerrain(std::string Path, int Index, HeightMap * Terrain)
 {
 	//(*TextureLoader::GetInstance())->loadHeightAndNormalMaps(Path, Index, 1);
 	//std::getchar();
-	HeightMap H;
-	H.Load("heightmap.bmp");
-	H.ComputeFloats();
+	glDisable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
+//	glCullFace(GL_BACK);
+	//glFrontFace(GL_CCW);
+	
+	
+	if(VAO[Index] == 0)
+	{
+		VertexBufferObject.push_back(0);
+		IndexBufferObject.push_back(0);
+		VAO.push_back(0);
+		TexBuffer.push_back(0);
 
-	GLuint vao;
-	GLuint VBO;
-	GLuint Tex;
+		glGenVertexArrays(1, &VAO[Index]);
+		glGenBuffers(1, &VertexBufferObject[Index]);
+		glGenBuffers(1, &TexBuffer[Index]);
 
-	glGenVertexArrays(1, &vao);
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &Tex);
+		glBindVertexArray(VAO[Index]);
 
-	glBindVertexArray(vao);
+		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(Terrain->GetNumberHeights()), Terrain->GetMap(), GL_STATIC_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(H.GetNumberHeights()), H.GetMap(), GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, TexBuffer[Index]);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(Terrain->GetNumberTex()), Terrain->GetUVW(), GL_STATIC_DRAW);
+		glEnableVertexAttribArray(1);
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	
+		(*TextureLoader::GetInstance())->Load("Grass.bmp", Index);
+	}
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,-2,0),glm::vec3(5,5,5),glm::vec3(0,180,0));
+
+	glBindVertexArray(VAO[Index]);
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, Tex);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(*MeshObj).GetNumTextures(), (*MeshObj).GetUVArray(), GL_STATIC_DRAW);
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
-
-	(*TextureLoader::GetInstance())->Load((*MeshObj).GetTexPath(), 1);
-
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,0),glm::vec3(1,1,1),glm::vec3(0,0,0));
 
 	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
 
-	
 	glUniform1i(UniTex, 0);
 	glBindTexture(GL_TEXTURE_2D,(*TextureLoader::GetInstance())->GetTexHandle(Index));
 	glActiveTexture(GL_TEXTURE0);
 
-	//glDrawArrays(GL_LINE_STRIP, 0, H.GetNumberHeights());
-
-	glutSwapBuffers();
-	glutPostRedisplay();
-
-	std::getchar();
+	glDrawArrays(GL_TRIANGLES, 0, Terrain->GetNumberHeights());
+	
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glBindVertexArray(0);
+	glUseProgram(0);
 }
 
 void OpenGL::Start()

@@ -33,7 +33,7 @@ public:
 
 	void MoveCamera(bool Type, glm::vec3 Direction);
 	void RenderModel(int Index, Mesh * MeshObj);
-	void RenderTerrain(std::string Path, int index,Mesh * MeshObj);
+	void RenderTerrain(std::string Path, int index, HeightMap* Terrain);
 	void Start();
 
 private:

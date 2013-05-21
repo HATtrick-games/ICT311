@@ -9,15 +9,19 @@ public:
 	~HeightMap(void);
 
 	void Load(std::string filename);
-	void ComputeFloats();
 	void SetHeight(int x, int z, float h);
 
 	float * GetMap();
+	float * GetUVW();
 	int GetNumberHeights();
+	int GetNumberTex();
 private:
 	float** pHeights;
 	float* Map;
 	glm::vec3** vNormals;
+	float * Heights;
+	float * UVW;
+	int NumberTex;
 
 	int h;
 	int w;
