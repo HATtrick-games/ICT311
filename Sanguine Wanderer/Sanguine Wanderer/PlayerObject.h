@@ -6,7 +6,7 @@ class  PlayerObject : public GameObject
 public:
 	PlayerObject();
 	PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt, glm::vec3 StartingUpVector);
-	void Update(int y);
+	void Update(float y);
 	void MovePlayer(int direction);
 	void StopPlayer();
 	void RotateRight();

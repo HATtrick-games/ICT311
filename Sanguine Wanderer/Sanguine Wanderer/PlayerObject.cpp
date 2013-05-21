@@ -276,10 +276,12 @@ glm::vec3 PlayerObject::GetUpVector()
 	return UpVector;
 }
 
-void PlayerObject::Update(int y)
+void PlayerObject::Update(float y)
 {
 	cbCollisionObject->Update();
 	Position = cbCollisionObject->GetPosition();
+	//Position.y = y;
+	//cout<<"\n" <<y<< "\n";
 	LookAtLocation = glm::vec3(Position.x+lx,Position.y+ly,Position.z+lz);
 	UpVector = glm::vec3(0,1,0);
 	SetVectors();
