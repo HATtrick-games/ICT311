@@ -1,6 +1,6 @@
 #pragma once
 
-
+#include "Animation.h"
 #include "CollisionBody.h"
 #include "glm\glm.hpp"
 #include "Mesh.h"
@@ -18,6 +18,11 @@ public:
 	void SetPosition(glm::vec3 NewPos);
 	void SetScale(glm::vec3 NewScale);
 	void SetRotation(glm::vec3 NewRotation);
+	void SetAnimations(Animation * NewAnimations);
+	Animation* GetAnimations();
+	bool GetIsAnimating();
+	void ToggleIsAnimating();
+
 	Mesh* GetMesh();
 	virtual void InitialiseCollisionBody(glm::vec3 Pos);
 	virtual void Update(){};// = 0;
@@ -30,6 +35,9 @@ protected:
 	glm::vec3 Rotation;
 	glm::vec3 Velocity;
 	glm::vec3 MeshCenter;
+
+	Animation * Animations;
+	bool IsAnimating;
 
 private:
 };

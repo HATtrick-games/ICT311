@@ -37,6 +37,7 @@ public:
 	void RenderModel(GameObject * GameObj);
 	void RenderTerrain(HeightMap* Terrain);
 	void Start();
+	//int GetGraphics();
 
 private:
 
@@ -48,12 +49,10 @@ private:
 
 	int Counter;
 	float Time;
-	float *Vert;
 
 	std::vector<GLuint> VertexBufferObject;
 	std::vector<GLuint> VAO;
 	std::vector<GLuint> IndexBufferObject;
-
 	std::vector<GLuint> TexBuffer;
 
 	static boost::scoped_ptr<Graphics> pSingleton;

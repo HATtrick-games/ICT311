@@ -36,6 +36,7 @@ private:
 
 	GameObject * TestProp;
 	GameObject * Skybox;
+	GameObject * Knight;
 	HeightMap * Terrain;
 };
 

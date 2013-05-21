@@ -63,3 +63,23 @@ glm::vec3 GameObject::GetScale()
 {
 	return Scale;
 }
+
+void GameObject::SetAnimations(Animation * NewAnimations)
+{
+	Animations = NewAnimations;
+}
+
+Animation * GameObject::GetAnimations()
+{
+	return Animations;
+}
+
+bool GameObject::GetIsAnimating()
+{
+	return IsAnimating;
+}
+
+void GameObject::ToggleIsAnimating()
+{
+	IsAnimating = !IsAnimating;
+}

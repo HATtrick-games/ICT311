@@ -21,6 +21,7 @@ void Game::Init()
 
 	Skybox = new GameObject;
 	TestProp = new GameObject;
+	Knight = new GameObject;
 
 	Skybox->SetMesh(new Mesh);
 	(Skybox->GetMesh())->SetFile("./data/Skybox.obj");
@@ -32,14 +33,23 @@ void Game::Init()
 	TestProp->SetMesh(new Mesh);
 	(TestProp->GetMesh())->SetFile("./data/housebest.obj");
 	(TestProp->GetMesh())->Load();
-	TestProp->SetPosition(glm::vec3(0,0,-15));
-	TestProp->SetScale(glm::vec3(0.1,0.1,0.1));
+	TestProp->SetPosition(glm::vec3(0,0,-25));
+	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
 	TestProp->SetRotation(glm::vec3(0,180,0));
+
+	Knight->SetMesh(new Mesh);
+	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
+	(Knight->GetMesh())->Load();
+	Knight->SetPosition(glm::vec3(0,0,-4));
+	Knight->SetScale(glm::vec3(0.05,0.05,0.05));
+	Knight->SetRotation(glm::vec3(0,0,0));
+
 
 	Terrain = new HeightMap;
 	Terrain->Load("heightmap2.bmp");
 	(*pGraphicsEng)->Start();
 	
+
 }
 
 void Game::Display()
@@ -53,6 +63,7 @@ void Game::Display()
 	(*pGraphicsEng)->RenderTerrain(Terrain);
 	(*pGraphicsEng)->RenderModel(TestProp);
 	(*pGraphicsEng)->RenderModel(Skybox);
+	(*pGraphicsEng)->RenderModel(Knight);
 }
 
 void Game::Update()

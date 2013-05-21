@@ -91,6 +91,12 @@ GLuint OpenGL::GettheProgram()
 	return theProgram;
 }
 
+/*int OpenGL::GetGraphics()
+{
+	std::cout << theProgram;
+	return theProgram;
+}*/
+
 void OpenGL::Update()
 {
 	float timer = glutGet(GLUT_ELAPSED_TIME);
@@ -131,8 +137,13 @@ void OpenGL::RenderModel(GameObject * GameObj)
 	glFrontFace(GL_CCW);
 
 	int Index = GameObj->GetMesh()->GetIdentifier();
-
 	glUseProgram(theProgram);
+
+	if(GameObj->GetIsAnimating())
+	{
+
+	}
+
 	if(VAO[Index] == 0)
 	{
 	
