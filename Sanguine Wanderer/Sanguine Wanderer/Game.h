@@ -9,6 +9,7 @@
 #include "CollisionWorldSingleton.h"
 #include "HeightMap.h"
 #include "GroundObject.h"
+#include "PropObject.h"
 
 class Game
 {
@@ -33,8 +34,8 @@ private:
 
 	Graphics* GraphicsEng;
 
-	Mesh* Test;
-	Mesh* Test2;
+	GameObject * TestProp;
+	GameObject * Skybox;
 	HeightMap * Terrain;
 };
 

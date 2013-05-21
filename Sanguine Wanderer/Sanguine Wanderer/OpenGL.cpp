@@ -124,13 +124,13 @@ void OpenGL::InitialiseVertexBuffer()
 	glDepthRange(0.0f, 1.0f);
 }
 
-void OpenGL::RenderModel(Mesh * MeshObj)
+void OpenGL::RenderModel(GameObject * GameObj)
 {
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
 
-	int Index = (*MeshObj).GetIdentifier();
+	int Index = GameObj->GetMesh()->GetIdentifier();
 
 	glUseProgram(theProgram);
 	if(VAO[Index] == 0)
@@ -148,29 +148,24 @@ void OpenGL::RenderModel(Mesh * MeshObj)
 		glBindVertexArray(VAO[Index]);
 
 		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*((*MeshObj).GetNumVert()), (*MeshObj).GetVertexArray(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumVert()), GameObj->GetMesh()->GetVertexArray(), GL_STATIC_DRAW);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 				
 		glBindBuffer(GL_ARRAY_BUFFER, TexBuffer[Index]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(*MeshObj).GetNumTextures(), (*MeshObj).GetUVArray(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumTextures()), GameObj->GetMesh()->GetUVArray(), GL_STATIC_DRAW);
 		glEnableVertexAttribArray(1);
 		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	
-		(*TextureLoader::GetInstance())->Load((*MeshObj).GetTexPath(), Index);
+		(*TextureLoader::GetInstance())->Load(GameObj->GetMesh()->GetTexPath(), Index);
 		
 		glBindVertexArray(0);
 	}
 
 	glm::mat4 ModelMat;
-	if(Index == 2)
-	{
-		 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,-15),glm::vec3(0.1,0.1,0.1),glm::vec3(0,180,0));
-	}
-	else
-	{
-		ModelMat = CreateModelTransformMatrix(glm::vec3(0,-50,0),glm::vec3(10,10,10),glm::vec3(0,180,0));
-	}
+
+	ModelMat = CreateModelTransformMatrix(GameObj->GetPosition(),(GameObj->GetScale()),(GameObj->GetRotation()));
+
 	glBindVertexArray(VAO[Index]);
 
 	glUniform1i(UniTex, 0);
@@ -182,7 +177,7 @@ void OpenGL::RenderModel(Mesh * MeshObj)
 
 	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
 
-	glDrawArrays(GL_TRIANGLES, 0, (*MeshObj).GetNumVert());
+	glDrawArrays(GL_TRIANGLES, 0, GameObj->GetMesh()->GetNumVert());
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);

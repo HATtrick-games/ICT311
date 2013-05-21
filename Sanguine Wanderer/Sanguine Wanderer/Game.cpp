@@ -19,14 +19,22 @@ void Game::Init()
 	(*pGraphicsEng)->Initialise();
 	(*Input::GetInstance())->SetInputMethod("OPENGL");
 
-		Test2 = new Mesh;
-	Test2->SetFile("./data/Skybox.obj");
-	Test2->Load();
+	Skybox = new GameObject;
+	TestProp = new GameObject;
 
-	Test = new Mesh;
-	Test->SetFile("./data/housebest.obj");
-	Test->Load();
+	Skybox->SetMesh(new Mesh);
+	(Skybox->GetMesh())->SetFile("./data/Skybox.obj");
+	(Skybox->GetMesh())->Load();
+	Skybox->SetPosition(glm::vec3(0,-50,0));
+	Skybox->SetScale(glm::vec3(10,10,10));
+	Skybox->SetRotation(glm::vec3(0,0,0));
 
+	TestProp->SetMesh(new Mesh);
+	(TestProp->GetMesh())->SetFile("./data/housebest.obj");
+	(TestProp->GetMesh())->Load();
+	TestProp->SetPosition(glm::vec3(0,0,-15));
+	TestProp->SetScale(glm::vec3(0.1,0.1,0.1));
+	TestProp->SetRotation(glm::vec3(0,180,0));
 
 
 	Terrain = new HeightMap;
@@ -44,8 +52,8 @@ void Game::Display()
 	
 	//
 	(*pGraphicsEng)->RenderTerrain(Terrain);
-	(*pGraphicsEng)->RenderModel(Test);
-	(*pGraphicsEng)->RenderModel(Test2);
+	(*pGraphicsEng)->RenderModel(TestProp);
+	(*pGraphicsEng)->RenderModel(Skybox);
 }
 
 void Game::Update()

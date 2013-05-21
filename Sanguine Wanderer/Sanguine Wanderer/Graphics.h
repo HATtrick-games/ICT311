@@ -1,7 +1,7 @@
 #pragma once
 
 #include "stdafx.h"
-#include "Mesh.h"
+#include "GameObject.h"
 #include "HeightMap.h"
 
 class Graphics abstract
@@ -16,7 +16,7 @@ public:
 
 	virtual void Update() = 0;
 
-	virtual void RenderModel(Mesh * MeshObj) = 0;
+	virtual void RenderModel(GameObject * GameObj) = 0;
 
 	virtual void RenderTerrain(HeightMap* Terrain) = 0;
 

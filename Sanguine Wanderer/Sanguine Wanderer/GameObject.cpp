@@ -4,7 +4,8 @@
 
 GameObject::GameObject()
 {
-	
+	ObjectMesh = 0;
+	Position = glm::vec3(0,0,0);
 }
 
 glm::vec3 GameObject::GetPosition()
@@ -26,6 +27,7 @@ void GameObject::SetVelocity(glm::vec2 velocitypass)
 
 void GameObject::SetMesh(Mesh* passmesh)
 {
+
 	ObjectMesh = passmesh;
 	MeshCenter.x = (ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())/2;
 	MeshCenter.y = (ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())/2;
@@ -35,4 +37,29 @@ void GameObject::SetMesh(Mesh* passmesh)
 Mesh* GameObject::GetMesh()
 {
 	return ObjectMesh;
+}
+
+void GameObject::SetPosition(glm::vec3 NewPos)
+{
+	Position = NewPos;
+}
+
+void GameObject::SetScale(glm::vec3 NewScale)
+{
+	Scale = NewScale;
+}
+
+void GameObject::SetRotation(glm::vec3 NewRotation)
+{
+	Rotation = NewRotation;
+}
+
+glm::vec3 GameObject::GetRotation()
+{
+	return Rotation;
+}
+
+glm::vec3 GameObject::GetScale()
+{
+	return Scale;
 }
