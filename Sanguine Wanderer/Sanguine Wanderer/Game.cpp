@@ -61,8 +61,10 @@ void Game::Update()
 }
 void Game::MouseMove(int x, int y)
 {
-	//cout<<"Mouse Moving \n";
 	Player->MouseMove(x,y);
+
+
+
 }
 
 void Game::Input()
