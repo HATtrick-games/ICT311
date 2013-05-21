@@ -90,7 +90,7 @@ private:
 	 * \brief	The height map.
 	 */
 
-	btRigidBody* HeightMap;
+	//btRigidBody* HeightMap;
 
 	/**
 	 * \brief	The data.
