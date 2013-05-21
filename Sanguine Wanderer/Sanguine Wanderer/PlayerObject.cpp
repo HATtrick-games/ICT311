@@ -55,7 +55,7 @@ void PlayerObject::Jump()
 	//cout<<"JUMP";
 	if((cbCollisionObject->ReturnYVelocity() <=0)&&(cbCollisionObject->ReturnYVelocity()>-0.00000000000000000001))
 	{
-	cbCollisionObject->ApplyForce(0,5,0);
+	cbCollisionObject->ApplyForce(0,7,0);
 	}
 }
 
