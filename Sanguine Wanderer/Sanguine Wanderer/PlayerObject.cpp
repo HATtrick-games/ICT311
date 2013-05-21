@@ -55,7 +55,7 @@ void PlayerObject::Jump()
 	//cout<<"JUMP";
 	if((cbCollisionObject->ReturnYVelocity() <=0)&&(cbCollisionObject->ReturnYVelocity()>-0.000000001))
 	{
-	cbCollisionObject->ApplyForce(0,15,0);
+	//cbCollisionObject->ApplyForce(0,15,0);
 	}
 }
 
@@ -276,7 +276,7 @@ glm::vec3 PlayerObject::GetUpVector()
 	return UpVector;
 }
 
-void PlayerObject::Update()
+void PlayerObject::Update(int y)
 {
 	cbCollisionObject->Update();
 	Position = cbCollisionObject->GetPosition();
