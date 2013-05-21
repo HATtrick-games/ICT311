@@ -285,7 +285,7 @@ void OpenGL::RenderTerrain(HeightMap * Terrain)
 	
 		(*TextureLoader::GetInstance())->Load("grass.bmp", Index);
 	}
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(0,0,0),glm::vec3(5,5,5),glm::vec3(0,180,0));
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(-29.5,-2,-29.5),glm::vec3(1,1,1),glm::vec3(0,0,0));
 
 	glBindVertexArray(VAO[Index]);
 	glEnableVertexAttribArray(0);

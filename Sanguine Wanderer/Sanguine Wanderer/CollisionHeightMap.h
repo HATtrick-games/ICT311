@@ -21,7 +21,7 @@
 class CollisionHeightMap
 {
 public:
-
+	void Update();
 	/**
 	 * \fn	CollisionHeightMap::CollisionHeightMap(float width, float length,
 	 * 		std::vector<float> HeightMapData, float MinHeight, float MaxHeight, float Normal);

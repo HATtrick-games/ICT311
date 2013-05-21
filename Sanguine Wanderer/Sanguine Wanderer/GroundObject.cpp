@@ -6,5 +6,6 @@
 
 void GroundObject::InitialiseCollisionBody(glm::vec3 pos)
 {
+	cout<<"CALLLLLLLLLLLLLLLLLLLLED";
 	cbCollisionObject = new CollisionBody(Position, 3);
 }

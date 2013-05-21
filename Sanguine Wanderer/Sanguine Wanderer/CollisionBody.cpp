@@ -24,6 +24,7 @@ tr.setRotation(quat);*/
 
 void CollisionBody::Rotate(float degrees)
 {
+	/*
 	cout<<"ROTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATE";
 	ThisRigidBody->getMotionState()->getWorldTransform(trans);
 	btQuaternion quat;
@@ -31,7 +32,7 @@ void CollisionBody::Rotate(float degrees)
 	trans.setRotation(btQuaternion(0,1,0,3.141));
 	cout<<"\n ROTATION === "<<trans.getRotation().getX()<<"=="<<trans.getRotation().getY()<<"=="<<trans.getRotation().getZ()<<"=="<<trans.getRotation().getW();
 	ThisRigidBody->setCenterOfMassTransform(trans);
-
+	*/
 }
 
 CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
@@ -102,11 +103,13 @@ void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fRadius)
 void CollisionBody::createplane()
 {
 	CollisionShape = new btStaticPlaneShape(btVector3(0,1,0),1);
-	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,0,0)));
-	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI2(0,MotionState,CollisionShape,btVector3(0,2,0));
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-10,0)));
+	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI2(0,MotionState,CollisionShape,btVector3(0,0,0));
 	ThisRigidBody = new btRigidBody(groundRigidBodyCI2);
 
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
+	trans.setOrigin(btVector3(0,-50,0));
+	ThisRigidBody->setWorldTransform(trans);
 }
 
 void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis)

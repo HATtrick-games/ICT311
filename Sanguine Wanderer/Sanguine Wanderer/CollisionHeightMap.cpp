@@ -9,6 +9,12 @@ CollisionHeightMap::CollisionHeightMap(float width, float length, std::vector<fl
        btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,heightfield,btVector3(0,0,0));
       HeightMap = new btRigidBody(groundRigidBodyCI);
 		CollisionWorldSingleton::Instance()->AddRigidBody(HeightMap);
+		btTransform trans;
+		HeightMap->getMotionState()->getWorldTransform(trans);
+		btQuaternion quat;
+	quat.setEuler(3.14159265,0,0); //or quat.setEulerZYX depending on the ordering you want
+	trans.setRotation(quat);
+	//HeightMap->setCenterOfMassTransform(trans);
 }
 
 void CollisionHeightMap::Scale(float scaleX, float scaleY, float scaleZ)
@@ -19,4 +25,9 @@ void CollisionHeightMap::Scale(float scaleX, float scaleY, float scaleZ)
 void CollisionHeightMap::Translate(float translateX, float translateY, float translateZ)
 {
 	HeightMap->translate(btVector3(translateX, translateY, translateZ));
+}
+
+void CollisionHeightMap::Update()
+{
+	HeightMap->setActivationState(DISABLE_DEACTIVATION);
 }

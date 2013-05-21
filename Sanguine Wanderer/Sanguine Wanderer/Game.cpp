@@ -9,7 +9,7 @@ Game::Game()
 	//Obj = new GameObject();
 	//Obj->InitialiseCollisionBody(glm::vec3(0,3,-50));
 	plane = new GroundObject();
-	plane->InitialiseCollisionBody(glm::vec3(0,0,0));
+	plane->InitialiseCollisionBody(glm::vec3(0,10,0));
 }
 
 void Game::Init()
@@ -46,7 +46,7 @@ void Game::Init()
 	Knight->SetRotation(glm::vec3(0,0,0));
 
 //=======
-	TestProp->InitialiseCollisionBody();
+	//TestProp->InitialiseCollisionBody();
 	//Skybox->InitialiseCollisionBody();
 //>>>>>>> stuff
 
@@ -59,8 +59,8 @@ void Game::Init()
 	cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
 	cout<<"\n Data = "<<v[60*60]<<"\n";
 	GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
-	GroundCollide->Translate(29.5,2,29.5);
-	GroundCollide->Scale(5,5,5);
+	//GroundCollide->Translate(32.5*20,30,27.5*20);
+	//GroundCollide->Scale(20,20,20);
 
 	(*pGraphicsEng)->Start();
 	
@@ -77,9 +77,9 @@ void Game::Display()
 	//
 	(*pGraphicsEng)->RenderTerrain(Terrain);
 //<<<<<<< HEAD
-	(*pGraphicsEng)->RenderModel(TestProp);
-	(*pGraphicsEng)->RenderModel(Skybox);
-	(*pGraphicsEng)->RenderModel(Knight);
+//	(*pGraphicsEng)->RenderModel(TestProp);
+	//(*pGraphicsEng)->RenderModel(Skybox);
+	//(*pGraphicsEng)->RenderModel(Knight);
 //=======
 	//(*pGraphicsEng)->RenderModel(TestProp);
 	//(*pGraphicsEng)->RenderModel(Skybox);
@@ -88,6 +88,7 @@ void Game::Display()
 
 void Game::Update()
 {
+	GroundCollide->Update();
 	Input();
 	Player->Update();
 	CollisionWorldSingleton::Instance()->StepWorld();
