@@ -21,8 +21,10 @@
 class CollisionBody
 {
 public:
+	
 	void createplane(glm::vec3 Pos, glm::vec3 normal);
 	void CreateRigidBody(glm::vec3 pos, float x, float y, float z, int nothing);
+	void CreateRigidBody(glm::vec3 pos, float x, float y, float z, std::string word);
 	void Update();
 	void Rotate(float degrees);
 	int swap;
@@ -41,6 +43,7 @@ public:
 	CollisionBody(glm::vec3 Position, glm::vec3 Normal);
 	CollisionBody(glm::vec3 Position, int type);
 	CollisionBody(glm::vec3 Position, float length, float width, float height);
+	CollisionBody(glm::vec3 Position, float length, float width, float height, std::string word);
 
 	CollisionBody(glm::vec3 Position, float length, float width, float height,int nothing);
 
