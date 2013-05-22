@@ -29,7 +29,7 @@ AIObject::~AIObject()
 
 void AIObject::UpdateAI(float timeElapsed)
 {
-	cout<<"UPdated";
+	
 	aiTimeElapsed = timeElapsed;
 
 	Position = cbCollisionObject->GetPosition();
