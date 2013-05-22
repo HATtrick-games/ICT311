@@ -108,7 +108,7 @@ void CollisionBody::createplane()
 	ThisRigidBody = new btRigidBody(groundRigidBodyCI2);
 
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
-	trans.setOrigin(btVector3(0,5,0));
+	trans.setOrigin(btVector3(0,-10,0));
 	ThisRigidBody->setWorldTransform(trans);
 }
 

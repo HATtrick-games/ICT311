@@ -29,5 +29,5 @@ void CollisionHeightMap::Translate(float translateX, float translateY, float tra
 
 void CollisionHeightMap::Update()
 {
-	HeightMap->setActivationState(DISABLE_DEACTIVATION);
+	//HeightMap->setActivationState(DISABLE_DEACTIVATION);
 }

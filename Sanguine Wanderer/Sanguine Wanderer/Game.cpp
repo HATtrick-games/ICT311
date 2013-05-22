@@ -8,8 +8,8 @@ Game::Game()
 	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
 	//Obj = new GameObject();
 	//Obj->InitialiseCollisionBody(glm::vec3(0,3,-50));
-	plane = new GroundObject();
-	plane->InitialiseCollisionBody(glm::vec3(0,10,0));
+	//plane = new GroundObject();
+	//plane->InitialiseCollisionBody(glm::vec3(0,10,0));
 }
 
 void Game::Init()
@@ -22,6 +22,34 @@ void Game::Init()
 	Skybox = new GameObject;
 	TestProp = new GameObject;
 	Knight = new GameObject;
+	Rock2 = new GameObject;
+
+
+	/****PROPS LIST ******/
+
+	GameObject* Rock1 = new GameObject();
+	
+
+	Rock1->SetMesh(new Mesh);
+	(Rock1->GetMesh())->SetFile("./data/GraniteRocks.obj");
+	(Rock1->GetMesh())->Load();
+	Rock1->SetPosition(glm::vec3(0,0,-10));
+	Rock1->SetScale(glm::vec3(0.15,0.15,0.15));
+	Rock1->SetRotation(glm::vec3(0,0,0));
+	
+	Rock1->InitialiseCollisionBody();
+	PropObjects.push_back(Rock1);
+	
+	
+	
+
+
+
+	
+
+
+
+	/*********END PROPS LIST ******/
 
 	Skybox->SetMesh(new Mesh);
 	(Skybox->GetMesh())->SetFile("./data/Skybox.obj");
@@ -51,16 +79,16 @@ void Game::Init()
 //>>>>>>> stuff
 
 	Terrain = new HeightMap;
-	Terrain->Load("heightmap2.bmp");
+	Terrain->Load("heightmap.bmp");
 	//std::vector<ValueType> vec(a, a + n);
 	std::vector<float> v(Terrain->GetHeights(), Terrain->GetHeights() + Terrain->GetNumberHeights());
 	
 	//&data[0],btScalar(1),btScalar(-100),btScalar(100),1,PHY_FLOAT,false
 	cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
 	cout<<"\n Data = "<<v[60*60]<<"\n";
-	GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
+	//GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
 	//GroundCollide->Translate(32.5*20,30,27.5*20);
-	GroundCollide->Scale(1,1,1);
+	//GroundCollide->Scale(1,1,1);
 
 	(*pGraphicsEng)->Start();
 	
@@ -74,8 +102,13 @@ void Game::Display()
 	//Terrain->ComputeFloats();
 	//call display stuff
 	
-	//
+	//list<GameObject*>::iterator i;
 	(*pGraphicsEng)->RenderTerrain(Terrain);
+	for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
+	{
+		(*pGraphicsEng)->RenderModel(*i);
+
+	}
 //<<<<<<< HEAD
 //	(*pGraphicsEng)->RenderModel(TestProp);
 	//(*pGraphicsEng)->RenderModel(Skybox);
@@ -90,7 +123,7 @@ void Game::Update()
 {
 	GroundCollide->Update();
 	Input();
-	Player->Update();
+	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
