@@ -17,6 +17,7 @@ class AIObject : public GameObject
 {
 public:
 
+	void InitialiseCollisionBody();
 	/**
 	 * \fn	AIObject::AIObject(void);
 	 *

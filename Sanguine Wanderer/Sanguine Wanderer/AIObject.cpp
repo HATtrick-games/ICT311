@@ -2,6 +2,21 @@
 #include "AIObject.h"
 
 
+void AIObject::InitialiseCollisionBody()
+{
+	MeshCenter.x = MeshCenter.x*Scale.x;
+	MeshCenter.y = MeshCenter.y*Scale.y;
+	MeshCenter.z = MeshCenter.z*Scale.z;
+	MeshCenter.x += Position.x;
+	MeshCenter.y += Position.y;
+	MeshCenter.z += Position.z;
+
+	cout<<"\n  DISTANCES=="<<((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)<<"=="<<((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)<<"=="<<((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)<<"\n";
+	cout<<"  \n  MeshCenter"<<MeshCenter.x<<"--/"<<MeshCenter.y<<"--/"<<MeshCenter.z<<"\n";
+	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2, "move");
+	//cbCollisionObject->Rotate(180);
+}
+
 AIObject::AIObject(void)
 {
 	aiFSM = new StateMachine<AIObject>(this);
