@@ -6,6 +6,7 @@ GameObject::GameObject()
 {
 	ObjectMesh = 0;
 	Position = glm::vec3(0,0,0);
+	IsAnimating = false;
 }
 
 glm::vec3 GameObject::GetPosition()

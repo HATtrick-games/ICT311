@@ -12,13 +12,28 @@ enum AnimationType
 class Animation
 {
 public:
-	Animation(void);
+	Animation(GLuint Program);
 	~Animation(void);
 
 	void AddAnimation(Mesh * Keyframe, AnimationType Type);
 
+	bool GetBoolWalk();
+	bool GetBoolAttack();
+	int GetCurrentFrame();
+	Mesh * GetWalk(int Frame);
+	int GetTotalFrames();
+	float GetTime();
+	bool GetPreviousAnimations();
+
+	void SetPreviousAnimations(bool Toggle);
+	void SetTime(float newTime);
+	void IncrementCurrentFrame();
+	void ResetCurrentFrame();
+	void ToggleBoolWalk();
+	void ToggleBoolAttack();
+
 private:
-	std::vector<Mesh*> Walk;
+	std::map<int, Mesh*> Walk;
 
 	std::vector<GLuint> VertexBufferObject;
 	std::vector<GLuint> VAO;
@@ -26,8 +41,13 @@ private:
 	std::vector<GLuint> TexBuffer;
 
 	int Index;
+	int CurrentFrame;
+	int TotalFrames;
+	float Time;
 
+	GLuint Prog;
 	bool BoolWalk;
 	bool BoolAttack;
+	bool PreviousAnimations;
 };
 

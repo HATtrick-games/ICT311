@@ -2,13 +2,19 @@
 #include "Animation.h"
 
 
-Animation::Animation(void)
+Animation::Animation(GLuint Program)
 {
 	Index = 0;
+	CurrentFrame = 0;
+	TotalFrames = 0;
+	Time = 0;
+	PreviousAnimations = false;
+
 	VertexBufferObject.resize(20);
 	IndexBufferObject.resize(20);
 	VAO.resize(20);
 	TexBuffer.resize(20);
+	Prog = Program;
 }
 
 
@@ -20,10 +26,12 @@ void Animation::AddAnimation(Mesh* Keyframe, AnimationType Type)
 {
 	if(Type == TWalk)
 	{
-		Walk.push_back(Keyframe);
-		if(VAO[Index] == 0)
+		Walk[Index] = Keyframe;
+		TotalFrames++;
+		Index++;
+		/*if(VAO[Index] == 0)
 		{
-			//glUseProgram((*OpenGL::GetInstance())->GetGraphics());
+			glUseProgram(Prog);
 			VertexBufferObject.push_back(0);
 			IndexBufferObject.push_back(0);
 			VAO.push_back(0);
@@ -51,6 +59,72 @@ void Animation::AddAnimation(Mesh* Keyframe, AnimationType Type)
 			glDisableVertexAttribArray(1);
 			glBindVertexArray(0);
 			glUseProgram(0);
-		}
+			
+		}*/
 	}
+}
+
+bool Animation::GetBoolWalk()
+{
+	return BoolWalk;
+}
+
+bool Animation::GetBoolAttack()
+{
+	return BoolAttack;
+}
+
+void Animation::ToggleBoolWalk()
+{
+	BoolWalk = !BoolWalk;
+}
+
+void Animation::ToggleBoolAttack()
+{
+	BoolAttack = !BoolAttack;
+}
+
+int Animation::GetCurrentFrame()
+{
+	return CurrentFrame;
+}
+
+void Animation::IncrementCurrentFrame()
+{
+	CurrentFrame++;
+}
+
+void Animation::ResetCurrentFrame()
+{
+	CurrentFrame = 0;
+}
+
+Mesh* Animation::GetWalk(int Frame)
+{
+	return Walk[Frame];
+}
+
+int Animation::GetTotalFrames()
+{
+	return TotalFrames;
+}
+
+float Animation::GetTime()
+{
+	return Time;
+}
+
+void Animation::SetTime(float newTime)
+{
+	Time = newTime;
+}
+
+bool Animation::GetPreviousAnimations()
+{
+	return PreviousAnimations;
+}
+
+void Animation::SetPreviousAnimations(bool Toggle)
+{
+	PreviousAnimations = Toggle;
 }

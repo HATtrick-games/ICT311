@@ -12,6 +12,7 @@
 #include "PropObject.h"
 #include "CollisionHeightMap.h"
 #include "AIScripting.h"
+#include "Animation.h"
 #include <list>
 
 class Game
@@ -46,5 +47,7 @@ private:
 	AIObject* Enemy1;
 	AIObject* Enemy2;
 	HeightMap * Terrain;
+
+	Animation* Temp;
 };
 
