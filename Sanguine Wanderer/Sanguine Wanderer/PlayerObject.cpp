@@ -71,7 +71,7 @@ void PlayerObject::MouseMove(int x, int y)
 	//SetVectors();
 	//cout<<"x ="<<x<<"\n"<<"y = "<<y<<"\n";
 	bool thing = false;
-	if(y<80)
+	if(y<200)
 	{
 		SetCursorPos(screenwidth/2, screenheight/2);
 		xorigin = windowx;
@@ -79,7 +79,7 @@ void PlayerObject::MouseMove(int x, int y)
 		thing = true;
 	
 	}
-	else if(y>880)
+	else if(y>700)
 	{
 		SetCursorPos(screenwidth/2, screenheight/2);
 		xorigin = windowx;
@@ -88,14 +88,14 @@ void PlayerObject::MouseMove(int x, int y)
 		//yangle = 2.8;
 		
 	}
-	if(x<100)
+	if(x<300)
 	{
 		SetCursorPos(screenwidth/2, screenheight/2);
 		xorigin = windowx;
 		yorigin = windowy;
 		thing = true;
 	}
-	else if(x>1200)
+	else if(x>1000)
 	{
 		SetCursorPos(screenwidth/2, screenheight/2);
 		xorigin = windowx;
