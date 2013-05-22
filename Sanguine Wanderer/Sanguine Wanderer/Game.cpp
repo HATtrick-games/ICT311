@@ -87,7 +87,9 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 	Knight->SetPosition(glm::vec3(0,0,-4));
+
 	Knight->SetScale(glm::vec3(0.05,0.05,0.05));
+
 	Knight->SetRotation(glm::vec3(0,0,0));
 
 
@@ -134,6 +136,7 @@ void Game::Init()
 
 void Game::Display()
 {
+	
 	//Terrain = new HeightMap;
 	//Terrain->Load("heightmap.bmp");
 	//Terrain->ComputeFloats();
@@ -141,11 +144,11 @@ void Game::Display()
 	
 	//list<GameObject*>::iterator i;
 	(*pGraphicsEng)->RenderTerrain(Terrain);
-	for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
-	{
-		(*pGraphicsEng)->RenderModel(*i);
+	//for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
+	//{
+	//	(*pGraphicsEng)->RenderModel(*i);
 
-	}
+//	}
 	(*pGraphicsEng)->RenderModel(Knight);
 //<<<<<<< HEAD
 //	(*pGraphicsEng)->RenderModel(TestProp);
@@ -159,6 +162,8 @@ void Game::Display()
 
 void Game::Update()
 {
+	cout<<"Update \n wkjerg;jdfgh \n";
+	// 
 	GroundCollide->Update();
 	Input();
 	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
