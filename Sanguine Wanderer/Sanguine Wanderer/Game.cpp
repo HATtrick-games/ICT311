@@ -6,8 +6,7 @@ boost::scoped_ptr<Game> Game::pSingleton(NULL);
 Game::Game()
 {
 	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
-	//Obj = new GameObject();
-	//Obj->InitialiseCollisionBody(glm::vec3(0,3,-50));
+	
 	//plane = new GroundObject();
 	//plane->InitialiseCollisionBody(glm::vec3(0,10,0));
 }
@@ -93,12 +92,6 @@ void Game::Init()
 	
 	
 
-
-
-	
-
-
-
 	/*********END PROPS LIST ******/
 
 	Skybox->SetMesh(new Mesh);
@@ -126,11 +119,11 @@ void Game::Init()
 	Knight->InitialiseCollisionBody();
 
 
-	//TestProp->InitialiseCollisionBody();
-	//Skybox->InitialiseCollisionBody();
+	
 
 
 	Terrain = new HeightMap;
+
 	Terrain->Load("HeightmapFinal.bmp");
 	
 	//std::vector<ValueType> vec(a, a + n);
@@ -143,6 +136,16 @@ void Game::Init()
 	//GroundCollide->Translate(32.5*20,30,27.5*20);
 	//GroundCollide->Scale(1,1,1);
 
+	//Terrain->Load("heightmap.bmp");
+	
+	//std::vector<float> v(Terrain->GetHeights(), Terrain->GetHeights() + Terrain->GetNumberHeights());
+	
+	
+	//cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
+	//cout<<"\n Data = "<<v[60*60]<<"\n";
+
+
+
 	(*pGraphicsEng)->Start();
 	
 	
@@ -152,35 +155,22 @@ void Game::Init()
 void Game::Display()
 {
 	
-	//Terrain = new HeightMap;
-	//Terrain->Load("heightmap.bmp");
-	//Terrain->ComputeFloats();
-	//call display stuff
 	
-	//list<GameObject*>::iterator i;
 	(*pGraphicsEng)->RenderTerrain(Terrain);
+
 	(*pGraphicsEng)->RenderModel(Skybox);
 	//for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
 	//{
 	//	(*pGraphicsEng)->RenderModel(*i);
 
-//	}
+
 	(*pGraphicsEng)->RenderModel(Knight);
-	//(*pGraphicsEng)->RenderModel(Enemy1);
-//<<<<<<< HEAD
-//	(*pGraphicsEng)->RenderModel(TestProp);
-	//(*pGraphicsEng)->RenderModel(Skybox);
-	//(*pGraphicsEng)->RenderModel(Knight);
-//=======
-	//(*pGraphicsEng)->RenderModel(TestProp);
-	//(*pGraphicsEng)->RenderModel(Skybox);
-//>>>>>>> stuff
+
 }
 
 void Game::Update()
 {
-	//cout<<"Update \n wkjerg;jdfgh \n";
-	// 
+	
 	GroundCollide->Update();
 	Input();
 	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
@@ -191,8 +181,7 @@ void Game::Update()
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
 	
-	//cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
-	//cout<<"=================="<<Player->GetLookAt().x<<"\n";
+
 }
 void Game::MouseMove(int x, int y)
 {
@@ -206,7 +195,7 @@ void Game::Input()
 {
 	if((!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))) &&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100)))&&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115)))&&(!((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))))
 	{
-		//cout<<"NOTHING";
+		
 		Player->StopPlayer();
 	}
 
@@ -235,23 +224,22 @@ void Game::Input()
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(119))
 	{
 		
-		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,-0.1));s
+		
 		Player->MovePlayer(1);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(115))
 	{
-		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0,0,0.1));
+		
 		Player->MovePlayer(2);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(100))
 	{
-		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(0.1,0,0));
+		
 		Player->MovePlayer(4);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(97))
 	{
-		//(*pGraphicsEng)->MoveCamera(true, glm::vec3(-0.1,0,0));
-		//cout<<"left";
+		
 		Player->MovePlayer(3);
 	}
 	else if((*(*Input::GetInstance())->GetKeyboard()).IsKeyDown(101))
@@ -264,7 +252,7 @@ void Game::Input()
 	}
 	else
 	{
-		//cout<<"NOTHING";
+		
 		Player->StopPlayer();
 	}
 }
