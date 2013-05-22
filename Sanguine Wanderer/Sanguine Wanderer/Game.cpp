@@ -7,8 +7,17 @@ Game::Game()
 {
 	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
 	
-	//plane = new GroundObject();
-	//plane->InitialiseCollisionBody(glm::vec3(0,10,0));
+	plane = new GroundObject();
+	plane->InitialiseCollisionBody(glm::vec3(0,-6,0), 10000, 1,10000);
+	//plane1 = new GroundObject();
+	//plane1->InitialiseCollisionBody(glm::vec3(0,0,400), glm::vec3(0,0,-1));
+	
+//	plane2 = new GroundObject();
+	//plane2->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));
+	//plane3 = new GroundObject();
+	//plane3->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));
+	//plane4 = new GroundObject();
+	//plane4->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));*/
 }
 
 void Game::Init()
@@ -114,7 +123,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 	Knight->SetPosition(glm::vec3(0,0,-4));
-	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
+	Knight->SetScale(glm::vec3(0.00001,0.00001,0.000001));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
 
@@ -133,8 +142,8 @@ void Game::Init()
 	//cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
 	//cout<<"\n Data = "<<v[60*60]<<"\n";
 	//GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
-	//GroundCollide->Translate(32.5*20,30,27.5*20);
-	//GroundCollide->Scale(1,1,1);
+	//GroundCollide->Translate(-250*8,-5,-250*8);
+	//GroundCollide->Scale(8,8,8);
 
 	//Terrain->Load("heightmap.bmp");
 	
@@ -170,8 +179,7 @@ void Game::Display()
 
 void Game::Update()
 {
-	
-
+	//cout<<"\n PLANE Y +++"<<plane->GetPosition().y;
 	GroundCollide->Update();
 	Input();
 	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));

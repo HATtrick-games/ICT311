@@ -12,8 +12,24 @@ CollisionBody::CollisionBody(glm::vec3 passPosition,float length, float width, f
 	CreateRigidBody(passPosition, length,width,height);
 }
 
+CollisionBody::CollisionBody(glm::vec3 passPosition,float length, float width, float height, int nothing)
+{
+	trans.setIdentity();
+	trans.setOrigin(btVector3(0,0,0));
+	CurrentPosition.x = passPosition.x;
+	CurrentPosition.y = passPosition.y;
+	CurrentPosition.z = passPosition.z;
+	swap = 0;
+	CreateRigidBody(passPosition, length,width,height, nothing);
+}
 
-
+CollisionBody::CollisionBody(glm::vec3 passPosition,glm::vec3 Normal)
+{
+	cout<<">>>>>>>>>>>>>>>>>>>>>>PLANE CREATED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+	
+	
+	createplane(passPosition, Normal);
+}
 void CollisionBody::Rotate(float degrees)
 {
 	//not implemented
@@ -35,7 +51,7 @@ CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 	}
 	else if(type == 3)
 	{
-		createplane();
+		//createplane();
 	}
 	else
 	{
@@ -65,20 +81,39 @@ void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fRadius)
     btVector3 fallInertia(1,1,1);
     CollisionShape->calculateLocalInertia(mass,fallInertia);
     btRigidBody::btRigidBodyConstructionInfo ShapeRigidBodyCI(mass,MotionState,CollisionShape,fallInertia);
-    ThisRigidBody = new btRigidBody(ShapeRigidBodyCI);
+	   
+	ThisRigidBody = new btRigidBody(ShapeRigidBodyCI);
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
 	
 }
 
-void CollisionBody::createplane()
+void CollisionBody::createplane(glm::vec3 passpos, glm::vec3 normal)
 {
-	CollisionShape = new btStaticPlaneShape(btVector3(0,1,0),1);
-	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-10,0)));
+	CollisionShape = new btStaticPlaneShape(btVector3(normal.x,normal.y,normal.z),1);
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-10000,0)));
 	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI2(0,MotionState,CollisionShape,btVector3(0,0,0));
 	ThisRigidBody = new btRigidBody(groundRigidBodyCI2);
+	//trans.setOrigin(btVector3(passpos.x,passpos.y,passpos.z));
+	//ThisRigidBody->setWorldTransform(trans);
 	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
-	trans.setOrigin(btVector3(0,-10,0));
-	ThisRigidBody->setWorldTransform(trans);
+	
+
+	
+
+}
+
+void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis, int nothing)
+{
+
+	CollisionShape = new btBoxShape(btVector3(fXdis, fYdis, fZdis));
+	MotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(passPos.x,passPos.y,passPos.z)));
+    btScalar mass = 0;
+    btVector3 fallInertia(1,1,1);
+    CollisionShape->calculateLocalInertia(mass,fallInertia);
+    btRigidBody::btRigidBodyConstructionInfo ShapeRigidBodyCI(mass,MotionState,CollisionShape,fallInertia);
+    ThisRigidBody = new btRigidBody(ShapeRigidBodyCI);
+	CollisionWorldSingleton::Instance()->AddRigidBody(ThisRigidBody);    
+
 }
 
 void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis)

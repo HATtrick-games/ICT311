@@ -19,7 +19,7 @@ void CollisionWorldSingleton::StepWorld()
 {
 	
 	
-	DynamicsWorld->stepSimulation(1/120.f, 10);
+	DynamicsWorld->stepSimulation(1/10.f, 100);
 }
 
 void CollisionWorldSingleton::SetGravity(float y)

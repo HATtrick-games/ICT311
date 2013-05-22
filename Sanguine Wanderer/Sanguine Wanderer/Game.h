@@ -35,6 +35,10 @@ private:
 	PlayerObject* Player;
 	GameObject* Obj;
 	GroundObject* plane;
+	GroundObject* plane1;
+	GroundObject* plane2;
+	GroundObject* plane3;
+	GroundObject* plane4;
 	CollisionHeightMap* GroundCollide;
 
 	Graphics* GraphicsEng;
