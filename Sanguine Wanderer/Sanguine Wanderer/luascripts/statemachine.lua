@@ -33,9 +33,9 @@ state_idle["enter"] = function (player)
 end
 
 state_idle["execute"] = function(player)
-	--print("idle execute")
+	print("idle execute")
 	--player:SetVelocity(Vector2D(0,10))
-	--player:Wander()
+	player:Wander()
 
 	if player:CanViewTarget() then
 		--print("send msg")
@@ -66,8 +66,8 @@ state_chase["enter"] = function(player)
 end
 
 state_chase["execute"] = function(player)
-	--print("chase execute")
-	--player:PursueTarget()
+	print("chase execute")
+	player:PursueTarget()
 
 	totalTime = totalTime + temp
 	--print(totalTime)

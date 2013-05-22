@@ -52,6 +52,7 @@ void AIObject::UpdateAI(float timeElapsed)
 	
 	aiTimeElapsed = timeElapsed;
 
+	std::cout << GetPosition().x << " " << GetPosition().z << std::endl;
 //	Position = cbCollisionObject->GetPosition();
 
 	aiFSM->Update();
