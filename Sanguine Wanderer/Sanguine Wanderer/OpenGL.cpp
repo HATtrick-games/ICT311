@@ -369,7 +369,7 @@ void OpenGL::RenderTerrain(HeightMap * Terrain)
 	
 		(*TextureLoader::GetInstance())->Load("HeightmapTexture.bmp", Index);
 	}
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(-200,18,-200),glm::vec3(3,3,3),glm::vec3(0,0,0));
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(-200,15,-200),glm::vec3(3,3,3),glm::vec3(0,0,0));
 
 	glBindVertexArray(VAO[Index]);
 	glEnableVertexAttribArray(0);

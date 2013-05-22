@@ -112,7 +112,7 @@ void Game::Init()
 	TestProp->SetMesh(new Mesh);
 	(TestProp->GetMesh())->SetFile("./data/housebest.obj");
 	(TestProp->GetMesh())->Load();
-	TestProp->SetPosition(glm::vec3(0,3,-25));
+	TestProp->SetPosition(glm::vec3(0,0,-25));
 	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
 	TestProp->SetRotation(glm::vec3(0,180,0));
 
@@ -121,13 +121,9 @@ void Game::Init()
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
-<<<<<<< HEAD
+
 	Knight->SetPosition(glm::vec3(0,3,-4));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
-=======
-	Knight->SetPosition(glm::vec3(0,0,-4));
-	Knight->SetScale(glm::vec3(0.00001,0.00001,0.000001));
->>>>>>> b87e1e672db9a55b843c94b488a68abb305e47c0
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
 
@@ -180,7 +176,7 @@ void Game::Display()
 	//for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
 	//{
 	//	(*pGraphicsEng)->RenderModel(*i);
-
+}
 
 
 void Game::Update()
