@@ -81,13 +81,13 @@ void Game::Init()
 	/*GameObject* Rock1 = new GameObject();
 	
 
-	Rock1->SetMesh(new Mesh);
+	->SetMesh(new Mesh);
 	(Rock1->GetMesh())->SetFile("./data/GraniteRocks.obj");
-	(Rock1->GetMesh())->Load();
+	(Rock1->GetMesh())->Load(Rock1);
 	Rock1->SetPosition(glm::vec3(0,0,-10));
 	Rock1->SetScale(glm::vec3(0.15,0.15,0.15));
 	Rock1->SetRotation(glm::vec3(0,0,0));
-	
+	TestProp->InitialiseCollisionBody();
 	Rock1->InitialiseCollisionBody();
 	PropObjects.push_back(Rock1);*/
 	
