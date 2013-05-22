@@ -144,6 +144,7 @@ void OpenGL::RenderModel(GameObject * GameObj)
 	{
 		int NextFrame;
 		int CurrentFrame;
+		CurrentFrame = GameObj->GetAnimations()->GetCurrentFrame();
 		float * AnimationBuffer;
 		float Dif;
 		float Timer = glutGet(GLUT_ELAPSED_TIME);
@@ -156,34 +157,34 @@ void OpenGL::RenderModel(GameObject * GameObj)
 				GameObj->GetAnimations()->SetTime(Timer);
 			}
 
-			if((Timer-GameObj->GetAnimations()->GetTime()) > 300)
+			if((Timer-GameObj->GetAnimations()->GetTime()) > 1000)
 			{
-				GameObj->GetAnimations()->IncrementCurrentFrame();
+				CurrentFrame++;
 				GameObj->GetAnimations()->SetTime(Timer);
 			}
 
-			CurrentFrame = GameObj->GetAnimations()->GetCurrentFrame();
-			
-			if(CurrentFrame >= GameObj->GetAnimations()->GetTotalFrames())
+
+			if(CurrentFrame >= GameObj->GetAnimations()->GetTotalFrames()-1)
 			{
-				GameObj->GetAnimations()->ResetCurrentFrame();
-				CurrentFrame = GameObj->GetAnimations()->GetCurrentFrame();
+
+				CurrentFrame = 0;
 			}
+
+			GameObj->GetAnimations()->SetCurrentFrame(CurrentFrame);
+
 			NextFrame = (CurrentFrame + 1);
+			std::cout << CurrentFrame;
 
 			AnimationBuffer = new float[GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetNumVert()];
 			
 			for(int i=0; i < GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetNumVert(); i++)
 			{
 				Dif = GameObj->GetAnimations()->GetWalk(NextFrame)->GetVertexArray()[i] - GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetVertexArray()[i];
-				//std::cout << i << std::endl;
 				Dif =  Dif*((Timer - GameObj->GetAnimations()->GetTime())/1000);
 		
 				AnimationBuffer[i] = GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetVertexArray()[i] + Dif;
-			}
-			
+			}		
 		}
-
 
 		if(!GameObj->GetAnimations()->GetPreviousAnimations())
 		{
@@ -231,11 +232,9 @@ void OpenGL::RenderModel(GameObject * GameObj)
 		glBindVertexArray(0);
 		glUseProgram(0);
 
-		//glDeleteVertexArrays(1, &AnimationVBO);
-		//glDeleteBuffers(1, &AnimationVBO);
-		//glDeleteBuffers(1, &AnimationTBO);
-		//(*TextureLoader::GetInstance())->FreeBuffer(Index);
+
 		GameObj->GetAnimations()->SetPreviousAnimations(true);
+		
 		delete[] AnimationBuffer;
 	}
 	else

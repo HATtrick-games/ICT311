@@ -34,7 +34,16 @@ void Game::Init()
 	TempMesh->SetFile("./data/KnightFinal.obj");
 	TempMesh->Load();
 	Temp->AddAnimation(TempMesh, TWalk);
+
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/Knight3.obj");
+	TempMesh->Load();
+	Temp->AddAnimation(TempMesh, TWalk);
 	
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/KnightDefault.obj");
+	TempMesh->Load();
+	Temp->AddAnimation(TempMesh, TWalk);
 
 	Skybox = new GameObject;
 	TestProp = new GameObject;
@@ -87,7 +96,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 	Knight->SetPosition(glm::vec3(0,0,-4));
-	Knight->SetScale(glm::vec3(10.0,10.0,10.0));
+	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 
 

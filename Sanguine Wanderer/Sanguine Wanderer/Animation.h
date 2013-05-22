@@ -20,6 +20,7 @@ public:
 	bool GetBoolWalk();
 	bool GetBoolAttack();
 	int GetCurrentFrame();
+	void SetCurrentFrame(int newFrame){CurrentFrame = newFrame;}
 	Mesh * GetWalk(int Frame);
 	int GetTotalFrames();
 	float GetTime();
