@@ -8,7 +8,7 @@ Game::Game()
 	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
 	
 	plane = new GroundObject();
-	plane->InitialiseCollisionBody(glm::vec3(0,0.001,0), 10000, 1,10000);
+	plane->InitialiseCollisionBody(glm::vec3(0,3,0), 10000, 1,10000);
 	//plane1 = new GroundObject();
 	//plane1->InitialiseCollisionBody(glm::vec3(0,0,400), glm::vec3(0,0,-1));
 	

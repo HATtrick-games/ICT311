@@ -156,7 +156,7 @@ void PlayerObject::MovePlayer(int Direction)
 {
 	//cbCollisionObject->SetVelocity(2,0,0);
 	//SetVectors();
-	float speed = 200;
+	float speed = 10;
 	switch (Direction)
 	{
 	case 1: 
