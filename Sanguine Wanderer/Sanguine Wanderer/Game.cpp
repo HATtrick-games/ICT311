@@ -80,15 +80,15 @@ void Game::Init()
 	(Skybox->GetMesh())->SetFile("./data/Skybox.obj");
 	(Skybox->GetMesh())->Load();
 	Skybox->SetPosition(glm::vec3(0,-50,0));
-	Skybox->SetScale(glm::vec3(10,10,10));
-	Skybox->SetRotation(glm::vec3(0,0,0));
+	Skybox->SetScale(glm::vec3(100,100,100));
+	Skybox->SetRotation(glm::vec3(0,180,0));
 
 	TestProp->SetMesh(new Mesh);
 	(TestProp->GetMesh())->SetFile("./data/housebest.obj");
 	(TestProp->GetMesh())->Load();
 	TestProp->SetPosition(glm::vec3(0,0,-25));
 	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
-	TestProp->SetRotation(glm::vec3(0,180,0));
+	TestProp->SetRotation(glm::vec3(0,0,0));
 
 	Knight->SetAnimations(Temp);
 	Knight->ToggleIsAnimating();
@@ -105,13 +105,14 @@ void Game::Init()
 
 
 	Terrain = new HeightMap;
-	Terrain->Load("heightmap.bmp");
-	//std::vector<ValueType> vec(a, a + n);
-	std::vector<float> v(Terrain->GetHeights(), Terrain->GetHeights() + Terrain->GetNumberHeights());
+	Terrain->Load("HeightmapFinal.bmp");
 	
+	//std::vector<ValueType> vec(a, a + n);
+	//std::vector<float> v(Terrain->GetHeights(), Terrain->GetHeights() + Terrain->GetNumberHeights());
+	//std::getchar();
 	//&data[0],btScalar(1),btScalar(-100),btScalar(100),1,PHY_FLOAT,false
-	cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
-	cout<<"\n Data = "<<v[60*60]<<"\n";
+	//cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
+	//cout<<"\n Data = "<<v[60*60]<<"\n";
 	//GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
 	//GroundCollide->Translate(32.5*20,30,27.5*20);
 	//GroundCollide->Scale(1,1,1);
@@ -151,6 +152,7 @@ void Game::Display()
 	
 	//list<GameObject*>::iterator i;
 	(*pGraphicsEng)->RenderTerrain(Terrain);
+	(*pGraphicsEng)->RenderModel(Skybox);
 	//for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
 	//{
 	//	(*pGraphicsEng)->RenderModel(*i);

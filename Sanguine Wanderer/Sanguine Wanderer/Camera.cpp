@@ -21,7 +21,7 @@ void Camera::Setup(GLuint ProgObj)
 void Camera::CreatePerspective(int Width, int Height)
 {
 	float fzNear = 1;
-	float fzFar = 2000.0;
+	float fzFar = 20000.0;
 	glutil::MatrixStack modelMatrix;
 	modelMatrix.Perspective(60, (Width / (float) Height), fzNear, fzFar);
 	

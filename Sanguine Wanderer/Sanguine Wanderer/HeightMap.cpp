@@ -64,43 +64,43 @@ void HeightMap::Load(std::string filename)
 			Map[i+1] = Heights[j];
 			Map[i+2] = z;
 
-			UVW[k] = ((float)x/59);
-			UVW[k+1] = ((float)z/59);
+			UVW[k] = ((float)x/(w-1));
+			UVW[k+1] = ((float)z/(w-1));
 
 			Map[i+3] = x+1;
 			Map[i+4] = Heights[j+1];
 			Map[i+5] = z;
 
-			UVW[k+2] = ((float)(x+1)/59);
-			UVW[k+3] = ((float)z/59);
+			UVW[k+2] = ((float)(x+1)/(w-1));
+			UVW[k+3] = ((float)z/(w-1));
 
 			Map[i+6] = x;
-			Map[i+7] = Heights[j+59];
+			Map[i+7] = Heights[j+(w-1)];
 			Map[i+8] = z+1;
 
-			UVW[k+4] = ((float)x/59);
-			UVW[k+5] = ((float)(z+1)/59);
+			UVW[k+4] = ((float)x/(w-1));
+			UVW[k+5] = ((float)(z+1)/(w-1));
 
 			Map[i+9] = x;
-			Map[i+10] = Heights[j+59];
+			Map[i+10] = Heights[j+(w-1)];
 			Map[i+11] = z+1;
 
-			UVW[k+6] = ((float)x/59);
-			UVW[k+7] = ((float)(z+1)/59);
+			UVW[k+6] = ((float)x/(w-1));
+			UVW[k+7] = ((float)(z+1)/(w-1));
 
 			Map[i+12] = x+1;
 			Map[i+13] = Heights[j+1];
 			Map[i+14] = z;
 
-			UVW[k+8] = ((float)(x+1)/59);
-			UVW[k+9] = ((float)z/59);
+			UVW[k+8] = ((float)(x+1)/(w-1));
+			UVW[k+9] = ((float)z/(w-1));
 
 			Map[i+15] = x+1;
-			Map[i+16] = Heights[j+1+59];
+			Map[i+16] = Heights[j+1+(w-1)];
 			Map[i+17] = z+1;
 
-			UVW[k+10] = ((float)(x+1)/59);
-			UVW[k+11] = ((float)(z+1)/59);
+			UVW[k+10] = ((float)(x+1)/(w-1));
+			UVW[k+11] = ((float)(z+1)/(w-1));
 			
 			//std::cout << "x:" << UVW[k] << " z:" << UVW[k+1] << std::endl;
 
