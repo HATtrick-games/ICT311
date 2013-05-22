@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CollisionHeightMap.h"
-//btHeightfieldTerrainShape* heightfield = new btHeightfieldTerrainShape(terrain->GetWidth(),terrain->GetLength(),&data[0],btScalar(1),btScalar(-100),btScalar(100),1,PHY_FLOAT,false);
+
 CollisionHeightMap::CollisionHeightMap(float width, float length, std::vector<float> HeightMapData, float MinHeight, float MaxHeight, float Normal)
 {
 	data = HeightMapData;
@@ -12,7 +12,7 @@ CollisionHeightMap::CollisionHeightMap(float width, float length, std::vector<fl
 		btTransform trans;
 		HeightMap->getMotionState()->getWorldTransform(trans);
 		btQuaternion quat;
-	quat.setEuler(3.14159265,0,0); //or quat.setEulerZYX depending on the ordering you want
+	quat.setEuler(3.14159265,0,0); 
 	trans.setRotation(quat);
 	//HeightMap->setCenterOfMassTransform(trans);
 }
