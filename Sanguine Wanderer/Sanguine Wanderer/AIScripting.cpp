@@ -1,6 +1,8 @@
 #include "StdAfx.h"
 #include "AIScripting.h"
 
+boost::scoped_ptr<AIScripting> AIScripting::singleton(NULL);
+
 AIScripting::AIScripting(void)
 {
 	lState = lua_open();
@@ -117,4 +119,14 @@ void AIScripting::RegisterTelegram(lua_State* state)
 			.def_readwrite("dispatchTime", &Telegram::dispatchTime)
 			.def_readwrite("extraInfo", &Telegram::ExtraInfo)
 	];
+}
+
+boost::scoped_ptr<AIScripting>* AIScripting::GetInstance()
+{
+	if(singleton.get() == NULL)
+	{
+		singleton.reset(new AIScripting);
+	}
+
+	return &singleton;
 }

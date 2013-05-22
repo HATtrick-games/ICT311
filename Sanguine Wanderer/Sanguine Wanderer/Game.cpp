@@ -27,7 +27,7 @@ void Game::Init()
 
 	/****PROPS LIST ******/
 
-	GameObject* Rock1 = new GameObject();
+	/*GameObject* Rock1 = new GameObject();
 	
 
 	Rock1->SetMesh(new Mesh);
@@ -39,7 +39,7 @@ void Game::Init()
 	
 	Rock1->InitialiseCollisionBody();
 	PropObjects.push_back(Rock1);
-	
+	*/
 	
 	
 
@@ -70,7 +70,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 	Knight->SetPosition(glm::vec3(0,0,-4));
-	Knight->SetScale(glm::vec3(0.05,0.05,0.05));
+	Knight->SetScale(glm::vec3(10.0,10.0,10.0));
 	Knight->SetRotation(glm::vec3(0,0,0));
 
 //=======
@@ -92,7 +92,27 @@ void Game::Init()
 
 	(*pGraphicsEng)->Start();
 	
+	/*===== AI INITIALISATION =====*/
+	Enemy1 = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
+	Enemy2 = new AIObject(Vector2D(300, 300), Vector2D(10, 0), 0);
 
+	Enemy1->SetTarget(Knight);
+	Enemy2->SetTarget(Knight);
+
+	(*AIScripting::GetInstance())->LoadScript("luascripts/statemachine.lua");
+
+	luabind::object state = luabind::globals((*AIScripting::GetInstance())->lState);
+
+	Enemy1->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
+	Enemy1->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
+
+	Enemy2->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
+	Enemy2->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
+
+	(*AIObjectManager::GetInstance())->RegisterObject(Enemy1);
+	(*AIObjectManager::GetInstance())->RegisterObject(Enemy2);
+
+	// TODO assign models to the enemy objects
 }
 
 void Game::Display()
@@ -208,7 +228,8 @@ void Game::Input()
 
 Game::~Game(void)
 {
-
+	delete Enemy1;
+	delete Enemy2;
 }
 
 boost::scoped_ptr<Game> * Game::GetInstance()

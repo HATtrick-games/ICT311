@@ -16,8 +16,10 @@ public:
 	lua_State* lState;
 
 	bool LoadScript(std::string filename);
+
+	static boost::scoped_ptr<AIScripting>* GetInstance();
 private:
-	
+	static boost::scoped_ptr<AIScripting> singleton;
 
 	void LoadLuaLibraries();
 	void RegisterClasses();
