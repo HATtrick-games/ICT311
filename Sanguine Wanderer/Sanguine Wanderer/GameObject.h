@@ -25,7 +25,7 @@ public:
 
 	Mesh* GetMesh();
 	virtual void InitialiseCollisionBody();
-	virtual void Update(){};// = 0;
+	virtual void Update();// = 0;
 
 protected:
 	Mesh* ObjectMesh;

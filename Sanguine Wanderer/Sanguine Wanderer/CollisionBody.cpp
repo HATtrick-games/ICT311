@@ -20,7 +20,7 @@ CollisionBody::CollisionBody(glm::vec3 passPosition,float length, float width, f
 	CurrentPosition.y = passPosition.y;
 	CurrentPosition.z = passPosition.z;
 	swap = 0;
-	CreateRigidBody(passPosition, length,width,height);
+	CreateRigidBody(passPosition, length,width,height,"word");
 }
 
 CollisionBody::CollisionBody(glm::vec3 passPosition,float length, float width, float height, int nothing)
@@ -43,7 +43,12 @@ CollisionBody::CollisionBody(glm::vec3 passPosition,glm::vec3 Normal)
 }
 void CollisionBody::Rotate(float degrees)
 {
-	//not implemented
+	btTransform trans;
+	ThisRigidBody->getMotionState()->getWorldTransform(trans);
+	btQuaternion quat;
+	quat.setEuler(3.14159265,0,0); 
+	trans.setRotation(quat);
+	ThisRigidBody->setCenterOfMassTransform(trans);
 }
 
 CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
@@ -58,7 +63,7 @@ CollisionBody::CollisionBody(glm::vec3 passPosition, int type)
 	if(type == 1)
 	{
 		cout<<"type 1";
-	CreateRigidBody(passPosition, 2);
+	CreateRigidBody(passPosition, 2.5);
 	}
 	else if(type == 3)
 	{

@@ -4,6 +4,11 @@
 
 void AIObject::InitialiseCollisionBody()
 {
+	MeshCenter.x = (((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())/2)+ObjectMesh->GetMinX());
+	MeshCenter.y = (((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())/2)+ObjectMesh->GetMinY());
+	MeshCenter.z = (((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())/2)+ObjectMesh->GetMinZ());
+
+
 	MeshCenter.x = MeshCenter.x*Scale.x;
 	MeshCenter.y = MeshCenter.y*Scale.y;
 	MeshCenter.z = MeshCenter.z*Scale.z;
@@ -13,7 +18,7 @@ void AIObject::InitialiseCollisionBody()
 
 	cout<<"\n  DISTANCES=="<<((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)<<"=="<<((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)<<"=="<<((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)<<"\n";
 	cout<<"  \n  MeshCenter"<<MeshCenter.x<<"--/"<<MeshCenter.y<<"--/"<<MeshCenter.z<<"\n";
-	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2, "move");
+	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,2/*((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2*/,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2, "move");
 	//cbCollisionObject->Rotate(180);
 }
 
@@ -29,7 +34,7 @@ AIObject::AIObject(void)
 
 AIObject::AIObject(Vector2D pos, Vector2D vel, int id)
 {
-	SetPosition(pos.ToGLM());
+	//SetPosition(pos.ToGLM());
 	SetVelocity(glm::vec2(vel.x, vel.y));
 	ID = id;
 	aiFSM = new StateMachine<AIObject>(this);

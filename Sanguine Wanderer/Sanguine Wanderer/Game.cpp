@@ -9,15 +9,15 @@ Game::Game()
 	
 	plane = new GroundObject();
 	plane->InitialiseCollisionBody(glm::vec3(0,3,0), 10000, 1,10000);
-	//plane1 = new GroundObject();
-	//plane1->InitialiseCollisionBody(glm::vec3(0,0,400), glm::vec3(0,0,-1));
+	plane1 = new GroundObject();
+	plane1->InitialiseCollisionBody(glm::vec3(0,0,320), 100000,100000,1);
 	
-//	plane2 = new GroundObject();
-	//plane2->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));
-	//plane3 = new GroundObject();
-	//plane3->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));
-	//plane4 = new GroundObject();
-	//plane4->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));*/
+	plane2 = new GroundObject();
+	plane2->InitialiseCollisionBody(glm::vec3(0,0,-130),100000,100000,1);
+	plane3 = new GroundObject();
+	plane3->InitialiseCollisionBody(glm::vec3(-80,0,0), 1,1000,10000);
+	plane4 = new GroundObject();
+	plane4->InitialiseCollisionBody(glm::vec3(330,0,0),1,1000,10000); 
 }
 
 void Game::Init()
@@ -115,6 +115,7 @@ void Game::Init()
 	TestProp->SetPosition(glm::vec3(0,0,-25));
 	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
 	TestProp->SetRotation(glm::vec3(0,180,0));
+	TestProp->InitialiseCollisionBody();
 
 	Knight->SetAnimations(Temp);
 	Knight->ToggleIsAnimating();
@@ -122,7 +123,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 
-	Knight->SetPosition(glm::vec3(0,3,-4));
+	Knight->SetPosition(glm::vec3(0,0,-4));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
@@ -188,7 +189,8 @@ void Game::Update()
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
-	Knight->SetPosition(glm::vec3(10, 0, 10));
+	//Knight->SetPosition(glm::vec3(10, 0, 10));
+	Knight->Update();
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
 	
