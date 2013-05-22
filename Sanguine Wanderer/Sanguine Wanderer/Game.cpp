@@ -79,7 +79,7 @@ void Game::Init()
 //>>>>>>> stuff
 
 	Terrain = new HeightMap;
-	Terrain->Load("heightmap2.bmp");
+	Terrain->Load("heightmap.bmp");
 	//std::vector<ValueType> vec(a, a + n);
 	std::vector<float> v(Terrain->GetHeights(), Terrain->GetHeights() + Terrain->GetNumberHeights());
 	
