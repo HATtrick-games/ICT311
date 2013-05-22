@@ -37,8 +37,7 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 		
 	angle = 0;
 	yangle = 1.4;
-	//xorigin= 0;
-	//yorigin = 0;
+	
 	lx = 0;
 	lz= -1;
 	ly = 0;
@@ -46,13 +45,13 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 	LookAtLocation = StartingLookAt;
 	UpVector = StartingUpVector;
 	cbCollisionObject = new CollisionBody(Position, 1);
-	//CollisionBody* cbCollisionObject;
+
 
 }
 
 void PlayerObject::Jump()
 {
-	//cout<<"JUMP";
+	
 	if((cbCollisionObject->ReturnYVelocity() <=0)&&(cbCollisionObject->ReturnYVelocity()>-0.000000001))
 	{
 	//cbCollisionObject->ApplyForce(0,15,0);
@@ -157,7 +156,7 @@ void PlayerObject::MovePlayer(int Direction)
 {
 	//cbCollisionObject->SetVelocity(2,0,0);
 	//SetVectors();
-	float speed = 30;
+	float speed = 300;
 	switch (Direction)
 	{
 	case 1: 

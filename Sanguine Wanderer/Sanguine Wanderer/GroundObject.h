@@ -5,7 +5,7 @@ class  GroundObject : public GameObject
 {
 public: 
 	GroundObject(){};
-	void InitialiseCollisionBody(glm::vec3 Pos);
+	void InitialiseCollisionBody(glm::vec3 Pos, float x, float y, float z);
 protected:
 private:
 };

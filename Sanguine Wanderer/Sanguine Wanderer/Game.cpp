@@ -7,8 +7,17 @@ Game::Game()
 {
 	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
 	
-	//plane = new GroundObject();
-	//plane->InitialiseCollisionBody(glm::vec3(0,10,0));
+	plane = new GroundObject();
+	plane->InitialiseCollisionBody(glm::vec3(0,-6,0), 10000, 1,10000);
+	//plane1 = new GroundObject();
+	//plane1->InitialiseCollisionBody(glm::vec3(0,0,400), glm::vec3(0,0,-1));
+	
+//	plane2 = new GroundObject();
+	//plane2->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));
+	//plane3 = new GroundObject();
+	//plane3->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));
+	//plane4 = new GroundObject();
+	//plane4->InitialiseCollisionBody(glm::vec3(0,-50,0), glm::vec3(0,1,0));*/
 }
 
 void Game::Init()
@@ -46,13 +55,13 @@ void Game::Init()
 
 	Skybox = new GameObject;
 	TestProp = new GameObject;
-	Knight = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
+	Knight = new AIObject;
 	Rock2 = new GameObject;
 
 	/*===== AI INITIALISATION =====*/
-	
-	Enemy1 = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
-	Enemy2 = new AIObject(Vector2D(300, 300), Vector2D(10, 0), 0);
+
+	Enemy1 = new AIObject;
+	Enemy2 = new AIObject;
 
 	Enemy1->SetTarget(Player);
 	Enemy2->SetTarget(Player);
@@ -112,8 +121,13 @@ void Game::Init()
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
+<<<<<<< HEAD
 	Knight->SetPosition(glm::vec3(0,3,-4));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
+=======
+	Knight->SetPosition(glm::vec3(0,0,-4));
+	Knight->SetScale(glm::vec3(0.00001,0.00001,0.000001));
+>>>>>>> b87e1e672db9a55b843c94b488a68abb305e47c0
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
 
@@ -132,8 +146,8 @@ void Game::Init()
 	//cout<<"\n WIDTH"<<Terrain->GetLength()<<"\n";
 	//cout<<"\n Data = "<<v[60*60]<<"\n";
 	//GroundCollide = new CollisionHeightMap(Terrain->GetWidth(),Terrain->GetLength(),v,-100,100,1);
-	//GroundCollide->Translate(32.5*20,30,27.5*20);
-	//GroundCollide->Scale(1,1,1);
+	//GroundCollide->Translate(-250*8,-5,-250*8);
+	//GroundCollide->Scale(8,8,8);
 
 	//Terrain->Load("heightmap.bmp");
 	
@@ -171,16 +185,16 @@ void Game::Display()
 
 void Game::Update()
 {
-	
+	//cout<<"\n PLANE Y +++"<<plane->GetPosition().y;
 	GroundCollide->Update();
 	Input();
 	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
-
+	Knight->SetPosition(glm::vec3(10, 0, 10));
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
-	std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
+	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
 	
 
 }
