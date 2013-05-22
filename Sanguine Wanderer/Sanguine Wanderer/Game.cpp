@@ -122,8 +122,8 @@ void Game::Init()
 	Enemy1 = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
 	Enemy2 = new AIObject(Vector2D(300, 300), Vector2D(10, 0), 0);
 
-	Enemy1->SetTarget(Knight);
-	Enemy2->SetTarget(Knight);
+	Enemy1->SetTarget(Player);
+	Enemy2->SetTarget(Player);
 
 	(*AIScripting::GetInstance())->LoadScript("luascripts/statemachine.lua");
 
@@ -177,6 +177,8 @@ void Game::Update()
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
+
+	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	
 	//cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
 	//cout<<"=================="<<Player->GetLookAt().x<<"\n";

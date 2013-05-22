@@ -2,23 +2,45 @@
 
 #include "stdafx.h"
 
+/**
+ * \struct	Telegram
+ *
+ * \brief	Telegram.
+**/
 struct Telegram
 {
-	int sender;
+	int sender; //!< The sender
 
-	int receiver;
+	int receiver;   //!< The receiver
 
-	int message;
+	int message;	//!< The message
 
-	double dispatchTime;
+	double dispatchTime;	//!< Time of the dispatch
 
-	luabind::object ExtraInfo;
+	luabind::object ExtraInfo;  //!< Additional information to accompany the message
 
+	/**
+	 * \fn	Telegram(void)
+	 *
+	 * \brief	Default constructor.
+	**/
 	Telegram(void): dispatchTime(-1), sender(-1), receiver(-1), message(-1)
 	{
 		ExtraInfo = luabind::object();
 	}
-	
+
+	/**
+	 * \fn	Telegram(double time, int sender, int receiver, int msg,
+	 * 		luabind::object extra)
+	 *
+	 * \brief	Constructor.
+	 *
+	 * \param	time		The time.
+	 * \param	sender  	The sender.
+	 * \param	receiver	The receiver.
+	 * \param	msg			The message.
+	 * \param	extra   	The extra.
+	**/
 	Telegram(double time, int sender, int receiver, int msg, luabind::object extra)
 	{
 		dispatchTime = time;
