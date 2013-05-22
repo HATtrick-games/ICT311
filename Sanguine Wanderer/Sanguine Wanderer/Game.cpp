@@ -19,6 +19,23 @@ void Game::Init()
 	(*pGraphicsEng)->Initialise();
 	(*Input::GetInstance())->SetInputMethod("OPENGL");
 
+	Temp = new Animation((*pGraphicsEng)->GetGraphics());
+	Mesh * TempMesh = new Mesh;
+	TempMesh->SetFile("./data/KnightDefault.obj");
+	TempMesh->Load();
+	Temp->AddAnimation(TempMesh, TWalk);
+
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/Knight2.obj");
+	TempMesh->Load();
+	Temp->AddAnimation(TempMesh, TWalk);
+
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/KnightFinal.obj");
+	TempMesh->Load();
+	Temp->AddAnimation(TempMesh, TWalk);
+	
+
 	Skybox = new GameObject;
 	TestProp = new GameObject;
 	Knight = new GameObject;
@@ -39,7 +56,7 @@ void Game::Init()
 	
 	Rock1->InitialiseCollisionBody();
 	PropObjects.push_back(Rock1);
-	
+
 	
 	
 
@@ -65,7 +82,8 @@ void Game::Init()
 	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
 	TestProp->SetRotation(glm::vec3(0,180,0));
 //<<<<<<< HEAD
-
+	Knight->SetAnimations(Temp);
+	Knight->ToggleIsAnimating();
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
@@ -109,6 +127,7 @@ void Game::Display()
 		(*pGraphicsEng)->RenderModel(*i);
 
 	}
+	(*pGraphicsEng)->RenderModel(Knight);
 //<<<<<<< HEAD
 //	(*pGraphicsEng)->RenderModel(TestProp);
 	//(*pGraphicsEng)->RenderModel(Skybox);

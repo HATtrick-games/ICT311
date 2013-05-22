@@ -11,6 +11,7 @@
 #include "GroundObject.h"
 #include "PropObject.h"
 #include "CollisionHeightMap.h"
+#include "Animation.h"
 #include <list>
 
 class Game
@@ -43,5 +44,7 @@ private:
 	GameObject * Skybox;
 	GameObject * Knight;
 	HeightMap * Terrain;
+
+	Animation* Temp;
 };
 

@@ -37,7 +37,7 @@ public:
 	void RenderModel(GameObject * GameObj);
 	void RenderTerrain(HeightMap* Terrain);
 	void Start();
-	//int GetGraphics();
+	int GetGraphics();
 
 private:
 
@@ -54,6 +54,10 @@ private:
 	std::vector<GLuint> VAO;
 	std::vector<GLuint> IndexBufferObject;
 	std::vector<GLuint> TexBuffer;
+
+	GLuint AnimationVBO;
+	GLuint AnimationVAO;
+	GLuint AnimationTBO;
 
 	static boost::scoped_ptr<Graphics> pSingleton;
 

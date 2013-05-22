@@ -16,6 +16,7 @@ public:
 	GLuint GetTextureSampler(int index);
 
 	void HeightMap(std::string filename);
+	void FreeBuffer(int index);
 
 	static boost::scoped_ptr<TextureLoader>* TextureLoader::GetInstance();
 

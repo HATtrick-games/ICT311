@@ -105,6 +105,7 @@ void OpenGL::Update()
 		glutPostRedisplay();
 		Time += 33.3;
 	}
+	
 	(*Game::GetInstance())->Update();
 }
 
@@ -141,59 +142,153 @@ void OpenGL::RenderModel(GameObject * GameObj)
 
 	if(GameObj->GetIsAnimating())
 	{
+		int NextFrame;
+		int CurrentFrame;
+		float * AnimationBuffer;
+		float Dif;
+		float Timer = glutGet(GLUT_ELAPSED_TIME);
+		
+		if(GameObj->GetAnimations()->GetBoolWalk())
+		{
+			
+			if(!GameObj->GetAnimations()->GetPreviousAnimations())
+			{
+				GameObj->GetAnimations()->SetTime(Timer);
+			}
 
-	}
+			if((Timer-GameObj->GetAnimations()->GetTime()) > 300)
+			{
+				GameObj->GetAnimations()->IncrementCurrentFrame();
+				GameObj->GetAnimations()->SetTime(Timer);
+			}
 
-	if(VAO[Index] == 0)
-	{
+			CurrentFrame = GameObj->GetAnimations()->GetCurrentFrame();
+			
+			if(CurrentFrame >= GameObj->GetAnimations()->GetTotalFrames())
+			{
+				GameObj->GetAnimations()->ResetCurrentFrame();
+				CurrentFrame = GameObj->GetAnimations()->GetCurrentFrame();
+			}
+			NextFrame = (CurrentFrame + 1);
+
+			AnimationBuffer = new float[GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetNumVert()];
+			
+			for(int i=0; i < GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetNumVert(); i++)
+			{
+				Dif = GameObj->GetAnimations()->GetWalk(NextFrame)->GetVertexArray()[i] - GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetVertexArray()[i];
+				//std::cout << i << std::endl;
+				Dif =  Dif*((Timer - GameObj->GetAnimations()->GetTime())/1000);
+		
+				AnimationBuffer[i] = GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetVertexArray()[i] + Dif;
+			}
+			
+		}
+
+
+		if(!GameObj->GetAnimations()->GetPreviousAnimations())
+		{
+			glGenVertexArrays(1, &AnimationVAO);
+			glGenBuffers(1, &AnimationVBO);
+			glGenBuffers(1, &AnimationTBO);
+		}
+
+		glBindVertexArray(AnimationVAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, AnimationVBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumVert()), AnimationBuffer, GL_STREAM_DRAW);
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		
+		if(!GameObj->GetAnimations()->GetPreviousAnimations())
+		{
+			glBindBuffer(GL_ARRAY_BUFFER, AnimationTBO);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumTextures()), GameObj->GetMesh()->GetUVArray(), GL_STATIC_DRAW);
+			glEnableVertexAttribArray(1);
+			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	
-		VertexBufferObject.push_back(0);
-		IndexBufferObject.push_back(0);
-		VAO.push_back(0);
-		TexBuffer.push_back(0);
+			(*TextureLoader::GetInstance())->Load(GameObj->GetMesh()->GetTexPath(), Index);
+		}
 
-		glGenVertexArrays(1, &VAO[Index]);
-		glGenBuffers(1, &VertexBufferObject[Index]);
-		glGenBuffers(1, &TexBuffer[Index]);
+		glBindVertexArray(0);
+
+		glm::mat4 ModelMat = CreateModelTransformMatrix(GameObj->GetPosition(),(GameObj->GetScale()),(GameObj->GetRotation()));
+
+		glBindVertexArray(AnimationVAO);
+
+		glUniform1i(UniTex, 0);
+		glBindTexture(GL_TEXTURE_2D,(*TextureLoader::GetInstance())->GetTexHandle(Index));
+		glActiveTexture(GL_TEXTURE0);
+
+		glEnableVertexAttribArray(0);
+		glEnableVertexAttribArray(1);
+
+		glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
+
+		glDrawArrays(GL_TRIANGLES, 0, GameObj->GetMesh()->GetNumVert());
+
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glBindVertexArray(0);
+		glUseProgram(0);
+
+		//glDeleteVertexArrays(1, &AnimationVBO);
+		//glDeleteBuffers(1, &AnimationVBO);
+		//glDeleteBuffers(1, &AnimationTBO);
+		//(*TextureLoader::GetInstance())->FreeBuffer(Index);
+		GameObj->GetAnimations()->SetPreviousAnimations(true);
+		delete[] AnimationBuffer;
+	}
+	else
+	{
+		if(VAO[Index] == 0)
+		{
+	
+			VertexBufferObject.push_back(0);
+			IndexBufferObject.push_back(0);
+			VAO.push_back(0);
+			TexBuffer.push_back(0);
+
+			glGenVertexArrays(1, &VAO[Index]);
+			glGenBuffers(1, &VertexBufferObject[Index]);
+			glGenBuffers(1, &TexBuffer[Index]);
+
+			glBindVertexArray(VAO[Index]);
+
+			glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumVert()), GameObj->GetMesh()->GetVertexArray(), GL_STATIC_DRAW);
+			glEnableVertexAttribArray(0);
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+				
+			glBindBuffer(GL_ARRAY_BUFFER, TexBuffer[Index]);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumTextures()), GameObj->GetMesh()->GetUVArray(), GL_STATIC_DRAW);
+			glEnableVertexAttribArray(1);
+			glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	
+			(*TextureLoader::GetInstance())->Load(GameObj->GetMesh()->GetTexPath(), Index);
+		
+			glBindVertexArray(0);
+		}
+
+		glm::mat4 ModelMat = CreateModelTransformMatrix(GameObj->GetPosition(),(GameObj->GetScale()),(GameObj->GetRotation()));
 
 		glBindVertexArray(VAO[Index]);
 
-		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferObject[Index]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumVert()), GameObj->GetMesh()->GetVertexArray(), GL_STATIC_DRAW);
+		glUniform1i(UniTex, 0);
+		glBindTexture(GL_TEXTURE_2D,(*TextureLoader::GetInstance())->GetTexHandle(Index));
+		glActiveTexture(GL_TEXTURE0);
+
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-				
-		glBindBuffer(GL_ARRAY_BUFFER, TexBuffer[Index]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumTextures()), GameObj->GetMesh()->GetUVArray(), GL_STATIC_DRAW);
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
-	
-		(*TextureLoader::GetInstance())->Load(GameObj->GetMesh()->GetTexPath(), Index);
-		
+
+		glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
+
+		glDrawArrays(GL_TRIANGLES, 0, GameObj->GetMesh()->GetNumVert());
+
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
 		glBindVertexArray(0);
+		glUseProgram(0);
 	}
-
-	glm::mat4 ModelMat;
-
-	ModelMat = CreateModelTransformMatrix(GameObj->GetPosition(),(GameObj->GetScale()),(GameObj->GetRotation()));
-
-	glBindVertexArray(VAO[Index]);
-
-	glUniform1i(UniTex, 0);
-	glBindTexture(GL_TEXTURE_2D,(*TextureLoader::GetInstance())->GetTexHandle(Index));
-	glActiveTexture(GL_TEXTURE0);
-
-	glEnableVertexAttribArray(0);
-	glEnableVertexAttribArray(1);
-
-	glUniformMatrix4fv(UniModelToCameraMatrix,1,GL_FALSE, glm::value_ptr(ModelMat));
-
-	glDrawArrays(GL_TRIANGLES, 0, GameObj->GetMesh()->GetNumVert());
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glBindVertexArray(0);
-	glUseProgram(0);
 }
 
 void OpenGL::Reshape (int w, int h)
@@ -323,4 +418,9 @@ GLuint OpenGL::CreateProgram(const std::vector<GLuint> &shaderList)
 		fprintf(stderr, "%s\n", e.what());
 		throw;
 	}
+}
+
+int OpenGL::GetGraphics()
+{
+	return theProgram;
 }

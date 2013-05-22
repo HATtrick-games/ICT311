@@ -30,6 +30,7 @@ private:
 	int h;
 	int w;
 
+
 	int NumberHeights;
 };
 

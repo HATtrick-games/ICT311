@@ -28,6 +28,8 @@ public:
 
 	virtual void SetLook(glm::vec3 look) = 0;
 
+	virtual int GetGraphics() = 0;
+
 	//virtual void Idle() = 0; // Remove if not used.
 
 	//virtual void FPSTimer() = 0; // Remove if not used.
