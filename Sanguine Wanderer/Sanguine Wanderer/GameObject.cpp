@@ -16,6 +16,11 @@ glm::vec3 GameObject::GetPosition()
 	return Position;
 }
 
+glm::vec3 GameObject::GetVelocity()
+{
+	return Velocity;
+}
+
 void GameObject::InitialiseCollisionBody()
 {
 	

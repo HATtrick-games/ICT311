@@ -55,7 +55,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glloadD.lib;glutilD.lib;assimp.lib;DevIL.lib;ILU.lib;OpenGL32.lib;SDL.lib;SDLmain.lib;SOIL.lib;GLFW.lib;FreeImage.lib;BulletCollision_vs2010_debug.lib;BulletDynamics_vs2010_debug.lib;BulletSoftBody_vs2010_debug.lib;LinearMath_vs2010_debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glloadD.lib;glutilD.lib;assimp.lib;DevIL.lib;ILU.lib;OpenGL32.lib;SDL.lib;SDLmain.lib;SOIL.lib;GLFW.lib;FreeImage.lib;BulletCollision_vs2010_debug.lib;BulletDynamics_vs2010_debug.lib;BulletSoftBody_vs2010_debug.lib;LinearMath_vs2010_debug.lib;lua5.1.lib;luabindd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AIMovement.h" />
+    <ClInclude Include="AIObject.h" />
+    <ClInclude Include="AIObjectManager.h" />
+    <ClInclude Include="AIScripting.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Camera.h" />
@@ -86,6 +89,7 @@
     <ClInclude Include="CollisionHeightMap.h" />
     <ClInclude Include="CollisionWorldSingleton.h" />
     <ClInclude Include="CommonFunctions.h" />
+    <ClInclude Include="DynamicEnum.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameAssetFactory.h" />
     <ClInclude Include="GameObject.h" />
@@ -98,21 +102,26 @@
     <ClInclude Include="IMouse.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MessageDispatcher.h" />
     <ClInclude Include="OGLKeyboard.h" />
     <ClInclude Include="OGLMouse.h" />
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="PlayerObject.h" />
     <ClInclude Include="PropObject.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Telegram.h" />
     <ClInclude Include="TextureLoader.h" />
+    <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AIMovement.cpp" />
+    <ClCompile Include="AIObject.cpp" />
+    <ClCompile Include="AIObjectManager.cpp" />
+    <ClCompile Include="AIScripting.cpp" />
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Camera.cpp" />
@@ -120,6 +129,7 @@
     <ClCompile Include="CollisionHeightMap.cpp" />
     <ClCompile Include="CollisionWorldSingleton.cpp" />
     <ClCompile Include="CommonFunctions.cpp" />
+    <ClCompile Include="DynamicEnum.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameAssetFactory.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -131,6 +141,7 @@
     <ClCompile Include="IMouse.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MessageDispatcher.cpp" />
     <ClCompile Include="OGLKeyboard.cpp" />
     <ClCompile Include="OGLMouse.cpp" />
     <ClCompile Include="OpenGL.cpp" />
@@ -143,6 +154,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="TextureLoader.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

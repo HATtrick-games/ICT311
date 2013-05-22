@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Telegram.h"
+
 /**
  * \class	State
  *
@@ -45,5 +47,7 @@ public:
 	 * \param [in,out]	parameter1	The object to unload.
 	**/
 	virtual void Unload(T*) = 0;
+
+	virtual bool OnMessage(T*, const Telegram&) = 0;
 };
 
