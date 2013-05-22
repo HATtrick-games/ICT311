@@ -14,8 +14,8 @@ AIObject::AIObject(void)
 
 AIObject::AIObject(Vector2D pos, Vector2D vel, int id)
 {
-	Position = pos.ToGLM();
-	Velocity = vel.ToGLM();
+	SetPosition(pos.ToGLM());
+	SetVelocity(glm::vec2(vel.x, vel.y));
 	ID = id;
 	aiFSM = new StateMachine<AIObject>(this);
 	aiTimeElapsed = 0.0f;
@@ -32,7 +32,7 @@ void AIObject::UpdateAI(float timeElapsed)
 	cout<<"UPdated";
 	aiTimeElapsed = timeElapsed;
 
-	Position = cbCollisionObject->GetPosition();
+//	Position = cbCollisionObject->GetPosition();
 
 	aiFSM->Update();
 }

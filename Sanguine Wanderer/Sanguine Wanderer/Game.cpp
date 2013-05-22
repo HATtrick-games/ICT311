@@ -46,12 +46,12 @@ void Game::Init()
 
 	Skybox = new GameObject;
 	TestProp = new GameObject;
-	Knight = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
+	Knight = new AIObject;
 	Rock2 = new GameObject;
 
 	/*===== AI INITIALISATION =====*/
-	Enemy1 = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
-	Enemy2 = new AIObject(Vector2D(300, 300), Vector2D(10, 0), 0);
+	Enemy1 = new AIObject;
+	Enemy2 = new AIObject;
 
 	Enemy1->SetTarget(Player);
 	Enemy2->SetTarget(Player);
@@ -171,15 +171,16 @@ void Game::Display()
 void Game::Update()
 {
 	
+
 	GroundCollide->Update();
 	Input();
 	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
-
+	Knight->SetPosition(glm::vec3(10, 0, 10));
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
-	std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
+	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
 	
 
 }
