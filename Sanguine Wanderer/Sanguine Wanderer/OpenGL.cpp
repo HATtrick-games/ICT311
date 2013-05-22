@@ -19,16 +19,6 @@ OpenGL::~OpenGL(void)
 }
 void OpenGL::Initialise()
 {
-
-	/*
-
-	4:17 PM - Captain Midnight: #include <Windows.h>
-#include "wtypes.h"
-4:17 PM - Captain Midnight: screenwidth = 0;
-screenheight = 0;
-screenwidth = GetSystemMetrics(SM_CXSCREEN);
-screenheight = GetSystemMetrics(SM_CYSCREEN);
-*/
 	glutInitDisplayMode (GLUT_DOUBLE | GLUT_MULTISAMPLE | GLUT_DEPTH | GLUT_RGBA);
 	glutInitContextVersion (3, 3);
 	glutInitContextProfile(GLUT_CORE_PROFILE);
@@ -379,7 +369,7 @@ void OpenGL::RenderTerrain(HeightMap * Terrain)
 	
 		(*TextureLoader::GetInstance())->Load("HeightmapTexture.bmp", Index);
 	}
-	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(-500,-5,-500),glm::vec3(8,8,8),glm::vec3(0,0,0));
+	glm::mat4 ModelMat = CreateModelTransformMatrix(glm::vec3(-200,18,-200),glm::vec3(3,3,3),glm::vec3(0,0,0));
 
 	glBindVertexArray(VAO[Index]);
 	glEnableVertexAttribArray(0);

@@ -64,9 +64,6 @@ void Mesh::InitMesh(const aiScene* pScene, const std::string& sFilepath)
 			memcpy(VertexArray,&pos,sizeof(float)*3);
 			VertexArray+=3;
 
-			
-			//std::cout << VertexArray[j*3] << " " << VertexArray[j*3+1] <<  std::endl;
-	//std::getchar();
 		}
 	}
 
