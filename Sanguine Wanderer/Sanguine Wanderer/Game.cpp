@@ -87,7 +87,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 	Knight->SetPosition(glm::vec3(0,0,-4));
-	Knight->SetScale(glm::vec3(10.0,10.0,10.0));
+	Knight->SetScale(glm::vec3(0.05,0.05,0.05));
 	Knight->SetRotation(glm::vec3(0,0,0));
 
 
