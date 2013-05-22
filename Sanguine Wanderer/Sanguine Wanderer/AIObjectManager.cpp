@@ -31,3 +31,13 @@ boost::scoped_ptr<AIObjectManager>* AIObjectManager::GetInstance()
 	}
 	return &singleton;
 }
+
+void AIObjectManager::UpdateAI(float timeElapsed)
+{
+	std::map<int, AIObject*>::iterator mapItr;
+
+	for(mapItr = objectMap.begin(); mapItr != objectMap.end(); mapItr++)
+	{
+		mapItr->second->UpdateAI(timeElapsed);
+	}
+}

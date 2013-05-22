@@ -48,6 +48,16 @@ public:
 	**/
 	virtual void Unload(T*) = 0;
 
+	/**
+	 * \fn	virtual bool State::OnMessage(T*, const Telegram&) = 0;
+	 *
+	 * \brief	Executes the message action.
+	 *
+	 * \param [in,out]	parameter1	If non-null, the first parameter.
+	 * \param	parameter2		  	The second parameter.
+	 *
+	 * \return	true if it succeeds, false if it fails.
+	**/
 	virtual bool OnMessage(T*, const Telegram&) = 0;
 };
 

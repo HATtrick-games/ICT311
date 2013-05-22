@@ -37,6 +37,16 @@ public:
 	void RemoveObject(AIObject* object);
 
 	/**
+	 * \fn	void AIObjectManager::UpdateAI(float timeElapsed);
+	 *
+	 * \brief	Updates all the AI objects by providing them with the 
+	 * 			elapsed time between updates.
+	 *
+	 * \param	timeElapsed	The time elapsed.
+	**/
+	void UpdateAI(float timeElapsed);
+
+	/**
 	 * \fn	static boost::scoped_ptr<AIObjectManager>* AIObjectManager::GetInstance();
 	 *
 	 * \brief	Gets the singleton instance of this class.

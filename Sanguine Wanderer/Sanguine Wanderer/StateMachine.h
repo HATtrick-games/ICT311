@@ -39,6 +39,11 @@ public:
 		object = fsmObject;
 	};
 
+	/**
+	 * \fn	StateMachine::StateMachine()
+	 *
+	 * \brief	Default constructor.
+	**/
 	StateMachine()
 	{
 		object = NULL;
@@ -156,6 +161,16 @@ public:
 
 	luabind::object& GetGlobalState() { return globalState; }
 
+	/**
+	 * \fn	bool StateMachine::HandleMessage(const Telegram& msg)
+	 *
+	 * \brief	Handles the message described by msg.
+	 *
+	 * \param	msg	The message.
+	 *
+	 * \return	true if it succeeds, false if it fails.
+	**/
+
 	bool HandleMessage(const Telegram& msg)
 	{
 		if(currentState.is_valid())
@@ -172,6 +187,12 @@ public:
 
 		return false;
 	}
+
+	/**
+	 * \fn	virtual StateMachine::~StateMachine()
+	 *
+	 * \brief	Destructor.
+	**/
 
 	virtual ~StateMachine() {};
 private:
