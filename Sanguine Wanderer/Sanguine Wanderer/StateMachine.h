@@ -7,8 +7,11 @@
 #pragma once
 
 #include <iostream>
+#include <lua.hpp>
+#include <luabind/luabind.hpp>
 
 #include "State.h"
+#include "Telegram.h"
 
 /**
  * \class	StateMachine
@@ -34,18 +37,12 @@ public:
 	StateMachine(T* fsmObject)
 	{
 		object = fsmObject;
-		previousState = NULL;
-		currentState = NULL;
-		globalState = NULL;
 	};
 
-	/**
-	 * \fn	virtual StateMachine::~StateMachine(void);
-	 *
-	 * \brief	Destructor.
-	**/
-
-	virtual ~StateMachine(void);
+	StateMachine()
+	{
+		object = NULL;
+	}
 
 	/**
 	 * \fn	void StateMachine::SetPreviousState(State<T>* st)
@@ -55,7 +52,7 @@ public:
 	 * \param [in,out]	st	If non-null, the st.
 	**/
 
-	void SetPreviousState(State<T>* st) { previousState = st; }
+	void SetPreviousState(const luabind::object& st) { previousState = st; }
 
 	/**
 	 * \fn	void StateMachine::SetCurrentState(State<T>* st)
@@ -65,7 +62,7 @@ public:
 	 * \param [in,out]	st	If non-null, the st.
 	**/
 
-	void SetCurrentState(State<T>* st) { currentState = st; }
+	void SetCurrentState(const luabind::object& st) { currentState = st; }
 
 	/**
 	 * \fn	void StateMachine::SetGlobalState(State<T>* st)
@@ -75,7 +72,7 @@ public:
 	 * \param [in,out]	st	If non-null, the st.
 	**/
 
-	void SetGlobalState(State<T>* st) { globalState = st; }
+	void SetGlobalState(const luabind::object st) { globalState = st; globalState["enter"](object); }
 
 	/**
 	 * \fn	void StateMachine::Update() const;
@@ -83,7 +80,16 @@ public:
 	 * \brief	Updates this object.
 	**/
 
-	void Update() const;
+	void Update()
+	{
+		// global state has been set
+		if(globalState.is_valid())
+			globalState["execute"](object);
+
+		// current state has been set
+		if(currentState.is_valid())
+			currentState["execute"](object);
+	}
 
 	/**
 	 * \fn	void StateMachine::ChangeState(State<T>* newState);
@@ -93,7 +99,21 @@ public:
 	 * \param [in,out]	newState	If non-null, state of the new.
 	**/
 
-	void ChangeState(State<T>* newState);
+	void ChangeState(const luabind::object& newState)
+	{
+		if(currentState.is_valid())
+		{
+			// save the current state as previous state
+			previousState = currentState;
+			// call the exit function of the current state 
+			currentState["exit"](object);
+		}
+
+		// change current state to new state
+		currentState = newState;
+		// call the enter function of the new state
+		currentState["enter"](object);
+	}
 
 	/**
 	 * \fn	void StateMachine::RevertToPreviousState();
@@ -101,7 +121,10 @@ public:
 	 * \brief	Revert to previous state.
 	**/
 
-	void RevertToPreviousState();
+	void RevertToPreviousState()
+	{
+		currentState = previousState;
+	}
 
 	/**
 	 * \fn	State<T>* StateMachine::GetPreviousState()
@@ -111,7 +134,7 @@ public:
 	 * \return	null if it fails, else the previous state.
 	**/
 
-	State<T>* GetPreviousState() { return previousState; }
+	luabind::object& GetPreviousState() { return previousState; }
 
 	/**
 	 * \fn	State<T>* StateMachine::GetCurrentState()
@@ -121,7 +144,7 @@ public:
 	 * \return	null if it fails, else the current state.
 	**/
 
-	State<T>* GetCurrentState() { return currentState; }
+	luabind::object& GetCurrentState() { return currentState; }
 
 	/**
 	 * \fn	State<T>* StateMachine::GetGlobalState()
@@ -131,63 +154,29 @@ public:
 	 * \return	null if it fails, else the global state.
 	**/
 
-	State<T>* GetGlobalState() { return globalState; }
+	luabind::object& GetGlobalState() { return globalState; }
 
-	/**
-	 * \fn	bool StateMachine::IsInState(const State<T>& st) const;
-	 *
-	 * \brief	Query if 'st' is in state.
-	 *
-	 * \param	st	The st.
-	 *
-	 * \return	true if in state, false if not.
-	**/
-
-	bool IsInState(const State<T>& st) const;
-private:
-	T* object; //!< The object
-	State<T>* previousState; //!< The previous state
-	State<T>* currentState; //!< The current state
-	State<T> *globalState;  //!< The global state
-};
-
-template <class T>
-void StateMachine::Update()
-{
-	// global state has been set
-	if(globaState)
-		globalState->Execute(object);
-
-	// current state has been set
-	if(currentState)
-		currentState->Execture(object);
-}
-
-template <class T>
-void StateMachine::ChangeState(State<T>* newState)
-{
-	if(currentState)
+	bool HandleMessage(const Telegram& msg)
 	{
-		// save the current state as previous state
-		previousState = currentState;
-		// call the exit function of the current state 
-		currentState->Exit(object);
+		if(currentState.is_valid())
+		{
+			currentState["onMessage"](object, msg);
+			return true;
+		}
+
+		if(globalState.is_valid())
+		{
+			globalState["onMessage"](object, msg);
+			return true;
+		}
+
+		return false;
 	}
 
-	// change current state to new state
-	currentState = newState;
-	// call the enter function of the new state
-	currentState->Enter(object);
-}
-
-template <class T>
-void StateMachine::RevertToPreviousState()
-{
-	currentState = previousState;
-}
-
-template <class T>
-bool StateMachine::IsInState(const State<T>& st)
-{
-	return typeid(*currentState) == typeid(st);
-}
+	virtual ~StateMachine() {};
+private:
+	T* object; //!< The object
+	luabind::object previousState; //!< The previous state
+	luabind::object currentState; //!< The current state
+	luabind::object globalState;  //!< The global state
+};

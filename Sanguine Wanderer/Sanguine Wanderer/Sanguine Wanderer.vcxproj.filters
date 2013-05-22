@@ -37,6 +37,12 @@
     <Filter Include="Source Files\AssestManagement">
       <UniqueIdentifier>{c5784912-d007-432e-b3f7-c94e3c289ffa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{a749abb2-c69e-4f25-9d69-f8d26dc5cd39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{d2f2f559-4129-4bb2-8e56-aa12a6fb4d11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -114,9 +120,6 @@
     <ClInclude Include="StateMachine.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Header Files\AI</Filter>
-    </ClInclude>
     <ClInclude Include="AIMovement.h">
       <Filter>Header Files\AI</Filter>
     </ClInclude>
@@ -137,6 +140,27 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2D.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="AIObject.h">
+      <Filter>Header Files\Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Telegram.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIScripting.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicEnum.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageDispatcher.h">
+      <Filter>Header Files\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="AIObjectManager.h">
+      <Filter>Header Files\Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +247,24 @@
     </ClCompile>
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector2D.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="AIObject.cpp">
+      <Filter>Source Files\Game Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="AIScripting.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicEnum.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageDispatcher.cpp">
+      <Filter>Source Files\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="AIObjectManager.cpp">
+      <Filter>Source Files\Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
