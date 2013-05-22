@@ -58,10 +58,6 @@ void TextureLoader::Load(std::string Path, int index)
 	glGenerateMipmap(GL_TEXTURE_2D);
 }
 
-void TextureLoader::HeightMap(std::string filename)
-{
-	
-}
 
 // load a bitmap with freeimage
 bool TextureLoader::loadBitmap(string filename, FIBITMAP* &bitmap) {

@@ -55,9 +55,6 @@ void Camera::SetLookAt(glm::vec3 lookat)
 
 void Camera::SetCameraLoc(glm::vec3 movementVec)
 {
-	//CameraLoc += movementVec;
-	//CameraLook += movementVec;
-
 	//to move the camera in the looking direction
 	
 	float Xvec = CameraLook.x - CameraLoc.x;
@@ -91,28 +88,6 @@ void Camera::SetCameraLoc(glm::vec3 movementVec)
 
 void Camera::SetCameraLook(glm::vec3 movementVec)
 {
-	/*if((CameraLook.x > 0) && (movementVec.x > 0))
-	{
-		CameraLook += (movementVec +glm::vec3(0,0,-0.1));
-	}
-	else if((CameraLook.x > 0) && (movementVec.x < 0))
-	{
-		CameraLook += (movementVec +glm::vec3(0,0,0.1));
-	}
-	else if((CameraLook.x < 0) && (movementVec.x < 0))
-	{
-		CameraLook += (movementVec +glm::vec3(0,0,-0.1));
-	}
-	else if((CameraLook.x < 0) && (movementVec.x > 0))
-	{
-		CameraLook += (movementVec +glm::vec3(0,0,0.1));
-	}
-	else
-	{
-		CameraLook += movementVec;
-	}*/
-	
-	
 	CameraLook.x += movementVec.x;
 }
 

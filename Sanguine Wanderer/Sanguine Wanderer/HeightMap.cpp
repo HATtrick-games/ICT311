@@ -15,7 +15,6 @@ HeightMap::~HeightMap(void)
 void HeightMap::SetHeight(int x, int z, float h)
 {
 	pHeights[z][x] = h;
-	//bNormalsComputed = false;
 }
 
 void HeightMap::Load(std::string filename)
@@ -101,18 +100,11 @@ void HeightMap::Load(std::string filename)
 
 			UVW[k+10] = ((float)(x+1)/(w-1));
 			UVW[k+11] = ((float)(z+1)/(w-1));
-			
-			//std::cout << "x:" << UVW[k] << " z:" << UVW[k+1] << std::endl;
 
 			k+=12;
-			//k+=2;
-			//k++;
 			i+=18;
-			j++;
-
-			
+			j++;			
 		}
-		//std::getchar();
 	}
 
 	NumberTex = total*2*3;

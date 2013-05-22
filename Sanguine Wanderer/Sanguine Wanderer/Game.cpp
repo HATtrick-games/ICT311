@@ -59,6 +59,7 @@ void Game::Init()
 	Rock2 = new GameObject;
 
 	/*===== AI INITIALISATION =====*/
+
 	Enemy1 = new AIObject;
 	Enemy2 = new AIObject;
 
@@ -82,16 +83,14 @@ void Game::Init()
 	(*AIObjectManager::GetInstance())->RegisterObject(Knight);
 	(*AIObjectManager::GetInstance())->RegisterObject(Enemy1);
 	(*AIObjectManager::GetInstance())->RegisterObject(Enemy2);
-
-
-	/****PROPS LIST ******/
-
-	/*GameObject* Rock1 = new GameObject();
 	
 
-	->SetMesh(new Mesh);
+	/****PROPS LIST ******/
+	/*
+	GameObject* Rock1 = new GameObject();
+	
 	(Rock1->GetMesh())->SetFile("./data/GraniteRocks.obj");
-	(Rock1->GetMesh())->Load(Rock1);
+	(Rock1->GetMesh())->Load();
 	Rock1->SetPosition(glm::vec3(0,0,-10));
 	Rock1->SetScale(glm::vec3(0.15,0.15,0.15));
 	Rock1->SetRotation(glm::vec3(0,0,0));
@@ -113,17 +112,22 @@ void Game::Init()
 	TestProp->SetMesh(new Mesh);
 	(TestProp->GetMesh())->SetFile("./data/housebest.obj");
 	(TestProp->GetMesh())->Load();
-	TestProp->SetPosition(glm::vec3(0,0,-25));
+	TestProp->SetPosition(glm::vec3(0,3,-25));
 	TestProp->SetScale(glm::vec3(0.15,0.15,0.15));
-	TestProp->SetRotation(glm::vec3(0,0,0));
+	TestProp->SetRotation(glm::vec3(0,180,0));
 
 	Knight->SetAnimations(Temp);
 	Knight->ToggleIsAnimating();
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
+<<<<<<< HEAD
+	Knight->SetPosition(glm::vec3(0,3,-4));
+	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
+=======
 	Knight->SetPosition(glm::vec3(0,0,-4));
 	Knight->SetScale(glm::vec3(0.00001,0.00001,0.000001));
+>>>>>>> b87e1e672db9a55b843c94b488a68abb305e47c0
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
 
@@ -168,14 +172,16 @@ void Game::Display()
 	(*pGraphicsEng)->RenderTerrain(Terrain);
 
 	(*pGraphicsEng)->RenderModel(Skybox);
+
+	(*pGraphicsEng)->RenderModel(TestProp);
+	(*pGraphicsEng)->RenderModel(Knight);
+	//(*pGraphicsEng)->RenderModel(Enemy1);
+
 	//for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
 	//{
 	//	(*pGraphicsEng)->RenderModel(*i);
 
 
-	(*pGraphicsEng)->RenderModel(Knight);
-
-}
 
 void Game::Update()
 {
