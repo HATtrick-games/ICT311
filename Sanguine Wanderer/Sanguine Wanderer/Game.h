@@ -43,7 +43,7 @@ private:
 	GameObject * TestProp;
 	GameObject * Rock2;
 	GameObject * Skybox;
-	GameObject * Knight;
+	AIObject * Knight;
 	AIObject* Enemy1;
 	AIObject* Enemy2;
 	HeightMap * Terrain;

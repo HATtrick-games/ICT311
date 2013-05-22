@@ -47,8 +47,33 @@ void Game::Init()
 
 	Skybox = new GameObject;
 	TestProp = new GameObject;
-	Knight = new GameObject;
+	Knight = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
 	Rock2 = new GameObject;
+
+	/*===== AI INITIALISATION =====*/
+	Enemy1 = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
+	Enemy2 = new AIObject(Vector2D(300, 300), Vector2D(10, 0), 0);
+
+	Enemy1->SetTarget(Player);
+	Enemy2->SetTarget(Player);
+	Knight->SetTarget(Player);
+
+	(*AIScripting::GetInstance())->LoadScript("luascripts/statemachine.lua");
+
+	luabind::object state = luabind::globals((*AIScripting::GetInstance())->lState);
+
+	Enemy1->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
+	Enemy1->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
+
+	Enemy2->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
+	Enemy2->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
+
+	Knight->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
+	Knight->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
+
+	(*AIObjectManager::GetInstance())->RegisterObject(Knight);
+	(*AIObjectManager::GetInstance())->RegisterObject(Enemy1);
+	(*AIObjectManager::GetInstance())->RegisterObject(Enemy2);
 
 
 	/****PROPS LIST ******/
@@ -98,6 +123,7 @@ void Game::Init()
 	Knight->SetPosition(glm::vec3(0,0,-4));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
+	Knight->InitialiseCollisionBody();
 
 
 	//TestProp->InitialiseCollisionBody();
@@ -119,27 +145,8 @@ void Game::Init()
 
 	(*pGraphicsEng)->Start();
 	
-	/*===== AI INITIALISATION =====*/
-	Enemy1 = new AIObject(Vector2D(200, 200), Vector2D(0, 10), 0);
-	Enemy2 = new AIObject(Vector2D(300, 300), Vector2D(10, 0), 0);
+	
 
-	Enemy1->SetTarget(Player);
-	Enemy2->SetTarget(Player);
-
-	(*AIScripting::GetInstance())->LoadScript("luascripts/statemachine.lua");
-
-	luabind::object state = luabind::globals((*AIScripting::GetInstance())->lState);
-
-	Enemy1->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
-	Enemy1->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
-
-	Enemy2->GetFSM()->SetGlobalState(luabind::object_cast<luabind::object>(state["state_global"]));
-	Enemy2->GetFSM()->ChangeState(luabind::object_cast<luabind::object>(state["state_idle"]));
-
-	(*AIObjectManager::GetInstance())->RegisterObject(Enemy1);
-	(*AIObjectManager::GetInstance())->RegisterObject(Enemy2);
-
-	// TODO assign models to the enemy objects
 }
 
 void Game::Display()
@@ -159,6 +166,7 @@ void Game::Display()
 
 //	}
 	(*pGraphicsEng)->RenderModel(Knight);
+	//(*pGraphicsEng)->RenderModel(Enemy1);
 //<<<<<<< HEAD
 //	(*pGraphicsEng)->RenderModel(TestProp);
 	//(*pGraphicsEng)->RenderModel(Skybox);
@@ -171,7 +179,7 @@ void Game::Display()
 
 void Game::Update()
 {
-	cout<<"Update \n wkjerg;jdfgh \n";
+	//cout<<"Update \n wkjerg;jdfgh \n";
 	// 
 	GroundCollide->Update();
 	Input();
@@ -181,6 +189,7 @@ void Game::Update()
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
 
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
+	std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
 	
 	//cout<<Player->GetPosition().x<<"   "<<Player->GetPosition().y<<"    "<<Player->GetPosition().z<<"\n";
 	//cout<<"=================="<<Player->GetLookAt().x<<"\n";

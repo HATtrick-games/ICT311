@@ -31,7 +31,7 @@ void AIObject::UpdateAI(float timeElapsed)
 {
 	aiTimeElapsed = timeElapsed;
 
-	Position += (Velocity * aiTimeElapsed);
+	Position = cbCollisionObject->GetPosition();
 
 	aiFSM->Update();
 }
@@ -50,8 +50,8 @@ void AIObject::PursueTarget()
 
 		movementFunctions.PursueTarget(pos, vel, Vector2D(target->GetPosition()), Vector2D(target->GetVelocity()), aiTimeElapsed);
 
-		Position = pos.ToGLM();
-		Velocity = vel.ToGLM();
+		this->SetPosition(pos.ToGLM());
+		this->SetVelocity(glm::vec2(vel.x, vel.y));
 	}
 }
 
@@ -64,8 +64,8 @@ void AIObject::FleeTarget()
 
 		movementFunctions.FleeTarget(pos, vel, Vector2D(target->GetPosition()), Vector2D(target->GetVelocity()), Velocity.length(), 10 / (Velocity.length() + 1), aiTimeElapsed);
 
-		Position = pos.ToGLM();
-		Velocity = vel.ToGLM();
+		this->SetPosition(pos.ToGLM());
+		this->SetVelocity(glm::vec2(vel.x, vel.y));
 	}
 }
 
@@ -77,23 +77,26 @@ void AIObject::EvadeTarget()
 		Vector2D vel(Velocity);
 
 		movementFunctions.EvadeTarget(pos, pos, Vector2D(target->GetPosition()), Vector2D(target->GetVelocity()), aiTimeElapsed);
+
+		this->SetPosition(pos.ToGLM());
+		this->SetVelocity(glm::vec2(vel.x, vel.y));
 	}
 }
 
 void AIObject::Wander()
 {
-	movementFunctions.SetWander(5, 2, 2);
+	movementFunctions.SetWander(50, 50, 50);
 
 	Vector2D pos(Position);
 	Vector2D vel(Velocity);
 
 	movementFunctions.Wander(pos, vel, aiTimeElapsed);
 
-	Position = pos.ToGLM();
-	Velocity = vel.ToGLM();
+	this->SetPosition(pos.ToGLM());
+	this->SetVelocity(glm::vec2(vel.x, vel.y));
 }
 
 bool AIObject::CanViewTarget()
 {
-	return movementFunctions.CanSeeTarget(Vector2D(Position), Vector2D(Velocity), Vector2D(target->GetPosition()), 100, 60);
+	return movementFunctions.CanSeeTarget(Vector2D(Position), Vector2D(Velocity), Vector2D(target->GetPosition()), 100000000000, 60);
 }

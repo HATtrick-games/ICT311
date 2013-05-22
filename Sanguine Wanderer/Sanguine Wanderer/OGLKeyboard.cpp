@@ -33,7 +33,7 @@ bool OGLKeyboard::IsKeyDown(std::string key)
 void OGLKeyboard::KeyPressed(unsigned char key, int x, int y)
 {
 	pKeyStates[(int)tolower(key)] = true;
-	(*Game::GetInstance())->Input();
+	//(*Game::GetInstance())->Input();
 }
 
 void OGLKeyboard::KeyUp(unsigned char key, int x, int y)

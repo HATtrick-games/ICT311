@@ -40,6 +40,7 @@ void GameObject::InitialiseCollisionBody()
 
 void GameObject::SetVelocity(glm::vec2 velocitypass)
 {
+	//std::cout << "Setting velocity " << velocitypass.x << " " << velocitypass.y << std::endl;
 	cbCollisionObject->SetVelocityGravity(velocitypass.x,velocitypass.y);
 }
 

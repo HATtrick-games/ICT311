@@ -20,6 +20,8 @@ AIScripting::~AIScripting(void)
 
 bool AIScripting::LoadScript(std::string filename)
 {
+	std::cout << "Loading script " << filename << std::endl;
+
 	try 
 	{
 		luaL_dofile(lState, filename.c_str());

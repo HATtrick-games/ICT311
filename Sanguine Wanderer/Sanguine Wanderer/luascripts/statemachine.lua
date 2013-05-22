@@ -12,7 +12,7 @@ state_global["enter"] = function (player)
 end
 
 state_global["execute"] = function(player)
-	
+	--print("global execute")
 end
   
 state_global["exit"] = function(player)
@@ -33,6 +33,7 @@ state_idle["enter"] = function (player)
 end
 
 state_idle["execute"] = function(player)
+	--print("idle execute")
 	--player:SetVelocity(Vector2D(0,10))
 	player:Wander()
 
@@ -65,6 +66,7 @@ state_chase["enter"] = function(player)
 end
 
 state_chase["execute"] = function(player)
+	--print("chase execute")
 	player:PursueTarget()
 
 	totalTime = totalTime + temp
