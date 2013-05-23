@@ -46,6 +46,7 @@ void GameObject::InitialiseCollisionBody()
 }
 void GameObject::Update()
 {
+	cbCollisionObject->Update();
 	Position = cbCollisionObject->GetPosition();
 	Position.x -= MeshCenter.x;
 	Position.y -= MeshCenter.y;
