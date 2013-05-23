@@ -85,11 +85,11 @@ void Game::Update()
 	
 	GroundCollide->Update();
 	Input();
-	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
+	Player->Update(1);
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
-	//Knight->SetPosition(glm::vec3(10, 0, 10));
+	Knight->SetVelocity(glm::vec2(0,5));
 	Knight->Update();
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
