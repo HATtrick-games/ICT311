@@ -5,7 +5,7 @@ boost::scoped_ptr<Game> Game::pSingleton(NULL);
 
 Game::Game()
 {
-	Player = new PlayerObject(glm::vec3(0,10,0),glm::vec3(0,3,-1),glm::vec3(0,1,0));
+	Player = new PlayerObject(glm::vec3(0,10,-100),glm::vec3(0,10,-19),glm::vec3(0,1,0));
 	
 	plane = new GroundObject();
 	plane->InitialiseCollisionBody(glm::vec3(0,3,0), 10000, 1,10000);
@@ -222,24 +222,77 @@ void Game::InitialiseProps()
 	Temp->SetMesh(new Mesh);
 	Temp->GetMesh()->SetFile("./data/housebest.obj");
 	Temp->GetMesh()->Load();
-	Temp->SetPosition(glm::vec3(0,0,-15));
+	Temp->SetPosition(glm::vec3(10,1,-60));
 	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
 	PropObjects.push_back(Temp);
+	Temp = new GameObject;
+	Temp->SetMesh(new Mesh);
+	Temp->GetMesh()->SetFile("./data/housebest.obj");
+	Temp->GetMesh()->Load();
+	Temp->SetPosition(glm::vec3(30,1,-60));
+	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
+	Temp->SetRotation(glm::vec3(0,0,0));
+	Temp->InitialiseCollisionBody();
+	PropObjects.push_back(Temp);
+	Temp = new GameObject;
+	Temp->SetMesh(new Mesh);
+	Temp->GetMesh()->SetFile("./data/Tower.obj");
+	Temp->GetMesh()->Load();
+	Temp->SetPosition(glm::vec3(200,0,200));
+	Temp->SetScale(glm::vec3(0.5,0.5,0.5));
+	Temp->SetRotation(glm::vec3(0,0,0));
+	Temp->InitialiseCollisionBody();
+	PropObjects.push_back(Temp);
+	Temp = new GameObject;
+	Temp->SetMesh(new Mesh);
+	Temp->GetMesh()->SetFile("./data/housebest.obj");
+	Temp->GetMesh()->Load();
+	Temp->SetPosition(glm::vec3(-19,0,-60));
+	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
+	Temp->SetRotation(glm::vec3(0,0,0));
+	Temp->InitialiseCollisionBody();
+	PropObjects.push_back(Temp);
+	Temp = new GameObject;
+	Temp->SetMesh(new Mesh);
+	Temp->GetMesh()->SetFile("./data/RockObj.obj");
+	Temp->GetMesh()->Load();
+	Temp->SetPosition(glm::vec3(-19,0,-80));
+	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
+	Temp->SetRotation(glm::vec3(0,0,0));
+	Temp->InitialiseCollisionBody();
+	PropObjects.push_back(Temp);
+	Temp = new GameObject;
+	Temp->SetMesh(new Mesh);
+	Temp->GetMesh()->SetFile("./data/RockObj.obj");
+	Temp->GetMesh()->Load();
+	Temp->SetPosition(glm::vec3(-19,0,-95));
+	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
+	Temp->SetRotation(glm::vec3(0,0,0));
+	Temp->InitialiseCollisionBody();
+	PropObjects.push_back(Temp);
+	/*
+	Temp = new GameObject;
+	Temp->SetMesh(new Mesh);
+	Temp->GetMesh()->SetFile("./data/RockObj.obj");
+	Temp->GetMesh()->Load();
+	Temp->SetPosition(glm::vec3(-19,0,-120));
+	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
+	Temp->SetRotation(glm::vec3(0,0,0));
+	Temp->InitialiseCollisionBody();
+	PropObjects.push_back(Temp);
+	*/
 	Knight = new AIObject;
 	Knight->SetAnimations(TempAni);
 	Knight->ToggleIsAnimating();
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
-
 	Knight->SetPosition(glm::vec3(20,0,-4));
-
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
-	PropObjects.push_back(Temp);
 
 		/****PROPS LIST ******/
 	/*

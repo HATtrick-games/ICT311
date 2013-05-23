@@ -35,7 +35,7 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 	
 	SetCursorPos(960, 540);
 		
-	angle = 0;
+	angle = 3.2;
 	yangle = 1.4;
 	
 	lx = 0;
