@@ -91,6 +91,7 @@ void Game::Update()
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
+
 	//Knight->SetPosition(glm::vec3(10, 0, 10));
 	
 	glm::vec3 Pos = Player->GetPosition() - Knight->GetPosition();
