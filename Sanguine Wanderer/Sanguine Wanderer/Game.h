@@ -26,6 +26,7 @@ public:
 	void Input();
 	void Update();
 	void MouseMove(int x, int y);
+	void InitialiseProps();
 
 	static boost::scoped_ptr<Game> * GetInstance();
 
@@ -52,6 +53,6 @@ private:
 	AIObject* Enemy2;
 	HeightMap * Terrain;
 
-	Animation* Temp;
+	std::vector<GameObject *> Props;
 };
 

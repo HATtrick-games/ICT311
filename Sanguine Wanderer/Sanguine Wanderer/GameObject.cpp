@@ -37,7 +37,7 @@ void GameObject::InitialiseCollisionBody()
 	
 	//cout<<"\n  DISTANCES=="<<((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)<<"=="<<((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)<<"=="<<((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)<<"\n";
 	//cout<<"  \n  MeshCenter"<<MeshCenter.x<<"--/"<<MeshCenter.y<<"--/"<<MeshCenter.z<<"\n";
-	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2);
+	cbCollisionObject = new CollisionBody(MeshCenter,(((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2)*1.1,(((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2)*1.1,(((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2)*1.1);
 	
 	MeshCenter.x -= Position.x;
 	MeshCenter.y -= Position.y;
