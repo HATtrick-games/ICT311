@@ -1,3 +1,9 @@
+/**
+ * \file	Game.h
+ *
+ * \brief	Declares the game class.
+ */
+
 #pragma once
 #include "stdafx.h"
 #include "Graphics.h"
@@ -15,6 +21,15 @@
 #include "Animation.h"
 #include <list>
 
+/**
+ * \class	Game
+ *
+ * \brief	Game.
+ *
+ * \author	Hamish Carrier
+ * \date	5/23/2013
+ */
+
 class Game
 {
 public:
@@ -22,6 +37,16 @@ public:
 	~Game(void);
 
 	void Display();
+
+	/**
+	 * \fn	void Game::Init();
+	 *
+	 * \brief	Initialises this object.
+	 *
+	 * \author	Hamish Carrier
+	 * \date	5/23/2013
+	 */
+
 	void Init();
 	void Input();
 	void Update();
@@ -33,28 +58,81 @@ public:
 private:
 	static boost::scoped_ptr<Game> pSingleton;
 	boost::scoped_ptr<Graphics> *pGraphicsEng;
+
+	/**
+	 * \brief	The player.
+	 */
+
 	PlayerObject* Player;
 	GameObject* Obj;
+
+	/**
+	 * \brief	The plane.
+	 */
+
 	GroundObject* plane;
 	GroundObject* plane1;
+
+	/**
+	 * \brief	The second plane.
+	 */
+
 	GroundObject* plane2;
 	GroundObject* plane3;
+
+	/**
+	 * \brief	The fourth plane.
+	 */
+
 	GroundObject* plane4;
 	CollisionHeightMap* GroundCollide;
 
+	/**
+	 * \brief	The graphics eng.
+	 */
+
 	Graphics* GraphicsEng;
 	list<GameObject*>::iterator i;
+
+	/**
+	 * \brief	The property objects.
+	 */
+
 	list<GameObject*> PropObjects;
 	GameObject * TestProp;
+
+	/**
+	 * \brief	The second rock.
+	 */
+
 	GameObject * Rock2;
 	GameObject * Skybox;
+
+	/**
+	 * \brief	The knight.
+	 */
+
 	AIObject * Knight;
 	AIObject* Enemy1;
+
+	/**
+	 * \brief	The second enemy.
+	 */
+
 	AIObject* Enemy2;
 	HeightMap * Terrain;
 
+	/**
+	 * \brief	The counter.
+	 */
+
 	int Counter;
 	int VelocityZ;
+
+	/**
+	 * \brief	The velocity x coordinate.
+	 */
+
 	int VelocityX;
 	std::vector<GameObject *> Props;
 };
