@@ -123,7 +123,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 
-	Knight->SetPosition(glm::vec3(0,0,-10));
+	Knight->SetPosition(glm::vec3(5,0,-10));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
