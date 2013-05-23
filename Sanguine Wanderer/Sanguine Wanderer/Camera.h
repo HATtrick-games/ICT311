@@ -20,7 +20,27 @@
 class Camera
 {
 public:
+
+	/**
+	 * \fn	Camera::Camera(void);
+	 *
+	 * \brief	Default constructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	Camera(void);
+
+	/**
+	 * \fn	Camera::~Camera(void);
+	 *
+	 * \brief	Destructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	~Camera(void);
 
 	/**

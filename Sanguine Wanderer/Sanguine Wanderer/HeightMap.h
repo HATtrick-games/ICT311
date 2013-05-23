@@ -20,7 +20,27 @@
 class HeightMap
 {
 public:
+
+	/**
+	 * \fn	HeightMap::HeightMap(void);
+	 *
+	 * \brief	Default constructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	HeightMap(void);
+
+	/**
+	 * \fn	HeightMap::~HeightMap(void);
+	 *
+	 * \brief	Destructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	~HeightMap(void);
 
 	/**

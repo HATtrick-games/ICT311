@@ -26,7 +26,27 @@
 class OpenGL : public Graphics
 {
 public:
+
+	/**
+	 * \fn	OpenGL::OpenGL(void);
+	 *
+	 * \brief	Default constructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	OpenGL(void);
+
+	/**
+	 * \fn	OpenGL::~OpenGL(void);
+	 *
+	 * \brief	Destructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	~OpenGL(void);
 
 	/**

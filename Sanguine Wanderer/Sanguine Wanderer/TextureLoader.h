@@ -19,7 +19,27 @@
 class TextureLoader
 {
 public:
+
+	/**
+	 * \fn	TextureLoader::TextureLoader(void);
+	 *
+	 * \brief	Default constructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	TextureLoader(void);
+
+	/**
+	 * \fn	TextureLoader::~TextureLoader(void);
+	 *
+	 * \brief	Destructor.
+	 *
+	 * \author	Chaokel
+	 * \date	23/05/2013
+	 */
+
 	~TextureLoader(void);
 
 	/**
