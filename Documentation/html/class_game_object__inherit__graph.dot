@@ -1,0 +1,14 @@
+digraph "GameObject"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="GameObject",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AIObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_a_i_object.html",tooltip="Used to define all Artificially Intelligent objects. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="GroundObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_ground_object.html",tooltip="Ground object. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="PlayerObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_player_object.html",tooltip="Player object. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="PropObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_prop_object.html",tooltip="Property object. "];
+}

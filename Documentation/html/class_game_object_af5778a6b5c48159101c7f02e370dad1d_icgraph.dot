@@ -1,0 +1,13 @@
+digraph "GameObject::GetVelocity"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="GameObject::GetVelocity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AIObject::PursueTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_a_i_object.html#a2bb42bf775a1cab13c0c83662f0ede3f",tooltip="Pursues the target. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="AIObject::FleeTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_a_i_object.html#aaa042b2f5e4d25ee26610efcf891b147",tooltip="Flees the target. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="AIObject::EvadeTarget",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_a_i_object.html#a207998dc0c9e2d559629383971c7896f",tooltip="Evades the target. "];
+}

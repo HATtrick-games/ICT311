@@ -1,0 +1,9 @@
+digraph "GameAssetFactory::Create"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="GameAssetFactory::Create",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="AssetManager::AddAsset",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_asset_manager.html#a0fe694a67d8356062ffd575163e7e26c",tooltip="Adds an asset to &#39;type&#39;. "];
+}

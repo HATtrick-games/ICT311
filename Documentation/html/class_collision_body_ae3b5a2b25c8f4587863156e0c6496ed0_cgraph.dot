@@ -1,0 +1,13 @@
+digraph "CollisionBody::CollisionBody"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="CollisionBody::CollisionBody",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CollisionBody::createplane",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collision_body.html#aad2605af7cb658f784d72deeab27c4f1",tooltip="Createplanes. "];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CollisionWorldSingleton\l::Instance",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collision_world_singleton.html#ac582bf5f99e95541fbc6fe7c4a655c1a",tooltip="Gets the instance. "];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CollisionWorldSingleton\l::AddRigidBody",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_collision_world_singleton.html#a24af5d0ff1c65d747c914e2868228dd1",tooltip="Adds a rigid body to the collision world. "];
+}

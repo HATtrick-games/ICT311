@@ -1,0 +1,23 @@
+digraph "CollisionBody::SetVelocityGravity"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="CollisionBody::SetVelocity\lGravity",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="GameObject::SetVelocity",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game_object.html#a749e43ce7e4fd678f8365d529a07155d",tooltip="sets velocity of object "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Game::Update",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a1c5373c68261c54aff03e6abe40fee52",tooltip="updates all objects that require it "];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Game::InitialiseProps",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a1f6433c67fab3050335d7ff62dfa2273",tooltip="sets up in game objects "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="Game::Init",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a555a9e4719fd49971765a2ab8b090b5c",tooltip="Initialises this object. "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="PlayerObject::StopPlayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_player_object.html#ad61d233f1d2ffc2084b454a3e99a33c9",tooltip="stops the player "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="Game::Input",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_game.html#a7c682bd3c63bdff1e2afa1d939b676b1",tooltip="calls input functions and checks what keys are down. "];
+  Node7 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="PlayerObject::MovePlayer",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_player_object.html#a87aaf5885ceee3c7c9f91cc62e93c02e",tooltip="moves the player in the direction corresponding to the integer passed in "];
+  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

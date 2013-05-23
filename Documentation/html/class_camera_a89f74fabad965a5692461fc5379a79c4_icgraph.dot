@@ -1,0 +1,24 @@
+digraph "Camera::GetInstance"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Camera::GetInstance",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="OpenGL::InitialiseProgram",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#a78e3b0e9cd0334e40a333345f9df3e07",tooltip="Initialises the program. "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="OpenGL::SetupProgram",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#a9bef8c9ca4bc11bdc78c258a321a8d0d",tooltip="Sets up the program. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="OpenGL::Initialise",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#a1f01b0a2b22bfaae0648edabfdcf26ee",tooltip="Initialises this object. "];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="OpenGL::Reshape",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#a4eb5d94853234175c14868892e6e02b3",tooltip="Reshapes the window. "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="OpenGL::Display",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#ab34326d7f72d28a1b601a09b4650ebdb",tooltip="Handles all rendering, callback to opengl display function. "];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="OpenGL::MoveCamera",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#aa2c78ab94c645e3fc2c7343dffe3d310",tooltip="Move camera. "];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="OpenGL::SetLook",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#adcd59103eecb3082927836e755554eae",tooltip="Sets a camera look at. "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="OpenGL::SetCam",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_open_g_l.html#aba9940923a2d48244b89e7319b5bd6a4",tooltip="Sets a camera location. "];
+}

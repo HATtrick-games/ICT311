@@ -1,0 +1,10 @@
+digraph "Sanguine Wanderer" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_61c66e9ca56a48a0dca6922e41a8cba3 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_61c66e9ca56a48a0dca6922e41a8cba3.html"];
+    dir_61c66e9ca56a48a0dca6922e41a8cba3 [shape=plaintext label="Sanguine Wanderer"];
+    dir_1540cc8443bd15983e96a27413c91240 [shape=box label="data" color="black" fillcolor="white" style="filled" URL="dir_1540cc8443bd15983e96a27413c91240.html"];
+  }
+}
