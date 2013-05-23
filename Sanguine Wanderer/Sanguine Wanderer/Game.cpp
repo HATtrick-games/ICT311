@@ -100,8 +100,16 @@ void Game::Update()
 	Normalised.x=Pos.x / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
 	Normalised.y = Pos.z / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
 	Knight->SetVelocity(glm::vec2(Normalised.x*3,Normalised.y*3));
-	float dot = glm::dot(glm::vec2(0,1), Normalised);
-	//Knight->SetRotation(glm::vec3(0,,0));
+	float dot = glm::dot(Normalised,glm::vec2(0,1));
+	
+	float angle_A = atan2 (1.0f,0.0f);
+	float angle_B = atan2(Normalised.y,Normalised.x); // Box2D already figured this out for you.
+
+	float cosine = angle_B-angle_A;
+	cosine *= 57.2957795;
+	//cosine = acos(cosine);
+	cout<<"\n cosine =="<<cosine<<"\n";
+	Knight->SetRotation(glm::vec3(0,-cosine,0));
 	Knight->Update();
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
