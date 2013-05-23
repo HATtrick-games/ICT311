@@ -48,11 +48,34 @@ public:
 	 */
 
 	void Init();
+
+	/**
+	*\brief calls input functions and checks what keys are down.
+	*
+	*/
 	void Input();
+
+	/**
+	*\brief updates all objects that require it
+	*
+	*/
 	void Update();
+	/**
+	*\brief activated by mouse movement, calls player camera movement functions
+	*
+	*/
 	void MouseMove(int x, int y);
+
+	/**
+	*\brief sets up in game objects
+	*
+	*/
 	void InitialiseProps();
 
+	/**
+	*\brief returns an instance of game
+	*
+	*/
 	static boost::scoped_ptr<Game> * GetInstance();
 
 private:
@@ -64,6 +87,11 @@ private:
 	 */
 
 	PlayerObject* Player;
+
+	/**
+	*\brief a game object
+	*
+	*/
 	GameObject* Obj;
 
 	/**
@@ -71,6 +99,10 @@ private:
 	 */
 
 	GroundObject* plane;
+	/**
+	*\brief a ground object
+	*
+	*/
 	GroundObject* plane1;
 
 	/**
@@ -78,6 +110,10 @@ private:
 	 */
 
 	GroundObject* plane2;
+	/**
+	*\brief a ground object
+	*
+	*/
 	GroundObject* plane3;
 
 	/**
@@ -85,6 +121,11 @@ private:
 	 */
 
 	GroundObject* plane4;
+
+	/**
+	*\brief the collision height map
+	*
+	*/
 	CollisionHeightMap* GroundCollide;
 
 	/**
@@ -92,6 +133,10 @@ private:
 	 */
 
 	Graphics* GraphicsEng;
+	/**
+	*\brief game object list iterator
+	*
+	*/
 	list<GameObject*>::iterator i;
 
 	/**
@@ -99,6 +144,10 @@ private:
 	 */
 
 	list<GameObject*> PropObjects;
+	/**
+	*\brief a prop used for testing
+	*
+	*/
 	GameObject * TestProp;
 
 	/**
@@ -106,6 +155,10 @@ private:
 	 */
 
 	GameObject * Rock2;
+	/**
+	*\brief object that stores the skybox
+	*
+	*/
 	GameObject * Skybox;
 
 	/**
@@ -113,7 +166,15 @@ private:
 	 */
 
 	AIObject * Knight;
+	/**
+	*\brief a second knight character
+	*
+	*/
 	AIObject * Knight2;
+	/**
+	*\briefand enemy ai
+	*
+	*/
 	AIObject* Enemy1;
 
 	/**
@@ -121,6 +182,10 @@ private:
 	 */
 
 	AIObject* Enemy2;
+	/**
+	*\brief Heightmap storage class
+	*
+	*/
 	HeightMap * Terrain;
 
 	/**
@@ -128,6 +193,11 @@ private:
 	 */
 
 	int Counter;
+
+	/**
+	*\brief Z velocity
+	*
+	*/
 	int VelocityZ;
 
 	/**
@@ -136,7 +206,16 @@ private:
 
 	int VelocityX;
 
+	/**
+	*\brief patrol toggle boolean
+	*
+	*/
 	bool Patrol;
+
+	/**
+	*\brief vector of prop objects for scenery
+	*
+	*/
 	std::vector<GameObject *> Props;
 };
 
