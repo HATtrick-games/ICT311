@@ -18,6 +18,7 @@
 #include <iostream>
 #include <algorithm>
 #include <map>
+#include <stdlib.h>
 #include <math.h>
 #include <cmath>
 #include <limits>

@@ -53,6 +53,9 @@ private:
 	AIObject* Enemy2;
 	HeightMap * Terrain;
 
+	int Counter;
+	int VelocityZ;
+	int VelocityX;
 	std::vector<GameObject *> Props;
 };
 

@@ -27,7 +27,6 @@ PlayerObject::PlayerObject(glm::vec3 StartingLocation, glm::vec3 StartingLookAt,
 	windowy = (screenheight/2)-30;
 	xorigin = windowx;
 	yorigin = windowx;
-	 cout << windowx << '\n' << windowy << '\n';
 
 
 	ShowCursor(false); 

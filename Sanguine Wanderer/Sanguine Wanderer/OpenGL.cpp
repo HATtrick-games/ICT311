@@ -163,7 +163,6 @@ void OpenGL::RenderModel(GameObject * GameObj)
 			GameObj->GetAnimations()->SetCurrentFrame(CurrentFrame);
 
 			NextFrame = (CurrentFrame + 1);
-			std::cout << CurrentFrame;
 
 			AnimationBuffer = new float[GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetNumVert()];
 			

@@ -5,20 +5,22 @@ boost::scoped_ptr<Game> Game::pSingleton(NULL);
 
 Game::Game()
 {
-
+	Counter = 0;
+	VelocityZ = 0;
+	VelocityX = 0;
 	Player = new PlayerObject(glm::vec3(0,10,-100),glm::vec3(0,10,-19),glm::vec3(0,1,0));
 	
 	plane = new GroundObject();
 	plane->InitialiseCollisionBody(glm::vec3(0,3,0), 10000, 1,10000);
 	plane1 = new GroundObject();
-	plane1->InitialiseCollisionBody(glm::vec3(0,0,320), 100000,100000,1);
+	plane1->InitialiseCollisionBody(glm::vec3(0,0,310), 100000,100000,2);
 	
 	plane2 = new GroundObject();
-	plane2->InitialiseCollisionBody(glm::vec3(0,0,-130),100000,100000,1);
+	plane2->InitialiseCollisionBody(glm::vec3(0,0,-130),100000,100000,2);
 	plane3 = new GroundObject();
-	plane3->InitialiseCollisionBody(glm::vec3(-80,0,0), 1,1000,10000);
+	plane3->InitialiseCollisionBody(glm::vec3(-80,0,0), 2,1000,10000);
 	plane4 = new GroundObject();
-	plane4->InitialiseCollisionBody(glm::vec3(330,0,0),1,1000,10000); 
+	plane4->InitialiseCollisionBody(glm::vec3(320,0,0),2,1000,10000); 
 }
 
 void Game::Init()
@@ -85,11 +87,20 @@ void Game::Update()
 	
 	GroundCollide->Update();
 	Input();
-	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
+	Player->Update(1);
 	CollisionWorldSingleton::Instance()->StepWorld();
 	(*pGraphicsEng)->SetCam(Player->GetPosition());
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
 	//Knight->SetPosition(glm::vec3(10, 0, 10));
+	
+	glm::vec3 Pos = Player->GetPosition() - Knight->GetPosition();
+	glm::vec2 Normalised;
+	
+	Normalised.x=Pos.x / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
+	Normalised.y = Pos.z / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
+	Knight->SetVelocity(glm::vec2(Normalised.x*3,Normalised.y*3));
+	float dot = glm::dot(glm::vec2(0,1), Normalised);
+	//Knight->SetRotation(glm::vec3(0,,0));
 	Knight->Update();
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
@@ -224,7 +235,7 @@ void Game::InitialiseProps()
 	Temp->SetMesh(new Mesh);
 	Temp->GetMesh()->SetFile("./data/housebest.obj");
 	Temp->GetMesh()->Load();
-	Temp->SetPosition(glm::vec3(10,1,-60));
+	Temp->SetPosition(glm::vec3(15,0,-60));
 	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
@@ -233,7 +244,7 @@ void Game::InitialiseProps()
 	Temp->SetMesh(new Mesh);
 	Temp->GetMesh()->SetFile("./data/housebest.obj");
 	Temp->GetMesh()->Load();
-	Temp->SetPosition(glm::vec3(30,1,-60));
+	Temp->SetPosition(glm::vec3(35,0,-60));
 	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
@@ -251,7 +262,7 @@ void Game::InitialiseProps()
 	Temp->SetMesh(new Mesh);
 	Temp->GetMesh()->SetFile("./data/housebest.obj");
 	Temp->GetMesh()->Load();
-	Temp->SetPosition(glm::vec3(-19,0,-60));
+	Temp->SetPosition(glm::vec3(-4,0,-60));
 	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
@@ -274,17 +285,17 @@ void Game::InitialiseProps()
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
 	PropObjects.push_back(Temp);
-	/*
+	
 	Temp = new GameObject;
 	Temp->SetMesh(new Mesh);
 	Temp->GetMesh()->SetFile("./data/RockObj.obj");
 	Temp->GetMesh()->Load();
-	Temp->SetPosition(glm::vec3(-19,0,-120));
-	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
+	Temp->SetPosition(glm::vec3(-21,0,-115));
+	Temp->SetScale(glm::vec3(0.25,0.25,0.25));
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
 	PropObjects.push_back(Temp);
-	*/
+	
 	Knight = new AIObject;
 	Knight->SetAnimations(TempAni);
 	Knight->ToggleIsAnimating();
