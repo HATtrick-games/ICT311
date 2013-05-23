@@ -35,7 +35,7 @@ AIObject::AIObject(void)
 AIObject::AIObject(Vector2D pos, Vector2D vel, int id)
 {
 	//SetPosition(pos.ToGLM());
-	SetVelocity(glm::vec2(vel.x, vel.y));
+//	SetVelocity(glm::vec2(vel.x, vel.y));
 	ID = id;
 	aiFSM = new StateMachine<AIObject>(this);
 	aiTimeElapsed = 0.0f;
@@ -52,7 +52,7 @@ void AIObject::UpdateAI(float timeElapsed)
 	
 	aiTimeElapsed = timeElapsed;
 
-	std::cout << GetPosition().x << " " << GetPosition().z << std::endl;
+	//std::cout << GetPosition().x << " " << GetPosition().z << std::endl;
 //	Position = cbCollisionObject->GetPosition();
 
 	aiFSM->Update();
@@ -72,8 +72,8 @@ void AIObject::PursueTarget()
 
 		movementFunctions.PursueTarget(pos, vel, Vector2D(target->GetPosition()), Vector2D(target->GetVelocity()), aiTimeElapsed);
 
-		this->SetPosition(pos.ToGLM());
-		this->SetVelocity(glm::vec2(vel.x, vel.y));
+		//this->SetPosition(pos.ToGLM());
+	//	this->SetVelocity(glm::vec2(vel.x, vel.y));
 	}
 }
 
@@ -86,8 +86,8 @@ void AIObject::FleeTarget()
 
 		movementFunctions.FleeTarget(pos, vel, Vector2D(target->GetPosition()), Vector2D(target->GetVelocity()), Velocity.length(), 10 / (Velocity.length() + 1), aiTimeElapsed);
 
-		this->SetPosition(pos.ToGLM());
-		this->SetVelocity(glm::vec2(vel.x, vel.y));
+	//	this->SetPosition(pos.ToGLM());
+	//	this->SetVelocity(glm::vec2(vel.x, vel.y));
 	}
 }
 
@@ -100,8 +100,8 @@ void AIObject::EvadeTarget()
 
 		movementFunctions.EvadeTarget(pos, pos, Vector2D(target->GetPosition()), Vector2D(target->GetVelocity()), aiTimeElapsed);
 
-		this->SetPosition(pos.ToGLM());
-		this->SetVelocity(glm::vec2(vel.x, vel.y));
+	//	this->SetPosition(pos.ToGLM());
+	//	this->SetVelocity(glm::vec2(vel.x, vel.y));
 	}
 }
 
@@ -114,8 +114,8 @@ void AIObject::Wander()
 
 	movementFunctions.Wander(pos, vel, aiTimeElapsed);
 
-	this->SetPosition(pos.ToGLM());
-	this->SetVelocity(glm::vec2(vel.x, vel.y));
+	//this->SetPosition(pos.ToGLM());
+	//this->SetVelocity(glm::vec2(vel.x, vel.y));
 }
 
 bool AIObject::CanViewTarget()
