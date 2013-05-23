@@ -59,7 +59,7 @@ void Game::Init()
 	Rock2 = new GameObject;
 
 	/*===== AI INITIALISATION =====*/
-
+	/*
 	Enemy1 = new AIObject;
 	Enemy2 = new AIObject;
 
@@ -83,7 +83,7 @@ void Game::Init()
 	(*AIObjectManager::GetInstance())->RegisterObject(Knight);
 	(*AIObjectManager::GetInstance())->RegisterObject(Enemy1);
 	(*AIObjectManager::GetInstance())->RegisterObject(Enemy2);
-	
+	*/
 
 	/****PROPS LIST ******/
 	/*
@@ -123,7 +123,7 @@ void Game::Init()
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
 
-	Knight->SetPosition(glm::vec3(0,0,-4));
+	Knight->SetPosition(glm::vec3(0,0,-10));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
