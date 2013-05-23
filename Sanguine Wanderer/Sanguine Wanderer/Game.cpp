@@ -11,7 +11,7 @@ Game::Game()
 	Player = new PlayerObject(glm::vec3(0,10,-100),glm::vec3(0,10,-19),glm::vec3(0,1,0));
 	
 	plane = new GroundObject();
-	plane->InitialiseCollisionBody(glm::vec3(0,3,0), 10000, 1,10000);
+	plane->InitialiseCollisionBody(glm::vec3(0,1,0), 10000, 1,10000);
 	plane1 = new GroundObject();
 	plane1->InitialiseCollisionBody(glm::vec3(0,0,310), 100000,100000,2);
 	
@@ -272,6 +272,7 @@ void Game::InitialiseProps()
 	Temp->GetMesh()->SetFile("./data/RockObj.obj");
 	Temp->GetMesh()->Load();
 	Temp->SetPosition(glm::vec3(-19,0,-80));
+
 	Temp->SetScale(glm::vec3(0.15,0.15,0.15));
 	Temp->SetRotation(glm::vec3(0,0,0));
 	Temp->InitialiseCollisionBody();
