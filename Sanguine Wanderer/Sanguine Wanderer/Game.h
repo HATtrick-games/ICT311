@@ -113,6 +113,7 @@ private:
 	 */
 
 	AIObject * Knight;
+	AIObject * Knight2;
 	AIObject* Enemy1;
 
 	/**

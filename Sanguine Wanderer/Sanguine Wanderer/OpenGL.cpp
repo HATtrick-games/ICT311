@@ -191,6 +191,7 @@ void OpenGL::RenderModel(GameObject * GameObj)
 		
 		if(!GameObj->GetAnimations()->GetPreviousAnimations())
 		{
+			std::cout << "TEXTURE";
 			glBindBuffer(GL_ARRAY_BUFFER, AnimationTBO);
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float)*(GameObj->GetMesh()->GetNumTextures()), GameObj->GetMesh()->GetUVArray(), GL_STATIC_DRAW);
 			glEnableVertexAttribArray(1);

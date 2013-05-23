@@ -50,6 +50,8 @@ void GameObject::Update()
 	Position.x -= MeshCenter.x;
 	Position.y -= MeshCenter.y;
 	Position.z -= MeshCenter.z;
+	cbCollisionObject->Update();
+
 }
 
 void GameObject::SetVelocity(glm::vec2 velocitypass)

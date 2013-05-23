@@ -74,6 +74,7 @@ void Game::Display()
 	(*pGraphicsEng)->RenderTerrain(Terrain);
 
 	(*pGraphicsEng)->RenderModel(Knight);
+	(*pGraphicsEng)->RenderModel(Knight2);
 
 	for(i = PropObjects.begin(); i != PropObjects.end(); ++i)
 	{
@@ -122,9 +123,63 @@ void Game::Update()
 	}
 	else if(Patrol == true)
 	{
+		if(Counter%300 == 0)
+		{
+			VelocityZ = 5;
+			Knight->SetRotation(glm::vec3(0,0,0));
+		}
+		if(Counter%300 == 150)
+		{
+			VelocityZ = -5;
+			Knight->SetRotation(glm::vec3(0,180,0));
+		}
+		Knight->SetVelocity(glm::vec2(0,VelocityZ));
+	}
 
+	glm::vec3 Pos2 = Player->GetPosition() - Knight2->GetPosition();
+
+	if(std::sqrt(std::pow(Pos2.x,2) + std::pow(Pos2.z,2)) < 30)
+	{
+		Patrol = false;
+	}
+
+	if(Patrol == false)
+	{
+		glm::vec2 Normalised;
+	
+		Normalised.x=Pos2.x / std::sqrt(std::pow(Pos2.x,2) + pow(Pos2.z,2));
+		Normalised.y = Pos2.z / std::sqrt(std::pow(Pos2.x,2) + pow(Pos2.z,2));
+		std::cout << Normalised.x*3<<std::endl;
+		std::cout << Normalised.y*3 << std::endl;
+		Knight2->SetVelocity(glm::vec2(Normalised.x*3,Normalised.y*3));
+		float dot = glm::dot(Normalised,glm::vec2(0,1));
+	
+		float angle_A = atan2 (1.0f,0.0f);
+		float angle_B = atan2(Normalised.y,Normalised.x); // Box2D already figured this out for you.
+
+		float cosine = angle_B-angle_A;
+		cosine *= 57.2957795;
+		//cosine = acos(cosine);
+		cout<<"\n cosine =="<<cosine<<"\n";
+		Knight2->SetRotation(glm::vec3(0,-cosine,0));
+	}
+	else if(Patrol == true)
+	{
+		if(Counter%300 == 0)
+		{
+			VelocityX = -4;
+			Knight2->SetRotation(glm::vec3(0,270,0));
+		}
+		if(Counter%300 == 150)
+		{
+			VelocityX = 4;
+			Knight2->SetRotation(glm::vec3(0,90,0));
+		}
+		Knight2->SetVelocity(glm::vec2(VelocityX,0));
+		Counter++;
 	}
 	Knight->Update();
+	Knight2->Update();
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;
 	
@@ -326,15 +381,49 @@ void Game::InitialiseProps()
 	Knight->SetMesh(new Mesh);
 	(Knight->GetMesh())->SetFile("./data/KnightDefault.obj");
 	(Knight->GetMesh())->Load();
-	Knight->SetPosition(glm::vec3(20,-1,-4));
+	Knight->SetPosition(glm::vec3(100,-1,-40));
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
-
 	Knight->SetVelocity(glm::vec2(1,1));
-	PropObjects.push_back(Temp);
+	
+	Animation* TempAni2 = new Animation((*pGraphicsEng)->GetGraphics());
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/KnightDefault.obj");
+	TempMesh->Load();
+	TempAni2->AddAnimation(TempMesh, TWalk);
 
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/Knight2.obj");
+	TempMesh->Load();
+	TempAni2->AddAnimation(TempMesh, TWalk);
 
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/KnightFinal.obj");
+	TempMesh->Load();
+	TempAni2->AddAnimation(TempMesh, TWalk);
+
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/Knight3.obj");
+	TempMesh->Load();
+	TempAni2->AddAnimation(TempMesh, TWalk);
+	
+	TempMesh = new Mesh;
+	TempMesh->SetFile("./data/KnightDefault.obj");
+	TempMesh->Load();
+	TempAni2->AddAnimation(TempMesh, TWalk);
+
+	Knight2 = new AIObject;
+	Knight2->SetAnimations(TempAni2);
+	Knight2->ToggleIsAnimating();
+	Knight2->SetMesh(new Mesh);
+	(Knight2->GetMesh())->SetFile("./data/KnightDefault.obj");
+	(Knight2->GetMesh())->Load();
+	Knight2->SetPosition(glm::vec3(20,-1,40));
+	Knight2->SetScale(glm::vec3(0.1,0.1,0.1));
+	Knight2->SetRotation(glm::vec3(0,0,0));
+	Knight2->InitialiseCollisionBody();
+	Knight2->SetVelocity(glm::vec2(1,1));
 		/****PROPS LIST ******/
 	/*
 	GameObject* Rock1 = new GameObject();
