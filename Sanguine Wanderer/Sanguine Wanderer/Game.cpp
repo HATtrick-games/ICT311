@@ -8,6 +8,7 @@ Game::Game()
 	Counter = 0;
 	VelocityZ = 0;
 	VelocityX = 0;
+	Patrol = true;
 	Player = new PlayerObject(glm::vec3(0,10,-100),glm::vec3(0,10,-19),glm::vec3(0,1,0));
 	
 	plane = new GroundObject();
@@ -93,23 +94,36 @@ void Game::Update()
 	(*pGraphicsEng)->SetLook(Player->GetLookAt());
 
 	//Knight->SetPosition(glm::vec3(10, 0, 10));
-	
 	glm::vec3 Pos = Player->GetPosition() - Knight->GetPosition();
-	glm::vec2 Normalised;
-	
-	Normalised.x=Pos.x / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
-	Normalised.y = Pos.z / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
-	Knight->SetVelocity(glm::vec2(Normalised.x*3,Normalised.y*3));
-	float dot = glm::dot(Normalised,glm::vec2(0,1));
-	
-	float angle_A = atan2 (1.0f,0.0f);
-	float angle_B = atan2(Normalised.y,Normalised.x); // Box2D already figured this out for you.
 
-	float cosine = angle_B-angle_A;
-	cosine *= 57.2957795;
-	//cosine = acos(cosine);
-	cout<<"\n cosine =="<<cosine<<"\n";
-	Knight->SetRotation(glm::vec3(0,-cosine,0));
+	if(std::sqrt(std::pow(Pos.x,2) + std::pow(Pos.z,2)) < 30)
+	{
+		Patrol = false;
+	}
+	if(Patrol == false)
+	{
+		glm::vec2 Normalised;
+	
+		Normalised.x=Pos.x / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
+		Normalised.y = Pos.z / std::sqrt(std::pow(Pos.x,2) + pow(Pos.z,2));
+		std::cout << Normalised.x*3<<std::endl;
+		std::cout << Normalised.y*3 << std::endl;
+		Knight->SetVelocity(glm::vec2(Normalised.x*3,Normalised.y*3));
+		float dot = glm::dot(Normalised,glm::vec2(0,1));
+	
+		float angle_A = atan2 (1.0f,0.0f);
+		float angle_B = atan2(Normalised.y,Normalised.x); // Box2D already figured this out for you.
+
+		float cosine = angle_B-angle_A;
+		cosine *= 57.2957795;
+		//cosine = acos(cosine);
+		cout<<"\n cosine =="<<cosine<<"\n";
+		Knight->SetRotation(glm::vec3(0,-cosine,0));
+	}
+	else if(Patrol == true)
+	{
+
+	}
 	Knight->Update();
 	(*AIObjectManager::GetInstance())->UpdateAI(1.0/20.0);
 	//std::cout << Knight->GetPosition().x << " " << Knight->GetPosition().z << std::endl;

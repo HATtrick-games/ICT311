@@ -134,6 +134,8 @@ private:
 	 */
 
 	int VelocityX;
+
+	bool Patrol;
 	std::vector<GameObject *> Props;
 };
 
