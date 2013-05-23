@@ -147,7 +147,7 @@ void OpenGL::RenderModel(GameObject * GameObj)
 				GameObj->GetAnimations()->SetTime(Timer);
 			}
 
-			if((Timer-GameObj->GetAnimations()->GetTime()) > 1000)
+			if((Timer-GameObj->GetAnimations()->GetTime()) > 500)
 			{
 				CurrentFrame++;
 				GameObj->GetAnimations()->SetTime(Timer);
@@ -169,7 +169,7 @@ void OpenGL::RenderModel(GameObject * GameObj)
 			for(int i=0; i < GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetNumVert(); i++)
 			{
 				Dif = GameObj->GetAnimations()->GetWalk(NextFrame)->GetVertexArray()[i] - GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetVertexArray()[i];
-				Dif =  Dif*((Timer - GameObj->GetAnimations()->GetTime())/1000);
+				Dif =  Dif*((Timer - GameObj->GetAnimations()->GetTime())/500);
 		
 				AnimationBuffer[i] = GameObj->GetAnimations()->GetWalk(CurrentFrame)->GetVertexArray()[i] + Dif;
 			}		

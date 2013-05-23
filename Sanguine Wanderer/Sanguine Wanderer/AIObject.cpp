@@ -18,7 +18,7 @@ void AIObject::InitialiseCollisionBody()
 
 	cout<<"\n  DISTANCES=="<<((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)<<"=="<<((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)<<"=="<<((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)<<"\n";
 	cout<<"  \n  MeshCenter"<<MeshCenter.x<<"--/"<<MeshCenter.y<<"--/"<<MeshCenter.z<<"\n";
-	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,2/*((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2*/,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2, "move");
+	cbCollisionObject = new CollisionBody(MeshCenter,((ObjectMesh->GetMaxX()-ObjectMesh->GetMinX())*Scale.x)/2,3/*((ObjectMesh->GetMaxY()-ObjectMesh->GetMinY())*Scale.y)/2*/,((ObjectMesh->GetMaxZ()-ObjectMesh->GetMinZ())*Scale.z)/2, "move");
 	//cbCollisionObject->Rotate(180);
 	
 	MeshCenter.x -= Position.x;
