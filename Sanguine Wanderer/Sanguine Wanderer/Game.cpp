@@ -5,6 +5,7 @@ boost::scoped_ptr<Game> Game::pSingleton(NULL);
 
 Game::Game()
 {
+
 	Player = new PlayerObject(glm::vec3(0,10,-100),glm::vec3(0,10,-19),glm::vec3(0,1,0));
 	
 	plane = new GroundObject();
@@ -81,6 +82,7 @@ void Game::Display()
 void Game::Update()
 {
 	//cout<<"\n PLANE Y +++"<<plane->GetPosition().y;
+	
 	GroundCollide->Update();
 	Input();
 	Player->Update(Terrain->GetY(Player->GetPosition().x,Player->GetPosition().z));
@@ -293,6 +295,10 @@ void Game::InitialiseProps()
 	Knight->SetScale(glm::vec3(0.1,0.1,0.1));
 	Knight->SetRotation(glm::vec3(0,0,0));
 	Knight->InitialiseCollisionBody();
+
+	Knight->SetVelocity(glm::vec2(1,1));
+	PropObjects.push_back(Temp);
+
 
 		/****PROPS LIST ******/
 	/*
