@@ -21,29 +21,132 @@
 class CollisionBody
 {
 public:
-	
-	void createplane(glm::vec3 Pos, glm::vec3 normal);
-	void CreateRigidBody(glm::vec3 pos, float x, float y, float z, int nothing);
-	void CreateRigidBody(glm::vec3 pos, float x, float y, float z, std::string word);
-	void Update();
-	void Rotate(float degrees);
-	int swap;
+
 	/**
-	 * \fn	CollisionBody::CollisionBody(float fPosX, float fPosY, float fPosZ);
+	 * \fn	void CollisionBody::createplane(glm::vec3 Pos, glm::vec3 normal);
+	 *
+	 * \brief	Createplanes.
+	 *
+	 * \author	Wise Bear
+	 * \date	5/23/2013
+	 *
+	 * \param	Pos   	The position.
+	 * \param	normal	The normal.
+	 */
+
+	void createplane(glm::vec3 Pos, glm::vec3 normal);
+
+	/**
+	*\brief creates a rigid body that is square and can't be moved
+	*
+	*/
+	void CreateRigidBody(glm::vec3 pos, float x, float y, float z, int nothing);
+
+	/**
+	 * \fn	void CollisionBody::CreateRigidBody(glm::vec3 pos, float x, float y, float z,
+	 * 		std::string word);
+	 *
+	 * \brief	Creates a square rigid body that can be moved around
+	 *
+	 * \author	Wise Bear
+	 * \date	5/23/2013
+	 *
+	 * \param	pos 	The position.
+	 * \param	x   	The x coordinate.
+	 * \param	y   	The y coordinate.
+	 * \param	z   	The z coordinate.
+	 * \param	word	The word.
+	 */
+
+	void CreateRigidBody(glm::vec3 pos, float x, float y, float z, std::string word);
+
+	/**
+	*\brief Update function that will ensure a collision body stays activated
+	*
+	*/
+	void Update();
+
+	/**
+	*\brief rotate functions that will rotate the current collision body by the amount of degrees passed in
+	*
+	*/
+	void Rotate(float degrees);
+
+	/**
+	 * \brief	The swap.
+	 */
+
+	int swap;
+
+	/**
+	 * \fn	CollisionBody::CollisionBody(glm::vec3 Position, glm::vec3 Normal);
 	 *
 	 * \brief	Constructor.
 	 *
 	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
-	 * \param	fPosX	The position x coordinate.
-	 * \param	fPosY	The position y coordinate.
-	 * \param	fPosZ	The position z coordinate.
+	 * \param	Position	The position x coordinate.
+	 * \param	Normal  	The position y coordinate.
 	 */
+
 	CollisionBody(glm::vec3 Position, glm::vec3 Normal);
+
+	/**
+	*\brief constructer that can pick what type of collision body
+	*
+	*/
 	CollisionBody(glm::vec3 Position, int type);
+
+	/**
+	 * \fn	CollisionBody::CollisionBody(glm::vec3 Position, float length, float width, float height);
+	 *
+	 * \brief	Constructor.
+	 *
+	 * \author	Wise Bear
+	 * \date	5/23/2013
+	 *
+	 * \param	Position	The position.
+	 * \param	length  	The length.
+	 * \param	width   	The width.
+	 * \param	height  	The height.
+	 */
+
 	CollisionBody(glm::vec3 Position, float length, float width, float height);
+
+	/**
+	 * \fn	CollisionBody::CollisionBody(glm::vec3 Position, float length, float width, float height,
+	 * 		std::string word);
+	 *
+	 * \brief	Constructor.
+	 *
+	 * \author	Wise Bear
+	 * \date	5/23/2013
+	 *
+	 * \param	Position	The position.
+	 * \param	length  	The length.
+	 * \param	width   	The width.
+	 * \param	height  	The height.
+	 * \param	word		The word.
+	 */
+
 	CollisionBody(glm::vec3 Position, float length, float width, float height, std::string word);
+
+	/**
+	 * \fn	CollisionBody::CollisionBody(glm::vec3 Position, float length, float width, float height,
+	 * 		int nothing);
+	 *
+	 * \brief	Constructor.
+	 *
+	 * \author	Wise Bear
+	 * \date	5/23/2013
+	 *
+	 * \param	Position	The position.
+	 * \param	length  	The length.
+	 * \param	width   	The width.
+	 * \param	height  	The height.
+	 * \param	nothing 	The nothing.
+	 */
 
 	CollisionBody(glm::vec3 Position, float length, float width, float height,int nothing);
 
@@ -78,18 +181,28 @@ public:
 	void SetVelocity(float velocityX, float velcoityY, float velocityZ);
 
 	/**
-	 * \fn	void CollisionBody::SetVelocityGravity(float velocityX, float veclocityZ);
+	 * \fn	void CollisionBody::SetXVelocity(float velocityX);
 	 *
 	 * \brief	Sets the velocity of the xz direction y direction is taken from gravity.
 	 *
 	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
-	 * \param	velocityX 	The velocity x coordinate.
-	 * \param	veclocityZ	The veclocity z coordinate.
+	 * \param	velocityX	The velocity x coordinate.
 	 */
+
 	void SetXVelocity(float velocityX);
+
+	/**
+	*\brief will set Z velocity and leave other velocities untouched
+	*
+	*/
 	void SetZVelocity(float velocityY);
+
+	/**
+	*\brief returns the y value of the bodies velocity
+	*
+	*/
 	float ReturnYVelocity();
 
 
@@ -142,16 +255,8 @@ public:
 	void SetCollisionPos(float x, float y, float z);
 
 	/**
-	 * \fn	glm::vec3 CollisionBody::GetPosition();
-	 *
 	 * \brief	Gets the position.
-	 *
-	 * \author	Arran Ford
-	 * \date	4/10/2013
-	 *
-	 * \return	The position.
 	 */
-
 
 	btRigidBody* ThisRigidBody;
 
@@ -178,51 +283,40 @@ protected:
 private:
 
 	/**
-	 * \fn	void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fRadius);
+	 * \fn	void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fRadius);
 	 *
 	 * \brief	Creates sphere rigid body.
 	 *
 	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
-	 * \param	fPosX  	The position x coordinate.
-	 * \param	fPosY  	The position y coordinate.
-	 * \param	fPosZ  	The position z coordinate.
+	 * \param	passPos	The position x coordinate.
 	 * \param	fRadius	The radius.
 	 */
 
 	void CreateRigidBody(glm::vec3 passPos, float fRadius);
 
 	/**
-	 * \fn	void CollisionBody::CreateRigidBody(float fPosX, float fPosY, float fPosZ, float fXdis,
-	 * 		float fYdis, float fZdis);
+	 * \fn	void CollisionBody::CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis,
+	 * 		float fZdis);
 	 *
 	 * \brief	Creates a square rigid body.
 	 *
 	 * \author	Arran Ford
 	 * \date	4/10/2013
 	 *
-	 * \param	fPosX	The position x coordinate.
-	 * \param	fPosY	The position y coordinate.
-	 * \param	fPosZ	The position z coordinate.
-	 * \param	fXdis	The xdis.
-	 * \param	fYdis	The ydis.
-	 * \param	fZdis	The zdis.
+	 * \param	passPos	The position x coordinate.
+	 * \param	fXdis  	The xdis.
+	 * \param	fYdis  	The ydis.
+	 * \param	fZdis  	The zdis.
 	 */
 
 	void CreateRigidBody(glm::vec3 passPos, float fXdis, float fYdis, float fZdis);
 
-	/**
-	 * \brief	this rigid body.
-	 */
+	 /**
+	  * \property	* brief The current position. */ glm::vec3 CurrentPosition;
 
-	
-
-	/**
-	 * \brief	The current position.
-	 */
-
-	glm::vec3 CurrentPosition;
+	 
 
 
 	
